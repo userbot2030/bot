@@ -38,26 +38,19 @@ else:
         f" ▰▱▰▱°▱▱°▱▰▱▰\n"
     )
 
-@Ubot("kynan", cmds)
+@Ubot("alive", cmds)
 @check_access
-async def module_help(client: Client, message: Message):
-    await join(client)
-    cmd = message.command
-    help_arg = ""
+async def alive(client: Client, message: Message):
     bot_username = (await app.get_me()).username
-    if len(cmd) > 1:
-        help_arg = "".join(cmd[1:])
-    elif not message.reply_to_message and len(cmd) == 1:
-        try:
-            nice = await client.get_inline_bot_results(bot=bot_username, query="kynan")
-            await asyncio.gather(
-                message.delete(),
-                client.send_inline_bot_result(
-                    message.chat.id, nice.query_id, nice.results[0].id
-                ),
+    try:
+        shin = await client.get_inline_bot_results(bot=bot_username, query=f"alive {id(message)}")
+        await asyncio.gather(
+            client.send_inline_bot_result(
+                message.chat.id, shin.query_id, shin.results[0].id, reply_to_message_id=message.id
             )
-        except BaseException as e:
-            print(f"{e}")
+        )
+    except Exception as e:
+        print(f"{e}")
 
 
 @Ubot("id", cmds)
