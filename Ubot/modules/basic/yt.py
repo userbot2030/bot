@@ -2,7 +2,15 @@
 import asyncio
 import os
 import time
+from datetime import datetime
+
 import wget
+import os, pytube, requests
+from pyrogram import *
+from pyrogram.types import *
+from youtube_search import YoutubeSearch
+from pytube import YouTube
+
 from ubotlibs.ubot.helper.PyroHelpers import ReplyCheck
 from ubotlibs.ubot.utils.tools import *
 from pyrogram import Client, enums
@@ -14,123 +22,87 @@ from . import *
 from ubotlibs.ubot.database.accesdb import *
 
 
-@Ubot(["vid", "video"], cmds)
-async def yt_vid(client: Client, message: Message):
-    input_st = message.text
-    input_str = input_st.split(" ", 1)[1]
-    Ubot = await message.reply(" `Processing...`")
-    if not input_str:
-        await Ubot.edit_text(
-            "`Gunakan format vid judul_video`"
-        )
-        return
-    await Ubot.edit_text(f"`Processing  search {input_str} ...`")
-    search = SearchVideos(str(input_str), offset=1, mode="dict", max_results=1)
-    rt = search.result()
-    result_s = rt["search_result"]
-    url = result_s[0]["link"]
-    vid_title = result_s[0]["title"]
-    yt_id = result_s[0]["id"]
-    uploade_r = result_s[0]["channel"]
-    thumb_url = f"https://img.youtube.com/vi/{yt_id}/hqdefault.jpg"
-    await asyncio.sleep(0.6)
-    downloaded_thumb = wget.download(thumb_url)
-    opts = {
-        "format": "best",
-        "addmetadata": True,
-        "key": "FFmpegMetadata",
-        "prefer_ffmpeg": True,
-        "geo_bypass": True,
-        "nocheckcertificate": True,
-        "postprocessors": [{"key": "FFmpegVideoConvertor", "preferedformat": "mp4"}],
-        "outtmpl": "%(id)s.mp4",
-        "logtostderr": False,
-        "quiet": True,
-    }
-    try:
-        with YoutubeDL(opts) as ytdl:
-            ytdl_data = ytdl.extract_info(url, download=True)
-    except Exception as e:
-        await Ubot.edit_text(f"**Failed To Download** \n**Error :** `{str(e)}`")
-        return
-    time.time()
-    file_path = f"{ytdl_data['id']}.mp4"
-    capy = f"🔖 **Video Name ►** `{vid_title}` \n👤 **Requested For ►** `{input_str}` \n💌 **Channel ►** `{uploade_r}` \n📎 **Link ►** `{url}`"
-    await client.send_video(
-        message.chat.id,
-        video=open(file_path, "rb"),
-        duration=int(ytdl_data["duration"]),
-        file_name=str(ytdl_data["title"]),
-        thumb=downloaded_thumb,
-        caption=capy,
-        supports_streaming=True,
-    )
-    await Ubot.delete()
-    for files in (downloaded_thumb, file_path):
-        if files and os.path.exists(files):
-            os.remove(files)
+CAPTION_TEXT = """
+࿂ **Title:** `{}`
+࿂ **Requester** : {}
+࿂ **Downloaded Via** : `{}`
+࿂ **Downloaded By : Kyran-Pyro**
+"""
+
+async def downloadsong(m, message, vid_id):
+   try: 
+    m = await m.edit(text = f"📥 **Download**",
+    link =  YouTube(f"https://youtu.be/{vid_id}")
+    thumbloc = link.title + "thumb"
+    thumb = requests.get(link.thumbnail_url, allow_redirects=True)
+    open(thumbloc , 'wb').write(thumb.content)
+    songlink = link.streams.filter(only_audio=True).first()
+    down = songlink.download()
+    first, last = os.path.splitext(down)
+    song = first + '.mp3'
+    os.rename(down, song)
+    m = await m.edit(text = """
+📤 **Upload Started**
+  """,
+    await message.reply_audio(song,
+    caption = CAPTION_TEXT.format(link.title, message.from_user.mention if message.from_user else "Anonymous Admin", "Youtube"),
+    thumb = thumbloc)
+    await m.delete()
+    if os.path.exists(song):
+        os.remove(song)
+    if os.path.exists(thumbloc):
+        os.remove(thumbloc)
+   except Exception as e:
+       await m.edit(f"Terjadi kesalahan. ⚠️ \nAnda juga bisa mendapatkan bantuan dari @kynansupport.__\n\n{str(e)}")
+
+async def downlodvideo(m, message, vid_id):
+   try: 
+    m = await m.edit(text = "📥 Downloading...",
+    link =  YouTube(f"https://youtu.be/{vid_id}")
+    videolink = link.streams.get_highest_resolution()
+    video = videolink.download()
+    m = await m.edit(text = "📤 Uploading...",
+    await message.reply_video(video, 
+    caption=CAPTION_TEXT.format(link.title, message.from_user.mention if message.from_user else "Anonymous Admin", "Youtube"))
+    await m.delete()
+    if os.path.exists(video):
+            os.remove(video)
+   except Exception as e:
+       await m.edit(f"`Terjadi kesalahan. ⚠️ \nAnda juga bisa mendapatkan bantuan dari @kynansupport.__\n\n{str(e)}`")
 
 
 @Ubot("song", cmds)
-async def song(client: Client, message: Message):
-    input_str = get_text(message)
-    rep = await message.reply("`Processing...`")
-    if not input_str:
-        await rep.edit(
-            "`Please Give Me A Valid Input. You Can Check Help Menu To Know More!`"
-        )
-        return
-    await rep.edit(f"`Getting {input_str} From Youtube Servers. Please Wait.`")
-    search = SearchVideos(str(input_str), offset=1, mode="dict", max_results=1)
-    rt = search.result()
-    result_s = rt["search_result"]
-    url = result_s[0]["link"]
-    vid_title = result_s[0]["title"]
-    yt_id = result_s[0]["id"]
-    uploade_r = result_s[0]["channel"]
-    thumb_url = f"https://img.youtube.com/vi/{yt_id}/hqdefault.jpg"
-    await asyncio.sleep(0.6)
-    downloaded_thumb = wget.download(thumb_url)
-    opts = {
-        "format": "bestaudio",
-        "addmetadata": True,
-        "key": "FFmpegMetadata",
-        "writethumbnail": True,
-        "prefer_ffmpeg": True,
-        "geo_bypass": True,
-        "nocheckcertificate": True,
-        "postprocessors": [
-            {
-                "key": "FFmpegExtractAudio",
-                "preferredcodec": "mp3",
-                "preferredquality": "720",
-            }
-        ],
-        "outtmpl": "%(id)s.mp3",
-        "quiet": True,
-        "logtostderr": False,
-    }
-    try:
-        with YoutubeDL(opts) as ytdl:
-            ytdl_data = ytdl.extract_info(url, download=True)
-    except Exception as e:
-        await rep.edit(f"**Failed To Download** \n**Error :** `{str(e)}`")
-        return
-    time.time()
-    file_sung = f"{ytdl_data['id']}.mp3"
-    capy = f"**🔖 Song Name ►** `{vid_title}` \n👤 **Requested For ►** `{input_str}` \n💌 **Channel ►** `{uploade_r}` \n📎 **Link ►** `{url}`"
-    await client.send_audio(
-        message.chat.id,
-        audio=open(file_sung, "rb"),
-        title=str(ytdl_data["title"]),
-        performer=str(ytdl_data["uploader"]),
-        thumb=downloaded_thumb,
-        caption=capy,
-    )
-    await rep.delete()
-    for files in (downloaded_thumb, file_sung):
-        if files and os.path.exists(files):
-            os.remove(files)
+@check_access
+async def songdown(client: Client, message: Message):
+   try: 
+    if len(message.command) < 2:
+            return await message.reply_text("`Beri nama lagu ⚠️`")
+    m = await message.reply_text("🔎 Mencari ...")
+    name = message.text.split(None, 1)[1]
+    vid_id = (YoutubeSearch(name, max_results=1).to_dict())[0]["id"]
+    await downloadsong(m, message, vid_id)
+   except Exception as e:
+       await m.edit(f"""
+**Tidak ditemukan** {message.from_user.mention}   
+Silakan periksa, Anda menggunakan format yang benar atau ejaan Anda benar dan coba lagi!
+       """)
+
+
+@Ubot(["vid", "video"], cmds)
+@check_access
+async def videodown(client: Client, message: Message):
+   try: 
+    if len(message.command) < 2:
+            return await message.reply_text("`Beri nama lagu ⚠️`")
+    m = await message.reply_text("`🔎 Mencari ...`")
+    name = message.text.split(None, 1)[1]
+    vid_id = (YoutubeSearch(name, max_results=1).to_dict())[0]["id"]
+    await downlodvideo(m, message, vid_id)
+   except Exception:
+       await m.edit(f"""
+**Tidak ditemukan** {message.from_user.mention}   
+Silakan periksa, Anda menggunakan format yang benar atau ejaan Anda benar dan coba lagi!
+       """)
             
             
 @Ubot(["sosmed"], cmds)
