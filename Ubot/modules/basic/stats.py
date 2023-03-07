@@ -11,9 +11,7 @@
 from datetime import datetime
 from pyrogram import Client, enums, filters
 from pyrogram.types import Message
-from ubotlibs import *
-from Ubot.modules.basic import add_command_help
-from Ubot import cmds
+from . import *
 
 @Ubot("stats", cmds)
 async def stats(client: Client, message: Message):

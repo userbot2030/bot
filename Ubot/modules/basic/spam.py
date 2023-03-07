@@ -5,13 +5,11 @@ from pyrogram import Client, enums, filters
 from pyrogram.types import Message
 from ubotlibs.ubot.helper.basic import edit_or_reply
 from ubotlibs.ubot.utils.misc import extract_args
-from ubotlibs.ubot import Ubot
-from ubotlibs import *
+from . import *
 from config import BOTLOG_CHATID
-from Ubot import cmds
 from ubotlibs.ubot.database.accesdb import *
 
-from Ubot.modules.basic.help import add_command_help
+
 SPAM_COUNT = [0]
 
 commands = ["spam", "statspam", "slowspam", "fspam"]

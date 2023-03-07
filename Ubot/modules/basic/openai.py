@@ -7,9 +7,7 @@ import random
 from pyrogram import *
 from pyrogram.types import *
 from pyrogram.errors import *
-from ubotlibs import *
-from Ubot import cmds
-from Ubot.modules.basic import add_command_help
+from . import *
 from Ubot.modules.basic.dev import *
 from ubotlibs.ubot.database.accesdb import *
 from ubotlibs.ubot.helper.what import *

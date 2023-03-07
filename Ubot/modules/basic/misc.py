@@ -12,13 +12,12 @@ import asyncio
 import random
 from datetime import datetime
 from platform import python_version
-from ubotlibs import *
+from . import *
 from ubotlibs.ubot.helper.PyroHelpers import ReplyCheck
 from pyrogram import __version__, filters, Client
 from pyrogram.types import Message
 from config import ALIVE_PIC, ALIVE_TEXT
-from Ubot import START_TIME, SUDO_USER, app, cmds
-from Ubot.modules.basic import add_command_help
+from Ubot import START_TIME, SUDO_USER, app
 from ubotlibs.ubot.database.accesdb import *
 from Ubot.modules.bot.inline import get_readable_time
 

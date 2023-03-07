@@ -2,9 +2,9 @@
 
 
 import random 
-from Ubot import cmds 
+from . import *
 from ubotlibs.ubot.database.accesdb import *
-from ubotlibs import * 
+
 
 
 @Ubot(["mms", "memes"], cmds)

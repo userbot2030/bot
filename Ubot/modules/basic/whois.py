@@ -13,12 +13,11 @@ from os import remove
 from pyrogram import Client, filters
 from pyrogram.enums import ChatType
 from pyrogram.types import Message
-from ubotlibs import *
+from . import *
 from ubotlibs.ubot.database.accesdb import *
 from ubotlibs.ubot.helper.PyroHelpers import ReplyCheck
 from ubotlibs.ubot.utils import extract_user
-from Ubot.modules.basic import add_command_help
-from Ubot import cmds
+
 
 @Ubot(["info", "whois"], cmds)
 @check_access

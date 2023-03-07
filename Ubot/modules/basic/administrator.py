@@ -14,12 +14,10 @@ from time import time
 from pyrogram import Client, filters, enums
 from pyrogram.errors import ChatAdminRequired
 from pyrogram.types import ChatPermissions, ChatPrivileges, Message
-from ubotlibs import *
-from Ubot.modules.basic import add_command_help
+from . import *
 from ubotlibs.ubot.utils import *
 from ubotlibs.ubot.helper import *
 from ubotlibs.ubot.database.accesdb import *
-from Ubot import cmds
 
 
 

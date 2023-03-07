@@ -13,11 +13,11 @@ import os
 import re
 from pyrogram.types import Message
 from httpx import AsyncClient
-from ubotlibs import *
+from . import *
 from ubotlibs.ubot.helper.utility import get_arg
-from Ubot.modules.basic import add_command_help
+
 from ubotlibs.ubot.database.accesdb import *
-from Ubot import cmds
+
 
 # Pastebins
 class PasteBins:

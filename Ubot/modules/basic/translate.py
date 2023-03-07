@@ -14,9 +14,7 @@ from pyrogram import filters, Client
 from pyrogram.types import Message
 from py_trans import Async_PyTranslator
 from ubotlibs.ubot.helper.utility import get_arg
-from ubotlibs import *
-from Ubot.modules.basic import add_command_help
-from Ubot import cmds
+from . import *
 from ubotlibs.ubot.database.accesdb import *
 
 @Ubot("tr", cmds)

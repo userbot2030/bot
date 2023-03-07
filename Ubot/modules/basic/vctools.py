@@ -19,11 +19,9 @@ from pyrogram.raw.functions.messages import GetFullChat
 from pyrogram.raw.functions.phone import CreateGroupCall, DiscardGroupCall
 from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
 from pyrogram.types import Message
-from ubotlibs import *
+from . import *
 from ubotlibs.ubot.helper.utility import get_arg
 from ubotlibs.ubot.helper.basic import edit_or_reply
-from Ubot.modules.basic import add_command_help
-from Ubot import SUDO_USER, cmds
 from ubotlibs.ubot.database.accesdb import *
 
 async def get_group_call(

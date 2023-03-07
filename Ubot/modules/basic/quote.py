@@ -18,11 +18,10 @@ from pyrogram.errors import YouBlockedUser
 from emoji import get_emoji_regexp
 from PIL import Image, ImageDraw, ImageFont
 from ubotlibs.ubot.helper.utility import get_arg
-from ubotlibs import *
-from Ubot.modules.basic import add_command_help
+from . import *
 from ubotlibs.ubot.helper.PyroHelpers import ReplyCheck
 from ubotlibs.ubot.database.accesdb import *
-from Ubot import cmds
+
 
 def deEmojify(inputString: str) -> str:
     """Remove emojis and other non-safe characters from string"""

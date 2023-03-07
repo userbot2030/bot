@@ -1,10 +1,7 @@
 # cradit: Tomi Setiawan > @T0M1_X
 
 
-from Ubot import cmds
-
-from ubotlibs import *
-from Ubot.modules.basic import add_command_help
+from . import *
 from ubotlibs.ubot.database.accesdb import *
 from pyrogram.enums import MessagesFilter
 

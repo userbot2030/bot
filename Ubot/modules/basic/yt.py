@@ -5,14 +5,12 @@ import time
 import wget
 from ubotlibs.ubot.helper.PyroHelpers import ReplyCheck
 from ubotlibs.ubot.utils.tools import *
-from ubotlibs import *
 from pyrogram import Client, enums
 from pyrogram.types import Message
 from youtubesearchpython import SearchVideos
 from yt_dlp import YoutubeDL
 from pyrogram.errors import YouBlockedUser
-from Ubot.modules.basic import add_command_help
-from Ubot import cmds
+from . import *
 from ubotlibs.ubot.database.accesdb import *
 
 

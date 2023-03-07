@@ -10,11 +10,11 @@
 # ©2023 Ubot | Ram Team
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from ubotlibs.ubot import Ubot
+from . import *
 from ubotlibs.ubot.helper import edit_or_reply
-from Ubot.modules.basic import add_command_help
+
 from ubotlibs.ubot.database.accesdb import *
-from Ubot import cmds
+
 
 @Ubot("buat", cmds)
 @check_access

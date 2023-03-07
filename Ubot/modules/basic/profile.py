@@ -11,14 +11,12 @@
 import os
 from asyncio import sleep
 import os
-from ubotlibs import *
+from . import *
 from ubotlibs.ubot.utils.misc import *
 from ubotlibs.ubot.helper.PyroHelpers import ReplyCheck
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from Ubot import SUDO_USER, cmds
-from Ubot.modules.basic import add_command_help
 from ubotlibs.ubot.database.accesdb import *
 
 flood = {}

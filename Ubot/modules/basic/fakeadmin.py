@@ -12,10 +12,9 @@ import asyncio
 import random
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from ubotlibs import *
-from Ubot import cmds
+from . import *
 from ubotlibs.ubot.utils import extract_user_and_reason
-from Ubot.modules.basic.help import add_command_help
+
 from ubotlibs.ubot.database.accesdb import *
 from ubotlibs.ubot.helper.utility import get_arg
 ok = []

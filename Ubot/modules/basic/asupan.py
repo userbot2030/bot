@@ -13,13 +13,10 @@ from asyncio import gather
 from random import choice
 from pyrogram import Client, filters, enums
 from pyrogram.types import ChatPermissions, ChatPrivileges, Message
-from pyrogram import Client as gez 
 from ubotlibs.ubot.helper import edit_or_reply, get_text, ReplyCheck
-from ubotlibs import *
-from Ubot.modules.basic import add_command_help
+from . import *
 from ubotlibs.ubot.database.accesdb import *
 from config import *
-from Ubot import cmds
 
 
 @Ubot("asupan", cmds)

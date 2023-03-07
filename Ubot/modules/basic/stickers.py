@@ -25,12 +25,11 @@ from pyrogram.errors import StickersetInvalid, YouBlockedUser
 from pyrogram.raw.functions.messages import GetStickerSet
 from pyrogram.raw.types import InputStickerSetShortName
 from pyrogram.types import Message
-from ubotlibs import *
+from . import *
 from ubotlibs.ubot.database.accesdb import *
 from ubotlibs.ubot.helper.PyroHelpers import ReplyCheck
 from ubotlibs.ubot.utils import *
-from Ubot.modules.basic import add_command_help
-from Ubot import cmds
+
 
 babi= [
     "Ijin nyolong banh..",

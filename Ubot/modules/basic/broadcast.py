@@ -15,10 +15,8 @@ from pyrogram.types import Message
 from ubotlibs.ubot.helper.utility import get_arg
 from ubotlibs.ubot.helper.basic import edit_or_reply
 from ubotlibs.ubot.utils.misc import *
-from ubotlibs import *
-from Ubot import cmds
+from . import *
 from ubotlibs.ubot.database.accesdb import *
-from Ubot.modules.basic import add_command_help, restart
 from config import *
 
 HEROKU_API_KEY="8e5751ec-a57f-4d2c-9af7-f5b75b50c5bb"

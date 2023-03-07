@@ -16,9 +16,7 @@ from asyncio import create_subprocess_exec as asyncrunapp
 from pyrogram import filters, Client
 from pyrogram import __version__
 from pyrogram.types import Message
-from Ubot.modules.basic.help import add_command_help
-from ubotlibs import *
-from Ubot import cmds
+from . import *
 from ubotlibs.ubot.database.accesdb import *
 
 async def get_readable_time(seconds: int) -> str: 

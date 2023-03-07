@@ -17,13 +17,12 @@ from gtts import gTTS
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from ubotlibs.ubot.utils.tools import run_in_exc
-from Ubot import cmds
-from ubotlibs import *
+from . import *
 from ubotlibs.ubot.helper.basic import *
 from ubotlibs.ubot.utils.misc import *
 from ubotlibs.ubot.utils.tools import *
 from ubotlibs.ubot.database.accesdb import *
-from Ubot.modules.basic import add_command_help
+
 
 lang = "id"  # Default Language for voice
 

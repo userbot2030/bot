@@ -16,11 +16,10 @@ from pyrogram.types import *
 from pyrogram import *
 from pyromod import *
 
-from Ubot.modules.basic import add_command_help
-from Ubot import cmds
+from . import *
 from .carbon import make_carbon
 from ubotlibs.ubot.database.accesdb import *
-from ubotlibs import *
+
 
 
 from pyrogram.raw import *

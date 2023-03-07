@@ -13,12 +13,10 @@ import html
 import time
 from pyrogram import Client, enums
 from pyrogram.types import Message
-from ubotlibs.ubot import Ubot
+from . import *
 from ubotlibs.ubot.helper.basic import edit_or_reply
 from ubotlibs.ubot.helper.parser import mention_html, mention_markdown
-from Ubot import cmds
 from ubotlibs.ubot.database.accesdb import *
-from Ubot.modules.basic.help import add_command_help
 
 
 @Ubot("admins", cmds)

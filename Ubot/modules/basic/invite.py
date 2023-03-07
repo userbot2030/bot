@@ -12,11 +12,11 @@ import asyncio
 from pyrogram import Client, filters
 from pyrogram.enums import ChatType, UserStatus
 from pyrogram.types import Message
-from Ubot import SUDO_USER, cmds
+
 from pyrogram.errors.exceptions.flood_420 import FloodWait
-from ubotlibs import *
+from . import *
 from ubotlibs.ubot.database.accesdb import *
-from Ubot.modules.basic import add_command_help
+
 
 @Devs("cinvite")
 @Ubot("invite", cmds)

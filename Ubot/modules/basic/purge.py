@@ -12,10 +12,8 @@ import asyncio
 from pyrogram import Client, filters
 from pyrogram.types import Message 
 from pyrogram.errors import FloodWait
-from ubotlibs import *
-from Ubot.modules.basic import add_command_help
+from . import *
 from ubotlibs.ubot.database.accesdb import *
-from Ubot import cmds
 
 @Ubot("del", cmds)
 @check_access

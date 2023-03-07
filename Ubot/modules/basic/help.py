@@ -13,12 +13,11 @@ import asyncio
 from prettytable import PrettyTable
 from pyrogram import Client, enums, filters
 from pyrogram.types import Message
-from ubotlibs import *
+from . import Ubot, Devs, cmds
 from ubotlibs.ubot.helper.PyroHelpers import ReplyCheck
 from ubotlibs.ubot.helper.utility import split_list
 from ubotlibs.ubot.database.accesdb import *
 from Ubot import app, CMD_HELP, SUDO_USER
-from Ubot import cmds
 
 async def edit_or_reply(message: Message, *args, **kwargs) -> Message:
     xyz = (
@@ -28,7 +27,7 @@ async def edit_or_reply(message: Message, *args, **kwargs) -> Message:
     )
     return await xyz(*args, **kwargs)
 
-@Client.on_message(filters.command("help", "!") & SUDO_USER)
+
 @Ubot(["help", "helpme"], cmds)
 @check_access
 async def module_help(client: Client, message: Message):

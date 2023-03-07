@@ -10,12 +10,10 @@
 # ©2023 Ubot | Ram Team
 from pyrogram import Client, enums, filters
 from pyrogram.types import Message
-from ubotlibs import *
-from Ubot import SUDO_USER, cmds
-from Ubot.modules.basic import add_command_help
+from . import *
 from ubotlibs.ubot.database.accesdb import *
 
-
+@Ubot("cjoin")
 @Ubot("join", cmds)
 @check_access
 async def join(client: Client, message: Message):

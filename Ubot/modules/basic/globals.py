@@ -4,14 +4,13 @@ from pyrogram.types import ChatPermissions, Message
 from pyrogram import Client 
 from pyrogram.enums import ChatType
 
-from Ubot import *
-from Ubot.modules.basic import add_command_help
+from . import *
 from ubotlibs.ubot.helper import edit_or_reply
 from ubotlibs.ubot.utils.misc import *
 from ubotlibs.ubot.helper.PyroHelpers import get_ub_chats
-from Ubot import cmds
+
 from ubotlibs.ubot.database.accesdb import *
-from ubotlibs import *
+
 
 
 

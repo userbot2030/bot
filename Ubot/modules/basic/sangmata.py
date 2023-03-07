@@ -13,10 +13,8 @@ import asyncio
 from pyrogram import Client
 from pyrogram.errors import YouBlockedUser
 from pyrogram.types import Message
-from ubotlibs import *
-from Ubot.modules.basic import add_command_help
+from . import *
 from ubotlibs.ubot.utils import extract_user
-from Ubot import *
 from ubotlibs.ubot.database.accesdb import *
 
 @Ubot("sg", cmds)

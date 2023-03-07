@@ -5,9 +5,7 @@ from pyrogram.types import *
 
 from .dev import shell_exec
 from .carbon import make_carbon
-from Ubot import cmds
-from Ubot.modules.basic import add_command_help
-from ubotlibs import *
+from . import *
 from ubotlibs.ubot.database.accesdb import *
 
 

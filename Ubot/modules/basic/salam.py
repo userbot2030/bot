@@ -11,11 +11,10 @@
 import asyncio
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from ubotlibs import *
+from . import *
 from ubotlibs.ubot.helper.basic import edit_or_reply
 from ubotlibs.ubot.helper.PyroHelpers import ReplyCheck
-from Ubot.modules.basic import add_command_help
-from Ubot import cmds
+
 from ubotlibs.ubot.database.accesdb import *
 
 @Ubot("p", cmds)
