@@ -7,6 +7,7 @@ from pyrogram.enums import MessageMediaType
 from pyrogram.types import Message
 from py_extract import Video_tools
 from Ubot import cmds
+from ubotlibs import *
 from ubotlibs.ubot.database.accesdb import *
 from Ubot.modules.basic import add_command_help
 
