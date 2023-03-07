@@ -10,11 +10,11 @@ import dotenv
 from dotenv import load_dotenv
 from os import environ, execle, path
 from datetime import datetime, timedelta
-from Ubotlibs.Ubot.database.activedb import *
-from Ubotlibs.Ubot.database.accesdb import *
+from ubotlibs.ubot.database.activedb import *
+from ubotlibs.ubot.database.accesdb import *
 from Ubot import *
 from itertools import count
-from Ubotlibs import *
+from ubotlibs import *
 from pyrogram import *
 from platform import python_version as py
 from pyrogram import __version__ as pyro
