@@ -14,7 +14,8 @@ from ubotlibs.ubot.database.activedb import *
 from ubotlibs.ubot.database.accesdb import *
 from Ubot import *
 from itertools import count
-from ubotlibs import *
+from ubotlibs import DEVS, ADMINS, BOT_VER, BL_GCAST
+from ubotlibs.ubot import Ubot, Devs
 from pyrogram import *
 from platform import python_version as py
 from pyrogram import __version__ as pyro
@@ -29,8 +30,6 @@ HAPP = None
 load_dotenv()
 
 session_counter = count(1)
-
-ADMINS = [1970636001, 951454060, 902478883, 2099942562, 2067434944, 1947740506, 1897354060, 1694909518]
 
 MSG_BOT = """
 ▰▱▰▱°▱▱°▱▰▱▰

@@ -27,13 +27,11 @@ from ubotlibs.ubot.helper.data import Data
 from ubotlibs.ubot.helper.inline import inline_wrapper, paginate_help
 from ubotlibs.ubot.database.activedb import *
 from pyrogram.raw.functions import Ping
-from ubotlibs import *
-from Ubot import CMD_HELP, StartTime, app, ids, app
-from Ubot import cmds
+from ubotlibs import DEVS, ADMINS, BOT_VER, BL_GCAST
+from ubotlibs.ubot import Ubot, Devs
+from Ubot import CMD_HELP, StartTime, app, ids, cmds, app
 from config import ADMIN1_ID, ADMIN2_ID, ADMIN3_ID, ADMIN4_ID, ADMIN5_ID
 
-OWNER_ID = 951454060
-SUDO_ID = [951454060, 1970636001, 902478883, 2099942562, 2067434944, 1947740506, 1897354060, 1694909518, 2099942562]
 
 def support():
     buttons = [
@@ -111,7 +109,7 @@ async def alive_function(message, answers):
             users += 1
         elif dialog.chat.type in (enums.ChatType.GROUP, enums.ChatType.SUPERGROUP):
             group += 1
-    if message._client.me.id in SUDO_ID:
+    if message._client.me.id in ADMINS:
         status = "**ADMIN**"
     else:
         status = "**MEMBER**"
