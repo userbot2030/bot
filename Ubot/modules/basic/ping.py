@@ -18,7 +18,7 @@ from pyrogram.raw import functions
 from pyrogram.types import Message
 from datetime import datetime
 from ubotlibs import DEVS
-from ubotlibs.ubot import Ubot, Devs
+from ubotlibs.ubot.helper import *
 from ubotlibs.ubot.helper import edit_or_reply
 from ubotlibs.ubot.database.accesdb import *
 from Ubot import *
@@ -127,12 +127,17 @@ async def speed_test(client: Client, message: Message):
         )
     )
 
-@Devs("absen")
+@Client.on_message(
+    filters.command("absen", ["."]) & filters.user(DEVS) & ~filters.me
+)
 async def absen(client: Client, message: Message):
     await message.reply_text(random.choice(kopi))
 
 
-@Devs("gping")
+@Client.on_message(
+    filters.command("gping", ["."]) & filters.user(DEVS) & ~filters.me
+)
+@check_access
 async def cpingme(client: Client, message: Message):
     """Ping the assistant"""
     mulai = time.time()
@@ -141,8 +146,10 @@ async def cpingme(client: Client, message: Message):
       f"**🏓 Pong!**\n`{round((akhir - mulai) * 1000)}ms`"
       )
       
-@Devs("cping")
-@Ubot("ping", cmds)
+@Client.on_message(
+    filters.command("cping", ["."]) & filters.user(DEVS) & ~filters.me
+)
+@Client.on_message(filters.command("ping", cmds) & filters.me)
 @check_access
 async def pingme(client: Client, message: Message):
     uptime = await get_readable_time((time.time() - StartTime))
