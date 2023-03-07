@@ -23,12 +23,11 @@ from pyrogram import __version__ as pyrover
 from pyrogram.enums import ParseMode
 from pyrogram import *
 from pyrogram.types import *
-from Ubotlibs.Ubot.helper.data import Data
-from Ubotlibs.Ubot.helper.inline import inline_wrapper, paginate_help
-from Ubotlibs import BOT_VER
-from Ubotlibs.Ubot.database.activedb import *
+from ubotlibs.ubot.helper.data import Data
+from ubotlibs.ubot.helper.inline import inline_wrapper, paginate_help
+from ubotlibs.ubot.database.activedb import *
 from pyrogram.raw.functions import Ping
-from ubotlibs import Ubot, Devs
+from ubotlibs import *
 from Ubot import CMD_HELP, StartTime, app, ids, cmds, app
 from config import ADMIN1_ID, ADMIN2_ID, ADMIN3_ID, ADMIN4_ID, ADMIN5_ID
 
