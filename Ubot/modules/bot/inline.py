@@ -112,9 +112,9 @@ async def alive_function(message, answers):
         elif dialog.chat.type in (enums.ChatType.GROUP, enums.ChatType.SUPERGROUP):
             group += 1
     if message._client.me.id in ADMINS:
-        status = "**ADMIN**"
+        status = "ADMIN"
     else:
-        status = "**MEMBER**"
+        status = "MEMBER"
     start = datetime.now()
     buttons = support()
     ex = await message._client.get_me()
@@ -126,7 +126,7 @@ async def alive_function(message, answers):
     uptime = await get_readable_time((time.time() - StartTime))
     msg = (
         f"<b>Ubot-Pyro</b>\n"
-        f"     <b>◉ Status : [{status}]</b>\n"
+        f"     <b>◉ Status : {status}</b>\n"
         f"     <b>◉ Users :</b> <code>{user}</code>\n"
         f"     <b>◉ Ping DC:</b> <code>{ping} ms</code>\n"
         f"     <b>◉ Users Count :</b> <code>{users} users</code>\n"
