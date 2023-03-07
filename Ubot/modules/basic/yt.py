@@ -61,7 +61,7 @@ async def downlodvideo(m, message, vid_id):
     link =  YouTube(f"https://youtu.be/{vid_id}")
     videolink = link.streams.get_highest_resolution()
     video = videolink.download()
-    m = await m.edit(text = "📤 Uploading...",
+    m = await m.edit(text = "📤 Uploading...")
     await message.reply_video(video, 
     caption=CAPTION_TEXT.format(link.title, message.from_user.mention if message.from_user else "Anonymous Admin", "Youtube"))
     await m.delete()
