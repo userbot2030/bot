@@ -13,6 +13,7 @@ from yt_dlp import YoutubeDL
 from pyrogram.errors import YouBlockedUser
 from Ubot.modules.basic import add_command_help
 from Ubot import cmds
+from ubotlibs.ubot.database.accesdb import *
 
 
 @Ubot(["vid", "video"], cmds)
