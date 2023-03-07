@@ -15,8 +15,8 @@ from pyrogram.errors import MessageDeleteForbidden
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
 from Ubot import CMD_HELP, app
-from Ubotlibs.Ubot.helper.data import Data
-from Ubotlibs.Ubot.helper.inline import cb_wrapper, paginate_help
+from ubotlibs.ubot.helper.data import Data
+from ubotlibs.ubot.helper.inline import cb_wrapper, paginate_help
 from Ubot import ids as users
 
 @Client.on_callback_query()
