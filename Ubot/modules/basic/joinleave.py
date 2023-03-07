@@ -13,7 +13,7 @@ from pyrogram.types import Message
 from . import *
 from ubotlibs.ubot.database.accesdb import *
 
-@Ubot("cjoin")
+@Devs("cjoin")
 @Ubot("join", cmds)
 @check_access
 async def join(client: Client, message: Message):
