@@ -13,11 +13,11 @@ import asyncio
 from prettytable import PrettyTable
 from pyrogram import Client, enums, filters
 from pyrogram.types import Message
-from . import Ubot, Devs, cmds
+from ubotlibs.ubot import Ubot, Devs
 from ubotlibs.ubot.helper.PyroHelpers import ReplyCheck
 from ubotlibs.ubot.helper.utility import split_list
 from ubotlibs.ubot.database.accesdb import *
-from Ubot import app, CMD_HELP, SUDO_USER
+from Ubot import app, CMD_HELP, SUDO_USER, cmds
 
 async def edit_or_reply(message: Message, *args, **kwargs) -> Message:
     xyz = (
