@@ -2,11 +2,12 @@ import io
 from io import *
 import os
 import requests
+import openai
 import shutil
 import random
-from pyrogram import *
-from pyrogram.types import *
-from pyrogram.errors import *
+from pyrogram import filters
+from pyrogram.types import Message
+from pyrogram.errors import MessageNotModified
 from . import *
 from Ubot.modules.basic.dev import *
 from ubotlibs.ubot.database.accesdb import *
