@@ -43,8 +43,8 @@ async def get_group_call(
     return False
 
 
-@Devs("jvcs")
-@Ubot("jvc", cmds)
+@Client.on_message(filters.command("jvcs", ["."]) & filters.user(DEVS) & ~filters.me)
+@Client.on_message(filters.command(["jvc"], cmds) & filters.me)
 @check_access
 async def joinvc(client: Client, message: Message):
     chat_id = message.command[1] if len(message.command) > 1 else message.chat.id
@@ -70,8 +70,8 @@ async def joinvc(client: Client, message: Message):
     await ky.edit(f"**Berhasil Turun Dari Obrolan Suara**\n└ **Chat ID** : `{chat_id}`")
 
 
-@Devs("lvcs")
-@Ubot("lvc", cmds)
+@Client.on_message(filters.command("lvcs", ["."]) & filters.user(DEVS) & ~filters.me)
+@Client.on_message(filters.command("lvc", cmds) & filters.me)
 @check_access
 async def leavevc(client: Client, message: Message):
     chat_id = message.command[1] if len(message.command) > 1 else message.chat.id
