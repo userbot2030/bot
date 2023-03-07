@@ -43,7 +43,7 @@ async def downloadsong(m, message, vid_id):
     os.rename(down, song)
     m = await m.edit(text = """
 📤 **Upload Started**
-  """,
+  """)
     await message.reply_audio(song,
     caption = CAPTION_TEXT.format(link.title, message.from_user.mention if message.from_user else "Anonymous Admin", "Youtube"),
     thumb = thumbloc)
