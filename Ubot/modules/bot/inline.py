@@ -32,7 +32,7 @@ from Ubot import CMD_HELP, StartTime, app, ids, cmds, app
 from config import ADMIN1_ID, ADMIN2_ID, ADMIN3_ID, ADMIN4_ID, ADMIN5_ID
 
 OWNER_ID = 951454060
-SUDO_ID = [1970636001, 902478883, 2099942562, 2067434944, 1947740506, 1897354060, 1694909518, 2099942562]
+SUDO_ID = [951454060, 1970636001, 902478883, 2099942562, 2067434944, 1947740506, 1897354060, 1694909518, 2099942562]
 
 def support():
     buttons = [
@@ -110,14 +110,13 @@ async def alive_function(message, answers):
             users += 1
         elif dialog.chat.type in (enums.ChatType.GROUP, enums.ChatType.SUPERGROUP):
             group += 1
-    if client.me.id == OWNER_ID:
-      status = "**OWNER**"
-    elif client.me.id in SUDO_ID:
-      status = "**ADMIN**"
+    if message._client.me.id in SUDO_ID:
+        status = "**ADMIN**"
     else:
-      status = "**MEMBER**"
+        status = "**MEMBER**"
     start = datetime.now()
     buttons = support()
+    ex = await message_.client.get_me()
     user = len( await get_active_users())
     user_active_time = await get_active_time(ex.id)
     active_time_str = str(user_active_time.days) + " Hari " + str(user_active_time.seconds // 3600) + " Jam"
@@ -145,9 +144,9 @@ async def alive_function(message, answers):
             reply_markup=InlineKeyboardMarkup(
                 [
                   [
-                    InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ"
+                    InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ",
                     url=f"https://t.me/kynansupport"),
-                    InlineKeyboardButton(text="ᴄʜᴀɴɴᴇʟ"
+                    InlineKeyboardButton(text="ᴄʜᴀɴɴᴇʟ",
                     url=f"https://t.me/kontenfilm"),
                   ],
                 ]
