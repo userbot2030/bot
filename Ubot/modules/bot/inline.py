@@ -68,40 +68,6 @@ async def get_readable_time(seconds: int) -> str:
 
     return up_time
     
-    
-@app.on_callback_query(filters.regex("start_admin"))
-async def start_admin(_, query: CallbackQuery):
-    ADMIN1 = ADMIN1_ID[0]
-    ADMIN2 = ADMIN2_ID[0]
-    ADMIN3 = ADMIN3_ID[0]
-    ADMIN4 = ADMIN4_ID[0]
-    ADMIN5 = ADMIN5_ID[0]
-    return await query.edit_message_text(
-        f"""<b> ☺️** Silakan hubungi admin dibawah ini untuk membuat userbot**</b>""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(text="👮‍♂ Admin 1", user_id=ADMIN1),
-                    InlineKeyboardButton(text="👮‍♂ Admin 2", user_id=ADMIN2),
-                ],
-                [
-                    InlineKeyboardButton("👮‍♂ Admin 3", user_id=ADMIN3),
-                    InlineKeyboardButton(text="👮‍♂ Admin 4", user_id=ADMIN4),
-                  ],
-                  [
-                    InlineKeyboardButton(text="👮‍♂ Admin 5", user_id=ADMIN5),
-                  ],
-                  [
-                     InlineKeyboardButton(text="Tutup", callback_data="close"),
-                  ],
-             ]
-        ),
-    )
-
-
-@app.on_callback_query(filters.regex("close"))
-async def close(_, query: CallbackQuery):
-    await query.message.delete()
 
 async def alive_function(message, answers):
     users = 0
