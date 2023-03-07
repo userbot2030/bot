@@ -31,7 +31,7 @@ CAPTION_TEXT = """
 
 async def downloadsong(m, message, vid_id):
    try: 
-    m = await m.edit(text = f"📥 **Download**",
+    m = await m.edit(text = f"📥 **Download**")
     link =  YouTube(f"https://youtu.be/{vid_id}")
     thumbloc = link.title + "thumb"
     thumb = requests.get(link.thumbnail_url, allow_redirects=True)
@@ -57,7 +57,7 @@ async def downloadsong(m, message, vid_id):
 
 async def downlodvideo(m, message, vid_id):
    try: 
-    m = await m.edit(text = "📥 Downloading...",
+    m = await m.edit(text = "📥 Downloading...",)
     link =  YouTube(f"https://youtu.be/{vid_id}")
     videolink = link.streams.get_highest_resolution()
     video = videolink.download()
