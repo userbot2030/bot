@@ -54,7 +54,6 @@ async def start_admin(_, query: CallbackQuery):
     ADMIN3 = ADMIN3_ID[0]
     ADMIN4 = ADMIN4_ID[0]
     ADMIN5 = ADMIN5_ID[0]
-    ADMIN6 = ADMIN6_ID[0]
     return await query.edit_message_text(
         f"""<b> ☺️** Silakan hubungi admin dibawah ini untuk membuat userbot**</b>""",
         reply_markup=InlineKeyboardMarkup(
@@ -69,7 +68,7 @@ async def start_admin(_, query: CallbackQuery):
                   ],
                   [
                     InlineKeyboardButton(text="👮‍♂ Admin 5", user_id=ADMIN5),
-                    InlineKeyboardButton(text="👮‍♂ Admin 6", user_id=ADMIN6),
+                    
                   ],
                   [
                      InlineKeyboardButton(text="Tutup", callback_data="close"),
