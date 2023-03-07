@@ -107,18 +107,7 @@ async def alive_function(message, answers):
             input_message_content=InputTextMessageContent(
                 msg, parse_mode=ParseMode.HTML, disable_web_page_preview=True
             ),
-            reply_markup=InlineKeyboardMarkup(
-                [
-                  [
-                    InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ",
-                    url=f"https://t.me/kynansupport"),
-                    InlineKeyboardButton(text="ᴄʜᴀɴɴᴇʟ",
-                    url=f"https://t.me/kontenfilm"),
-                  ],
-                ]
-            ),
-        )
-    )
+            reply_markup=InlineKeyboardMarkup(buttons)))
     return answers
 
 
