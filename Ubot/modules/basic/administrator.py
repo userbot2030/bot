@@ -89,7 +89,6 @@ async def member_ban(client: Client, message: Message):
 @Ubot("unban", cmds)
 @check_access
 async def member_unban(client: Client, message: Message):
-    async def member_unban(client: Client, message: Message):
     reply = message.reply_to_message
     rd = await message.reply("`Processing...`")
     if reply and reply.sender_chat and reply.sender_chat != message.chat.id:
