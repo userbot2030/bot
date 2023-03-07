@@ -6,7 +6,7 @@ from ubotlibs.ubot.utils.tools import *
 from Ubot.modules.basic import add_command_help
 from ubotlibs.ubot.database.accesdb import *
 from Ubot import cmds
-ftom ubotlibs import *
+from ubotlibs import *
 
 
 
