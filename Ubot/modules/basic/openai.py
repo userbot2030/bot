@@ -11,11 +11,10 @@ from . import *
 from Ubot.modules.basic.dev import *
 from ubotlibs.ubot.database.accesdb import *
 from ubotlibs.ubot.helper.what import *
-from config import OPENAI_API_KEY
 
 RMBG_API_KEY = "3RCCWg8tMBfDWdAs44YMfJmC"
 
-
+OPENAI_API_KEY = "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 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".split()
 
 # cradit: Tomi Setiawan > @T0M1_X
 class OpenAi:
