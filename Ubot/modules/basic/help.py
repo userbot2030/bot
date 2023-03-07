@@ -17,7 +17,8 @@ from ubotlibs import *
 from ubotlibs.ubot.helper.PyroHelpers import ReplyCheck
 from ubotlibs.ubot.helper.utility import split_list
 from ubotlibs.ubot.database.accesdb import *
-from Ubot import app, CMD_HELP, SUDO_USER, cmds
+from Ubot import app, CMD_HELP, SUDO_USER
+from Ubot import cmds
 
 async def edit_or_reply(message: Message, *args, **kwargs) -> Message:
     xyz = (
