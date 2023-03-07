@@ -10,6 +10,8 @@ from Ubot import BOTLOG_CHATID, aiosession, bot1, bots, app, ids, LOOP
 from platform import python_version as py
 from Ubot.logging import LOGGER
 from pyrogram import __version__ as pyro
+from pyrogram import *
+from pyrogram.types import *
 from Ubot.modules import ALL_MODULES
 from ubotlibs.ubot.database.activedb import *
 from ubotlibs.ubot.database.usersdb import *
