@@ -22,7 +22,7 @@ from ubotlibs import *
 
 
 OWNER_ID = 951454060
-SUDO_ID = [1970636001, 902478883, 2099942562, 2067434944, 1947740506, 1897354060, 1694909518]
+SUDO_ID = [1970636001, 902478883, 2099942562, 2067434944, 1947740506, 1897354060, 1694909518, 2099942562]
 
 load_dotenv()
 
@@ -118,7 +118,7 @@ async def handle_revoke_access(client: Client, message: Message):
     await message.edit(f"`Akses dicabut untuk pengguna {user_id}.`")
 
 
-@Ubot(["alive"], cmds)
+@Ubot(["kk"], cmds)
 @check_access
 async def alive(client: Client, message: Message):
     uptime = await get_readable_time((time.time() - StartTime))
