@@ -11,14 +11,16 @@ from . import *
 from Ubot.modules.basic.dev import *
 from ubotlibs.ubot.database.accesdb import *
 from ubotlibs.ubot.helper.what import *
-from config import OPENAI_API
+from config import OPENAI_API_KEY
 
 RMBG_API_KEY = "3RCCWg8tMBfDWdAs44YMfJmC"
+
+
 
 # cradit: Tomi Setiawan > @T0M1_X
 class OpenAi:
     def Text(question):
-        openai.api_key = random.choice(OPENAI_API)
+        openai.api_key = random.choice(OPENAI_API_KEY)
         response = openai.Completion.create(
             model="text-davinci-003",
             prompt=f"Q: {question}\nA:",
@@ -31,7 +33,7 @@ class OpenAi:
         return response.choices[0].text
 
     def Photo(question):
-        openai.api_key = random.choice(OPENAI_API)
+        openai.api_key = random.choice(OPENAI_API_KEY)
         response = openai.Image.create(prompt=question, n=1, size="1024x1024")
         return response["data"][0]["url"]
         
@@ -39,7 +41,7 @@ class OpenAi:
 @Ubot(["ai", "ask"], cmds)
 @check_access
 async def openai(c, m):
-    openai_api_key = random.choice(OPENAI_API)
+    openai_api_key = random.choice(OPENAI_API_KEY)
     if len(m.command) == 1:
         return await m.reply(f"Ketik <code>{prefix}{m.command[0]} [question]</code> Pertanyaan untuk menggunakan OpenAI")
     question = m.text.split(" ", maxsplit=1)[1]
@@ -66,7 +68,7 @@ async def openai(c, m):
 
 @Ubot(["img", "photo"], cmds)
 @check_access
-async def img(lient, message):
+async def img(client, message):
     Tm = await message.reply("<code>Memproses...</code>")
     if len(message.command) < 2:
         return await Tm.edit(f"<b><code>{message.text}</code> [query]</b>")
