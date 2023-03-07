@@ -127,7 +127,6 @@ async def alive_function(message, answers):
     msg = (
         f"<b>Ubot-Pyro</b>\n"
         f"     <b>◉ Status : [{status}]</b>\n"
-        f"     <b>◉ Master :</b> {client.me.mention} \n"
         f"     <b>◉ Users :</b> <code>{user}</code>\n"
         f"     <b>◉ Ping DC:</b> <code>{ping} ms</code>\n"
         f"     <b>◉ Users Count :</b> <code>{users} users</code>\n"
