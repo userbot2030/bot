@@ -28,7 +28,8 @@ from ubotlibs.ubot.helper.inline import inline_wrapper, paginate_help
 from ubotlibs.ubot.database.activedb import *
 from pyrogram.raw.functions import Ping
 from ubotlibs import *
-from Ubot import CMD_HELP, StartTime, app, ids, cmds, app
+from Ubot import CMD_HELP, StartTime, app, ids, app
+from Ubot import cmds
 from config import ADMIN1_ID, ADMIN2_ID, ADMIN3_ID, ADMIN4_ID, ADMIN5_ID
 
 OWNER_ID = 951454060
