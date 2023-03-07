@@ -13,7 +13,7 @@ import asyncio
 from prettytable import PrettyTable
 from pyrogram import Client, enums, filters
 from pyrogram.types import Message
-from ubotlibs.ubot import *
+from ubotlibs import *
 from ubotlibs.ubot.helper.PyroHelpers import ReplyCheck
 from ubotlibs.ubot.helper.utility import split_list
 from ubotlibs.ubot.database.accesdb import *
