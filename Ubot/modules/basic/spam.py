@@ -64,7 +64,7 @@ async def sspam(client: Client, message: Message):
     amount = int(message.command[1])
     text = " ".join(message.command[2:])
 
-    cooldown = {"spam": 0.15, "statspam": 0.1, "slowspam": 0.9, "fspam": 0}
+    cooldown = {"spam": 0.15, "statspam": 0.5, "slowspam": 0.9, "fspam": 0.5}
 
     await message.delete()
 
@@ -75,7 +75,7 @@ async def sspam(client: Client, message: Message):
             sent = await client.send_message(message.chat.id, text)
 
         if message.command[0] == "statspam":
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(0.5)
             await sent.delete()
 
         await asyncio.sleep(cooldown[message.command[0]])
