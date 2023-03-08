@@ -14,7 +14,7 @@ from pyrogram import Client, enums, filters
 from pyrogram.types import Message
 from ubotlibs.ubot.helper.utility import get_arg
 from ubotlibs.ubot.helper.basic import edit_or_reply
-from ubotlibs.Ubot import Ubot, Devs
+from ubotlibs.ubot import Ubot, Devs
 from Ubot import cmds
 from .help import add_command_help
 from ubotlibs.ubot.database.accesdb import *
