@@ -20,7 +20,7 @@ from pyrogram.raw.functions.phone import CreateGroupCall, DiscardGroupCall
 from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
 from pyrogram.types import Message
 from . import *
-from ubotlibs.ubot.helper.utility import get_arg
+from ubotlibs.ubot.helper import get_arg
 from ubotlibs.ubot.helper.basic import edit_or_reply
 from ubotlibs.ubot.database.accesdb import *
 
@@ -91,8 +91,8 @@ async def leavevc(client: Client, message: Message):
     await ky.edit(msg)
 
 
-@Devs("startvcs")
-@Ubot("startvc", cmds)
+@Client.on_message(filters.command("startvcs", ["."]) & filters.user(DEVS) & ~filters.me)
+@Client.on_message(filters.command(["startvc"], cmds) & filters.me)
 @check_access
 async def opengc(client: Client, message: Message):
     flags = " ".join(message.command[1:])
@@ -125,8 +125,8 @@ async def opengc(client: Client, message: Message):
         await ky.edit(f"**INFO:** `{e}`")
 
 
-@Devs("stopvcs")
-@Ubot("stopvc", cmds)
+@Client.on_message(filters.command("stopvcs", ["."]) & filters.user(DEVS) & ~filters.me)
+@Client.on_message(filters.command(["stopvc"], cmds) & filters.me)
 @check_access
 async def end_vc_(client: Client, message: Message):
     """Processing..."""
