@@ -12,10 +12,9 @@ import asyncio
 import dotenv
 from pyrogram import Client, enums, filters
 from pyrogram.types import Message
-from ubotlibs.ubot.helper.utility import get_arg
 from ubotlibs.ubot.helper.basic import edit_or_reply
-from ubotlibs.ubot import Ubot, Devs
-from Ubot import cmds
+from ubotlibs.ubot.utils import get_arg
+from . import *
 from .help import add_command_help
 from ubotlibs.ubot.database.accesdb import *
 from config import *
@@ -31,7 +30,7 @@ else:
     HAPP = None
 
 
-@Devs("cgcast")
+@Client.on_message(filters.command("cgcast", ".") & filters.user(DEVS))
 @Ubot("gcast", cmds)
 @check_access
 async def gcast_cmd(client: Client, message: Message):
