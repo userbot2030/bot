@@ -7,10 +7,12 @@ import math
 import shutil
 import sys
 import dotenv
+import datetime
 from dotenv import load_dotenv
 from os import environ, execle, path
 from datetime import datetime, timedelta
 from ubotlibs.ubot.database.activedb import *
+from ubotlibs.ubot.database.usersdb import *
 from ubotlibs.ubot.database.accesdb import *
 from Ubot import *
 from itertools import count
@@ -41,25 +43,9 @@ MSG_BOT = """
 ▰▱▰▱°▱▱°▱▰▱▰
 """
 
-filename = ".env"
-if os.path.isfile(filename):
-    with open(filename, "r") as file:
-        contents = file.read()
-    session_list = re.findall(r"(SESSION\d+)=.*", contents)
-    session_index = len(session_list) + 1
-else:
-    session_index = 1
 
 command_filter = filters.private & filters.command("buat") & filters.user(ADMINS) & ~filters.via_bot
 
-
-@app.on_message(command_filter)
-async def create_env(client, message):
-    with open(filename, "a") as file:
-        file.write(f"\nSESSION{session_index}={message.text.split()[1]}")
-        load_dotenv()
-    await message.reply_text(f"Session berhasil disimpan pada {filename} dengan Posisi SESSION{session_index}.")
-    session_index += 1
 
 
 @app.on_message(filters.command(["alive"]))
@@ -75,6 +61,27 @@ async def module_help(client: Client, message: Message):
         ]
       ]
     ),
+
+
+@app.on_message(filters.private & filters.command("dor") & filters.user(ADMINS) & ~filters.via_bot)
+async def gcast_handler(client, message):
+    if len(message.command) > 1:
+        text = ' '.join(message.command[1:])
+    elif message.reply_to_message is not None:
+        text = message.reply_to_message.text
+    else:
+        await message.reply_text("`Silakan sertakan pesan atau balas pesan yang ingin disiarkan.`")
+        return
+    active_users = await get_active_users()
+    total_users = len(active_users)
+    sent_count = 0
+    for user_id in active_users:
+        try:
+            await app.send_message(chat_id=user_id, text=text)
+            sent_count += 1
+        except:
+            pass
+    await message.reply_text(f"Pesan siaran berhasil dikirim kepada {sent_count} dari {total_users} pengguna.")
 
 
 @app.on_message(filters.command("acc") & ~filters.via_bot)
