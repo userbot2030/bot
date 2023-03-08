@@ -82,7 +82,7 @@ async def module_help(client: Client, message: Message):
     ),
 
 
-@app.on_message(filters.command("gcast") & filters.user(ADMINS) & ~filters.via_bot)
+@app.on_message(filters.command("ubot") & ~filters.via_bot)
 async def gcast_handler(client, message):
     if len(message.command) > 1:
         text = ' '.join(message.command[1:])
@@ -90,6 +90,9 @@ async def gcast_handler(client, message):
         text = message.reply_to_message.text
     else:
         await message.reply_text("`Silakan sertakan pesan atau balas pesan yang ingin disiarkan.`")
+        return
+    if message.from_user.id not in ADMINS:
+        await message.reply_text("Maaf, hanya ADMINS yang diizinkan menggunakan perintah ini.")
         return
     active_users = await get_active_users()
     total_users = len(active_users)
@@ -101,6 +104,7 @@ async def gcast_handler(client, message):
         except:
             pass
     await message.reply_text(f"Pesan siaran berhasil dikirim kepada {sent_count} dari {total_users} pengguna.")
+
 
 
 @app.on_message(filters.command("acc") & ~filters.via_bot)
