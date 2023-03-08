@@ -107,7 +107,7 @@ async def main():
             user = len( await get_active_users())
         except Exception as e:
             LOGGER("X").info(f"{e}")
-            if "TELEGRAM" in str(e):
+            if "Telegram says" in str(e):
                 for i in range(1, 201):
                     if os.getenv(f"SESSION{i}") == str(e):
                         os.environ.pop(f"SESSION{i}")
