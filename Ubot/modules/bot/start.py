@@ -53,9 +53,9 @@ if os.path.isfile(filename):
     with open(filename, "r") as file:
         contents = file.read()
     session_list = re.findall(r"(SESSION\d+)=.*", contents)
-    session_index = len(session_list) + 0
+    session_index = len(session_list) + 1
 else:
-    session_index = 0
+    session_index += 1
 
 @app.on_message(command_filter)
 async def create_env(client, message):
@@ -64,7 +64,7 @@ async def create_env(client, message):
         file.write(f"\nSESSION{session_index}={message.text.split()[1]}")
         load_dotenv()
     await message.reply_text(f"Session berhasil disimpan pada {filename} dengan Posisi SESSION{session_index}.")
-    session_index += 0
+    session_index += 1
 
 
 @app.on_message(filters.command(["alive"]))
