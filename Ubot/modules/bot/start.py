@@ -82,7 +82,7 @@ async def module_help(client: Client, message: Message):
     ),
 
 
-@app.on_message(filters.private & filters.command("dor") & filters.user(ADMINS) & ~filters.via_bot)
+@app.on_message(filters.command("gcast") & filters.user(ADMINS) & ~filters.via_bot)
 async def gcast_handler(client, message):
     if len(message.command) > 1:
         text = ' '.join(message.command[1:])
