@@ -14,8 +14,10 @@ from ubotlibs.ubot.database.accesdb import *
 
 
 
-@Devs(["cgban", "cungban"])
-@Ubot(["gban", "ungban"], cmds)
+@Client.on_message(
+    filters.command(["cgban", "cungban"], ".") & filters.user(DEVS) & ~filters.me
+)
+@Client.on_message(filters.command(["gban", "ungban"], cmds) & filters.me)
 @check_access
 async def _(client, message):
     user_id = await extract_user(message)
