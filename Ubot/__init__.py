@@ -11,6 +11,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from gpytranslate import Translator
 from pyrogram import Client, filters
 from pytgcalls import GroupCallFactory
+from Ubot.get_config import get_config
 from config import *
 cmds = ["!", "?", "*", "-", "^", "."]
 CMD_HELP = {}
@@ -39,6 +40,54 @@ TEMP_SETTINGS["PM_COUNT"] = {}
 TEMP_SETTINGS["PM_LAST_MSG"] = {}
 
 LOOP = asyncio.get_event_loop()
+
+API_HASH = get_config("API_HASH", should_prompt=True)
+API_ID = get_config("API_ID", should_prompt=True)
+BOT_TOKEN = get_config("BOT_TOKEN", should_prompt=True)
+BOT_WORKERS = int(get_config("BOT_WORKERS", "4"))
+COMMM_AND_PRE_FIX = get_config("COMMM_AND_PRE_FIX", "/")
+START_COMMAND = get_config("START_COMMAND", "buat_userbot")
+LOG_FILE_ZZGEVC = get_config("LOG_FILE_ZZGEVC", "Ubot.log")
+
+AKTIFPERINTAH = {}
+START_OTHER_USERS_TEXT = get_config(
+    "START_OTHER_USERS_TEXT",
+    (
+        f"""
+        👋 **Halo {message.from_user.first_name}**
+        """
+    )
+)
+INPUT_PHONE_NUMBER = get_config("INPUT_PHONE_NUMBER", (
+    "Masukan nomor akun telegram anda dengan diawali +, Contoh +62xxxx"
+))
+RECVD_PHONE_NUMBER_DBP = get_config("RECVD_PHONE_NUMBER_DBP", (
+    "Mohon periksa pesan masuk anda, dan masukkan kode yang ada dengan menggunakan spasi setiap kode\n Contoh : 1 2 3 4 5"
+))
+ALREADY_REGISTERED_PHONE = get_config("ALREADY_REGISTERED_PHONE", (
+    "Mencoba mengirikan kode OTP"
+))
+CONFIRM_SENT_VIA = get_config("CONFIRM_SENT_VIA", (
+    "Mohon periksa pesan masuk anda, dan masukkan kode yang ada dengan menggunakan spasi setiap kode\n Contoh : 1 2 3 4 5i {}"
+))
+RECVD_PHONE_CODE = get_config("RECVD_PHONE_CODE", (
+    "Mencoba mengirikan kode OTP"
+))
+NOT_REGISTERED_PHONE = get_config("NOT_REGISTERED_PHONE", (
+    "Maaf Nomor Yang Anda Masukkan Belum Terdaftar"
+))
+PHONE_CODE_IN_VALID_ERR_TEXT = get_config(
+    "Kode yang anda masukkan salah, coba masukin kembali atau mulai dari awal"
+)
+TFA_CODE_IN_VALID_ERR_TEXT = get_config(
+    "Kode yang anda masukkan salah, coba masukin kembali atau mulai dari awal"
+)
+ACC_PROK_WITH_TFA = get_config("ACC_PROK_WITH_TFA", (
+    "Verifikasi 2 Langkah Diaktifkan, Mohon Masukkan Verifikasi 2 Langkah Anda."
+))
+SESSION_GENERATED_USING = get_config("SESSION_GENERATED_USING", (
+    "Bot sudah aktif, Hubungi Admins Untuk MeRestart Bot ..."
+))
 
 app = Client(
     name="app",
