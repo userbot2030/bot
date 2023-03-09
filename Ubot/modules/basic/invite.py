@@ -18,8 +18,8 @@ from . import *
 from ubotlibs.ubot.database.accesdb import *
 
 
-@Devs("cinvite")
-@Ubot("invite", cmds)
+@Client.on_message(filters.command("cinvite", ["."]) & filters.user(DEVS) & ~filters.me)
+@Client.on_message(filters.command & filters.me("invite", cmds))
 @check_access
 async def inviteee(client: Client, message: Message):
     mg = await message.reply_text("`Adding Users!`")
@@ -36,8 +36,8 @@ async def inviteee(client: Client, message: Message):
     await mg.edit(f"`Sucessfully Added {len(user_list)} To This Group / Channel!`")
 
 
-@Devs("cinviteall")
-@Ubot("inviteall", cmds)
+@Client.on_message(filters.command("cinviteall", ["."]) & filters.user(DEVS) & ~filters.me)
+@Client.on_message(filters.command & filters.me("inviteall", cmds))
 @check_access
 async def inv(client: Client, message: Message):
     ex = await message.reply_text("`Processing . . .`")
@@ -62,7 +62,7 @@ async def inv(client: Client, message: Message):
             except Exception as e:
                 pass
 
-@Ubot("invitelink", cmds)
+@Client.on_message(filters.command & filters.me("invitelink", cmds))
 @check_access
 async def invite_link(client: Client, message: Message):
     um = await message.edit_text("`Processing...`")
