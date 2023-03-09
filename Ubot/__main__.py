@@ -83,7 +83,7 @@ async def close(_, query: CallbackQuery):
     await query.message.delete()
 
 async def main():
-    await app.run()
+    await app.start()
     LOGGER("Ubot").info("Memulai Ubot Pyro..")
     LOGGER("Ubot").info("Loading Everything.")
     for all_module in ALL_MODULES:
