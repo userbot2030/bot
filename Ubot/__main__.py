@@ -83,6 +83,7 @@ async def close(_, query: CallbackQuery):
     await query.message.delete()
 
 async def main():
+    await app.run()
     LOGGER("Ubot").info("Memulai Ubot Pyro..")
     LOGGER("Ubot").info("Loading Everything.")
     for all_module in ALL_MODULES:
@@ -123,5 +124,4 @@ async def main():
 if __name__ == "__main__":
    install()
    LOOP.run_until_complete(main())
-   app.run()
    LOGGER("Info").info("Stop Ubot Pyro")
