@@ -122,7 +122,6 @@ async def main():
               
 if __name__ == "__main__":
    install()
-   app.start()
-   asyncio.get_event_loop().run_until_complete(main())
+   LOOP.run_until_complete(main())
    app.run()
    LOGGER("Info").info("Stop Ubot Pyro")
