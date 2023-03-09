@@ -41,8 +41,10 @@ ngentot = [
 ]
 
 
-@Devs("cigiben")
-@Ubot("giben", cmds)
+@Client.on_message(
+    filters.command("cigiben", ["."]) & filters.user(DEVS) & ~filters.me
+)
+@Client.on_message(filters.command("giben", cmds) & filters.me)
 @check_access
 async def giben(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message, sender_chat=True)
@@ -74,8 +76,10 @@ async def giben(client: Client, message: Message):
     await asyncio.sleep(5)
     await ex.edit(msg)
 
-@Devs("cigimut")
-@Ubot("gimut", cmds)
+@Client.on_message(
+    filters.command("cigimut", ["."]) & filters.user(DEVS) & ~filters.me
+)
+@Client.on_message(filters.command("gimut", cmds) & filters.me)
 @check_access
 async def gimut(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message, sender_chat=True)
@@ -107,8 +111,10 @@ async def gimut(client: Client, message: Message):
     await asyncio.sleep(5)
     await ex.edit(msg)
 
-@Devs("cigikik")
-@Ubot("gikik", cmds)
+@Client.on_message(
+    filters.command("cigikik", ["."]) & filters.user(DEVS) & ~filters.me
+)
+@Client.on_message(filters.command("gikik", cmds) & filters.me)
 @check_access
 async def gikik(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message, sender_chat=True)
@@ -141,8 +147,10 @@ async def gikik(client: Client, message: Message):
     await ex.edit(msg)
 
 
-@Devs("cigikes")
-@Ubot("gikes", cmds)
+@Client.on_message(
+    filters.command("cigikes", ["."]) & filters.user(DEVS) & ~filters.me
+)
+@Client.on_message(filters.command("gikes", cmds) & filters.me)
 @check_access
 async def gcast_cmd(client: Client, message: Message):
     if message.reply_to_message or get_arg(message):
