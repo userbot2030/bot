@@ -19,7 +19,8 @@ from ubotlibs.ubot.helper.data import Data
 from ubotlibs.ubot.helper.inline import cb_wrapper, paginate_help
 from Ubot import ids as users
 
-@Client.on_callback_query()
+
+@app.on_callback_query()
 async def _callbacks(_, callback_query: CallbackQuery):
     query = callback_query.data.lower()
     bot_me = await app.get_me()
