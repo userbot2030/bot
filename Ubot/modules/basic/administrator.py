@@ -31,7 +31,7 @@ unmute_permissions = ChatPermissions(
 )
 
 
-@Ubot("setgpic", cmds)
+@Client.on_message(filters.command & filters.me("setgpic", cmds))
 @check_access
 async def set_chat_photo(client: Client, message: Message):
     zuzu = (await client.get_chat_member(message.chat.id, client.me.id)).privileges
@@ -50,7 +50,7 @@ async def set_chat_photo(client: Client, message: Message):
 
 
 
-@Ubot("ban", cmds)
+@Client.on_message(filters.command & filters.me("ban", cmds))
 @check_access
 async def member_ban(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message, sender_chat=True)
@@ -84,7 +84,7 @@ async def member_ban(client: Client, message: Message):
 
 
 
-@Ubot("unban", cmds)
+@Client.on_message(filters.command & filters.me("unban", cmds))
 @check_access
 async def member_unban(client: Client, message: Message):
     reply = message.reply_to_message
@@ -109,7 +109,7 @@ async def member_unban(client: Client, message: Message):
 
 
 
-@Ubot(["pin", "unpin"], cmds)
+@Client.on_message(filters.command & filters.me(["pin", "unpin"], cmds))
 @check_access
 async def pin_message(client: Client, message):
     if not message.reply_to_message:
@@ -132,7 +132,7 @@ async def pin_message(client: Client, message):
         return await rd.edit("**Anda bukan admin di group ini !**")
 
 
-@Ubot("mute", cmds)
+@Client.on_message(filters.command & filters.me("mute", cmds))
 @check_access
 async def mute(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message)
@@ -160,7 +160,7 @@ async def mute(client: Client, message: Message):
 
 
 
-@Ubot("unmute", cmds)
+@Client.on_message(filters.command & filters.me("unmute", cmds))
 @check_access
 async def unmute(client: Client, message: Message):
     user_id = await extract_user(message)
@@ -175,7 +175,7 @@ async def unmute(client: Client, message: Message):
         return await rd.edit("**Anda bukan admin di group ini !**")
 
 
-@Ubot("kick", cmds)
+@Client.on_message(filters.command & filters.me("kick", cmds))
 @check_access
 async def kick_user(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message)
@@ -205,7 +205,7 @@ async def kick_user(client: Client, message: Message):
         return await rd.edit("**Anda bukan admin di group ini !**")
 
 
-@Ubot("promote", cmds)
+@Client.on_message(filters.command & filters.me("promote", cmds))
 @check_access
 async def promotte(client: Client, message: Message):
     user_id = await extract_user(message)
@@ -249,7 +249,7 @@ async def promotte(client: Client, message: Message):
         return await rd.edit("**Anda bukan admin di group ini !**")
 
 
-@Ubot("demote", cmds)
+@Client.on_message(filters.command & filters.me("demote", cmds))
 @check_access
 async def demote(client: Client, message: Message):
     user_id = await extract_user(message)
