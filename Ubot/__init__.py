@@ -54,7 +54,7 @@ START_OTHER_USERS_TEXT = get_config(
     "START_OTHER_USERS_TEXT",
     (
         f"""
-        👋 **Halo {message.from_user.first_name}**
+        👋 **Halo Saya Adalah Ubot-Pyro**
         """
     )
 )
