@@ -83,8 +83,6 @@ async def close(_, query: CallbackQuery):
     await query.message.delete()
 
 async def main():
-    load_dotenv()
-    await app.start()
     LOGGER("Ubot").info("Memulai Ubot Pyro..")
     LOGGER("Ubot").info("Loading Everything.")
     for all_module in ALL_MODULES:
@@ -108,6 +106,7 @@ async def main():
         except Exception as e:
             LOGGER("X").info(f"{e}")
             if "Telegram says" in str(e):
+                load_dotenv()
                 for i in range(1, 201):
                     if os.getenv(f"SESSION{i}") == str(e):
                         os.environ.pop(f"SESSION{i}")
@@ -123,5 +122,7 @@ async def main():
               
 if __name__ == "__main__":
    install()
-   LOOP.run_until_complete(main())
+   app.start()
+   asyncio.get_event_loop().run_until_complete(main())
+   app.run()
    LOGGER("Info").info("Stop Ubot Pyro")
