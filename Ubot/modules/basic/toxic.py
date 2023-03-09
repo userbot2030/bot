@@ -7,7 +7,6 @@ from ubotlibs.ubot.helper import edit_or_reply, ReplyCheck
 from ubotlibs.ubot.utils import extract_user
 from . import *
 
-
 @Ubot(["jamet"], cmds)
 async def ngejamet(client: Client, message: Message):
     user_id = await extract_user(message)
@@ -104,7 +103,7 @@ async def toxicso(client: Client, message: Message):
 @Ubot(["nb"], cmds)
 async def toxicnb(client: Client, message: Message):
     user_id = await extract_user(message)
-    if message.chat.id in BLACKLIST_CHAT:
+    if message.chat.id in BL_GCAST:
         return await edit_or_reply(
             message, "**Perintah ini Dilarang digunakan di Group ini**"
         )
@@ -278,7 +277,7 @@ async def toxicdih(client: Client, message: Message):
 @Ubot(["gc"], cmds)
 async def toxicgcs(client: Client, message: Message):
     user_id = await extract_user(message)
-    if message.chat.id in BLACKLIST_CHAT:
+    if message.chat.id in BL_GCAST:
         return await edit_or_reply(
             message, "**Perintah ini Dilarang digunakan di Group ini**"
         )
