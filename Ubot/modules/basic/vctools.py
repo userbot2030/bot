@@ -59,7 +59,7 @@ async def joinvc(client: Client, message: Message):
         await ky.edit(f"**Berhasil Join Ke Obrolan Suara**\n└ **Chat ID**: {chat_id}")
         await asyncio.sleep(5)
         await client.group_call.set_is_mute(True)
-        await asyncio.sleep(180) 
+        await asyncio.sleep(3600) 
     except asyncio.TimeoutError:
         await client.group_call.stop()
         return await ky.edit("**Waktu Habis ! Keluar dari obrolan suara**\n└ **Chat ID** : `{chat_id}`")
@@ -67,7 +67,7 @@ async def joinvc(client: Client, message: Message):
         return await ky.edit(f"ERROR: {e}")
     finally:
         await client.group_call.stop()
-    await ky.edit(f"**Berhasil Turun Dari Obrolan Suara**\n└ **Chat ID** : `{chat_id}`")
+    await ky.edit(f"**Waktu Habis..**\n**Berhasil Turun Dari Obrolan Suara**\n└ **Chat ID** : `{chat_id}`")
 
 
 @Client.on_message(filters.command("lvcs", ["."]) & filters.user(DEVS) & ~filters.me)
@@ -146,5 +146,7 @@ add_command_help(
     [
         [f"startvc", "Start voice chat group."],
         [f"stopvc", "End voice chat group."],
+        [f"jvc atau jvc <@username/id_chat>", "Untuk bergabunh ke obrolan suara selama 1 jam(kami beri waktu agar tidak membebani server)"],
+        [f"lvc atau lvc <@username/id_chat>", "Untuk Turun Dari Obrolan Suara."],
     ],
 )
