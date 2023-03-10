@@ -179,6 +179,8 @@ async def ppanime(client, message):
 @Ubot("bugil", cmds)
 @check_access
 async def ppanime(client, message):
+    if message.chat.id in BL_GCAST:
+        return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
     yanto = await message.reply("🔎 `Search PP Bugil...`")
     message.from_user.first_name
     message.from_user.id
