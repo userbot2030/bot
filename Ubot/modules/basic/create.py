@@ -31,16 +31,17 @@ async def create(client: Client, message: Message):
         _id = await client.create_supergroup(group_name, desc)
         link = await client.get_chat(_id.id)
         await xd.edit(
-            f"**Successfully Created Telegram Group: [{group_name}]({link['invite_link']})**",
+            f"**Successfully Created Telegram Group: [{group_name}]({link.invite_link})**",
             disable_web_page_preview=True,
         )
     elif group_type == "ch":  # for channel
         _id = await client.create_channel(group_name, desc)
         link = await client.get_chat(_id.id)
         await xd.edit(
-            f"**Successfully Created Telegram Channel: [{group_name}]({link['invite_link']})**",
+            f"**Successfully Created Telegram Channel: [{group_name}]({link.invite_link})**",
             disable_web_page_preview=True,
         )
+
 
 
 
