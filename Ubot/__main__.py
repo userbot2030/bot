@@ -55,7 +55,7 @@ async def start_admin(_, query: CallbackQuery):
     ADMIN4 = ADMIN4_ID[0]
     ADMIN5 = ADMIN5_ID[0]
     return await query.edit_message_text(
-        f"""<b> ☺️** Silakan hubungi admin dibawah ini untuk membuat userbot**</b>""",
+        f"""<b> ☺️** Silakan hubungi admin dibawah ini untuk memberi akses bot kamu dan merestart nya..**</b>""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
