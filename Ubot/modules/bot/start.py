@@ -146,12 +146,12 @@ async def start_(client: Client, message: Message):
     await message.reply_text(
         f"""<b>👋 **Halo {message.from_user.first_name}** \n
 💭 **Apa ada yang bisa saya bantu **
-💡 **Jika ingin membuat bot\nKamu bisa klik tombol dibawah dan hubungi admin.**
+💡 **Jika ingin membuat bot\nKamu bisa ketik /buat_userbot lalu hubungi admin untuk merestart bot.**
 </b>""",
         reply_markup=InlineKeyboardMarkup(
             [ 
                 [
-              InlineKeyboardButton(text="✨ Buat Userbot ✨", callback_data="buat_userbot"),
+              InlineKeyboardButton(text="✨ Hubungi Admin✨", callback_data="start_admin"),
                 ],
                 [
               InlineKeyboardButton(text="💌 Support", url="https://t.me/kynansupport"),
