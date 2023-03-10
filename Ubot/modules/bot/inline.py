@@ -29,10 +29,12 @@ from ubotlibs.ubot.database.activedb import *
 from ubotlibs.ubot.database.usersdb import *
 from ubotlibs.ubot.database.accesdb import *
 from pyrogram.raw.functions import Ping
-from ubotlibs import DEVS, ADMINS, BOT_VER, BL_GCAST
+from ubotlibs import DEVS, BOT_VER, BL_GCAST
 from ubotlibs.ubot import Ubot, Devs
 from Ubot import CMD_HELP, StartTime, app, ids, cmds, app
 from config import ADMIN1_ID, ADMIN2_ID, ADMIN3_ID, ADMIN4_ID, ADMIN5_ID
+
+ADMINS = [1970636001, 951454060, 902478883, 2099942562, 2067434944, 1947740506, 1897354060, 1694909518]
 
 
 def support():
