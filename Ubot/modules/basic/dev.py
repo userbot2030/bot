@@ -17,7 +17,7 @@ from pyrogram import *
 from pyromod import *
 
 from . import *
-from .carbon import make_carbon
+from Ubot.modules.basic.carbon import make_carbon
 from ubotlibs.ubot.database.accesdb import *
 
 
@@ -33,11 +33,11 @@ from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
 mod = randint
 cheat = 10000, 999999999
 
-@Ubot("screenls", cmds)
+@Client.on_message(filters.command("screenls", cmds) & filters.me)
 @check_access
-async def screen(c, m):
+async def screen(client, message):
     screen = (await shell_exec("screen -ls"))[0]
-    await m.reply(f"<code>{screen}</code>")
+    await message.reply(f"<code>{screen}</code>")
 
 
 @Ubot("ev", cmds)
