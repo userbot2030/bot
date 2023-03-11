@@ -46,7 +46,7 @@ API_ID = get_config("API_ID", should_prompt=True)
 BOT_TOKEN = get_config("BOT_TOKEN", should_prompt=True)
 BOT_WORKERS = int(get_config("BOT_WORKERS", "4"))
 COMMM_AND_PRE_FIX = get_config("COMMM_AND_PRE_FIX", "/")
-START_COMMAND = get_config("START_COMMAND", "buat_userclient")
+START_COMMAND = get_config("START_COMMAND", "buat_userbot")
 LOG_FILE_ZZGEVC = get_config("LOG_FILE_ZZGEVC", "Ubot.log")
 
 AKTIFPERINTAH = {}
@@ -93,7 +93,7 @@ app = Client(
     name="app",
     api_id=API_ID,
     api_hash=API_HASH,
-    client_token=client_TOKEN,
+    bot_token=BOT_TOKEN,
     plugins=dict(root="Ubot/modules/bot"),
     in_memory=True,
 )
