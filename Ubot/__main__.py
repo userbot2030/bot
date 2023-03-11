@@ -3,13 +3,15 @@ import time
 from datetime import datetime
 import asyncio
 from asyncio import get_event_loop_policy
-from pyrogram import idle
+from pyrogram import *
+from pyrogram.types import *
 from uvloop import install
 from ubotlibs import *
 from Ubot import BOTLOG_CHATID, aiosession, bot1, bots, app, ids, LOOP
 from platform import python_version as py
 from Ubot.logging import LOGGER
 from pyrogram import __version__ as pyro
+
 from Ubot.modules import ALL_MODULES
 from ubotlibs.ubot.database.activedb import *
 from ubotlibs.ubot.database.usersdb import *
