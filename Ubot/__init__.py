@@ -89,6 +89,11 @@ SESSION_GENERATED_USING = get_config("SESSION_GENERATED_USING", (
     "client sudah aktif, Hubungi Admins Untuk MeRestart client ..."
 ))
 
+if not BOT_TOKEN:
+   LOGGER(__name__).error("WARNING: BOT TOKEN TIDAK DITEMUKAN, SHUTDOWN BOT")
+   sys.exit()
+
+
 app = Client(
     name="app",
     api_id=API_ID,
