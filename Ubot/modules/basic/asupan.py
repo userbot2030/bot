@@ -61,8 +61,6 @@ async def asupin(client: Client, message: Message):
 @check_access
 async def ayang(client, message):
     yanto = await message.reply("🔎 `Search Ayang...`")
-    pop = message.from_user.first_name
-    ah = message.from_user.id
     await message.reply_photo(
         choice(
             [
@@ -83,8 +81,6 @@ async def ayang(client, message):
 @check_access
 async def ayang(client, message):
     yanto = await message.reply("🔎 `Search Ppcp...`")
-    pop = message.from_user.first_name
-    ah = message.from_user.id
     await message.reply_photo(
         choice(
             [
@@ -105,8 +101,6 @@ async def ayang(client, message):
 @check_access
 async def ayang(client, message):
     yanto = await message.reply("🔎 `Search Ppcp 2...`")
-    pop = message.from_user.first_name
-    ah = message.from_user.id
     await message.reply_photo(
         choice(
             [
@@ -127,8 +121,6 @@ async def ayang(client, message):
 @check_access
 async def ayang(client, message):
     yanto = await message.reply("🔎 `Search Anime...`")
-    pop = message.from_user.first_name
-    ah = message.from_user.id
     await message.reply_photo(
         choice(
             [
@@ -148,9 +140,8 @@ async def ayang(client, message):
 @Ubot("anime2", cmds)
 @check_access
 async def ayang(client, message):
+    
     yanto = await message.reply("🔎 `Search Anime...`")
-    pop = message.from_user.first_name
-    ah = message.from_user.id
     await message.reply_photo(
         choice(
             [
@@ -173,8 +164,6 @@ async def ppanime(client, message):
     if message.chat.id in BL_GCAST:
         return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
     yanto = await message.reply("🔎 `Search PP Bugil...`")
-    message.from_user.first_name
-    message.from_user.id
     await message.reply_photo(
         choice(
             [
