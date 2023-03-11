@@ -44,9 +44,7 @@ TEMP_SETTINGS["PM_LAST_MSG"] = {}
 
 LOOP = asyncio.get_event_loop()
 
-API_HASH = get_config("API_HASH", should_prompt=True)
-API_ID = get_config("API_ID", should_prompt=True)
-BOT_TOKEN = get_config("BOT_TOKEN", should_prompt=True)
+
 BOT_WORKERS = int(get_config("BOT_WORKERS", "4"))
 COMMM_AND_PRE_FIX = get_config("COMMM_AND_PRE_FIX", "/")
 START_COMMAND = get_config("START_COMMAND", "buat_userbot")
