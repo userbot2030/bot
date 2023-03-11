@@ -2,10 +2,10 @@ import importlib
 import time
 from datetime import datetime
 import asyncio
-from pyrogram import idle, Client
+from pyrogram import idle, Clients
 from uvloop import install
 from ubotlibs import *
-from Ubot import BOTLOG_CHATID, aiosession, clients, app, ids
+from Ubot import BOTLOG_CHATID, aiosession, bot1, bots, app, ids, LOOP
 from platform import python_version as py
 from Ubot.logging import LOGGER
 from pyrogram import __version__ as pyro
@@ -81,17 +81,17 @@ async def start_admin(_, query: CallbackQuery):
 async def close(_, query: CallbackQuery):
     await query.message.delete()
 
-async def start_bot():
+async def main():
     await app.start()
     LOGGER("Ubot").info("Memulai Ubot Pyro..")
     LOGGER("Ubot").info("Loading Everything.")
     for all_module in ALL_MODULES:
         importlib.import_module("Ubot.modules" + all_module)
-    for cli in clients:
+    for bot in bots:
         try:
-            await cli.start()
-            ex = await cli.get_me()
-            await join(cli)
+            await bot.start()
+            ex = await bot.get_me()
+            await join(bot)
             LOGGER("Ubot").info("Startup Completed")
             LOGGER("√").info(f"Started as {ex.first_name} | {ex.id} ")
             await add_user(ex.id)
@@ -101,17 +101,27 @@ async def start_bot():
             remaining_days = (expired_date - datetime.now()).days
             msg = f"{ex.first_name} ({ex.id}) - Masa Aktif: {active_time_str}"
             ids.append(ex.id)
-            await cli.send_message(BOTLOG_CHATID, MSG_ON.format(BOT_VER, pyro, py(), active_time_str, remaining_days, CMD_HNDLR))
+            await bot.send_message(BOTLOG_CHATID, MSG_ON.format(BOT_VER, pyro, py(), active_time_str, remaining_days, CMD_HNDLR))
             user = len( await get_active_users())
-            await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
+        except Exception as e:
+            LOGGER("X").info(f"{e}")
+            if "Telegram says" in str(e):
+                load_dotenv()
+                for i in range(1, 201):
+                    if os.getenv(f"SESSION{i}") == str(e):
+                        os.environ.pop(f"SESSION{i}")
+                        LOGGER("Ubot").info(f"Removed SESSION{i} from .env file due to error.")
+                        await app.send_message(SUPPORT, f"Removed SESSION{i} from .env file due to error.")
+                        break
+    await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
     await idle()
-    await install()
     for ex_id in ids:
         await remove_user(ex_id)
 
 
               
-   
-loop = asyncio.get_event_loop()
-loop.run_until_complete(start_bot())
-LOGGER("Info").info("Stop Ubot Pyro")
+if __name__ == "__main__":
+   install()
+   loop = asyncio.get_event_loop()
+   loop.run_until_complete(main())
+   LOGGER("Info").info("Stop Ubot Pyro")
