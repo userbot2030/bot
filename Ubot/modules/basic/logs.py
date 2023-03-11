@@ -65,7 +65,7 @@ async def set_log(client, message):
     result = await idup_log(user_id)
     if result:
         await message.edit("**Logger Tag Berhasil Dihidupkan**")
-        await log_tagged_messages(user_id, client, message)
+        await log_tagged_messages(client, message)
 
 
 @Client.on_message(filters.command("nolog", cmds) & filters.me)
