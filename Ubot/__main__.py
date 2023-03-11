@@ -2,8 +2,7 @@ import importlib
 import time
 from datetime import datetime
 import asyncio
-from asyncio import get_event_loop_policy
-from pyrogram import idle
+from pyrogram import idle, Clients
 from uvloop import install
 from ubotlibs import *
 from Ubot import BOTLOG_CHATID, aiosession, bot1, bots, app, ids, LOOP
@@ -88,11 +87,11 @@ async def main():
     LOGGER("Ubot").info("Loading Everything.")
     for all_module in ALL_MODULES:
         importlib.import_module("Ubot.modules" + all_module)
-    for bot in bots:
+    for cli in clients:
         try:
-            await bot.start()
-            ex = await bot.get_me()
-            await join(bot)
+            await cli.start()
+            ex = await cli.get_me()
+            await join(cli)
             LOGGER("Ubot").info("Startup Completed")
             LOGGER("√").info(f"Started as {ex.first_name} | {ex.id} ")
             await add_user(ex.id)
@@ -102,7 +101,7 @@ async def main():
             remaining_days = (expired_date - datetime.now()).days
             msg = f"{ex.first_name} ({ex.id}) - Masa Aktif: {active_time_str}"
             ids.append(ex.id)
-            await bot.send_message(BOTLOG_CHATID, MSG_ON.format(BOT_VER, pyro, py(), active_time_str, remaining_days, CMD_HNDLR))
+            await cli.send_message(BOTLOG_CHATID, MSG_ON.format(BOT_VER, pyro, py(), active_time_str, remaining_days, CMD_HNDLR))
             user = len( await get_active_users())
         except Exception as e:
             LOGGER("X").info(f"{e}")
@@ -123,5 +122,6 @@ async def main():
               
 if __name__ == "__main__":
    install()
-   LOOP.run_until_complete(main())
+   loop = asyncio.get_event_loop()
+   loop.run_until_complete(main())
    LOGGER("Info").info("Stop Ubot Pyro")
