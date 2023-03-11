@@ -101,608 +101,606 @@ app = Client(
     in_memory=True,
 )
 
-client1 = (
+bot1 = (
     Client(
-        name="client1",
+        name="bot1",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION1,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION1
+    else None
 )
-if SESSION1:
-        clients.append(client1)
 
-client2 = (
+bot2 = (
     Client(
-        name="client2",
+        name="bot2",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION2,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION2
+    else None
 )
-if SESSION2:
-    clients.append(client2)
 
-client3 = (
+bot3 = (
     Client(
-        name="client3",
+        name="bot3",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION3,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION3
+    else None
 )
-if SESSION3:
-    clients.append(client3)
 
-client4 = (
+bot4 = (
     Client(
-        name="client4",
+        name="bot4",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION4,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION4
+    else None
 )
-if SESSION4:
-    clients.append(client4)
 
-client5 = (
+bot5 = (
     Client(
-        name="client5",
+        name="bot5",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION5,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION5
+    else None
 )
-if SESSION5:
-    clients.append(client5)
-    
-client6 = (
+bot6 = (
     Client(
-        name="client6",
+        name="bot6",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION6,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION6
+    else None
 )
-if SESSION6:
-    clients.append(client6)
 
-client7 = (
+bot7 = (
     Client(
-        name="client7",
+        name="bot7",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION7,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION7
+    else None
 )
-if SESSION7:
-    clients.append(client7)
 
-client8 = (
+bot8 = (
     Client(
-        name="client8",
+        name="bot8",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION8,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION8
+    else None
 )
-if SESSION8:
-    clients.append(client8)
 
-client9 = (
+bot9 = (
     Client(
-        name="client9",
+        name="bot9",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION9,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION9
+    else None
 )
-if SESSION9:
-    clients.append(client9)
 
-client10 = (
+bot10 = (
     Client(
-        name="client10",
+        name="bot10",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION10,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION10
+    else None
 )
-if SESSION10:
-        clients.append(client10)
 
-client11 = (
+bot11 = (
     Client(
-        name="client11",
+        name="bot11",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION11,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION11
+    else None
 )
-if SESSION11:
-    clients.append(client11)
-client12 = (
+
+bot12 = (
     Client(
-        name="client12",
+        name="bot12",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION12,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION12
+    else None
 )
-if SESSION12:
-     clients.append(client12)
 
-client13 = (
+bot13 = (
     Client(
-        name="client13",
+        name="bot13",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION13,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION13
+    else None
 )
-if SESSION13:
-     clients.append(client13)
 
-client14 = (
+bot14 = (
     Client(
-        name="client14",
+        name="bot14",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION14,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION4
+    else None
 )
-if SESSION14:
-     clients.append(client14)
-     
-client15 = (
+
+bot15 = (
     Client(
-        name="client15",
+        name="bot15",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION15,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION15
+    else None
 )
-if SESSION15:
-     clients.append(client15)
 
-client16 = (
+bot16 = (
     Client(
-        name="client16",
+        name="bot16",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION16,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION16
+    else None
 )
-if SESSION16:
-     clients.append(client16)
 
-client17 = (
+bot17 = (
     Client(
-        name="client17",
+        name="bot17",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION17,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION17
+    else None
 )
-if SESSION17:
-     clients.append(client17)
 
-client18 = (
+bot18 = (
     Client(
-        name="client18",
+        name="bot18",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION18,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION18
+    else None
 )
-if SESSION18:
-    clients.append(client18)
 
-client19 = (
+bot19 = (
     Client(
-        name="client19",
+        name="bot19",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION19,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION19
+    else None
 )
-if SESSION19:
-    clients.append(client19)
 
-client20 = (
+bot20 = (
     Client(
-        name="client20",
+        name="bot20",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION20,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION20
+    else None
 )
-if SESSION20:
-    clients.append(client20)
-
-client21 = (
+bot21 = (
     Client(
-        name="client21",
+        name="bot21",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION21,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION21
+    else None
 )
-if SESSION21:
-    clients.append(client21)
 
-client22 = (
+bot22 = (
     Client(
-        name="client22",
+        name="bot22",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION22,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION22
+    else None
 )
-if SESSION22:
-     clients.append(client22)
 
-client23 = (
+bot23 = (
     Client(
-        name="client23",
+        name="bot23",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION23,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION23
+    else None
 )
-if SESSION23:
-     clients.append(client23)
 
-client24 = (
+bot24 = (
     Client(
-        name="client24",
+        name="bot24",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION24,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION24
+    else None
 )
-if SESSION24:
-     clients.append(client24)
 
-client25 = (
+bot25 = (
     Client(
-        name="client25",
+        name="bot25",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION25,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION25
+    else None
 )
-if SESSION25:
-     clients.append(client25)
 
-client26 = (
+bot26 = (
     Client(
-        name="client26",
+        name="bot26",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION26,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION26
+    else None
 )
-if SESSION26:
-    clients.append(client26)
 
-client27 = (
+bot27 = (
     Client(
-        name="client27",
+        name="bot27",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION27,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION27
+    else None
 )
-if SESSION27:
-     clients.append(client27)
 
-client28 = (
+bot28 = (
     Client(
-        name="client28",
+        name="bot28",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION28,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION28
+    else None
 )
-if SESSION28:
-     clients.append(client28)
 
-client29 = (
+bot29 = (
     Client(
-        name="client29",
+        name="bot29",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION29,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION29
+    else None
 )
-if SESSION29:
-     clients.append(client29)
 
-client30 = (
+bot30 = (
     Client(
-        name="client30",
+        name="bot30",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION30,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION30
+    else None
 )
-if SESSION30:
-     clients.append(client30)
 
-client31 = (
+bot31 = (
     Client(
-        name="client31",
+        name="bot31",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION31,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION31
+    else None
 )
-if SESSION31:
-     clients.append(client31)
 
-client32 = (
+bot32 = (
     Client(
-        name="client32",
+        name="bot32",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION32,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION32
+    else None
 )
-if SESSION32:
-     clients.append(client32)
 
-client33 = (
+bot33 = (
     Client(
-        name="client33",
+        name="bot33",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION33,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION33
+    else None
 )
-if SESSION33:
-     clients.append(client33)
 
-client34 = (
+bot34 = (
     Client(
-        name="client34",
+        name="bot34",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION34,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION34
+    else None
 )
-if SESSION34:
-     clients.append(client34)
 
-client35 = (
+bot35 = (
     Client(
-        name="client35",
+        name="bot35",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION35,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION35
+    else None
 )
-if SESSION35:
-     clients.append(client35)
 
-client36 = (
+bot36 = (
     Client(
-        name="client36",
+        name="bot36",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION36,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION36
+    else None
 )
-if SESSION36:
-     clients.append(client36)
 
-client37 = (
+bot37 = (
     Client(
-        name="client37",
+        name="bot37",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION37,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION37
+    else None
 )
-if SESSION37:
-     clients.append(client37)
 
-client38 = (
+bot38 = (
     Client(
-        name="client38",
+        name="bot38",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION38,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION38
+    else None
 )
-if SESSION38:
-     clients.append(client38)
 
-client39 = (
+bot39 = (
     Client(
-        name="client39",
+        name="bot39",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION39,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION39
+    else None
 )
-if SESSION39:
-     clients.append(client39)
 
-client40 = (
+bot40 = (
     Client(
-        name="client40",
+        name="bot40",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION40,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION40
+    else None
 )
-if SESSION40:
-     clients.append(client40)
 
-client41 = (
+bot41 = (
     Client(
-        name="client41",
+        name="bot41",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION41,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION41
+    else None
 )
-if SESSION41:
-     clients.append(client41)
 
-client42 = (
+bot42 = (
     Client(
-        name="client42",
+        name="bot42",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION42,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION42
+    else None
 )
-if SESSION42:
-     clients.append(client42)
 
-client43 = (
+bot43 = (
     Client(
-        name="client43",
+        name="bot43",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION43,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION43
+    else None
 )
-if SESSION43:
-     clients.append(client43)
 
-client44 = (
+bot44 = (
     Client(
-        name="client44",
+        name="bot44",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION44,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION44
+    else None
 )
-if SESSION44:
-     clients.append(client44)
 
-client45 = (
+bot45 = (
     Client(
-        name="client45",
+        name="bot45",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION45,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION45
+    else None
 )
-if SESSION45:
-     clients.append(client45)
-
-client46 = (
+bot46 = (
     Client(
-        name="client46",
+        name="bot46",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION46,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION46
+    else None
 )
-if SESSION46:
-     clients.append(client46)
 
-client47 = (
+bot47 = (
     Client(
-        name="client47",
+        name="bot47",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION47,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION47
+    else None
 )
-if SESSION47:
-     clients.append(client47)
 
-client48 = (
+bot48 = (
     Client(
-        name="client48",
+        name="bot48",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION48,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION48
+    else None
 )
-if SESSION48:
-     clients.append(client48)
 
-client49 = (
+bot49 = (
     Client(
-        name="client49",
+        name="bot49",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION49,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION49
+    else None
 )
-if SESSION49:
-     clients.append(client49)
 
-client50 = (
+bot50 = (
     Client(
-        name="client50",
+        name="bot50",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION50,
         plugins=dict(root="Ubot/modules"),
     )
+    if SESSION50
+    else None
 )
-if SESSION50:
-     clients.append(client50)
 
-client51 = (
+bot51 = (
     Client(
-        name="client51",
+        name="bot51",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION51,
@@ -712,9 +710,9 @@ client51 = (
     else None
 )
 
-client52 = (
+bot52 = (
     Client(
-        name="client52",
+        name="bot52",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION52,
@@ -724,9 +722,9 @@ client52 = (
     else None
 )
 
-client53 = (
+bot53 = (
     Client(
-        name="client53",
+        name="bot53",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION53,
@@ -736,9 +734,9 @@ client53 = (
     else None
 )
 
-client54 = (
+bot54 = (
     Client(
-        name="client54",
+        name="bot54",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION54,
@@ -748,9 +746,9 @@ client54 = (
     else None
 )
 
-client55 = (
+bot55 = (
     Client(
-        name="client55",
+        name="bot55",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION55,
@@ -759,9 +757,9 @@ client55 = (
     if SESSION55
     else None
 )
-client56 = (
+bot56 = (
     Client(
-        name="client56",
+        name="bot56",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION56,
@@ -770,9 +768,9 @@ client56 = (
     if SESSION56
     else None
 )
-client57 = (
+bot57 = (
     Client(
-        name="client57",
+        name="bot57",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION57,
@@ -781,9 +779,9 @@ client57 = (
     if SESSION57
     else None
 )
-client58 = (
+bot58 = (
     Client(
-        name="client58",
+        name="bot58",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION58,
@@ -792,9 +790,9 @@ client58 = (
     if SESSION58
     else None
 )
-client59 = (
+bot59 = (
     Client(
-        name="client59",
+        name="bot59",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION59,
@@ -803,9 +801,9 @@ client59 = (
     if SESSION59
     else None
 )
-client60 = (
+bot60 = (
     Client(
-        name="client60",
+        name="bot60",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION60,
@@ -815,9 +813,9 @@ client60 = (
     else None
 )
 
-client61 = (
+bot61 = (
     Client(
-        name="client61",
+        name="bot61",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION61,
@@ -827,9 +825,9 @@ client61 = (
     else None
 )
 
-client62 = (
+bot62 = (
     Client(
-        name="client62",
+        name="bot62",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION62,
@@ -839,9 +837,9 @@ client62 = (
     else None
 )
 
-client63 = (
+bot63 = (
     Client(
-        name="client63",
+        name="bot63",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION63,
@@ -851,9 +849,9 @@ client63 = (
     else None
 )
 
-client64 = (
+bot64 = (
     Client(
-        name="client64",
+        name="bot64",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION64,
@@ -863,9 +861,9 @@ client64 = (
     else None
 )
 
-client65 = (
+bot65 = (
     Client(
-        name="client65",
+        name="bot65",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION65,
@@ -874,9 +872,9 @@ client65 = (
     if SESSION65
     else None
 )
-client66 = (
+bot66 = (
     Client(
-        name="client66",
+        name="bot66",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION66,
@@ -885,9 +883,9 @@ client66 = (
     if SESSION66
     else None
 )
-client67 = (
+bot67 = (
     Client(
-        name="client67",
+        name="bot67",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION67,
@@ -896,9 +894,9 @@ client67 = (
     if SESSION67
     else None
 )
-client68 = (
+bot68 = (
     Client(
-        name="client68",
+        name="bot68",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION68,
@@ -907,9 +905,9 @@ client68 = (
     if SESSION68
     else None
 )
-client69 = (
+bot69 = (
     Client(
-        name="client69",
+        name="bot69",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION69,
@@ -918,9 +916,9 @@ client69 = (
     if SESSION69
     else None
 )
-client70 = (
+bot70 = (
     Client(
-        name="client70",
+        name="bot70",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION70,
@@ -930,9 +928,9 @@ client70 = (
     else None
 )
 
-client71 = (
+bot71 = (
     Client(
-        name="client71",
+        name="bot71",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION71,
@@ -942,9 +940,9 @@ client71 = (
     else None
 )
 
-client72 = (
+bot72 = (
     Client(
-        name="client72",
+        name="bot72",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION72,
@@ -954,9 +952,9 @@ client72 = (
     else None
 )
 
-client73 = (
+bot73 = (
     Client(
-        name="client73",
+        name="bot73",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION73,
@@ -966,9 +964,9 @@ client73 = (
     else None
 )
 
-client74 = (
+bot74 = (
     Client(
-        name="client74",
+        name="bot74",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION74,
@@ -978,9 +976,9 @@ client74 = (
     else None
 )
 
-client75 = (
+bot75 = (
     Client(
-        name="client75",
+        name="bot75",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION75,
@@ -989,9 +987,9 @@ client75 = (
     if SESSION75
     else None
 )
-client76 = (
+bot76 = (
     Client(
-        name="client76",
+        name="bot76",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION76,
@@ -1000,9 +998,9 @@ client76 = (
     if SESSION76
     else None
 )
-client77 = (
+bot77 = (
     Client(
-        name="client77",
+        name="bot77",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION77,
@@ -1011,9 +1009,9 @@ client77 = (
     if SESSION77
     else None
 )
-client78 = (
+bot78 = (
     Client(
-        name="client78",
+        name="bot78",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION78,
@@ -1022,9 +1020,9 @@ client78 = (
     if SESSION78
     else None
 )
-client79 = (
+bot79 = (
     Client(
-        name="client79",
+        name="bot79",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION79,
@@ -1033,9 +1031,9 @@ client79 = (
     if SESSION79
     else None
 )
-client80 = (
+bot80 = (
     Client(
-        name="client80",
+        name="bot80",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION80,
@@ -1045,9 +1043,9 @@ client80 = (
     else None
 )
 
-client81 = (
+bot81 = (
     Client(
-        name="client81",
+        name="bot81",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION81,
@@ -1057,9 +1055,9 @@ client81 = (
     else None
 )
 
-client82 = (
+bot82 = (
     Client(
-        name="client82",
+        name="bot82",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION82,
@@ -1069,9 +1067,9 @@ client82 = (
     else None
 )
 
-client83 = (
+bot83 = (
     Client(
-        name="client83",
+        name="bot83",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION83,
@@ -1081,9 +1079,9 @@ client83 = (
     else None
 )
 
-client84 = (
+bot84 = (
     Client(
-        name="client84",
+        name="bot84",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION84,
@@ -1093,9 +1091,9 @@ client84 = (
     else None
 )
 
-client85 = (
+bot85 = (
     Client(
-        name="client85",
+        name="bot85",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION85,
@@ -1104,9 +1102,9 @@ client85 = (
     if SESSION85
     else None
 )
-client86 = (
+bot86 = (
     Client(
-        name="client86",
+        name="bot86",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION86,
@@ -1115,9 +1113,9 @@ client86 = (
     if SESSION86
     else None
 )
-client87 = (
+bot87 = (
     Client(
-        name="client87",
+        name="bot87",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION87,
@@ -1126,9 +1124,9 @@ client87 = (
     if SESSION87
     else None
 )
-client88 = (
+bot88 = (
     Client(
-        name="client88",
+        name="bot88",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION88,
@@ -1137,9 +1135,9 @@ client88 = (
     if SESSION88
     else None
 )
-client89 = (
+bot89 = (
     Client(
-        name="client89",
+        name="bot89",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION89,
@@ -1148,9 +1146,9 @@ client89 = (
     if SESSION89
     else None
 )
-client90 = (
+bot90 = (
     Client(
-        name="client90",
+        name="bot90",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION90,
@@ -1160,9 +1158,9 @@ client90 = (
     else None
 )
 
-client91 = (
+bot91 = (
     Client(
-        name="client91",
+        name="bot91",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION91,
@@ -1172,9 +1170,9 @@ client91 = (
     else None
 )
 
-client92 = (
+bot92 = (
     Client(
-        name="client92",
+        name="bot92",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION92,
@@ -1184,9 +1182,9 @@ client92 = (
     else None
 )
 
-client93 = (
+bot93 = (
     Client(
-        name="client93",
+        name="bot93",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION93,
@@ -1196,9 +1194,9 @@ client93 = (
     else None
 )
 
-client94 = (
+bot94 = (
     Client(
-        name="client94",
+        name="bot94",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION94,
@@ -1208,9 +1206,9 @@ client94 = (
     else None
 )
 
-client95 = (
+bot95 = (
     Client(
-        name="client95",
+        name="bot95",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION95,
@@ -1219,9 +1217,9 @@ client95 = (
     if SESSION95
     else None
 )
-client96 = (
+bot96 = (
     Client(
-        name="client96",
+        name="bot96",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION96,
@@ -1230,9 +1228,9 @@ client96 = (
     if SESSION96
     else None
 )
-client97 = (
+bot97 = (
     Client(
-        name="client97",
+        name="bot97",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION97,
@@ -1241,9 +1239,9 @@ client97 = (
     if SESSION97
     else None
 )
-client98 = (
+bot98 = (
     Client(
-        name="client98",
+        name="bot98",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION98,
@@ -1252,9 +1250,9 @@ client98 = (
     if SESSION98
     else None
 )
-client99 = (
+bot99 = (
     Client(
-        name="client99",
+        name="bot99",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION99,
@@ -1263,9 +1261,9 @@ client99 = (
     if SESSION99
     else None
 )
-client100 = (
+bot100 = (
     Client(
-        name="client100",
+        name="bot100",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION100,
@@ -1274,1146 +1272,1146 @@ client100 = (
     if SESSION100
     else None
 )
-client101 = (
+bot101 = (
     Client(
-        name="client101",
+        name="bot101",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION101,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION101
     else None
 )
 
-client102 = (
+bot102 = (
     Client(
-        name="client102",
+        name="bot102",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION102,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION102
     else None
 )
 
-client103 = (
+bot103 = (
     Client(
-        name="client103",
+        name="bot103",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION103,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION103
     else None
 )
 
-client104 = (
+bot104 = (
     Client(
-        name="client104",
+        name="bot104",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION104,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION104
     else None
 )
 
-client105 = (
+bot105 = (
     Client(
-        name="client105",
+        name="bot105",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION105,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION105
     else None
 )
-client106 = (
+bot106 = (
     Client(
-        name="client106",
+        name="bot106",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION106,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION106
     else None
 )
-client107 = (
+bot107 = (
     Client(
-        name="client107",
+        name="bot107",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION107,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION107
     else None
 )
-client108 = (
+bot108 = (
     Client(
-        name="client108",
+        name="bot108",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION108,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION108
     else None
 )
-client109 = (
+bot109 = (
     Client(
-        name="client109",
+        name="bot109",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION109,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION109
     else None
 )
-client110 = (
+bot110 = (
     Client(
-        name="client110",
+        name="bot110",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION110,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION110
     else None
 )
-client111 = (
+bot111 = (
     Client(
-        name="client111",
+        name="bot111",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION111,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION111
     else None
 )
 
-client112 = (
+bot112 = (
     Client(
-        name="client112",
+        name="bot112",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION112,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION112
     else None
 )
 
-client113 = (
+bot113 = (
     Client(
-        name="client113",
+        name="bot113",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION113,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION113
     else None
 )
 
-client114 = (
+bot114 = (
     Client(
-        name="client114",
+        name="bot114",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION114,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION114
     else None
 )
 
-client115 = (
+bot115 = (
     Client(
-        name="client115",
+        name="bot115",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION115,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION115
     else None
 )
-client116 = (
+bot116 = (
     Client(
-        name="client116",
+        name="bot116",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION116,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION116
     else None
 )
-client117 = (
+bot117 = (
     Client(
-        name="client117",
+        name="bot117",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION117,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION117
     else None
 )
-client118 = (
+bot118 = (
     Client(
-        name="client118",
+        name="bot118",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION118,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION118
     else None
 )
-client119 = (
+bot119 = (
     Client(
-        name="client119",
+        name="bot119",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION119,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION119
     else None
 )
-client120 = (
+bot120 = (
     Client(
-        name="client120",
+        name="bot120",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION120,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION120
     else None
 )
-client121 = (
+bot121 = (
     Client(
-        name="client121",
+        name="bot121",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION121,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION121
     else None
 )
 
-client122 = (
+bot122 = (
     Client(
-        name="client122",
+        name="bot122",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION122,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION122
     else None
 )
 
-client123 = (
+bot123 = (
     Client(
-        name="client123",
+        name="bot123",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION123,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION123
     else None
 )
 
-client124 = (
+bot124 = (
     Client(
-        name="client124",
+        name="bot124",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION124,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION124
     else None
 )
 
-client125 = (
+bot125 = (
     Client(
-        name="client125",
+        name="bot125",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION125,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION125
     else None
 )
-client126 = (
+bot126 = (
     Client(
-        name="client126",
+        name="bot126",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION126,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION126
     else None
 )
-client127 = (
+bot127 = (
     Client(
-        name="client127",
+        name="bot127",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION127,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION127
     else None
 )
-client128 = (
+bot128 = (
     Client(
-        name="client128",
+        name="bot128",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION128,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION128
     else None
 )
-client129 = (
+bot129 = (
     Client(
-        name="client129",
+        name="bot129",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION129,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION129
     else None
 )
-client130 = (
+bot130 = (
     Client(
-        name="client130",
+        name="bot130",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION130,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION130
     else None
 )
-client131 = (
+bot131 = (
     Client(
-        name="client131",
+        name="bot131",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION131,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION131
     else None
 )
 
-client132 = (
+bot132 = (
     Client(
-        name="client132",
+        name="bot132",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION132,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION132
     else None
 )
 
-client133 = (
+bot133 = (
     Client(
-        name="client133",
+        name="bot133",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION133,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION133
     else None
 )
 
-client134 = (
+bot134 = (
     Client(
-        name="client134",
+        name="bot134",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION134,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION134
     else None
 )
 
-client135 = (
+bot135 = (
     Client(
-        name="client135",
+        name="bot135",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION135,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION135
     else None
 )
-client136 = (
+bot136 = (
     Client(
-        name="client136",
+        name="bot136",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION136,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION136
     else None
 )
-client137 = (
+bot137 = (
     Client(
-        name="client137",
+        name="bot137",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION137,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION137
     else None
 )
-client138 = (
+bot138 = (
     Client(
-        name="client138",
+        name="bot138",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION138,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION138
     else None
 )
-client139 = (
+bot139 = (
     Client(
-        name="client139",
+        name="bot139",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION139,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION139
     else None
 )
-client140 = (
+bot140 = (
     Client(
-        name="client140",
+        name="bot140",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION140,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION140
     else None
 )
-client141 = (
+bot141 = (
     Client(
-        name="client141",
+        name="bot141",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION141,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION141
     else None
 )
 
-client142 = (
+bot142 = (
     Client(
-        name="client142",
+        name="bot142",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION142,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION142
     else None
 )
 
-client143 = (
+bot143 = (
     Client(
-        name="client143",
+        name="bot143",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION143,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION143
     else None
 )
 
-client144 = (
+bot144 = (
     Client(
-        name="client144",
+        name="bot144",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION144,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION144
     else None
 )
 
-client145 = (
+bot145 = (
     Client(
-        name="client145",
+        name="bot145",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION145,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION145
     else None
 )
-client146 = (
+bot146 = (
     Client(
-        name="client146",
+        name="bot146",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION146,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION146
     else None
 )
-client147 = (
+bot147 = (
     Client(
-        name="client147",
+        name="bot147",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION147,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION147
     else None
 )
-client148 = (
+bot148 = (
     Client(
-        name="client148",
+        name="bot148",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION148,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION148
     else None
 )
-client149 = (
+bot149 = (
     Client(
-        name="client149",
+        name="bot149",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION149,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION149
     else None
 )
-client150 = (
+bot150 = (
     Client(
-        name="client150",
+        name="bot150",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION150,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION150
     else None
 )
-client151 = (
+bot151 = (
     Client(
-        name="client151",
+        name="bot151",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION151,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION151
     else None
 )
 
-client152 = (
+bot152 = (
     Client(
-        name="client152",
+        name="bot152",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION152,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION152
     else None
 )
 
-client153 = (
+bot153 = (
     Client(
-        name="client153",
+        name="bot153",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION153,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION153
     else None
 )
 
-client154 = (
+bot154 = (
     Client(
-        name="client154",
+        name="bot154",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION154,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION154
     else None
 )
 
-client155 = (
+bot155 = (
     Client(
-        name="client155",
+        name="bot155",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION155,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION155
     else None
 )
-client156 = (
+bot156 = (
     Client(
-        name="client156",
+        name="bot156",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION156,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION156
     else None
 )
-client157 = (
+bot157 = (
     Client(
-        name="client157",
+        name="bot157",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION157,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION157
     else None
 )
-client158 = (
+bot158 = (
     Client(
-        name="client158",
+        name="bot158",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION158,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION158
     else None
 )
-client159 = (
+bot159 = (
     Client(
-        name="client159",
+        name="bot159",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION159,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION159
     else None
 )
-client160 = (
+bot160 = (
     Client(
-        name="client160",
+        name="bot160",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION160,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION160
     else None
 )
 
-client161 = (
+bot161 = (
     Client(
-        name="client161",
+        name="bot161",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION161,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION161
     else None
 )
 
-client162 = (
+bot162 = (
     Client(
-        name="client162",
+        name="bot162",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION162,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION162
     else None
 )
 
-client163 = (
+bot163 = (
     Client(
-        name="client163",
+        name="bot163",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION163,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION163
     else None
 )
 
-client164 = (
+bot164 = (
     Client(
-        name="client164",
+        name="bot164",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION164,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION164
     else None
 )
 
-client165 = (
+bot165 = (
     Client(
-        name="client165",
+        name="bot165",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION165,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION165
     else None
 )
-client166 = (
+bot166 = (
     Client(
-        name="client166",
+        name="bot166",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION166,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION166
     else None
 )
-client167 = (
+bot167 = (
     Client(
-        name="client167",
+        name="bot167",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION167,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION167
     else None
 )
-client168 = (
+bot168 = (
     Client(
-        name="client168",
+        name="bot168",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION168,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION168
     else None
 )
-client169 = (
+bot169 = (
     Client(
-        name="client169",
+        name="bot169",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION169,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION169
     else None
 )
-client170 = (
+bot170 = (
     Client(
-        name="client170",
+        name="bot170",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION170,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION170
     else None
 )
 
-client171 = (
+bot171 = (
     Client(
-        name="client171",
+        name="bot171",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION171,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION171
     else None
 )
 
-client172 = (
+bot172 = (
     Client(
-        name="client172",
+        name="bot172",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION172,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION172
     else None
 )
 
-client173 = (
+bot173 = (
     Client(
-        name="client173",
+        name="bot173",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION173,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION173
     else None
 )
 
-client174 = (
+bot174 = (
     Client(
-        name="client174",
+        name="bot174",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION174,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION174
     else None
 )
 
-client175 = (
+bot175 = (
     Client(
-        name="client175",
+        name="bot175",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION175,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION175
     else None
 )
-client176 = (
+bot176 = (
     Client(
-        name="client176",
+        name="bot176",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION176,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION176
     else None
 )
-client177 = (
+bot177 = (
     Client(
-        name="client177",
+        name="bot177",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION177,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION177
     else None
 )
-client178 = (
+bot178 = (
     Client(
-        name="client178",
+        name="bot178",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION178,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION178
     else None
 )
-client179 = (
+bot179 = (
     Client(
-        name="client179",
+        name="bot179",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION179,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION179
     else None
 )
-client180 = (
+bot180 = (
     Client(
-        name="client180",
+        name="bot180",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION180,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION180
     else None
 )
 
-client181 = (
+bot181 = (
     Client(
-        name="client181",
+        name="bot181",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION181,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION181
     else None
 )
 
-client182 = (
+bot182 = (
     Client(
-        name="client182",
+        name="bot182",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION182,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION182
     else None
 )
 
-client183 = (
+bot183 = (
     Client(
-        name="client183",
+        name="bot183",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION183,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION183
     else None
 )
 
-client184 = (
+bot184 = (
     Client(
-        name="client184",
+        name="bot184",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION184,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION184
     else None
 )
 
-client185 = (
+bot185 = (
     Client(
-        name="client185",
+        name="bot185",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION185,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION185
     else None
 )
-client186 = (
+bot186 = (
     Client(
-        name="client186",
+        name="bot186",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION186,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION186
     else None
 )
-client187 = (
+bot187 = (
     Client(
-        name="client187",
+        name="bot187",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION187,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION187
     else None
 )
-client188 = (
+bot188 = (
     Client(
-        name="client188",
+        name="bot188",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION188,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION188
     else None
 )
-client189 = (
+bot189 = (
     Client(
-        name="client189",
+        name="bot189",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION189,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION189
     else None
 )
-client190 = (
+bot190 = (
     Client(
-        name="client190",
+        name="bot190",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION190,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION190
     else None
 )
 
-client191 = (
+bot191 = (
     Client(
-        name="client191",
+        name="bot191",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION191,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION191
     else None
 )
 
-client192 = (
+bot192 = (
     Client(
-        name="client192",
+        name="bot192",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION192,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION192
     else None
 )
 
-client193 = (
+bot193 = (
     Client(
-        name="client193",
+        name="bot193",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION193,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION193
     else None
 )
 
-client194 = (
+bot194 = (
     Client(
-        name="client194",
+        name="bot194",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION194,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION194
     else None
 )
 
-client195 = (
+bot195 = (
     Client(
-        name="client195",
+        name="bot195",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION195,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION195
     else None
 )
-client196 = (
+bot196 = (
     Client(
-        name="client196",
+        name="bot196",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION196,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION196
     else None
 )
-client197 = (
+bot197 = (
     Client(
-        name="client197",
+        name="bot197",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION197,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION197
     else None
 )
-client198 = (
+bot198 = (
     Client(
-        name="client198",
+        name="bot198",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION198,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION198
     else None
 )
-client199 = (
+bot199 = (
     Client(
-        name="client199",
+        name="bot199",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION199,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION199
     else None
 )
-client200 = (
+bot200 = (
     Client(
-        name="client200",
+        name="bot200",
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION200,
-        plugins=dict(root="Ubot/modules"),
+        plugins=dict(root="Ubot/commands"),
     )
     if SESSION200
     else None
@@ -2421,8 +2419,8 @@ client200 = (
 
 
 
-clients = [client for client in [client1, client2, client3, client4, client5, client6, client7, client8, client9, client10, client11, client12, client13, client14, client15, client16, client17, client18, client19, client20, client21, client22, client23, client24, client25, client26, client27, client28, client29, client30, client31, client32, client33, client34, client35, client36, client37, client38, client39, client40, client41, client42, client43, client44, client45, client46, client47, client48, client49, client50, client51, client52, client53, client54, client55, client56, client57, client58, client59, client60, client61, client62, client63, client64, client65, client66, client67, client68, client69, client70, client71, client72, client73, client74, client75, client76, client77, client78, client79, client80, client81, client82, client83, client84, client85, client86, client87, client88, client89, client90, client91, client92, client93, client94, client95, client96, client97, client98, client99, client100, client101, client102, client103, client104, client105, client106, client107, client108, client109, client110, client111, client112, client113, client114, client115, client116, client117, client118, client119, client120, client121, client122, client123, client124, client125, client126, client127, client128, client129, client130, client131, client132, client133, client134, client135, client136, client137, client138, client139, client140, client141, client142, client143, client144, client145, client146, client147, client148, client149, client150, client151, client152, client153, client154, client155, client156, client157, client158, client159, client160, client161, client162, client163, client164, client165, client166, client167, client168, client169, client170, client171, client172, client173, client174, client175, client176, client177, client178, client179, client180, client181, client182, client183, client184, client185, client186, client187, client188, client89, client190, client191, client192, client193, client194, client195, client196, client197, client198, client199, client200] if client]
+bots = [bot for bot in [bot1, bot2, bot3, bot4, bot5, bot6, bot7, bot8, bot9, bot10, bot11, bot12, bot13, bot14, bot15, bot16, bot17, bot18, bot19, bot20, bot21, bot22, bot23, bot24, bot25, bot26, bot27, bot28, bot29, bot30, bot31, bot32, bot33, bot34, bot35, bot36, bot37, bot38, bot39, bot40, bot41, bot42, bot43, bot44, bot45, bot46, bot47, bot48, bot49, bot50, bot51, bot52, bot53, bot54, bot55, bot56, bot57, bot58, bot59, bot60, bot61, bot62, bot63, bot64, bot65, bot66, bot67, bot68, bot69, bot70, bot71, bot72, bot73, bot74, bot75, bot76, bot77, bot78, bot79, bot80, bot81, bot82, bot83, bot84, bot85, bot86, bot87, bot88, bot89, bot90, bot91, bot92, bot93, bot94, bot95, bot96, bot97, bot98, bot99, bot100, bot101, bot102, bot103, bot104, bot105, bot106, bot107, bot108, bot109, bot110, bot111, bot112, bot113, bot114, bot115, bot116, bot117, bot118, bot119, bot120, bot121, bot122, bot123, bot124, bot125, bot126, bot127, bot128, bot129, bot130, bot131, bot132, bot133, bot134, bot135, bot136, bot137, bot138, bot139, bot140, bot141, bot142, bot143, bot144, bot145, bot146, bot147, bot148, bot149, bot150, bot151, bot152, bot153, bot154, bot155, bot156, bot157, bot158, bot159, bot160, bot161, bot162, bot163, bot164, bot165, bot166, bot167, bot168, bot169, bot170, bot171, bot172, bot173, bot174, bot175, bot176, bot177, bot178, bot179, bot180, bot181, bot182, bot183, bot184, bot185, bot186, bot187, bot188, bot89, bot190, bot191, bot192, bot193, bot194, bot195, bot196, bot197, bot198, bot199, bot200] if bot]
 
-for client in clients:
-    if not hasattr(client, "group_call"):
-        setattr(client, "group_call", GroupCallFactory(client).get_group_call())
+for bot in bots:
+    if not hasattr(bot, "group_call"):
+        setattr(bot, "group_call", GroupCallFactory(bot).get_group_call())
