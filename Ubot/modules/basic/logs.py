@@ -46,10 +46,10 @@ async def mati_log(user_id: int, message: Message) -> bool:
         return False
         
 
-@Client.on_message(filters.group & filters.mentioned & filters.incoming)
+@Client.on_message(filters.group & filters.private & filters.mentioned & filters.incoming)
 async def log_tagged_messages(client, message):
   user_id = message.from_user.id
-  tai = f"<b>📨 #TAGS #MESSAGE</b>\n<b> • : </b>{message.from_user.mention}"
+  tai = f"<b>📨 #PESAN BARU</b>\n<b> • : </b>{message.from_user.mention}"
   tai += f"\n<b> • Group : </b>{message.chat.title}"
   tai += f"\n<b> • 👀 </b><a href='{message.link}'>Lihat Pesan</a>"
   tai += f"\n<b> • Message : </b><code>{message.text}</code>"
