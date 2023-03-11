@@ -146,7 +146,5 @@ add_command_help(
     [
         [f"startvc", "Start voice chat group."],
         [f"stopvc", "End voice chat group."],
-        [f"jvc atau jvc <@username/id_chat>", "Untuk bergabunh ke obrolan suara selama 1 jam(kami beri waktu agar tidak membebani server)"],
-        [f"lvc atau lvc <@username/id_chat>", "Untuk Turun Dari Obrolan Suara."],
     ],
 )
