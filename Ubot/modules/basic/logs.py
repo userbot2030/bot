@@ -42,8 +42,8 @@ async def mati_log(user_id: int) -> bool:
         return False
 
 
-@Client.on_message(filters.group & filters.mentioned & filters.incoming)
-async def log_tagged_messages(user_id: int, client, message):
+
+async def log_tagged_messages(user_id: int):
     user = await collection.users.find_one({'user_id': user_id})
     if user and user.get('tag_log', False):
         tai = f"<b>📨 #TAGS #MESSAGE</b>\n<b> • : </b>{message.from_user.mention}"
