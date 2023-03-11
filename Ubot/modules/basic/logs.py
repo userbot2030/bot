@@ -1,26 +1,22 @@
 
 from pyrogram import Client, enums, filters
 from pyrogram.types import *
-from Ubot import *
-from Ubot.modules.basic import add_command_help
+from . import *
 from ubotlibs.ubot.database import *
 from ubotlibs.ubot.database.accesdb import *
-from ubotlibs import *
 from pyrogram.filters import chat
-from pyrogram import Client, filters
-from pyrogram.types import Message
 import asyncio
 from typing import Dict, List, Union
 from datetime import datetime, timedelta
-
+log = []
 
 collection = cli["Kyran"]["tag_log"]
 
 
-tagged_messages_filter = filters.group & filters.private & filters.mentioned & filters.incoming
+tagged_messages_filter = filters.group & filters.mentioned & filters.incoming
 
 
-async def anuan_log(user_id: int) -> bool:
+async def idup_log(user_id: int) -> bool:
     log = {"user_id": user_id}
     try:
         result = await collection.users.update_one(
@@ -29,14 +25,14 @@ async def anuan_log(user_id: int) -> bool:
             upsert=True
         )
         if result.modified_count > 0 or result.upserted_id:
-            await message.edit("**Tag alert Activated Successfully**")
+            await message.edit("**Logger Tag Berhasil Dihidupkan**")
             await log_tagged_messages()
             return True
     except:
         return False
 
 
-async def gituan_log(user_id: int) -> bool:
+async def mati_log(user_id: int) -> bool:
     log = {"user_id": user_id}
     try:
         result = await collection.users.update_one(
@@ -45,12 +41,12 @@ async def gituan_log(user_id: int) -> bool:
             upsert=True
         )
         if result.modified_count > 0 or result.upserted_id:
-            await message.edit("**Tag alert Deactivated Successfully**")
+            await message.edit("**Logger Tag Berhasil Dimatikan**")
             return False
     except:
         return False
 
-
+if log :
 async def log_tagged_messages():
     async for message in client.iter_messages(chat_id=CHAT_ID, filter=tagged_messages_filter):
         user_id = message.from_user.id
@@ -67,15 +63,15 @@ async def log_tagged_messages():
         )
 
 
-@Ubot("log", cmds)
-async def set_no_log_p_m_on(client: Client, message: Message):
+@Client.on_message(filters.command("log", cmds) & filters.me)
+async def set_log(client, message):
     user_id = message.from_user.id
-    await anuan_log(user_id)
+    await idup_log(user_id, True)
 
 
-@Ubot("nolog", cmds)
-async def set_no_log_p_m_off(client: Client, message: Message):
+@Client.on_message(filters.command("nolog", cmds) & filters.me)
+async def set_no_log(client, message):
     user_id = message.from_user.id
-    await gituan_log(user_id)
+    await mati_log(user_id, False)
 
         
