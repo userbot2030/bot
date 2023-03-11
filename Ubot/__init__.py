@@ -132,7 +132,7 @@ client3 = (
     )
 )
 if SESSION3:
-    clients.append(client3
+    clients.append(client3)
 
 client4 = (
     Client(
@@ -157,6 +157,7 @@ client5 = (
 )
 if SESSION5:
     clients.append(client5)
+    
 client6 = (
     Client(
         name="client6",
