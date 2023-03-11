@@ -2,7 +2,7 @@ import importlib
 import time
 from datetime import datetime
 import asyncio
-from pyrogram import idle, Clients
+from pyrogram import idle, Client
 from uvloop import install
 from ubotlibs import *
 from Ubot import BOTLOG_CHATID, aiosession, bot1, bots, app, ids, LOOP
