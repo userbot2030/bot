@@ -7,8 +7,8 @@ TIME_SLEEP = int(getenv("TIME_SLEEP", "86400"))
 load_dotenv(".env")
 
 
-API_ID = int(getenv("API_ID", "6435225")) #optional
-API_HASH = getenv("API_HASH", "4e984ea35f854762dcde906dce426c2d") #optional
+API_ID = int(getenv("API_ID", "")) #optional
+API_HASH = getenv("API_HASH", "") #optional
 SUDO_USERS = list(map(int, getenv("SUDO_USERS", "").split()))
 OWNER_ID = int(getenv("OWNER_ID") or 0)
 ADMIN1_ID = list(map(int, getenv("ADMIN1_ID", "951454060").split()))
@@ -18,7 +18,7 @@ ADMIN4_ID = list(map(int, getenv("ADMIN4_ID", "1947740506").split()))
 ADMIN5_ID = list(map(int, getenv("ADMIN5_ID", "1897354060").split()))
 ADMIN6_ID = list(map(int, getenv("ADMIN6_ID", "2099942562").split()))
 MONGO_URL = getenv("MONGO_URL")
-BOT_TOKEN = getenv("BOT_TOKEN", "6271722305:AAF1zvVM6Hi8ppjmyidtxGjEprZZ_6KlM8c")
+BOT_TOKEN = getenv("BOT_TOKEN", "")
 ALIVE_PIC = getenv("ALIVE_PIC")
 ALIVE_TEXT = getenv("ALIVE_TEXT")
 PM_LOGGER = getenv("PM_LOGGER", True)
