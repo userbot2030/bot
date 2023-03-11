@@ -120,7 +120,7 @@ async def start_bot():
                         break
     await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
     await idle()
-    await install()
+    install()
     for ex_id in ids:
         await remove_user(ex_id)
 
