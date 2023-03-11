@@ -46,7 +46,7 @@ async def mati_log(user_id: int) -> bool:
 async def log_tagged_messages(client: Client, message: Message):
     user_id = message.from_user.id
     user = await client.get_users(user_id)
-    if user and user.get('tag_log', False):
+    if user and getattr(user, 'tag_log', False):
         tai = f"<b>📨 #TAGS #MESSAGE</b>\n<b> • : </b>{user.mention}"
         tai += f"\n<b> • Group : </b>{message.chat.title}"
         tai += f"\n<b> • 👀 </b><a href='{message.link}'>Lihat Pesan</a>"
