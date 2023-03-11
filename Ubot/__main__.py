@@ -5,7 +5,7 @@ import asyncio
 from pyrogram import idle, Client
 from uvloop import install
 from ubotlibs import *
-from Ubot import BOTLOG_CHATID, aiosession, bot1, bots, app, ids, LOOP
+from Ubot import BOTLOG_CHATID, aiosession, clients, app, ids
 from platform import python_version as py
 from Ubot.logging import LOGGER
 from pyrogram import __version__ as pyro
