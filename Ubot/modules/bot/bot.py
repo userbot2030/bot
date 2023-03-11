@@ -18,6 +18,7 @@ from Ubot import CMD_HELP, app
 from ubotlibs.ubot.helper.data import Data
 from ubotlibs.ubot.helper.inline import cb_wrapper, paginate_help
 from Ubot import ids as users
+from config import SUPPORT, CHANNEL, CMD_HNDLR, ADMIN1_ID, ADMIN2_ID, ADMIN3_ID, ADMIN4_ID, ADMIN5_ID, ADMIN6_ID, ADMIN7_ID
 
 
 @Client.on_callback_query()
@@ -63,7 +64,47 @@ async def _callbacks(_, callback_query: CallbackQuery):
         except Exception as e:
             e = traceback.format_exc()
             print(e, "Callbacks")
+            
 
+@app.on_callback_query(filters.regex("start_admin"))
+async def start_admin(_, callback_query: CallbackQuery):
+    ADMIN1 = ADMIN1_ID[0]
+    ADMIN2 = ADMIN2_ID[0]
+    ADMIN3 = ADMIN3_ID[0]
+    ADMIN4 = ADMIN4_ID[0]
+    ADMIN5 = ADMIN5_ID[0]
+    ADMIN6 = ADMIN6_ID[0]
+    ADMIN7 = ADMIN7_ID[0]
+    return await query.edit_message_text(
+        f"""<b> ☺️** Silakan hubungi admin dibawah ini untuk memberi akses dan merestart bot anda.**</b>""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(text="👮‍♂ Admin 1", user_id=ADMIN1),
+                    InlineKeyboardButton(text="👮‍♂ Admin 2", user_id=ADMIN2),
+                ],
+                [
+                    InlineKeyboardButton("👮‍♂ Admin 3", user_id=ADMIN3),
+                    InlineKeyboardButton(text="👮‍♂ Admin 4", user_id=ADMIN4),
+                  ],
+                  [
+                    InlineKeyboardButton(text="👮‍♂ Admin 5", user_id=ADMIN5),
+                    InlineKeyboardButton(text="👮‍♂ Admin 6", user_id=ADMIN6),
+                  ],
+                  [
+                    InlineKeyboardButton(text="👮‍♂ Admin 7", user_id=ADMIN7),
+                  ],
+                  [
+                     InlineKeyboardButton(text="Tutup", callback_data="close"),
+                  ],
+             ]
+        ),
+    )
+
+
+@app.on_callback_query(filters.regex("close"))
+async def close(_, query: CallbackQuery):
+    await query.message.delete()
 
 @app.on_callback_query(filters.regex("ub_modul_(.*)"))
 # @cb_wrapper
