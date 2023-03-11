@@ -49,6 +49,26 @@ SESI_COMMAND = get_config("SESI_COMMAND", "tampil")
 SESIID_COMMAND = get_config("SESI_COMMAND", "cari")
 LOG_FILE_ZZGEVC = get_config("LOG_FILE_ZZGEVC", "Ubot.log")
 
+AKTIFSESI = {}
+# /start message when other users start your bot
+SESI_OTHER_USERS_TEXT = get_config(
+    "SESI_OTHER_USERS_TEXT",
+    (
+        """
+        TAMPIL SESI : 
+        """
+    )
+)
+AKTIFSESIID = {}
+# /start message when other users start your bot
+SESIID_OTHER_USERS_TEXT = get_config(
+    "SESI_OTHER_USERS_TEXT",
+    (
+        """
+        Fitur ini untuk cari sesi string yang sudah menggunakan bot ini
+        """
+    )
+)
 AKTIFPERINTAH = {}
 START_OTHER_USERS_TEXT = get_config(
     "START_OTHER_USERS_TEXT",
@@ -86,7 +106,7 @@ ACC_PROK_WITH_TFA = get_config("ACC_PROK_WITH_TFA", (
     "Verifikasi 2 Langkah Diaktifkan, Mohon Masukkan Verifikasi 2 Langkah Anda."
 ))
 SESSION_GENERATED_USING = get_config("SESSION_GENERATED_USING", (
-    "client sudah aktif, Hubungi Admins Untuk MeRestart client ..."
+    "Ubot sudah aktif, Hubungi Admins Untuk MeRestart Bot ..."
 ))
 
 if not BOT_TOKEN:
