@@ -41,8 +41,6 @@ async def mati_log(user_id: int) -> bool:
     except:
         return False
 
-await handler.callback(self.client, *args)
-TypeError: log_tagged_messages() missing 1 required positional argument: 'message
 
 @Client.on_message(filters.group & filters.mentioned & filters.incoming)
 async def log_tagged_messages(client: Client, message: Message):
