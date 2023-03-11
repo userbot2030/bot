@@ -41,16 +41,18 @@ async def mati_log(user_id: int) -> bool:
     except:
         return False
 
+await handler.callback(self.client, *args)
+TypeError: log_tagged_messages() missing 1 required positional argument: 'message
 
 @Client.on_message(filters.group & filters.mentioned & filters.incoming)
-async def log_tagged_messages(user_id: int, client, message):
-    user = await collection.users.find_one({'user_id': user_id})
+async def log_tagged_messages(client: Client, message: Message):
+    user_id = message.from_user.id
+    user = await client.get_users(user_id)
     if user and user.get('tag_log', False):
-        tai = f"<b>📨 #TAGS #MESSAGE</b>\n<b> • : </b>{message.from_user.mention}"
+        tai = f"<b>📨 #TAGS #MESSAGE</b>\n<b> • : </b>{user.mention}"
         tai += f"\n<b> • Group : </b>{message.chat.title}"
         tai += f"\n<b> • 👀 </b><a href='{message.link}'>Lihat Pesan</a>"
         tai += f"\n<b> • Message : </b><code>{message.text}</code>"
-        await asyncio.sleep(0.1)
         await client.send_message(
             BOTLOG_CHATID,
             tai,
