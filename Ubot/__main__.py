@@ -46,7 +46,7 @@ MSG = """
 **ID**: `{}`
 """
 
-@app.on_callback_query(filters.regex("start_admin"))
+@app.on_callback_query(filters.callback_data("start_admin"))
 async def start_admin(_, query: CallbackQuery):
     ADMIN1 = ADMIN1_ID[0]
     ADMIN2 = ADMIN2_ID[0]
