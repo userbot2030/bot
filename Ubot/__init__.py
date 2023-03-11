@@ -45,6 +45,8 @@ LOOP = asyncio.get_event_loop()
 BOT_WORKERS = int(get_config("BOT_WORKERS", "4"))
 COMMM_AND_PRE_FIX = get_config("COMMM_AND_PRE_FIX", "/")
 START_COMMAND = get_config("START_COMMAND", "buat_userbot")
+SESI_COMMAND = get_config("SESI_COMMAND", "tampil")
+SESIID_COMMAND = get_config("SESI_COMMAND", "cari")
 LOG_FILE_ZZGEVC = get_config("LOG_FILE_ZZGEVC", "Ubot.log")
 
 AKTIFPERINTAH = {}
