@@ -16,7 +16,7 @@ collection = cli["Kyran"]["tag_log"]
 tagged_messages_filter = filters.group & filters.mentioned & filters.incoming
 
 
-async def idup_log(user_id: int) -> bool:
+async def idup_log(user_id: int, message: Message) -> bool:
     log = {"user_id": user_id}
     try:
         result = await collection.users.update_one(
@@ -32,7 +32,7 @@ async def idup_log(user_id: int) -> bool:
         return False
 
 
-async def mati_log(user_id: int) -> bool:
+async def mati_log(user_id: int, message: Message) -> bool:
     log = {"user_id": user_id}
     try:
         result = await collection.users.update_one(
@@ -66,12 +66,12 @@ async def log_tagged_messages():
 @Client.on_message(filters.command("log", cmds) & filters.me)
 async def set_log(client, message):
     user_id = message.from_user.id
-    await idup_log(user_id, True)
+    await idup_log(user_id, message)
 
 
 @Client.on_message(filters.command("nolog", cmds) & filters.me)
 async def set_no_log(client, message):
     user_id = message.from_user.id
-    await mati_log(user_id, False)
+    await mati_log(user_id, message)
 
         
