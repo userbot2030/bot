@@ -18,7 +18,7 @@ from config import SUPPORT, CHANNEL, CMD_HNDLR, ADMIN1_ID, ADMIN2_ID, ADMIN3_ID,
 import os
 from dotenv import load_dotenv
 
-load_dotenv(.env)
+load_dotenv(".env")
 
 MSG_BOT = """
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
