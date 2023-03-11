@@ -46,7 +46,7 @@ async def mati_log(user_id: int) -> bool:
     except:
         return False
 
-if log :
+
 async def log_tagged_messages():
     async for message in client.iter_messages(chat_id=CHAT_ID, filter=tagged_messages_filter):
         user_id = message.from_user.id
