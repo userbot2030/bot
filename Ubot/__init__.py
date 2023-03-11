@@ -22,10 +22,10 @@ SUDOERS = filters.user()
 SUDO_USER = SUDOERS
 
 
-if clientLOG_CHATID:
-   clientLOG_CHATID = clientLOG_CHATID
+if BOTLOG_CHATID:
+   BOTLOG_CHATID = BOTLOG_CHATID
 else:
-   clientLOG_CHATID = "me"
+   BOTLOG_CHATID = "me"
 
 
 SUDO_USER = SUDOERS
