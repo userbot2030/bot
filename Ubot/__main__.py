@@ -18,7 +18,6 @@ from config import SUPPORT, CHANNEL, CMD_HNDLR, ADMIN1_ID, ADMIN2_ID, ADMIN3_ID,
 import os
 from dotenv import load_dotenv
 
-load_dotenv(".env")
 
 MSG_BOT = """
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
@@ -104,16 +103,6 @@ async def start_bot():
             ids.append(ex.id)
             await cli.send_message(BOTLOG_CHATID, MSG_ON.format(BOT_VER, pyro, py(), active_time_str, remaining_days, CMD_HNDLR))
             user = len( await get_active_users())
-        except Exception as e:
-            LOGGER("X").info(f"{e}")
-            if "Telegram says" in str(e):
-                load_dotenv()
-                for i in range(1, 201):
-                    if os.getenv(f"SESSION{i}") == str(e):
-                        os.environ.pop(f"SESSION{i}")
-                        LOGGER("Ubot").info(f"Removed SESSION{i} from .env file due to error.")
-                        await app.send_message(SUPPORT, f"Removed SESSION{i} from .env file due to error.")
-                        break
     await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
     await idle()
     await install()
