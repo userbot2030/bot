@@ -2,19 +2,18 @@ import importlib
 import time
 from datetime import datetime
 import asyncio
-from pyrogram import idle, Clients
+from asyncio import get_event_loop_policy
+from pyrogram import idle
 from uvloop import install
 from ubotlibs import *
 from Ubot import BOTLOG_CHATID, aiosession, bot1, bots, app, ids, LOOP
 from platform import python_version as py
 from Ubot.logging import LOGGER
 from pyrogram import __version__ as pyro
-from pyrogram import *
-from pyrogram.types import *
 from Ubot.modules import ALL_MODULES
 from ubotlibs.ubot.database.activedb import *
 from ubotlibs.ubot.database.usersdb import *
-from config import SUPPORT, CHANNEL, CMD_HNDLR, ADMIN1_ID, ADMIN2_ID, ADMIN3_ID, ADMIN4_ID, ADMIN5_ID, ADMIN6_ID
+from config import SUPPORT, CHANNEL, CMD_HNDLR, ADMIN1_ID, ADMIN2_ID, ADMIN3_ID, ADMIN4_ID, ADMIN5_ID
 import os
 from dotenv import load_dotenv
 
@@ -46,42 +45,8 @@ MSG = """
 """
 
 
-@app.on_callback_query(filters.regex("start_admin"))
-async def start_admin(_, query: CallbackQuery):
-    ADMIN1 = ADMIN1_ID[0]
-    ADMIN2 = ADMIN2_ID[0]
-    ADMIN3 = ADMIN3_ID[0]
-    ADMIN4 = ADMIN4_ID[0]
-    ADMIN5 = ADMIN5_ID[0]
-    return await query.edit_message_text(
-        f"""<b> ☺️** Silakan hubungi admin dibawah ini untuk memberi akses bot kamu dan merestart nya..**</b>""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(text="👮‍♂ Admin 1", user_id=ADMIN1),
-                    InlineKeyboardButton(text="👮‍♂ Admin 2", user_id=ADMIN2),
-                ],
-                [
-                    InlineKeyboardButton("👮‍♂ Admin 3", user_id=ADMIN3),
-                    InlineKeyboardButton(text="👮‍♂ Admin 4", user_id=ADMIN4),
-                  ],
-                  [
-                    InlineKeyboardButton(text="👮‍♂ Admin 5", user_id=ADMIN5),
-                    
-                  ],
-                  [
-                     InlineKeyboardButton(text="Tutup", callback_data="close"),
-                  ],
-             ]
-        ),
-    )
-
-
-@app.on_callback_query(filters.regex("close"))
-async def close(_, query: CallbackQuery):
-    await query.message.delete()
-
 async def start_bot():
+    load_dotenv()
     await app.start()
     LOGGER("Ubot").info("Memulai Ubot Pyro..")
     LOGGER("Ubot").info("Loading Everything.")
@@ -103,11 +68,23 @@ async def start_bot():
             ids.append(ex.id)
             await bot.send_message(BOTLOG_CHATID, MSG_ON.format(BOT_VER, pyro, py(), active_time_str, remaining_days, CMD_HNDLR))
             user = len( await get_active_users())
-            await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
-            await idle()
-            await install()
-            
-            
-            
+        except Exception as e:
+            LOGGER("X").info(f"{e}")
+            if "TELEGRAM" in str(e):
+                for i in range(1, 201):
+                    if os.getenv(f"SESSION{i}") == str(e):
+                        os.environ.pop(f"SESSION{i}")
+                        LOGGER("Ubot").info(f"Removed SESSION{i} from .env file due to error.")
+                        await app.send_message(SUPPORT, f"Removed SESSION{i} from .env file due to error.")
+                        break
+    await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
+    await idle()
+    await install()
+    for ex_id in ids:
+        await remove_user(ex_id)
+
+
+              
+
 loop = asyncio.get_event_loop()
 loop.run_until_complete(start_bot())
