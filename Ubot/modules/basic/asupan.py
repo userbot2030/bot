@@ -1,13 +1,4 @@
-# if you can read this, this meant you use code from Ubot | Ram Project
-# this code is from somewhere else
-# please dont hestitate to steal it
-# because Ubot and Ram doesn't care about credit
-# at least we are know as well
-# who Ubot and Ram is
-#
-#
-# kopas repo dan hapus credit, ga akan jadikan lu seorang developer
-# ©2023 Ubot | Ram Team
+
 import asyncio
 from asyncio import gather
 from random import choice
@@ -90,10 +81,10 @@ async def ayang(client, message):
 
 @Ubot("ppcp", cmds)
 @check_access
-async def ppcp(client, message):
-    yanto = await message.reply("🔎 `Search PP Couple...`")
-    message.from_user.first_name
-    message.from_user.id
+async def ayang(client, message):
+    yanto = await message.reply("🔎 `Search Ppcp...`")
+    pop = message.from_user.first_name
+    ah = message.from_user.id
     await message.reply_photo(
         choice(
             [
@@ -112,10 +103,10 @@ async def ppcp(client, message):
     
 @Ubot("ppcp2", cmds)
 @check_access
-async def ppcp(client, message):
-    yanto = await message.reply("🔎 `Search PP Couple...`")
-    message.from_user.first_name
-    message.from_user.id
+async def ayang(client, message):
+    yanto = await message.reply("🔎 `Search Ppcp 2...`")
+    pop = message.from_user.first_name
+    ah = message.from_user.id
     await message.reply_photo(
         choice(
             [
@@ -130,14 +121,14 @@ async def ppcp(client, message):
     )
 
     await yanto.delete()
-
-
-@Ubot("ppanime", cmds)
+    
+    
+@Ubot("anime", cmds)
 @check_access
-async def ppanime(client, message):
-    yanto = await message.reply("🔎 `Search PP Anime...`")
-    message.from_user.first_name
-    message.from_user.id
+async def ayang(client, message):
+    yanto = await message.reply("🔎 `Search Anime...`")
+    pop = message.from_user.first_name
+    ah = message.from_user.id
     await message.reply_photo(
         choice(
             [
@@ -153,13 +144,13 @@ async def ppanime(client, message):
 
     await yanto.delete()
     
-    
-@Client.on_message(filters.command("anime", cmds) & filters.me)
+   
+@Ubot("anime2", cmds)
 @check_access
-async def ppanime(client, message):
-    yanto = await message.reply("🔎 `Search PP Anime...`")
-    message.from_user.first_name
-    message.from_user.id
+async def ayang(client, message):
+    yanto = await message.reply("🔎 `Search Anime...`")
+    pop = message.from_user.first_name
+    ah = message.from_user.id
     await message.reply_photo(
         choice(
             [
@@ -208,7 +199,7 @@ add_command_help(
         [f"ppcp2", "Mencari Foto PP Couple Random 2."],
         [f"bokep", "to send random porno videos."],
         [f"bugil", "to send photo porno random."],
-        [f"ppanime", "Mencari Foto PP Couple Anime."],
-        [f"anime", "Mencari Foto Anime."],
+        [f"anime", "Mencari Foto PP Couple Anime."],
+        [f"anime2", "Mencari Foto Anime."],
     ],
 )
