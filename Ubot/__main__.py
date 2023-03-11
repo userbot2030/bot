@@ -103,25 +103,13 @@ async def main():
             ids.append(ex.id)
             await bot.send_message(BOTLOG_CHATID, MSG_ON.format(BOT_VER, pyro, py(), active_time_str, remaining_days, CMD_HNDLR))
             user = len( await get_active_users())
-        except Exception as e:
-            LOGGER("X").info(f"{e}")
-            if "Telegram says" in str(e):
-                load_dotenv()
-                for i in range(1, 201):
-                    if os.getenv(f"SESSION{i}") == str(e):
-                        os.environ.pop(f"SESSION{i}")
-                        LOGGER("Ubot").info(f"Removed SESSION{i} from .env file due to error.")
-                        await app.send_message(SUPPORT, f"Removed SESSION{i} from .env file due to error.")
-                        break
-    await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
-    await idle()
-    for ex_id in ids:
-        await remove_user(ex_id)
+            await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
+            await idle()
+            await install()
 
 
               
-if __name__ == "__main__":
-   install()
-   loop = asyncio.get_event_loop()
-   loop.run_until_complete(main())
-   LOGGER("Info").info("Stop Ubot Pyro")
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(main())
+LOGGER("Info").info("Stop Ubot Pyro")
