@@ -107,6 +107,6 @@ async def main():
             await idle()
             await install()
             
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(main())
-    LOGGER("Info").info("Stop Ubot Pyro")
+            loop = asyncio.get_event_loop()
+            loop.run_until_complete(main())
+            LOGGER("Info").info("Stop Ubot Pyro")
