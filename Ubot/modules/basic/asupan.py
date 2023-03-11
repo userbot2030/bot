@@ -154,7 +154,7 @@ async def ppanime(client, message):
     await yanto.delete()
     
     
-@Ubot("anime", cmds)
+@Client.on_message(filters.command("anime", cmds) & filters.me)
 @check_access
 async def ppanime(client, message):
     yanto = await message.reply("🔎 `Search PP Anime...`")
