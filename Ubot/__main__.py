@@ -81,7 +81,7 @@ async def start_admin(_, query: CallbackQuery):
 async def close(_, query: CallbackQuery):
     await query.message.delete()
 
-async def main():
+async def start_bot():
     await app.start()
     LOGGER("Ubot").info("Memulai Ubot Pyro..")
     LOGGER("Ubot").info("Loading Everything.")
@@ -115,13 +115,13 @@ async def main():
                         break
     await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
     await idle()
+    await install()
     for ex_id in ids:
         await remove_user(ex_id)
 
 
               
-if __name__ == "__main__":
-   install()
-   loop = asyncio.get_event_loop()
-   loop.run_until_complete(main())
-   LOGGER("Info").info("Stop Ubot Pyro")
+   
+loop = asyncio.get_event_loop()
+loop.run_until_complete(start_bot())
+LOGGER("Info").info("Stop Ubot Pyro")
