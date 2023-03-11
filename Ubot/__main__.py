@@ -81,7 +81,7 @@ async def start_admin(_, query: CallbackQuery):
 async def close(_, query: CallbackQuery):
     await query.message.delete()
 
-async def main():
+async def start_bot():
     await app.start()
     LOGGER("Ubot").info("Memulai Ubot Pyro..")
     LOGGER("Ubot").info("Loading Everything.")
@@ -107,5 +107,7 @@ async def main():
             await idle()
             await install()
             
-            loop = asyncio.get_event_loop()
-            loop.run_until_complete(main())
+            
+            
+loop = asyncio.get_event_loop()
+loop.run_until_complete(start_bot())
