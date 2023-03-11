@@ -46,47 +46,6 @@ MSG = """
 **ID**: `{}`
 """
 
-@app.on_callback_query(filters.regex("start_admin"))
-async def start_admin(_, query: CallbackQuery):
-    ADMIN1 = ADMIN1_ID[0]
-    ADMIN2 = ADMIN2_ID[0]
-    ADMIN3 = ADMIN3_ID[0]
-    ADMIN4 = ADMIN4_ID[0]
-    ADMIN5 = ADMIN5_ID[0]
-    ADMIN6 = ADMIN6_ID[0]
-    ADMIN7 = ADMIN7_ID[0]
-    return await query.edit_message_text(
-        f"""<b> ☺️** Silakan hubungi admin dibawah ini untuk memberi akses dan merestart bot anda.**</b>""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(text="👮‍♂ Admin 1", user_id=ADMIN1),
-                    InlineKeyboardButton(text="👮‍♂ Admin 2", user_id=ADMIN2),
-                ],
-                [
-                    InlineKeyboardButton("👮‍♂ Admin 3", user_id=ADMIN3),
-                    InlineKeyboardButton(text="👮‍♂ Admin 4", user_id=ADMIN4),
-                  ],
-                  [
-                    InlineKeyboardButton(text="👮‍♂ Admin 5", user_id=ADMIN5),
-                    InlineKeyboardButton(text="👮‍♂ Admin 6", user_id=ADMIN6),
-                  ],
-                  [
-                    InlineKeyboardButton(text="👮‍♂ Admin 7", user_id=ADMIN7),
-                  ],
-                  [
-                     InlineKeyboardButton(text="Tutup", callback_data="close"),
-                  ],
-             ]
-        ),
-    )
-
-
-@app.on_callback_query(filters.regex("close"))
-async def close(_, query: CallbackQuery):
-    await query.message.delete()
-
-
 
 async def start_bot():
     load_dotenv()
