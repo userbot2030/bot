@@ -103,7 +103,7 @@ async def start_bot():
             ids.append(ex.id)
             await cli.send_message(BOTLOG_CHATID, MSG_ON.format(BOT_VER, pyro, py(), active_time_str, remaining_days, CMD_HNDLR))
             user = len( await get_active_users())
-    await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
+            await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
     await idle()
     await install()
     for ex_id in ids:
