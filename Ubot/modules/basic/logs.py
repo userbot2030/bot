@@ -59,7 +59,7 @@ async def log_tagged_messages(client, message):
   await client.send_message(
       BOTLOG_CHATID,
       tai,
-      parse_mode="html",
+      parse_mode=enums.ParseMode.HTML,
       disable_web_page_preview=True,
       )
 
