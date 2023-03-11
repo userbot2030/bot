@@ -67,7 +67,7 @@ async def _callbacks(_, callback_query: CallbackQuery):
             
 
 @app.on_callback_query(filters.regex("start_admin"))
-async def start_admin(_, callback_query: CallbackQuery):
+async def start_admin(_, query: CallbackQuery):
     ADMIN1 = ADMIN1_ID[0]
     ADMIN2 = ADMIN2_ID[0]
     ADMIN3 = ADMIN3_ID[0]
