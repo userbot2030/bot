@@ -129,5 +129,6 @@ async def start_bot():
 
               
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(start_bot())
+if __name__ == "__main__":
+   LOOP.run_until_complete(start_bot())
+   LOGGER("Info").info("Stop Ubot Pyro")
