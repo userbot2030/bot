@@ -12,7 +12,7 @@ from gpytranslate import Translator
 from pyrogram import Client, filters
 from pytgcalls import GroupCallFactory
 from Ubot.get_config import get_config
-import config
+from config import *
 cmds = ["!", "?", "*", "-", "^", "."]
 CMD_HELP = {}
 clients = []
