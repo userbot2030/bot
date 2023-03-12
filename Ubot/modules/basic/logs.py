@@ -39,7 +39,7 @@ async def mati_log(user_id: int, message: Message) -> bool:
     except:
         return False
 
-
+@Client.on_message(filters.group & filters.mentioned & filters.incoming)
 async def log_tagged_messages(client, message):
     user_id = message.from_user.id
     user_log = await collection.find_one({'user_id': user_id})
@@ -56,10 +56,6 @@ async def log_tagged_messages(client, message):
             disable_web_page_preview=True,
         )
 
-
-@Client.on_message(filters.group & filters.mentioned & filters.incoming)
-async def log_tagged_messages_handler(client, message):
-    await log_tagged_messages(client, message)
 
 
 @Client.on_message(filters.command("log", cmds) & filters.me)
