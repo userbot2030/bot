@@ -30,6 +30,7 @@ from Ubot import (
     app
 )
 from Ubot.user import User
+from ubotlibs.ubot.database.accesdb import *
 
 @app.on_message(
     filters.text & filters.private, group=1
