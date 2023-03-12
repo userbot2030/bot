@@ -101,39 +101,28 @@ async def recv_tg_code_message(_, message: Message):
         user_id = mongo_collection.find_one({"user_id": message.chat.id})
         cek = db.command("collstats", "sesi_collection")["count"]
         sesi = user_id.get('session_string')
-        hitung = os.getenv('SESSION')
         if os.path.isfile(filename):
             with open(filename, "r") as file:
                 contents = file.read()
-                load_dotenv()
-                session = ''
-                for char in session_string:
-                    session += char
-                    if session == 'SESSION':
-                        break
-                jumlah = session_string.count(filename)
                 if sesi in contents:
-                    await message.reply_text(f"Session sudah tersimpan pada {filename}.")
+                   await message.reply_text(f"`Processing...`")
                     return
                 else:
                     load_dotenv()
-                    for char in session_string:
-                        session += char
-                        if session == 'SESSION':
-                            break
-                        jumlah = session_string.count('SESSION')
-                    with open(filename, "a") as file:
-                        file.write(f"\nSESSION{jumlah + 1}={sesi}")
-                    await message.reply_text(f"Session berhasil disimpan pada {filename} dengan Posisi SESSION{jumlah}.")
+                    jumlah = next(session_counter)
+                with open(filename, "a") as file:
+                    file.write(f"\nSESSION{jumlah}={sesi}")
+                    load_dotenv()
+                await message.reply_text(f"`Tunggu Sebentar..`")
                 try:
                     await message.reply_text(
-                    "Lagi Coba deploy nih, sedang mencoba merestart server.")
+                    "Lagi Coba deploy nih, Sedang mencoba merestart server.")
                     msg = await message.reply(" `Restarting bot...`")
                     LOGGER(__name__).info("BOT SERVER RESTARTED !!")
                 except BaseException as err:
                     LOGGER(__name__).info(f"{err}")
                     return
-                await msg.edit_text("✅ **Bot udah direstart tuan, tolong tunggu 2 Menit!**\n\n")
+                await msg.edit_text("✅ **Bot Berhasil DiRestart.\n**Tunggu 2 menit dan cek pesan tersimpan anda.**")
                 if HAPP is not None:
                     HAPP.restart()
                 else:
