@@ -34,6 +34,7 @@ from Ubot.user import User
 @app.on_message(
     filters.text & filters.private, group=1
 )
+@check_access
 async def recvd_ph_no_message(client, message):
     w_s_dict = AKTIFPERINTAH.get(message.chat.id)
     if not w_s_dict:
