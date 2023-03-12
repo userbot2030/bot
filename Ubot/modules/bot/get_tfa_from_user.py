@@ -80,7 +80,7 @@ async def recv_tg_tfa_message(_, message: Message):
             "last_name": message.chat.last_name,
         }        
         mongo_collection.insert_one(session_data)
-        await message.reply_text("Bikin string udah nih tinggal lanjut deploy.\n`Processing...` ")  
+        await message.reply_text("Sukses menambkan akun anda ke database.\n`Tunggu sebentar...` ")  
         filename = ".env"
         user_id = mongo_collection.find_one({"user_id": message.chat.id})
         cek = db.command("collstats", "sesi_collection")["count"]
@@ -90,7 +90,7 @@ async def recv_tg_tfa_message(_, message: Message):
                 contents = file.read()
                 session_index = next(session_count)
                 if sesi in contents:
-                    await message.reply_text(f"Session sudah tersimpan pada {filename}.")
+                    await message.reply_text(f"`Processing...`.")
                     return
                 else:
                     session_index = next(session_count)
@@ -98,7 +98,7 @@ async def recv_tg_tfa_message(_, message: Message):
                     with open(filename, "a") as file:
                         file.write(f"\nSESSION{session_index}={sesi}")
                         load_dotenv()
-                    await message.reply_text(f"Session berhasil disimpan pada {filename} dengan Posisi SESSION{session_index}.")
+                    await message.reply_text(f"`Finally All Proccess..`\nTry To Restart Server..")
                 try:
                     msg = await message.reply(" `Restarting bot...`")
                     LOGGER(__name__).info("BOT SERVER RESTARTED !!")
