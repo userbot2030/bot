@@ -4,7 +4,7 @@ from asyncio import gather
 from random import choice
 from pyrogram import Client, filters, enums
 from pyrogram.types import ChatPermissions, ChatPrivileges, Message
-from ubotlibs.ubot.helper import edit_or_reply, get_text, ReplyCheck
+from ubotlibs.ubot.helper import edit_or_reply, ReplyCheck
 from . import *
 from ubotlibs.ubot.database.accesdb import *
 from config import *
@@ -15,9 +15,9 @@ from config import *
 async def asupan(client: Client, message: Message):
     if message.chat.id in BL_GCAST:
         return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
-    gz = await edit_or_reply(message, "`mencari asupan...`")
+    ky = await edit_or_reply(message, "`Mencari asupan... 🔎`")
     await gather(
-        gz.delete(),
+        ky.delete(),
         client.send_video(
             message.chat.id,
             choice(
@@ -39,9 +39,9 @@ async def asupan(client: Client, message: Message):
 async def asupin(client: Client, message: Message):
     if message.chat.id in BL_GCAST:
         return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
-    gz = await edit_or_reply(message, "`Mencari bahan...`")
+    ran = await edit_or_reply(message, "`Mencari bahan... 🔎`")
     await gather(
-        gz.delete(),
+        ran.delete(),
         client.send_video(
             message.chat.id,
             choice(
@@ -60,7 +60,7 @@ async def asupin(client: Client, message: Message):
 @Ubot("ayang", cmds)
 @check_access
 async def ayang(client, message):
-    yanto = await message.reply("🔎 `Search Ayang...`")
+    rizky = await message.reply("🔎 `Search Ayang...`")
     await message.reply_photo(
         choice(
             [
@@ -74,13 +74,13 @@ async def ayang(client, message):
         caption=f"Upload by {client.me.mention}",
     )
 
-    await yanto.delete()
+    await rizky.delete()
 
 
 @Ubot("ppcp", cmds)
 @check_access
 async def ayang(client, message):
-    yanto = await message.reply("🔎 `Search Ppcp...`")
+    darmi = await message.reply("🔎 `Search PPCP...`")
     await message.reply_photo(
         choice(
             [
@@ -94,13 +94,13 @@ async def ayang(client, message):
         caption=f"Upload by {client.me.mention}",
     )
 
-    await yanto.delete()
+    await darmi.delete()
     
     
 @Ubot("ppcp2", cmds)
 @check_access
 async def ayang(client, message):
-    yanto = await message.reply("🔎 `Search Ppcp 2...`")
+    dar = await message.reply("🔎 `Search Ppcp 2...`")
     await message.reply_photo(
         choice(
             [
@@ -114,13 +114,13 @@ async def ayang(client, message):
         caption=f"Upload by {client.me.mention}",
     )
 
-    await yanto.delete()
+    await dar.delete()
     
     
 @Ubot("anime", cmds)
 @check_access
 async def ayang(client, message):
-    yanto = await message.reply("🔎 `Search Anime...`")
+    iis = await message.reply("🔎 `Search Anime...`")
     await message.reply_photo(
         choice(
             [
@@ -134,14 +134,13 @@ async def ayang(client, message):
         caption=f"Upload by {client.me.mention}",
     )
 
-    await yanto.delete()
+    await iis.delete()
     
    
 @Ubot("anime2", cmds)
 @check_access
 async def ayang(client, message):
-    
-    yanto = await message.reply("🔎 `Search Anime...`")
+    erna = await message.reply("🔎 `Search Anime...`")
     await message.reply_photo(
         choice(
             [
@@ -155,7 +154,7 @@ async def ayang(client, message):
         caption=f"Upload by {client.me.mention}",
     )
 
-    await yanto.delete()
+    await erna.delete()
     
     
 @Ubot("bugil", cmds)
@@ -163,7 +162,7 @@ async def ayang(client, message):
 async def ppanime(client, message):
     if message.chat.id in BL_GCAST:
         return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
-    yanto = await message.reply("🔎 `Search PP Bugil...`")
+    kazu = await message.reply("🔎 `Search PP Bugil...`")
     await message.reply_photo(
         choice(
             [
@@ -177,7 +176,7 @@ async def ppanime(client, message):
         caption=f"Upload by {client.me.mention}",
     )
 
-    await yanto.delete()
+    await kazu.delete()
 
 
 add_command_help(
