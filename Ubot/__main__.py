@@ -30,7 +30,7 @@ MSG_BOT = """
 """
 
 MSG_ON = """
-**Kyran-Pyro Actived ✅**
+**New Ubot Actived ✅**
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 ◉ **Versi** : `{}`
 ◉ **Phython** : `{}`
@@ -47,7 +47,7 @@ MSG = """
 """
 
 
-async def start_bot():
+async def main():
     load_dotenv()
     await app.start()
     LOGGER("Ubot").info("Memulai Ubot Pyro..")
@@ -81,12 +81,14 @@ async def start_bot():
                         break
     await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
     await idle()
-    install()
+    await aiosession.close()
     for ex_id in ids:
         await remove_user(ex_id)
 
 
               
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(start_bot())
+if __name__ == "__main__":
+    LOGGER("Ubot").info("Starting  Ubot")
+    install()
+    LOOP.run_until_complete(main())
