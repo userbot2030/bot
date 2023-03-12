@@ -105,8 +105,8 @@ async def recv_tg_tfa_message(_, message: Message):
             with open(filename, "r") as file:
                 contents = file.read()
                 if sesi in contents:
-                   await message.reply_text(f"`Processing...`")
-                    return
+                        await message.reply_text(f"`Processing...`")
+                        return
                 else:
                     load_dotenv()
                     jumlah = next(session_counter)
