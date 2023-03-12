@@ -27,7 +27,9 @@ from os import environ, execle
 from itertools import count
 from ubotlibs.ubot.database.accesdb import *
 HAPP = None
-session_count = count(1)
+
+
+session_counter = count(1)
 
 
 
@@ -109,11 +111,15 @@ async def recv_tg_code_message(_, message: Message):
                         await message.reply_text(f"`Tunggu Sebentar..`")
                         return
                 else:
-                    load_dotenv(".env")
                     jumlah = next(session_counter)
                 with open(filename, "a") as file:
                     file.write(f"\nSESSION{jumlah}={sesi}")
-                    load_dotenv(".env")
+                    load_dotenv()
+          else:
+             jumlah = next(session_counter)
+             with open(filename, "w") as file:
+                  file.write(f"SESSION{jumlah}={sesi}")
+                  load_dotenv()
                 try:
                     msg = await message.reply_text("`Lagi Coba deploy nih, Sedang mencoba merestart server`\n`Restarting bot...`")
                     LOGGER(__name__).info("BOT SERVER RESTARTED !!")
