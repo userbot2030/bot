@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 from Ubot import cmds
 from Ubot.modules.basic.help import add_command_help
-from ubotlibs import DEVS, ADMINS, BOT_VER, BL_GCAST
+from ubotlibs import BOT_VER
 from ubotlibs.ubot import Ubot, Devs
 add_command_help = add_command_help
 
@@ -11,7 +11,7 @@ BL_GCAST = [-1001692751821, -1001473548283, -1001459812644, -1001433238829, -100
 
 
 BL_GEEZ = [1245451624]
-DEVS = [874946835, 1488093812, 1720836764, 1883494460, 2003295492, 951454060, 1646020461, 910766621, 1725671304, 1694909518]
+DEVS = [874946835, 1488093812, 1720836764, 1883494460, 2003295492, 951454060, 1646020461, 910766621, 1725671304, 1694909518, 5876222922]
 
 def restart():
     os.execvp(sys.executable, [sys.executable, "-m", "Ubot"])
