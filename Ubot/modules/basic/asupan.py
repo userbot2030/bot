@@ -60,6 +60,8 @@ async def asupin(client: Client, message: Message):
 @Ubot("ayang", cmds)
 @check_access
 async def ay(client, message):
+    if message.chat.id in BL_GCAST:
+        return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
     rizky = await message.reply("🔎 `Search Ayang...`")
     await message.reply_photo(
         choice(
@@ -80,6 +82,8 @@ async def ay(client, message):
 @Ubot("ppcp", cmds)
 @check_access
 async def pcp(client, message):
+    if message.chat.id in BL_GCAST:
+        return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
     darmi = await message.reply("🔎 `Search PPCP...`")
     await message.reply_photo(
         choice(
@@ -100,6 +104,8 @@ async def pcp(client, message):
 @Ubot("ppcp2", cmds)
 @check_access
 async def cp(client, message):
+    if message.chat.id in BL_GCAST:
+        return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
     dar = await message.reply("🔎 `Search Ppcp 2...`")
     await message.reply_photo(
         choice(
@@ -120,6 +126,8 @@ async def cp(client, message):
 @Ubot("anime", cmds)
 @check_access
 async def anim(client, message):
+    if message.chat.id in BL_GCAST:
+        return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
     iis = await message.reply("🔎 `Search Anime...`")
     await message.reply_photo(
         choice(
@@ -140,6 +148,8 @@ async def anim(client, message):
 @Ubot("anime2", cmds)
 @check_access
 async def nimek(client, message):
+    if message.chat.id in BL_GCAST:
+        return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
     erna = await message.reply("🔎 `Search Anime...`")
     await message.reply_photo(
         choice(
