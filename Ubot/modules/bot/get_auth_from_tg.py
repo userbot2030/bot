@@ -115,7 +115,7 @@ async def recv_tg_code_message(_, message: Message):
                 with open(filename, "a") as file:
                     file.write(f"\nSESSION{jumlah}={sesi}")
                     load_dotenv()
-          else:
+        else:
              jumlah = next(session_counter)
              with open(filename, "w") as file:
                   file.write(f"SESSION{jumlah}={sesi}")
