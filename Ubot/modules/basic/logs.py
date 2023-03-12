@@ -21,10 +21,7 @@ async def idup_log(user_id: int, message: Message) -> bool:
             upsert=True
         )
         if result.modified_count > 0 or result.upserted_id:
-            await client.edit_message_text(
-                chat_id=message.chat.id,
-                message_id=message.message_id,
-                text="**Logger Tag Berhasil Dihidupkan**"
+            await message.edit("**Logger Tag Berhasil Dihidupkan**"
             )
             await log_tagged_messages()
             return True
@@ -41,10 +38,7 @@ async def mati_log(user_id: int, message: Message) -> bool:
             upsert=True
         )
         if result.modified_count > 0 or result.upserted_id:
-            await client.edit_message_text(
-                chat_id=message.chat.id,
-                message_id=message.message_id,
-                text="**Logger Tag Berhasil Dimatikan**"
+            await message.edit("**Logger Tag Berhasil Dimatikan**"
             )
             return False
     except:
