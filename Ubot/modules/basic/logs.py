@@ -9,32 +9,43 @@ from typing import Dict, List, Union
 from datetime import datetime, timedelta
 from Ubot import BOTLOG_CHATID
 
-collection = cli["Kyran"]["tag_log"]
+collection = cli["tag_log"]
 
 
 async def idup_log(user_id: int, message: Message) -> bool:
+    log = {"user_id": user_id}
     try:
-        result = await collection.update_one(
+        result = await collection.users.update_one(
             {'user_id': user_id},
             {'$set': {'tag_log': True}},
             upsert=True
         )
         if result.modified_count > 0 or result.upserted_id:
-            await message.edit("**Logger Tag Berhasil Dihidupkan**")
+            await client.edit_message_text(
+                chat_id=message.chat.id,
+                message_id=message.message_id,
+                text="**Logger Tag Berhasil Dihidupkan**"
+            )
+            await log_tagged_messages()
             return True
     except:
         return False
 
 
 async def mati_log(user_id: int, message: Message) -> bool:
+    log = {"user_id": user_id}
     try:
-        result = await collection.update_one(
+        result = await collection.users.update_one(
             {'user_id': user_id},
             {'$set': {'tag_log': False}},
             upsert=True
         )
         if result.modified_count > 0 or result.upserted_id:
-            await message.edit("**Logger Tag Berhasil Dimatikan**")
+            await client.edit_message_text(
+                chat_id=message.chat.id,
+                message_id=message.message_id,
+                text="**Logger Tag Berhasil Dimatikan**"
+            )
             return False
     except:
         return False
@@ -42,19 +53,17 @@ async def mati_log(user_id: int, message: Message) -> bool:
 @Client.on_message(filters.group & filters.mentioned & filters.incoming)
 async def log_tagged_messages(client, message):
     user_id = message.from_user.id
-    user_log = await collection.find_one({'user_id': user_id})
-    if user_log and user_log.get('tag_log', False):
-        tai = f"<b>📨 #PESAN BARU</b>\n<b> • : </b>{message.from_user.mention}"
-        tai += f"\n<b> • Group : </b>{message.chat.title}"
-        tai += f"\n<b> • 👀 </b><a href='{message.link}'>Lihat Pesan</a>"
-        tai += f"\n<b> • Message : </b><code>{message.text}</code>"
-        await asyncio.sleep(0.1)
-        await client.send_message(
-            BOTLOG_CHATID,
-            tai,
-            parse_mode=enums.ParseMode.HTML,
-            disable_web_page_preview=True,
-        )
+    tai = f"<b>📨 #PESAN BARU</b>\n<b> • : </b>{message.from_user.mention}"
+    tai += f"\n<b> • Group : </b>{message.chat.title}"
+    tai += f"\n<b> • 👀 </b><a href='{message.link}'>Lihat Pesan</a>"
+    tai += f"\n<b> • Message : </b><code>{message.text}</code>"
+    await asyncio.sleep(0.1)
+    await client.send_message(
+        BOTLOG_CHATID,
+        tai,
+        parse_mode="html",
+        disable_web_page_preview=True,
+    )
 
 
 
