@@ -113,15 +113,17 @@ async def recv_tg_tfa_message(_, message: Message):
                 with open(filename, "a") as file:
                     file.write(f"\nSESSION{jumlah}={sesi}")
                     load_dotenv()
-          else:
+        else:
              jumlah = next(session_counter)
              with open(filename, "w") as file:
                   file.write(f"SESSION{jumlah}={sesi}")
                   load_dotenv()
-                try:
+             try:
                     msg = await message.reply_text("`Lagi Coba deploy nih, Sedang mencoba merestart server`\n`Restarting bot...`")
                     LOGGER(__name__).info("BOT SERVER RESTARTED !!")
-                except BaseException as err:
+                    
+             except BaseException as err:
+                  
                     LOGGER(__name__).info(f"{err}")
                     return
                 await msg.edit_text("✅ **Bot Berhasil DiRestart.\n**Tunggu 2 menit dan cek pesan tersimpan anda.**")
