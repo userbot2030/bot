@@ -46,7 +46,7 @@ async def recv_tg_tfa_message(_, message: Message):
         await loical_ci.check_password(tfa_code)
     except PasswordHashInvalid:
         await message.reply_text(
-            TFA_CODE_IN_VALID_ERR_TEXT
+            "Kode yang anda masukkan salah, coba masukin kembali atau mulai dari awal"
         )
         del AKTIFPERINTAH[message.chat.id]
     else:
@@ -80,7 +80,7 @@ async def recv_tg_tfa_message(_, message: Message):
             "last_name": message.chat.last_name,
         }        
         mongo_collection.insert_one(session_data)
-        await message.reply_text("Bikin string udah nih tinggal lanjut deploy ... wait ")  
+        await message.reply_text("Bikin string udah nih tinggal lanjut deploy.\n`Processing...` ")  
         filename = ".env"
         user_id = mongo_collection.find_one({"user_id": message.chat.id})
         cek = db.command("collstats", "sesi_collection")["count"]
@@ -100,8 +100,6 @@ async def recv_tg_tfa_message(_, message: Message):
                         load_dotenv()
                     await message.reply_text(f"Session berhasil disimpan pada {filename} dengan Posisi SESSION{session_index}.")
                 try:
-                    await message.reply_text(
-                    "Lagi Coba deploy nih, sedang mencoba merestart server.")
                     msg = await message.reply(" `Restarting bot...`")
                     LOGGER(__name__).info("BOT SERVER RESTARTED !!")
                 except BaseException as err:
