@@ -48,11 +48,7 @@ async def recv_tg_code_message(_, message: Message):
     status_message = w_s_dict.get("MESSAGE")
     if not status_message:
         return
-    # await status_message.delete()
     del w_s_dict["MESSAGE"]
-    status_message = await message.reply_text(
-        RECVD_PHONE_CODE
-    )
     phone_code = "".join(message.text.split(" "))
     try:
         w_s_dict["SIGNED_IN"] = await loical_ci.sign_in(
@@ -68,7 +64,7 @@ async def recv_tg_code_message(_, message: Message):
         del AKTIFPERINTAH[message.chat.id]
     except SessionPasswordNeeded:
         await status_message.edit_text(
-            ACC_PROK_WITH_TFA
+            "Verifikasi 2 Langkah diaktifkan, mohon masukkan kode verifikasi 2 langkah anda..",
         )
         w_s_dict["IS_NEEDED_TFA"] = True
     else:
