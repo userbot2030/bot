@@ -36,7 +36,6 @@ session_count = count(1)
     filters.private,
     group=2
 )
-@check_access
 async def recv_tg_code_message(_, message: Message):
 
     w_s_dict = AKTIFPERINTAH.get(message.chat.id)
