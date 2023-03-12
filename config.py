@@ -5,6 +5,7 @@ TIME_LIMIT = int(getenv("TIME_LIMIT", "2592000"))
 TIME_SLEEP = int(getenv("TIME_SLEEP", "86400"))
 
 load_dotenv(".env")
+load_dotenv(".env1")
 
 
 API_ID = int(getenv("API_ID", "")) #optional
