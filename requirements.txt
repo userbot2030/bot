@@ -1,6 +1,7 @@
 flask
 gunicorn
 gpytranslate
+googletrans
 pytgcalls==3.0.0.dev24
 openai
 uvloop
