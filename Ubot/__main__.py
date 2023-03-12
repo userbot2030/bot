@@ -70,9 +70,9 @@ async def main():
             ids.append(ex.id)
             await bot.send_message(BOTLOG_CHATID, MSG_ON.format(BOT_VER, pyro, py(), active_time_str, remaining_days, CMD_HNDLR))
             user = len( await get_active_users())
-        except Exception as e:
+        except RPCError as e:
             LOGGER("X").info(f"{e}")
-            if "TELEGRAM" in str(e):
+            if "Telegram says:" in str(e):
                 for i in range(1, 201):
                     if os.getenv(f"SESSION{i}") == str(e):
                         os.environ.pop(f"SESSION{i}")
