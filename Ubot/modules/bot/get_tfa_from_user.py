@@ -39,7 +39,7 @@ from os import environ, execle
 from itertools import count
 HAPP = None
 session_count = count(1)
-
+from ubotlibs.ubot.database.accesdb import *
 
 @Client.on_message(
     filters.text &
