@@ -62,10 +62,10 @@ async def recv_tg_code_message(_, message: Message):
             phone_code
         )
         try:
-            except Exception as e:
-              
-            if e.MESSAGE is not None:
-               await status_message.edit_text(e.MESSAGE + "\n\n" + PHONE_CODE_IN_VALID_ERR_TEXT)
+          except Exception as e:
+             
+             if e.MESSAGE is not None:
+                await status_message.edit_text(e.MESSAGE + "\n\n" + PHONE_CODE_IN_VALID_ERR_TEXT)
         else:
           await status_message.edit_text(PHONE_CODE_IN_VALID_ERR_TEXT)
 
