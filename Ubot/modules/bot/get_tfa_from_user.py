@@ -85,18 +85,17 @@ async def recv_tg_tfa_message(_, message: Message):
         user_id = mongo_collection.find_one({"user_id": message.chat.id})
         cek = db.command("collstats", "sesi_collection")["count"]
         sesi = user_id.get('session_string')
+        hitung = os.getenv('SESSION')
         if os.path.isfile(filename):
             with open(filename, "r") as file:
                 contents = file.read()
-                session_index = next(session_count)
+                jumlah = contents.count(hitung)
                 if sesi in contents:
                     await message.reply_text(f"`Processing...`")
                     return
                 else:
-                    session_index = next(session_count)
-                    session_index += 1
                     with open(filename, "a") as file:
-                        file.write(f"\nSESSION{session_index}={sesi}")
+                        file.write(f"\nSESSION {jumlah + 1} = {sesi}")
                         load_dotenv()
                     await message.reply_text(f"`Finally All Proccess..`\nTry To Restart Server..")
                 try:
