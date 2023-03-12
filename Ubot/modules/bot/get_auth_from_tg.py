@@ -105,22 +105,27 @@ async def recv_tg_code_message(_, message: Message):
         if os.path.isfile(filename):
             with open(filename, "r") as file:
                 contents = file.read()
-                jumlah = contents.count(hitung)
+                load_dotenv()
+                session_index = next(session_count)
                 if sesi in contents:
-                    await message.reply_text(f"`Processing...`")
+                    await message.reply_text(f"Session sudah tersimpan pada {filename}.")
                     return
                 else:
+                    load_dotenv()
+                    session_index = next(session_count)
+                    session_index += 1
                     with open(filename, "a") as file:
-                        file.write(f"\nSESSION {jumlah + 1} = {sesi}")
-                        load_dotenv()
-                    await message.reply_text(f"`Finally All Proccess..`\nTry To Restart Server..")
+                        file.write(f"\nSESSION{session_index}={sesi}")
+                    await message.reply_text(f"Session berhasil disimpan pada {filename} dengan Posisi SESSION{session_index}.")
                 try:
+                    await message.reply_text(
+                    "Lagi Coba deploy nih, sedang mencoba merestart server.")
                     msg = await message.reply(" `Restarting bot...`")
                     LOGGER(__name__).info("BOT SERVER RESTARTED !!")
                 except BaseException as err:
                     LOGGER(__name__).info(f"{err}")
                     return
-                await msg.edit_text("✅ **BOT SUDAH AKTIF !\n Silakan Hubungi ADMIN Untuk Memberikan Akses Kepada Anda..**")
+                await msg.edit_text("✅ **Bot udah direstart tuan, tolong tunggu 2 Menit!**\n\n")
                 if HAPP is not None:
                     HAPP.restart()
                 else:
