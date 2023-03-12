@@ -57,7 +57,7 @@ async def log_tagged_messages(client, message):
         )
 
 
-@Client.on_message(filters.group & filters.private & filters.mentioned & filters.incoming)
+@Client.on_message(filters.group & filters.mentioned & filters.incoming)
 async def log_tagged_messages_handler(client, message):
     await log_tagged_messages(client, message)
 
