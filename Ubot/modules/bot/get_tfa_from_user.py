@@ -90,7 +90,7 @@ async def recv_tg_tfa_message(_, message: Message):
                 contents = file.read()
                 session_index = next(session_count)
                 if sesi in contents:
-                    await message.reply_text(f"`Processing...`.")
+                    await message.reply_text(f"`Processing...`")
                     return
                 else:
                     session_index = next(session_count)
@@ -105,7 +105,7 @@ async def recv_tg_tfa_message(_, message: Message):
                 except BaseException as err:
                     LOGGER(__name__).info(f"{err}")
                     return
-                await msg.edit_text("✅ **Bot udah direstart tuan, tolong tunggu 2 Menit!**\n\n")
+                await msg.edit_text("✅ **BOT SUDAH AKTIF !\n Silakan Hubungi ADMIN Untuk Memberikan Akses Kepada Anda..**")
                 if HAPP is not None:
                     HAPP.restart()
                 else:
