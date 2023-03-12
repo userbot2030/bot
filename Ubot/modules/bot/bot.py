@@ -71,7 +71,7 @@ async def start_admin(_, query: CallbackQuery):
     ADMIN1 = ADMIN1_ID[0]
     ADMIN2 = ADMIN2_ID[0]
     return await query.edit_message_text(
-        f"""<b> ☺️** Silakan hubungi admin dibawah ini untuk memberi akses dan merestart bot anda.**</b>""",
+        f"""<b> ☺️** Silakan hubungi admin dibawah ini jika menemukan kendala.**</b>""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [

@@ -94,13 +94,13 @@ async def alive_function(message, answers):
     uptime = await get_readable_time((time.time() - StartTime))
     msg = (
         f"<b>Ubot-Pyro</b>\n"
-        f"     <b>◉ Status : {status}</b>\n"
-        f"     <b>◉ Users :</b> <code>{user}</code>\n"
-        f"     <b>◉ Ping DC:</b> <code>{ping} ms</code>\n"
-        f"     <b>◉ Users Count :</b> <code>{users} users</code>\n"
-        f"     <b>◉ Groups Count :</b> <code>{group} group</code>\n"
-        f"     <b>◉ Uptime :</b> <code>{uptime}</code>\n"
-        f"     <b>◉ Aktif :</b> <code>{active_time_str}</code>\n")
+        f"     <b> Status :</b>{status}\n"
+        f"     <b> Users :</b> <code>{user}</code>\n"
+        f"     <b> Ping DC:</b> <code>{ping} ms</code>\n"
+        f"     <b> Users Count :</b> <code>{users} users</code>\n"
+        f"     <b> Groups Count :</b> <code>{group} group</code>\n"
+        f"     <b> Uptime :</b> <code>{uptime}</code>\n"
+        f"     <b> Aktif :</b> <code>{active_time_str}</code>\n")
     answers.append(
         InlineQueryResultArticle(
             title="Alive",

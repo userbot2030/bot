@@ -23,6 +23,7 @@ from platform import python_version as py
 from pyrogram import __version__ as pyro
 from pyrogram.types import * 
 from Ubot.logging import LOGGER
+from config import SUPPORT
 
 def restart():
     os.execvp(sys.executable, [sys.executable, "-m", "Ubot"])
@@ -126,7 +127,7 @@ async def gcast_handler(client, message):
 
 
 
-@app.on_message(filters.command("acc") & ~filters.via_bot)
+@app.on_message(filters.command("prem") & ~filters.via_bot)
 async def handle_grant_access(client: Client, message: Message):
     if message.reply_to_message:
         user_id = message.reply_to_message.from_user.id
@@ -155,7 +156,7 @@ async def handle_grant_access(client: Client, message: Message):
         await message.reply_text(f"Pengguna {user_id} sudah memiliki akses sebelumnya.")
 
 
-@app.on_message(filters.command("noacc") & ~filters.via_bot)
+@app.on_message(filters.command("unprem") & ~filters.via_bot)
 async def handle_revoke_access(client: Client, message: Message):
     if message.reply_to_message:
         user_id = message.reply_to_message.from_user.id
@@ -187,7 +188,7 @@ async def start_(client: Client, message: Message):
     await message.reply_text(
         f"""<b>👋 **Halo {message.from_user.first_name}** \n
 💭 **Apa ada yang bisa saya bantu **
-💡 **Jika ingin membuat bot\nKamu bisa ketik /buat_userbot lalu hubungi admin untuk merestart bot.**
+💡 **Jika ingin membuat bot . Kamu bisa ketik /deploy untuk membuat bot.\n Atau Hubungi Admin Untuk Meminta Akses.**
 </b>""",
         reply_markup=InlineKeyboardMarkup(
             [ 
@@ -242,7 +243,7 @@ async def check_active(client, message):
 
 
 
-@app.on_message(filters.group & ~filters.service)
+@app.on_message(filters.group & ~filters.service & ~filters.via_bot)
 async def check_user_expiry(client, message):
     if message.new_chat_members:
         user_id = message.new_chat_members[0].id
@@ -251,7 +252,7 @@ async def check_user_expiry(client, message):
         if expire_date is not None and now > expire_date:
             await client.kick_chat_member(message.chat.id, user_id)
             await rem_expired_date(user_id)
-            await client.send_message(message.chat.id, f"User {user_id} telah dihapus karena masa aktifnya habis.")
+            await app.send_message(SUPPORT, f"User {user_id} telah dihapus karena masa aktifnya habis.")
 
         
 @app.on_message(filters.private & filters.command("restart") & filters.user(ADMINS) & ~filters.via_bot
