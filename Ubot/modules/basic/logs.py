@@ -8,7 +8,7 @@ from pyrogram.filters import chat
 import asyncio
 from typing import Dict, List, Union
 from datetime import datetime, timedelta
-from Ubot import BOTLOG_CHATID
+from Ubot import BOTLOG_CHATID, app
 log = []
 
 collection = cli["Kyran"]["tag_log"]
