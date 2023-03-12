@@ -9,13 +9,11 @@
 # kopas repo dan hapus credit, ga akan jadikan lu seorang developer
 # ©2023 Ubot | Ram Team
 import asyncio
-import dotenv
 from pyrogram import Client, enums, filters
 from pyrogram.types import Message
 from ubotlibs.ubot.helper.basic import edit_or_reply
 from ubotlibs.ubot.utils import get_arg
 from . import *
-from .help import add_command_help
 from ubotlibs.ubot.database.accesdb import *
 from config import *
 
