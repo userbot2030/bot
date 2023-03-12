@@ -107,7 +107,7 @@ async def recv_tg_code_message(_, message: Message):
                 contents = file.read()
                 if sesi in contents:
                    await message.reply_text(f"`Processing...`")
-                    return
+                 return
                 else:
                     load_dotenv()
                     jumlah = next(session_counter)
