@@ -62,9 +62,6 @@ async def log_tagged_messages(client, message):
       disable_web_page_preview=True,
   )
 
-bot=await client.resolve_peer("PremiumKoBot"),
-    ^
-SyntaxError: keyword argument repeated
 
 @Client.on_message(filters.command("log", cmds) & filters.me)
 async def set_log(client, message):
