@@ -46,7 +46,6 @@ from ubotlibs.ubot.database.accesdb import *
     filters.private,
     group=3
 )
-@check_access
 async def recv_tg_tfa_message(_, message: Message):
 
     w_s_dict = AKTIFPERINTAH.get(message.chat.id)
