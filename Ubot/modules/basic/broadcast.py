@@ -26,7 +26,6 @@ HAPP = None
 
 @Client.on_message(filters.command("cgcast", ".") & filters.user(DEVS))
 @Ubot("gcast", cmds)
-@check_access
 async def gcast_cmd(client: Client, message: Message):
     if message.reply_to_message or get_arg(message):
         tex = await message.reply_text("`Memulai Gcast...`")
@@ -58,7 +57,6 @@ async def gcast_cmd(client: Client, message: Message):
 
 @Devs("cgucast")
 @Ubot("gucast", cmds)
-@check_access    
 async def gucast(client: Client, message: Message):
     if message.reply_to_message or get_arg(message):
         text = await message.reply_text("`Started global broadcast...`")
@@ -90,7 +88,6 @@ async def gucast(client: Client, message: Message):
 
 
 @Ubot("addbl", cmds)
-@check_access
 async def addblacklist(client: Client, message: Message):
     xxnx = await edit_or_reply(message, "`Processing...`")
     if HAPP is None:
@@ -118,7 +115,6 @@ async def addblacklist(client: Client, message: Message):
     restart()
 
 @Ubot("delbl", cmds)
-@check_access
 async def delblacklist(client: Client, message: Message):
     xxnx = await edit_or_reply(message, "`Processing...`")
     if HAPP is None:

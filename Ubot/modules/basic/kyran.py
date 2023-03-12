@@ -24,48 +24,9 @@ load_dotenv()
 
 session_counter = count(1)
 
-
-def support():
-    buttons = [
-        [
-            InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/kynansupport"),
-            InlineKeyboardButton(text="ᴄʜᴀɴɴᴇʟ", url=f"https://t.me/kontenfilm"),
-        ],
-    ]
-    return buttons
     
-@Ubot("login", cmds)
-@check_access
-async def create_env(client, message):
-    try:
-        session = message.text.split()[1]
-    except IndexError:
-        await message.reply_text("Format yang benar adalah: login <session>")
-        return
-
-    filename = ".env"
-    if os.path.isfile(filename):
-        with open(filename, "r") as file:
-            contents = file.read()
-            if session in contents:
-                await message.reply_text(f"Session sudah tersimpan pada {filename}.")
-                return
-            else:
-                session_index = next(session_counter)
-                with open(filename, "a") as file:
-                    file.write(f"\nSESSION{session_index}={session}")
-                    load_dotenv()
-                await message.reply_text(f"Session berhasil disimpan pada {filename} dengan Posisi SESSION{session_index}.")
-    else:
-        session_index = next(session_counter)
-        with open(filename, "w") as file:
-            file.write(f"SESSION{session_index}={session}")
-            load_dotenv()
-        await message.reply_text(f"Session berhasil disimpan pada {filename} dengan Posisi SESSION{session_index}.")
-
     
-@Ubot("acc", cmds)
-@check_access
+@Ubot("prem", cmds)
 async def handle_grant_access(client: Client, message: Message):
     if message.reply_to_message:
         user_id = message.reply_to_message.from_user.id
@@ -91,8 +52,7 @@ async def handle_grant_access(client: Client, message: Message):
         await message.edit(f"`Pengguna {user_id} sudah memiliki akses sebelumnya.`")
 
 
-@Ubot("noacc", cmds)
-@check_access
+@Ubot("unprem", cmds)
 async def handle_revoke_access(client: Client, message: Message):
     if message.reply_to_message:
         user_id = message.reply_to_message.from_user.id

@@ -10,7 +10,6 @@ from ubotlibs.ubot.database.accesdb import *
 
 
 @Ubot("save", cmds)
-@check_access
 async def simpan_note(client, message):
     name = get_arg(message)
     user_id = message.from_user.id
@@ -29,7 +28,6 @@ async def simpan_note(client, message):
 
 
 @Ubot("get", cmds)
-@check_access
 async def panggil_notes(client, message):
     name = get_arg(message)
     user_id = message.from_user.id
@@ -41,7 +39,6 @@ async def panggil_notes(client, message):
 
 
 @Ubot("rm", cmds)
-@check_access
 async def remove_notes(client, message):
     name = get_arg(message)
     user_id = message.from_user.id
@@ -53,7 +50,6 @@ async def remove_notes(client, message):
 
 
 @Ubot("notes", cmds)
-@check_access
 async def get_notes(client, message):
     user_id = message.from_user.id
     _notes = await get_note_names(user_id)

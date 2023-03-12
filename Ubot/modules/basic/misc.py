@@ -38,7 +38,6 @@ else:
     )
 
 @Client.on_message(filters.command("alive", cmds) & filters.me)
-@check_access
 async def alive(client: Client, message: Message):
     bot_username = (await app.get_me()).username
     try:

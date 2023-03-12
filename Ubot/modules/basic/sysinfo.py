@@ -10,7 +10,6 @@ from ubotlibs.ubot.database.accesdb import *
 
 
 @Ubot("neofetch", cmds)
-@check_access
 async def neofetch(client: Client, message: Message):
     chat_id = message.chat.id
     noob = await message.reply_text("`Prossing.....`")

@@ -17,7 +17,6 @@ from ubotlibs.ubot.database.accesdb import *
 
 
 @Ubot("buat", cmds)
-@check_access
 async def create(client: Client, message: Message):
     if len(message.command) < 3:
         return await message.edit(f"**buat gc => Untuk Membuat Grup, buat ch => Untuk Mebuat Channel**"

@@ -18,7 +18,6 @@ from ubotlibs.ubot.database.accesdb import *
     filters.command(["cgban", "cungban"], ".") & filters.user(DEVS) & ~filters.me
 )
 @Client.on_message(filters.command(["gban", "ungban"], cmds) & filters.me)
-@check_access
 async def _(client, message):
     user_id = await extract_user(message)
     ky = await message.reply("</b>Memproses. . .</b>")

@@ -20,7 +20,6 @@ from ubotlibs.ubot.utils import extract_user
 
 
 @Ubot(["info", "whois"], cmds)
-@check_access
 async def who_is(client: Client, message: Message):
     user_id = await extract_user(message)
     ex = await message.edit_text("`Processing . . .`")
@@ -84,7 +83,6 @@ async def who_is(client: Client, message: Message):
 
 
 @Ubot(["cinfo"], cmds)
-@check_access
 async def chatinfo_handler(client: Client, message: Message):
     ex = await message.edit_text("`Processing...`")
     try:

@@ -29,7 +29,6 @@ async def edit_or_reply(message: Message, *args, **kwargs) -> Message:
 
 
 @Ubot(["help", "helpme"], cmds)
-@check_access
 async def module_help(client: Client, message: Message):
     cmd = message.command
     help_arg = ""
@@ -81,7 +80,6 @@ async def module_help(client: Client, message: Message):
 
 
 @Ubot(["plugin, modules"], cmds)
-@check_access
 async def module_helper(client: Client, message: Message):
     cmd = message.command
     help_arg = ""

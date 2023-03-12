@@ -7,7 +7,6 @@ from pyrogram.enums import MessagesFilter
 
 
 @Ubot("take", cmds)
-@check_access
 async def _(client, message):
     results = {
         "photo": MessagesFilter.PHOTO,

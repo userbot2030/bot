@@ -20,7 +20,6 @@ from ubotlibs.ubot.database.accesdb import *
 
 
 @Ubot("admins", cmds)
-@check_access
 async def adminlist(client: Client, message: Message):
     replyid = None
     toolong = False
@@ -84,7 +83,6 @@ async def adminlist(client: Client, message: Message):
 
 
 @Ubot("zombies", cmds)
-@check_access
 async def kickdel_cmd(client: Client, message: Message):
     Man = await edit_or_reply(message, "<b>Kicking deleted accounts...</b>")
     # noinspection PyTypeChecker
@@ -97,7 +95,6 @@ async def kickdel_cmd(client: Client, message: Message):
 
 
 @Ubot("report", cmds)
-@check_access
 async def report_admin(client: Client, message: Message):
     await message.delete()
     if len(message.text.split()) >= 2:
@@ -145,7 +142,6 @@ async def report_admin(client: Client, message: Message):
 
 
 @Ubot("tagall", cmds)
-@check_access
 async def tag_all_users(client: Client, message: Message):
     await message.delete()
     if len(message.text.split()) >= 2:
@@ -170,7 +166,7 @@ async def tag_all_users(client: Client, message: Message):
 
 
 @Ubot("bots", cmds)
-@check_access
+
 async def get_list_bots(client: Client, message: Message):
     replyid = None
     if len(message.text.split()) >= 2:

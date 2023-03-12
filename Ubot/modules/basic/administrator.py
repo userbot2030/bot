@@ -15,7 +15,7 @@ from pyrogram import Client, filters, enums
 from pyrogram.errors import ChatAdminRequired
 from pyrogram.types import ChatPermissions, ChatPrivileges, Message
 from . import *
-from ubotlibs.ubot.utils import *
+from ubotlibs.ubot.utils.misc import *
 from ubotlibs.ubot.helper import *
 from ubotlibs.ubot.database.accesdb import *
 
@@ -32,7 +32,6 @@ unmute_permissions = ChatPermissions(
 
 
 @Client.on_message(filters.command("setgpic", cmds) & filters.me)
-@check_access
 async def set_chat_photo(client: Client, message: Message):
     zuzu = (await client.get_chat_member(message.chat.id, client.me.id)).privileges
     can_change_admin = zuzu.can_change_info
@@ -46,12 +45,11 @@ async def set_chat_photo(client: Client, message: Message):
             )
             return
     else:
-        await message.edit_text("balas ke photo untuk set!")
+        await message.edit_text("Balas ke photo untuk set!")
 
 
 
 @Client.on_message(filters.command("ban", cmds) & filters.me)
-@check_access
 async def member_ban(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message, sender_chat=True)
     rd = await message.reply("`Processing...`")
@@ -85,7 +83,6 @@ async def member_ban(client: Client, message: Message):
 
 
 @Client.on_message(filters.command("unban", cmds) & filters.me)
-@check_access
 async def member_unban(client: Client, message: Message):
     reply = message.reply_to_message
     rd = await message.reply("`Processing...`")
@@ -110,7 +107,6 @@ async def member_unban(client: Client, message: Message):
 
 
 @Client.on_message(filters.command(["pin", "unpin"], cmds) & filters.me)
-@check_access
 async def pin_message(client: Client, message):
     if not message.reply_to_message:
         return await message.edit_text("Balas ke pesan untuk pin/unpin .")
@@ -133,7 +129,6 @@ async def pin_message(client: Client, message):
 
 
 @Client.on_message(filters.command("mute", cmds) & filters.me)
-@check_access
 async def mute(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message)
     rd = await message.reply("`Processing...`")
@@ -161,7 +156,6 @@ async def mute(client: Client, message: Message):
 
 
 @Client.on_message(filters.command("unmute", cmds) & filters.me)
-@check_access
 async def unmute(client: Client, message: Message):
     user_id = await extract_user(message)
     rd = await message.reply("`Processing...`")
@@ -176,7 +170,6 @@ async def unmute(client: Client, message: Message):
 
 
 @Client.on_message(filters.command("kick", cmds) & filters.me)
-@check_access
 async def kick_user(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message)
     rd = await message.reply("`Processing...`")
@@ -206,7 +199,6 @@ async def kick_user(client: Client, message: Message):
 
 
 @Client.on_message(filters.command("promote", cmds) & filters.me)
-@check_access
 async def promotte(client: Client, message: Message):
     user_id = await extract_user(message)
     umention = (await client.get_users(user_id)).mention
@@ -250,7 +242,6 @@ async def promotte(client: Client, message: Message):
 
 
 @Client.on_message(filters.command("demote", cmds) & filters.me)
-@check_access
 async def demote(client: Client, message: Message):
     user_id = await extract_user(message)
     rd = await message.reply("`Processing...`")

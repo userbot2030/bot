@@ -13,6 +13,7 @@ from pyrogram.types import Message
 from telegraph import Telegraph, exceptions, upload_file
 import os
 from . import *
+from ubotlibs.ubot.utils.tools import *
 from ubotlibs.ubot.database.accesdb import *
 
 telegraph = Telegraph()
@@ -20,22 +21,7 @@ r = telegraph.create_account(short_name="telegram")
 auth_url = r["auth_url"]
 
 
-
-def get_text(message: Message) -> [None, str]:
-    """Extract Text From Commands"""
-    text_to_return = message.text
-    if message.text is None:
-        return None
-    if " " in text_to_return:
-        try:
-            return message.text.split(None, 1)[1]
-        except IndexError:
-            return None
-    else:
-        return None
-
 @Ubot(["tg", "tm", "telegraph"], cmds)
-@check_access
 async def uptotelegraph(client: Client, message: Message):
     tex = await message.edit_text("`Processing . . .`")
     if not message.reply_to_message:

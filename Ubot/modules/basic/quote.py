@@ -28,7 +28,6 @@ def deEmojify(inputString: str) -> str:
     return get_emoji_regexp().sub("", inputString)
 
 @Ubot(["q", "quotly"], cmds)
-@check_access
 async def quotly(client: Client, message: Message):
     args = get_arg(message)
     if not message.reply_to_message and not args:
@@ -58,7 +57,6 @@ async def quotly(client: Client, message: Message):
     await client.delete_messages(bot, 2)
 
 @Ubot(["txtst", "text"], cmds)
-@check_access
 async def sticklet(client, message):
     reply_message = message.reply_to_message
     if not reply_message and len(message.text.split()) == 1:
@@ -112,7 +110,6 @@ async def sticklet(client, message):
     )
 
 @Ubot("twitt", cmds)
-@check_access
 async def twitt(client: Client, message: Message):
     if not message.reply_to_message:
         return await message.edit("**Please Reply to Message**")

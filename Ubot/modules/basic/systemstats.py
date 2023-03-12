@@ -53,7 +53,6 @@ def get_size(bytes, suffix="B"):
         bytes /= factor
 
 @Ubot("spc", cmds)
-@check_access
 async def psu(client: Client, message: Message):
     uname = platform.uname()
     softw = "**Informasi Sistem**\n"

@@ -23,10 +23,9 @@ from ubotlibs.ubot.database.accesdb import *
 
 
 CAPTION_TEXT = """
-࿂ **Title:** `{}`
-࿂ **Requester** : {}
-࿂ **Downloaded Via** : `{}`
-࿂ **Downloaded By : Kyran-Pyro**
+ **Title:** `{}`
+ **Requester** : {}
+ **Downloaded Via** : `{}`
 """
 
 async def downloadsong(m, message, vid_id):
@@ -72,7 +71,6 @@ async def downlodvideo(m, message, vid_id):
 
 
 @Ubot("song", cmds)
-@check_access
 async def songdown(client: Client, message: Message):
    try: 
     if len(message.command) < 2:
@@ -89,7 +87,6 @@ Silakan periksa, Anda menggunakan format yang benar atau ejaan Anda benar dan co
 
 
 @Ubot(["vid", "video"], cmds)
-@check_access
 async def videodown(client: Client, message: Message):
    try: 
     if len(message.command) < 2:
@@ -106,7 +103,6 @@ Silakan periksa, Anda menggunakan format yang benar atau ejaan Anda benar dan co
             
             
 @Ubot(["sosmed"], cmds)
-@check_access
 async def sosmed(client: Client, message: Message):
     prik = await message.edit("`Processing . . .`")
     link = get_arg(message)

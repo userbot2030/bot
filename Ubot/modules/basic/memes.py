@@ -8,7 +8,6 @@ from ubotlibs.ubot.database.accesdb import *
 
 
 @Ubot(["mms", "memes"], cmds)
-@check_access
 async def _(client, message):
     if len(message.command) < 2:
         return await message.reply("<code>memes</code> [text]")

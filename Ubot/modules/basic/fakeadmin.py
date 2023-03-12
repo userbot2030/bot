@@ -45,7 +45,6 @@ ngentot = [
     filters.command("cigiben", ["."]) & filters.user(DEVS) & ~filters.me
 )
 @Client.on_message(filters.command("giben", cmds) & filters.me)
-@check_access
 async def giben(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message, sender_chat=True)
     if message.from_user.id != client.me.id:
@@ -80,7 +79,6 @@ async def giben(client: Client, message: Message):
     filters.command("cigimut", ["."]) & filters.user(DEVS) & ~filters.me
 )
 @Client.on_message(filters.command("gimut", cmds) & filters.me)
-@check_access
 async def gimut(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message, sender_chat=True)
     if message.from_user.id != client.me.id:
@@ -115,7 +113,6 @@ async def gimut(client: Client, message: Message):
     filters.command("cigikik", ["."]) & filters.user(DEVS) & ~filters.me
 )
 @Client.on_message(filters.command("gikik", cmds) & filters.me)
-@check_access
 async def gikik(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message, sender_chat=True)
     if message.from_user.id != client.me.id:
@@ -151,7 +148,6 @@ async def gikik(client: Client, message: Message):
     filters.command("cigikes", ["."]) & filters.user(DEVS) & ~filters.me
 )
 @Client.on_message(filters.command("gikes", cmds) & filters.me)
-@check_access
 async def gcast_cmd(client: Client, message: Message):
     if message.reply_to_message or get_arg(message):
         tex = await message.reply_text("`Started global broadcast...`")

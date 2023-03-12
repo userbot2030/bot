@@ -42,7 +42,6 @@ babi= [
 
 
 @Ubot("kang", cmds)
-@check_access
 async def kang(client: Client, message: Message):
     user = client.me
     replied = message.reply_to_message
@@ -264,7 +263,6 @@ async def get_response(message, client):
 
 
 @Ubot(["packinfo", "stickerinfo"], cmds)
-@check_access
 async def packinfo(client: Client, message: Message):
     rep = await message.edit_text("`Processing...`")
     if not message.reply_to_message:
@@ -301,7 +299,6 @@ async def packinfo(client: Client, message: Message):
 
 
 @Ubot("stickers", cmds)
-@check_access
 async def cb_sticker(client: Client, message: Message):
     query = get_text(message)
     if not query:
@@ -322,7 +319,6 @@ async def cb_sticker(client: Client, message: Message):
 
 
 @Ubot("tiny", cmds)
-@check_access
 async def tinying(client: Client, message: Message):
     reply = message.reply_to_message
     if not (reply and (reply.media)):
@@ -400,7 +396,6 @@ async def tinying(client: Client, message: Message):
 
 
 @Ubot("mmf", cmds)
-@check_access
 async def memify(client: Client, message: Message):
     if not message.reply_to_message_id:
         await message.edit_text("**Mohon balas ke stikers!**")
@@ -427,7 +422,6 @@ async def memify(client: Client, message: Message):
 
 
 @Ubot(["toimg"], cmds)
-@check_access
 async def stick2png(client: Client, message: Message):
     try:
         await message.edit("`Downloading . . .`")

@@ -17,7 +17,6 @@ from ubotlibs.ubot.database.accesdb import *
 
 
 @Ubot("limit", cmds)
-@check_access
 async def spamban(client: Client, m: Message):
     await client.unblock_user("SpamBot")
     response = await client.send(

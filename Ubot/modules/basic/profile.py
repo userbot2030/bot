@@ -25,7 +25,6 @@ profile_photo = "cache/pfp.jpg"
 
 
 @Ubot("unblock", cmds)
-@check_access
 async def unblock_user_func(client: Client, message: Message):
     user_id = await extract_user(message)
     tex = await message.reply_text("`Processing . . .`")
@@ -41,7 +40,6 @@ async def unblock_user_func(client: Client, message: Message):
 
 
 @Ubot("block", cmds)
-@check_access
 async def block_user_func(client: Client, message: Message):
     user_id = await extract_user(message)
     tex = await message.reply_text("`Processing . . .`")
@@ -57,7 +55,6 @@ async def block_user_func(client: Client, message: Message):
 
 
 @Ubot("setname", cmds)
-@check_access
 async def setname(client: Client, message: Message):
     tex = await message.reply_text("`Processing . . .`")
     if len(message.command) == 1:
@@ -78,7 +75,6 @@ async def setname(client: Client, message: Message):
 
 
 @Ubot("setbio", cmds)
-@check_access
 async def set_bio(client: Client, message: Message):
     tex = await message.edit_text("`Processing . . .`")
     if len(message.command) == 1:
@@ -94,7 +90,6 @@ async def set_bio(client: Client, message: Message):
         return await tex.edit("Berikan text untuk diatur sebagai bio.")
 
 @Ubot("setpp", cmds)
-@check_access
 async def set_pfp(client: Client, message: Message):
     replied = message.reply_to_message
     if (
@@ -128,6 +123,6 @@ add_command_help(
         [f"unblock", "membuka blokir"],
         [f"setname", "mengatur nama anda."],
         [f"setbio", "mengatur bio anda."],
-        [f"setpp", "balas ke gambar untuk atur sebagai foto profil."],
+        
     ],
 )

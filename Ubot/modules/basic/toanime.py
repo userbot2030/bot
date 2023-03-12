@@ -18,7 +18,6 @@ from ubotlibs.ubot.helper.basic import edit_or_reply
 from ubotlibs.ubot.database.accesdb import *
 
 @Ubot("toanime", cmds)
-@check_access
 async def convert_image(client: Client, message: Message):
     if not message.reply_to_message:
         return await message.edit("**Mohon Balas Pesan Ini Ke Media**")

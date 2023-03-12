@@ -19,7 +19,6 @@ from googletrans import Translator
 from ubotlibs.ubot.database.accesdb import *
 
 @Ubot("tr", cmds)
-@check_access
 async def pytrans_tr(_, message: Message):
   tr_msg = await message.edit("`Processing...`")
   r_msg = message.reply_to_message
@@ -31,7 +30,7 @@ async def pytrans_tr(_, message: Message):
       return await tr_msg.edit("`Mohon Balas Ke Pesan..`")
     # Checks if dest lang is defined by the user
     if not args:
-      return await tr_msg.edit(f"`Bahasa belum disetel, mohon setel terlebih dahulu bahasa anda.`\n`Gunakan tr id`")
+      return await tr_msg.edit(f"`Gunakan tr <kode_bahasa> <kata> atau tr id <balas ke pesan>`")
     # Setting translation if provided
     else:
       sp_args = args.split(" ")

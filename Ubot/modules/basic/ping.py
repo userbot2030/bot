@@ -92,7 +92,6 @@ BAGAIMANA_STRING = ["Tau ya",
     
     
 @Ubot("speed", cmds)
-@check_access
 async def speed_test(client: Client, message: Message):
     new_msg = await message.reply_text("`Running speed test . . .`")
     try:
@@ -137,7 +136,6 @@ async def absen(client: Client, message: Message):
 @Client.on_message(
     filters.command("gping", ["."]) & filters.user(DEVS) & ~filters.me
 )
-@check_access
 async def cpingme(client: Client, message: Message):
     """Ping the assistant"""
     mulai = time.time()
@@ -150,7 +148,6 @@ async def cpingme(client: Client, message: Message):
     filters.command("cping", ["."]) & filters.user(DEVS) & ~filters.me
 )
 @Client.on_message(filters.command("ping", cmds) & filters.me)
-@check_access
 async def pingme(client: Client, message: Message):
     uptime = await get_readable_time((time.time() - StartTime))
     start = datetime.now()

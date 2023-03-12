@@ -41,7 +41,6 @@ async def screen(client, message):
 
 
 @Ubot("ev", cmds)
-@check_access
 async def evaluation_cmd_t(client, message):
     status_message = await message.reply("`Processing eval..`")
     try:
@@ -119,13 +118,11 @@ async def shell_exec(code, treat=True):
 
 
 @Ubot("shell", cmds)
-@check_access
 async def execution_func_edited(bot, message):
     await execution(bot, message)
 
 
 @Ubot("exec", cmds)
-@check_access
 async def execution_func(bot, message):
     await execution(bot, message)
 

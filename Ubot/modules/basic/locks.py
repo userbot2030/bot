@@ -18,7 +18,7 @@ from . import *
 from ubotlibs.ubot.database.accesdb import *
 
 
-incorrect_parameters = f"Parameter Wrong, Type `.help locks`"
+incorrect_parameters = f"Parameter salah, gunakan `help locks` untuk melihat contoh penggunaan"
 data = {
     "msg": "can_send_messages",
     "stickers": "can_send_other_messages",
@@ -26,12 +26,13 @@ data = {
     "media": "can_send_media_messages",
     "games": "can_send_other_messages",
     "inline": "can_send_other_messages",
-    "url": "can_add_web_page_previews",
+    "urls": "can_add_web_page_previews",
     "polls": "can_send_polls",
     "info": "can_change_info",
     "invite": "can_invite_users",
     "pin": "can_pin_messages",
 }
+
 
 
 async def current_chat_permissions(client: Client, chat_id):
@@ -79,7 +80,7 @@ async def tg_lock(
         )
     except ChatNotModified:
         return await message.edit_text(
-            f"gunakan lock, terlebih dahulu."
+            f"Gunakan lock, terlebih dahulu."
         )
     except ChatAdminRequired:
         return await message.edit_text("`anda harus menjadi admin disini.`")
@@ -93,7 +94,6 @@ async def tg_lock(
 
 
 @Ubot(["lock", "unlock"], cmds)
-@check_access
 async def locks_func(client: Client, message: Message):
     if len(message.command) != 2:
         return await message.edit_text(incorrect_parameters)
@@ -122,7 +122,7 @@ async def locks_func(client: Client, message: Message):
             return await message.edit_text("`anda harus menjadi admin disini.`")
         except ChatNotModified:
             return await message.edit_text(
-                f"🔒 **BErhasil di-Lock!**\n  **Type:** `{parameter}`\n  **Chat:** {message.chat.title}"
+                f"🔒 **Berhasil di-Lock!**\n  **Type:** `{parameter}`\n  **Chat:** {message.chat.title}"
             )
     elif parameter == "all" and state == "unlock":
         try:
@@ -140,14 +140,13 @@ async def locks_func(client: Client, message: Message):
                 ),
             )
         except ChatAdminRequired:
-            return await message.edit_text("`anda harus menjadi admin disini`")
+            return await message.edit_text("`Anda harus menjadi admin disini`")
         await message.edit(
             f"🔒 **Unlocked untuk non-admin!**\n  **Type:** `{parameter}`\n  **Chat:** {message.chat.title}"
         )
 
 
 @Ubot("lockall", cmds)
-@check_access
 async def locktypes(client: Client, message: Message):
     permissions = await current_chat_permissions(client, message.chat.id)
 

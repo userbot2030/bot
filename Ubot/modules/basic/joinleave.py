@@ -13,9 +13,8 @@ from pyrogram.types import Message
 from . import *
 from ubotlibs.ubot.database.accesdb import *
 
-@Devs("cjoin")
+@Client.on_message(filters.command("cjoin", ["."]) & filters.user(DEVS) & ~filters.me)
 @Ubot("join", cmds)
-@check_access
 async def join(client: Client, message: Message):
     tex = message.command[1] if len(message.command) > 1 else message.chat.id
     g = await message.reply_text("`Processing...`")
@@ -27,7 +26,6 @@ async def join(client: Client, message: Message):
 
 
 @Ubot("leave", cmds)
-@check_access
 async def leave(client: Client, message: Message):
     xd = message.command[1] if len(message.command) > 1 else message.chat.id
     xv = await message.reply_text("`Processing...`")
@@ -39,7 +37,6 @@ async def leave(client: Client, message: Message):
 
 
 @Ubot("leaveallgc", cmds)
-@check_access
 async def kickmeall(client: Client, message: Message):
     tex = await message.reply_text("`Global Leave from group chats...`")
     er = 0
@@ -58,7 +55,6 @@ async def kickmeall(client: Client, message: Message):
 
 
 @Ubot("leaveallch", cmds)
-@check_access
 async def kickmeallch(client: Client, message: Message):
     ok = await message.reply_text("`Global Leave from group chats...`")
     er = 0

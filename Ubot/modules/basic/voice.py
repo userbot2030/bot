@@ -28,7 +28,6 @@ lang = "id"  # Default Language for voice
 
 
 @Ubot(["voice", "tts"], cmds)
-@check_access
 async def voice(client: Client, message):
     global lang
     cmd = message.command
@@ -62,7 +61,6 @@ async def voice(client: Client, message):
 
 
 @Ubot("voicelang", cmds)
-@check_access
 async def voicelang(client: Client, message: Message):
     global lang
     temp = lang
@@ -78,7 +76,6 @@ async def voicelang(client: Client, message: Message):
     )
 
 @Ubot("stt", cmds)
-@check_access
 async def speech_to_text(client: Client, message: Message):
     reply = message.reply_to_message
     if not (reply and reply.voice):

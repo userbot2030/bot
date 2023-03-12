@@ -28,7 +28,6 @@ async def make_carbon(code):
 
 
 @Ubot("carbon", cmds)
-@check_access
 async def carbon_func(client: Client, message: Message):
     text = (
         message.text.split(None, 1)[1]

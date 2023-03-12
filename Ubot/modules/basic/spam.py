@@ -24,7 +24,6 @@ def spam_allowed():
 
 
 @Ubot("dspam", cmds)
-@check_access
 async def delayspam(client: Client, message: Message):
     #if message.chat.id in BL_GCAST:
     #    return await edit_or_reply(
@@ -59,7 +58,6 @@ async def delayspam(client: Client, message: Message):
 
 
 @Ubot(commands, cmds)
-@check_access
 async def sspam(client: Client, message: Message):
     amount = int(message.command[1])
     text = " ".join(message.command[2:])
@@ -82,7 +80,6 @@ async def sspam(client: Client, message: Message):
 
 
 @Ubot("sspam", cmds)
-@check_access
 async def spam_stick(client: Client, message: Message):
     if not message.reply_to_message:
         await edit_or_reply(

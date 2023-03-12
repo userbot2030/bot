@@ -29,7 +29,7 @@ RMBG_API_KEY = "3RCCWg8tMBfDWdAs44YMfJmC"
 
 OPENAI_API_KEY = "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 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".split()
 
-API = "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"
+API = "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"
 
 
 async def get(url: str, *args, **kwargs):
