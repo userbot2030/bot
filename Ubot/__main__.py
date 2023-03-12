@@ -2,9 +2,8 @@ import importlib
 import time
 from datetime import datetime
 import asyncio
-from asyncio import get_event_loop_policy
-from pyrogram import idle, filters, Client
-from pyrogram.types import CallbackQuery
+from pyrogram import idle
+from pyrogram.errors import RPCError
 from uvloop import install
 from ubotlibs import *
 from Ubot import BOTLOG_CHATID, aiosession, bot1, bots, app, ids, LOOP
