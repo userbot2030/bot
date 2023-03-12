@@ -25,6 +25,7 @@ from dotenv import load_dotenv
 from Ubot.logging import LOGGER
 from os import environ, execle
 from itertools import count
+from ubotlibs.ubot.database.accesdb import *
 HAPP = None
 session_count = count(1)
 
