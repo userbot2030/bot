@@ -59,7 +59,7 @@ async def asupin(client: Client, message: Message):
 
 @Ubot("ayang", cmds)
 @check_access
-async def ayang(client, message):
+async def ay(client, message):
     rizky = await message.reply("🔎 `Search Ayang...`")
     await message.reply_photo(
         choice(
@@ -79,7 +79,7 @@ async def ayang(client, message):
 
 @Ubot("ppcp", cmds)
 @check_access
-async def ayang(client, message):
+async def pcp(client, message):
     darmi = await message.reply("🔎 `Search PPCP...`")
     await message.reply_photo(
         choice(
@@ -99,7 +99,7 @@ async def ayang(client, message):
     
 @Ubot("ppcp2", cmds)
 @check_access
-async def ayang(client, message):
+async def cp(client, message):
     dar = await message.reply("🔎 `Search Ppcp 2...`")
     await message.reply_photo(
         choice(
@@ -119,7 +119,7 @@ async def ayang(client, message):
     
 @Ubot("anime", cmds)
 @check_access
-async def ayang(client, message):
+async def anim(client, message):
     iis = await message.reply("🔎 `Search Anime...`")
     await message.reply_photo(
         choice(
@@ -139,7 +139,7 @@ async def ayang(client, message):
    
 @Ubot("anime2", cmds)
 @check_access
-async def ayang(client, message):
+async def nimek(client, message):
     erna = await message.reply("🔎 `Search Anime...`")
     await message.reply_photo(
         choice(
@@ -159,7 +159,7 @@ async def ayang(client, message):
     
 @Ubot("bugil", cmds)
 @check_access
-async def ppanime(client, message):
+async def bugil(client, message):
     if message.chat.id in BL_GCAST:
         return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
     kazu = await message.reply("🔎 `Search PP Bugil...`")
