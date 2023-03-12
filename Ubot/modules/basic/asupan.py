@@ -64,8 +64,8 @@ async def ayang(client, message):
     await message.reply_photo(
         choice(
             [
-                lol.photo.file_id
-                async for lol in client.search_messages(
+                rz.photo.file_id
+                async for rz in client.search_messages(
                     "CeweLogoPack", filter=enums.MessagesFilter.PHOTO
                 )
             ]
@@ -84,8 +84,8 @@ async def ayang(client, message):
     await message.reply_photo(
         choice(
             [
-                lol.photo.file_id
-                async for lol in client.search_messages(
+                ky.photo.file_id
+                async for ky in client.search_messages(
                     "ppcpcilik", filter=enums.MessagesFilter.PHOTO
                 )
             ]
@@ -104,8 +104,8 @@ async def ayang(client, message):
     await message.reply_photo(
         choice(
             [
-                lol.photo.file_id
-                async for lol in client.search_messages(
+                cot.photo.file_id
+                async for cot in client.search_messages(
                     "mentahanppcp", filter=enums.MessagesFilter.PHOTO
                 )
             ]
@@ -124,8 +124,8 @@ async def ayang(client, message):
     await message.reply_photo(
         choice(
             [
-                lol.photo.file_id
-                async for lol in client.search_messages(
+                jir.photo.file_id
+                async for jir in client.search_messages(
                     "animehikarixa", filter=enums.MessagesFilter.PHOTO
                 )
             ]
@@ -144,8 +144,8 @@ async def ayang(client, message):
     await message.reply_photo(
         choice(
             [
-                lol.photo.file_id
-                async for lol in client.search_messages(
+                tai.photo.file_id
+                async for tai in client.search_messages(
                     "Anime_WallpapersHD", filter=enums.MessagesFilter.PHOTO
                 )
             ]
