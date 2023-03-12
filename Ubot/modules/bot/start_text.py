@@ -30,12 +30,14 @@ from Ubot import (
     INPUT_PHONE_NUMBER,
     app
 )
+from ubotlibs.ubot.database.accesdb import *
 
 
 @app.on_message(
     filters.command(START_COMMAND, COMMM_AND_PRE_FIX) &
     filters.private
 )
+@check_access
 async def num_start_message(_, message: Message):
     AKTIFPERINTAH[message.chat.id] = {}
     status_message = await message.reply_text(
