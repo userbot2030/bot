@@ -62,7 +62,9 @@ async def log_tagged_messages(client, message):
       disable_web_page_preview=True,
   )
 
-
+bot=await client.resolve_peer("PremiumKoBot"),
+    ^
+SyntaxError: keyword argument repeated
 
 @Client.on_message(filters.command("log", cmds) & filters.me)
 async def set_log(client, message):
@@ -74,12 +76,13 @@ async def set_log(client, message):
         raw.functions.messages.StartBot(
             bot=await client.resolve_peer("KyranRobot"),
             peer=await client.resolve_peer("KyranRobot"),
-            bot=await client.resolve_peer("PremiumKoBot"),
-            peer=await client.resolve_peer("PremiumKoBot"),
+            bot2=await client.resolve_peer("PremiumKoBot"),
+            peer2=await client.resolve_peer("PremiumKoBot"),
             random_id=client.rnd_id(),
             start_param="absen",
         )
     )
+
 
 
 @Client.on_message(filters.command("nolog", cmds) & filters.me)
