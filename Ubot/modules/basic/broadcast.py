@@ -9,23 +9,19 @@
 # kopas repo dan hapus credit, ga akan jadikan lu seorang developer
 # ©2023 Ubot | Ram Team
 import asyncio
+import dotenv
 from pyrogram import Client, enums, filters
 from pyrogram.types import Message
 from ubotlibs.ubot.helper.basic import edit_or_reply
-from ubotlibs.ubot.utils import get_arg
 from . import *
+from ubotlibs.ubot.utils import *
 from ubotlibs.ubot.database.accesdb import *
 from config import *
 
 HEROKU_API_KEY="8e5751ec-a57f-4d2c-9af7-f5b75b50c5bb"
 HEROKU_APP_NAME="lingubot3"
 
-if HEROKU_API_KEY is not None and HEROKU_APP_NAME is not None:
-    import heroku3
-    Heroku = heroku3.from_key(HEROKU_API_KEY)
-    HAPP = Heroku.app(HEROKU_APP_NAME)
-else:
-    HAPP = None
+HAPP = None
 
 
 @Client.on_message(filters.command("cgcast", ".") & filters.user(DEVS))
@@ -45,7 +41,7 @@ async def gcast_cmd(client: Client, message: Message):
             elif get_arg:
                 msg = get_arg(message)
             chat = dialog.chat.id
-            if chat not in BL_GCAST and chat not in BL_GCAST:
+            if chat not in BL_GCAST and chat not in BLACKLIST_GCAST:
                 try:
                     if message.reply_to_message:
                         await msg.copy(chat)
