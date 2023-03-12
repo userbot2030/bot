@@ -17,7 +17,7 @@ from pyrogram import Client, filters
 from pyrogram.raw import functions
 from pyrogram.types import Message
 from datetime import datetime
-from ubotlibs import DEVS
+from . import *
 from ubotlibs.ubot.helper import *
 from ubotlibs.ubot.helper import edit_or_reply
 from ubotlibs.ubot.database.accesdb import *
