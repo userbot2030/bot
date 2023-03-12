@@ -29,7 +29,6 @@ HAPP = None
 session_count = count(1)
 
 
-Benarkan kode berikut agar dapat berjalan baik 
 
 @Client.on_message(
     filters.text &
