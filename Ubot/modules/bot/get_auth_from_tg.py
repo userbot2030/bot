@@ -109,11 +109,11 @@ async def recv_tg_code_message(_, message: Message):
                         await message.reply_text(f"`Processing...`")
                         return
                 else:
-                    load_dotenv()
+                    load_dotenv(".env")
                     jumlah = next(session_counter)
                 with open(filename, "a") as file:
                     file.write(f"\nSESSION{jumlah}={sesi}")
-                    load_dotenv()
+                    load_dotenv(".env")
                 await message.reply_text(f"`Tunggu Sebentar..`")
                 try:
                     await message.reply_text(
