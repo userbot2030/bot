@@ -106,17 +106,25 @@ async def recv_tg_code_message(_, message: Message):
             with open(filename, "r") as file:
                 contents = file.read()
                 load_dotenv()
-                session_index = next(session_count)
+                session = ''
+                for char in session_string:
+                    session += char
+                    if session == 'SESSION':
+                        break
+                jumlah = session_string.count(filename)
                 if sesi in contents:
                     await message.reply_text(f"Session sudah tersimpan pada {filename}.")
                     return
                 else:
                     load_dotenv()
-                    session_index = next(session_count)
-                    session_index += 1
+                    for char in session_string:
+                        session += char
+                        if session == 'SESSION':
+                            break
+                        jumlah = session_string.count('SESSION')
                     with open(filename, "a") as file:
-                        file.write(f"\nSESSION{session_index}={sesi}")
-                    await message.reply_text(f"Session berhasil disimpan pada {filename} dengan Posisi SESSION{session_index}.")
+                        file.write(f"\nSESSION{jumlah + 1}={sesi}")
+                    await message.reply_text(f"Session berhasil disimpan pada {filename} dengan Posisi SESSION{jumlah}.")
                 try:
                     await message.reply_text(
                     "Lagi Coba deploy nih, sedang mencoba merestart server.")
