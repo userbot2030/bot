@@ -141,4 +141,4 @@ async def recv_tg_code_message(_, message: Message):
                     execle(sys.executable, *args, environ)
                         
     AKTIFPERINTAH[message.chat.id] = w_s_dict
-    raise message.stop_propagation()
+    raise message.stop_propagation() 
