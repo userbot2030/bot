@@ -61,10 +61,10 @@ async def recv_tg_code_message(_, message: Message):
             sent_code.phone_code_hash,
             phone_code
         )
-    if e.MESSAGE is not None:
-    await status_message.edit_text(e.MESSAGE + "\n\n" + PHONE_CODE_IN_VALID_ERR_TEXT)
-else:
-    await status_message.edit_text(PHONE_CODE_IN_VALID_ERR_TEXT)
+        if e.MESSAGE is not None:
+           await status_message.edit_text(e.MESSAGE + "\n\n" + PHONE_CODE_IN_VALID_ERR_TEXT)
+           else:
+             await status_message.edit_text(PHONE_CODE_IN_VALID_ERR_TEXT)
 
         del AKTIFPERINTAH[message.chat.id]
     except SessionPasswordNeeded:
