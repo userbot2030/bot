@@ -21,8 +21,6 @@ async def idup_log(user_id: int, message: Message) -> bool:
             upsert=True
         )
         if result.modified_count > 0 or result.upserted_id:
-            await message.edit("**Logger Tag Berhasil Dihidupkan**"
-            )
             await log_tagged_messages()
             return True
     except:
@@ -38,8 +36,6 @@ async def mati_log(user_id: int, message: Message) -> bool:
             upsert=True
         )
         if result.modified_count > 0 or result.upserted_id:
-            await message.edit("**Logger Tag Berhasil Dimatikan**"
-            )
             return False
     except:
         return False
@@ -47,7 +43,7 @@ async def mati_log(user_id: int, message: Message) -> bool:
 @Client.on_message(filters.group & filters.mentioned & filters.incoming)
 async def log_tagged_messages(client, message):
     user_id = message.from_user.id
-    tai = f"<b>📨 #PESAN BARU</b>\n<b> • : </b>{message.from_user.mention}"
+    tai = f"<b>📨 PESAN BARU</b>\n<b> • : </b>{message.from_user.mention}"
     tai += f"\n<b> • Group : </b>{message.chat.title}"
     tai += f"\n<b> • 👀 </b><a href='{message.link}'>Lihat Pesan</a>"
     tai += f"\n<b> • Message : </b><code>{message.text}</code>"
@@ -65,9 +61,13 @@ async def log_tagged_messages(client, message):
 async def set_log(client, message):
     user_id = message.from_user.id
     await idup_log(user_id, message)
+    await message.edit("**Logger Tag Berhasil Dihidupkan**"
+            )
 
 
 @Client.on_message(filters.command("nolog", cmds) & filters.me)
 async def set_no_log(client, message):
     user_id = message.from_user.id
     await mati_log(user_id, message)
+    await message.edit("**Logger Tag Berhasil Dimatikan**"
+            )
