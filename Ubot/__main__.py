@@ -49,7 +49,7 @@ MSG = """
 async def main():
     load_dotenv()
     await app.start()
-    await app2.start(bot_token=app_password)
+    await app2.start()
     LOGGER("Ubot").info("Memulai Ubot Pyro..")
     LOGGER("Ubot").info("Loading Everything.")
     for all_module in ALL_MODULES:
