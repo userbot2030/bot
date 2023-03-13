@@ -100,7 +100,6 @@ class OpenAi:
         
 
 @Ubot(["ai", "ask"], cmds)
-@check_access
 async def openai(c, m):
     if len(m.command) == 1:
         return await m.reply(f"Ketik <code>{prefix}{m.command[0]} [question]</code> Pertanyaan untuk menggunakan OpenAI")
@@ -127,7 +126,6 @@ async def openai(c, m):
 
 
 @Ubot(["img", "photo"], cmds)
-@check_access
 async def img(client, message):
     Tm = await message.reply("<code>Memproses...</code>")
     if len(message.command) < 2:
@@ -142,7 +140,6 @@ async def img(client, message):
         return await Tm.delete()
         
 @Ubot("rmbg", cmds)
-@check_access
 async def rmbg_background(c: Client, m: Message):
     api_key = RMBG_API_KEY
     reply = m.reply_to_message
