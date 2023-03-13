@@ -48,16 +48,17 @@ async def openai(c, m):
     except Exception:
         await msg.edit("`Data tidak ditemukan, pastikan OPENAI_API valid...`")
 
+# Credits TomiX
 
 @Ubot(["img", "photo"], cmds)
-async def img(client, message):
+async def _(client, message):
     Tm = await message.reply("<code>Memproses...</code>")
     if len(message.command) < 2:
         return await Tm.edit(f"<b><code>{message.text}</code> [query]</b>")
     try:
         response = OpenAi.Photo(message.text.split(None, 1)[1])
         msg = message.reply_to_message or message
-        await message.reply_photo(message.chat.id, response, reply_to_message_id=msg.id)
+        await client.send_photo(message.chat.id, response, reply_to_message_id=msg.id)
         return await Tm.delete()
     except Exception as error:
         await message.reply(error)
