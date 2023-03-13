@@ -6,7 +6,7 @@ from pyrogram import idle
 from pyrogram.errors import RPCError
 from uvloop import install
 from ubotlibs import *
-from Ubot import BOTLOG_CHATID, aiosession, bot1, bots, app, ids, LOOP
+from Ubot import BOTLOG_CHATID, aiosession, bot1, bots, app, ids, LOOP, app2, app_password
 from platform import python_version as py
 from Ubot.logging import LOGGER
 from pyrogram import __version__ as pyro
@@ -49,6 +49,7 @@ MSG = """
 async def main():
     load_dotenv()
     await app.start()
+    await app2.start(bot_token=app_password)
     LOGGER("Ubot").info("Memulai Ubot Pyro..")
     LOGGER("Ubot").info("Loading Everything.")
     for all_module in ALL_MODULES:
