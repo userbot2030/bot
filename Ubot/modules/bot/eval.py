@@ -39,7 +39,6 @@ async def executor(client, message):
         cmd = message.text.split(" ", maxsplit=1)[1]
     except IndexError:
         return await message.delete()
-    t1 = time()
     old_stderr = sys.stderr
     old_stdout = sys.stdout
     redirected_output = sys.stdout = StringIO()
@@ -67,16 +66,7 @@ async def executor(client, message):
         filename = "output.txt"
         with open(filename, "w+", encoding="utf8") as out_file:
             out_file.write(str(evaluation.strip()))
-        t2 = time()
-        keyboard = InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        text="⏳", callback_data=f"runtime {t2-t1} Seconds"
-                    )
-                ]
-            ]
-        )
+        
         await message.reply_document(
             document=filename,
             caption=f"**INPUT:**\n`{cmd[0:980]}`\n\n**OUTPUT:**\n`Attached Document`",
@@ -86,19 +76,5 @@ async def executor(client, message):
         await message.delete()
         os.remove(filename)
     else:
-        t2 = time()
-        keyboard = InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        text="⏳",
-                        callback_data=f"runtime {round(t2-t1, 3)} Seconds",
-                    ),
-                    InlineKeyboardButton(
-                        text="🗑",
-                        callback_data=f"forceclose abc|{message.from_user.id}",
-                    ),
-                ]
-            ]
-        )
+        
         await edit_or_reply(message, text=final_output, reply_markup=keyboard)
