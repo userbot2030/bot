@@ -2,7 +2,7 @@ from pyrogram.filters import chat
 from . import cli
 from typing import Dict, List, Union
 from datetime import datetime, timedelta
-from ubotlibs.database.accesdb import *
+from ubotlibs.ubot.database.accesdb import *
 import schedule
 import asyncio
 collection = cli["Kyran"]["active"]
