@@ -20,7 +20,7 @@ from ubotlibs.ubot.database.accesdb import *
 @Client.on_message(filters.command(["gban", "ungban"], cmds) & filters.me)
 async def _(client, message):
     user_id = await extract_user(message)
-    ky = await message.reply("</b>Memproses. . .</b>")
+    ky = await message.reply("<b>Memproses. . .</b>")
     if not user_id:
         return await ky.edit("<b>User tidak ditemukan</b>")
     try:
