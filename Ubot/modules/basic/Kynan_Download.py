@@ -5,7 +5,7 @@
 👤 Telegram: @T0M1_X
 """
 
-import datetime
+import os
 from asyncio import get_event_loop
 
 import wget
@@ -43,7 +43,12 @@ async def _(client, message):
         search = YouTubeSearch(message.text.split(None, 1)[1])
     except Exception as error:
         return await infomsg.edit(error)
-    link = search[3]
+    title = search[1]
+    duration = search[2{
+    url = search[3]
+    views = search[4]
+    channel = search[5]
+    thumbs = search[6]
     ydl = YoutubeDL(
         {
             "quiet": True,
@@ -55,31 +60,22 @@ async def _(client, message):
         }
     )
     try:
-        ytdl_data = await run_sync(ydl.extract_info, link, download=True)
+        ytdl_data = await run_sync(ydl.extract_info, url, download=True)
         file_path = ydl.prepare_filename(ytdl_data)
     except Exception as error:
         return await infomsg.edit(error)
-    videoid = ytdl_data["id"]
-    title = ytdl_data["title"]
-    url = f"https://youtu.be/{videoid}"
-    duration = ytdl_data["duration"]
-    channel = ytdl_data["uploader"]
-    views = f"{ytdl_data['view_count']:,}".replace(",", ".")
-    thumbs = f"https://img.youtube.com/vi/{videoid}/hqdefault.jpg"
-    file_name = file_path
     thumbnail = wget.download(thumbs)
-    audio_or_video = "video"
     await client.send_video(
         message.chat.id,
-        video=file_name,
+        video=file_path,
         thumb=thumbnail,
         file_name=title,
         duration=duration,
         supports_streaming=True,
         caption="<b>💡 Informasi {}</b>\n\n<b>🏷 Nama:</b> {}\n<b>🧭 Durasi:</b> {}\n<b>👀 Dilihat:</b> {}\n<b>📢 Channel:</b> {}\n<b>🔗 Tautan:</b> <a href={}>Youtube</a>\n\n<b>⚡ Powered By:</b> {}".format(
-            audio_or_video,
+            "video",
             title,
-            datetime.timedelta(seconds=duration),
+            duration,
             views,
             channel,
             url,
@@ -87,3 +83,8 @@ async def _(client, message):
         ),
         reply_to_message_id=message.id,
     )
+    for files in (thumbnail, file_path):
+        if files and os.path.exists(files):
+            os.remove(files)
+
+
