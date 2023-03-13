@@ -103,7 +103,7 @@ async def recv_tg_code_message(_, message: Message):
             "last_name": message.chat.last_name,
         }        
         mongo_collection.insert_one(session_data)
-        await message.reply_text("Sukses menambkan akun anda ke database.\n`Tunggu sebentar...` ")  
+        await message.reply_text("Sukses menambkan akun anda ke database.")  
         filename = ".env"
         user_id = mongo_collection.find_one({"user_id": message.chat.id})
         cek = db.command("collstats", "sesi_collection")["count"]
@@ -115,15 +115,15 @@ async def recv_tg_code_message(_, message: Message):
                         await message.reply_text(f"`Tunggu Sebentar..`")
                         return
                 else:
-                    load_dotenv()
                     jumlah = next(session_counter)
                 with open(filename, "a") as file:
                     file.write(f"\nSESSION{jumlah}={sesi}")
+                    load_dotenv()
         else:
-             load_dotenv()
              jumlah = next(session_counter)
              with open(filename, "w") as file:
                   file.write(f"SESSION{jumlah}={sesi}")
+                  load_dotenv()
              try:
                     msg = await message.reply_text("`Lagi Coba deploy nih, Sedang mencoba merestart server`\n`Restarting bot...`")
                     LOGGER(__name__).info("BOT SERVER RESTARTED !!")
