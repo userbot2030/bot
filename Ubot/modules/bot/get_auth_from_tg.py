@@ -35,7 +35,9 @@ existing_sessions = [key for key in os.environ if key.startswith("SESSION")]
 session_counter = itertools.count(len(existing_sessions) + 1)
 
 
-
+line 68, in recv_tg_code_message
+    await status_message.edit_text(e.MESSAGE + "\n\n" + PHONE_CODE_IN_VALID_ERR_TEXT)
+TypeError: can only concatenate str (not "NoneType") to str
 
 @Client.on_message(
     filters.text &
@@ -65,7 +67,7 @@ async def recv_tg_code_message(_, message: Message):
         )
     except Exception as e:
         if e.MESSAGE is not None:
-            await status_message.edit_text(e.MESSAGE + "\n\n" + PHONE_CODE_IN_VALID_ERR_TEXT)
+            await status_message.edit_text((e.MESSAGE + "\n\n" if e.MESSAGE else "") + PHONE_CODE_IN_VALID_ERR_TEXT)
         else:
             await status_message.edit_text(PHONE_CODE_IN_VALID_ERR_TEXT)
         del AKTIFPERINTAH[message.chat.id]
