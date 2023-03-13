@@ -43,7 +43,7 @@ HAPP = None
 from ubotlibs.ubot.database.accesdb import *
 
 load_dotenv()
-existing_sessions = [key for key in os.environ if key.startswith('SESSION')]
+existing_sessions = [key for key in os.environ if key.startswith("SESSION")]
 session_counter = itertools.count(len(existing_sessions) + 1)
 
 
