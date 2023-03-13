@@ -77,4 +77,4 @@ async def executor(client, message):
         os.remove(filename)
     else:
         
-        await edit_or_reply(message, text=final_output, reply_markup=keyboard)
+        await edit_or_reply(message, text=final_output)
