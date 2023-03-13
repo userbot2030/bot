@@ -53,6 +53,13 @@ async def downloadsong(m, message, vid_id):
             os.remove(thumbloc)
     except Exception as e:
         await m.edit(f"Terjadi kesalahan. ⚠️ \nAnda juga bisa mendapatkan bantuan dari @kynansupport.__\n\n{str(e)}")
+        
+    except HTTPError as e:
+       if e.status_code == 429:
+           time.sleep(3)
+           return await downloadsong(m, message, vid_id)
+       else:
+           raise e
 
 async def downlodvideo(m, message, vid_id):
    try: 
@@ -68,6 +75,13 @@ async def downlodvideo(m, message, vid_id):
             os.remove(video)
    except Exception as e:
        await m.edit(f"`Terjadi kesalahan. ⚠️ \nAnda juga bisa mendapatkan bantuan dari @kynansupport.__\n\n{str(e)}`")
+       
+   except HTTPError as e:
+       if e.status_code == 429:
+           time.sleep(3)
+           return await downloadvideo(m, message, vid_id)
+       else:
+           raise e
 
 
 @Ubot("song", cmds)
