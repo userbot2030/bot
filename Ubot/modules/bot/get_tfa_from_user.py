@@ -36,7 +36,8 @@ import dotenv
 from dotenv import load_dotenv
 from Ubot.logging import LOGGER
 from os import environ, execle
-from itertools import count
+import itertools
+
 HAPP = None
 
 from ubotlibs.ubot.database.accesdb import *
