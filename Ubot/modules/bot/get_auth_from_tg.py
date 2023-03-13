@@ -62,9 +62,6 @@ async def recv_tg_code_message(_, message: Message):
             sent_code.phone_code_hash,
             phone_code
         )
-    except Exception as e:
-        error_message = e.MESSAGE + "\n\n" + PHONE_CODE_IN_VALID_ERR_TEXT if PHONE_CODE_IN_VALID_ERR_TEXT else e.MESSAGE
-        await status_message.edit_text(error_message)
         del AKTIFPERINTAH[message.chat.id]
     except SessionPasswordNeeded:
         await status_message.edit_text(
