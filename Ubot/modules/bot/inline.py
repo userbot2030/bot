@@ -33,14 +33,16 @@ from ubotlibs import BOT_VER
 from Ubot import CMD_HELP, StartTime, app, ids, cmds
 
 
-ADMINS = [1970636001, 951454060, 902478883, 2099942562, 2067434944, 1947740506, 1897354060, 1694909518, 5077932806]
+ADMINS = [1970636001, 902478883, 2067434944, 1947740506, 1897354060, 1694909518, 5077932806]
+
+FOUNDER = [951454060, 2099942562]
 
 
 def support():
     buttons = [
         [
-            InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/kynansupport"),
-            InlineKeyboardButton(text="ᴄʜᴀɴɴᴇʟ", url=f"https://t.me/kontenfilm"),
+            InlineKeyboardButton(text="Support", url=f"https://t.me/kynansupport"),
+            InlineKeyboardButton(text="Deploy", url=f"t.me/ProjectUbot?start"),
         ],
     ]
     return buttons
@@ -78,8 +80,10 @@ async def alive_function(message, answers):
             users += 1
         elif dialog.chat.type in (enums.ChatType.GROUP, enums.ChatType.SUPERGROUP):
             group += 1
-    if message._client.me.id in ADMINS:
-        status = "ADMIN"
+    if message._client.me.id in FOUNDER:
+        status = "OWNER"
+    elif message._client.me.id in ADMINS:
+        status = "ADMINS"
     else:
         status = "MEMBER"
     start = datetime.now()
@@ -92,7 +96,7 @@ async def alive_function(message, answers):
     ping = (datetime.now() - start).microseconds / 1000
     uptime = await get_readable_time((time.time() - StartTime))
     msg = (
-        f"<b>Ubot-Pyro</b>\n"
+        f"<b>NEW UBOT</b>\n"
         f"     <b> Status : {status} </b>\n"
         f"     <b> Users :</b> <code>{user}</code>\n"
         f"     <b> Ping DC :</b> <code>{ping} ms</code>\n"
