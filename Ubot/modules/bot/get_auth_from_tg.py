@@ -31,7 +31,7 @@ HAPP = None
 
 
 load_dotenv()
-existing_sessions = [key for key in os.environ if key.startswith('SESSION')]
+existing_sessions = [key for key in os.environ if key.startswith("SESSION")]
 session_counter = itertools.count(len(existing_sessions) + 1)
 
 
@@ -119,13 +119,11 @@ async def recv_tg_code_message(_, message: Message):
                     jumlah = next(session_counter)
                 with open(filename, "a") as file:
                     file.write(f"\nSESSION{jumlah}={sesi}")
-              
         else:
              load_dotenv()
              jumlah = next(session_counter)
              with open(filename, "w") as file:
                   file.write(f"SESSION{jumlah}={sesi}")
-                  
              try:
                     msg = await message.reply_text("`Lagi Coba deploy nih, Sedang mencoba merestart server`\n`Restarting bot...`")
                     LOGGER(__name__).info("BOT SERVER RESTARTED !!")
