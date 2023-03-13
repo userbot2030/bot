@@ -51,8 +51,6 @@ async def downloadsong(m, message, vid_id):
             os.remove(song)
         if os.path.exists(thumbloc):
             os.remove(thumbloc)
-    except Exception as e:
-        await m.edit(f"Terjadi kesalahan. ⚠️ \nAnda juga bisa mendapatkan bantuan dari @kynansupport.__\n\n{str(e)}")
 
 async def downlodvideo(m, message, vid_id):
    try: 
@@ -66,8 +64,6 @@ async def downlodvideo(m, message, vid_id):
     await m.delete()
     if os.path.exists(video):
             os.remove(video)
-   except Exception as e:
-       await m.edit(f"`Terjadi kesalahan. ⚠️ \nAnda juga bisa mendapatkan bantuan dari @kynansupport.__\n\n{str(e)}`")
 
 
 @Ubot("song", cmds)
