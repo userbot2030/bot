@@ -11,7 +11,7 @@ import datetime
 from dotenv import load_dotenv
 from os import environ, execle, path
 from datetime import datetime, timedelta
-from ubotlibs.ubot.database.activedb import *
+from Ubot.core.db.activedb import *
 from ubotlibs.ubot.database.usersdb import *
 from ubotlibs.ubot.database.accesdb import *
 from Ubot import *
