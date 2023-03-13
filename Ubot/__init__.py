@@ -134,7 +134,7 @@ app2 = Client(
     api_id=api_id2,
     api_hash=api_hash2,
     session_string=string_session2,
-    bot_token=app_password,
+    bot_token=BOT_TOKEN,
     plugins=dict(root="Ubot/modules/bot"),
     in_memory=True,
 )
