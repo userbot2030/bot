@@ -1,5 +1,5 @@
 from pyrogram.filters import chat
-from ubotlibs.database import cli
+from . import cli
 from typing import Dict, List, Union
 from datetime import datetime, timedelta
 from ubotlibs.database.accesdb import *
