@@ -25,8 +25,7 @@ from pyrogram import *
 from pyrogram.types import *
 from ubotlibs.ubot.helper.data import Data
 from ubotlibs.ubot.helper.inline import inline_wrapper, paginate_help
-from ubotlibs.ubot.database.activedb import *
-from ubotlibs.ubot.database.usersdb import *
+from Ubot.core.db import *
 from ubotlibs.ubot.database.accesdb import *
 from pyrogram.raw.functions import Ping
 from ubotlibs import BOT_VER
