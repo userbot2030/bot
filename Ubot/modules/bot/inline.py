@@ -88,7 +88,7 @@ async def alive_function(message, answers):
     start = datetime.now()
     buttons = support()
     ex = await message._client.get_me()
-    user = len( await get_active_users())
+    user = len(ids)
     user_active_time = await get_active_time(ex.id)
     active_time_str = str(user_active_time.days) + " Hari"
     await message._client.invoke(Ping(ping_id=0))
