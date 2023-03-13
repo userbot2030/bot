@@ -3,6 +3,7 @@ import asyncio
 import os
 import time
 from datetime import datetime
+from urllib.request import urlretrieve
 
 import wget
 import os, pytube, requests
@@ -15,8 +16,6 @@ from ubotlibs.ubot.helper.PyroHelpers import ReplyCheck
 from ubotlibs.ubot.utils.tools import *
 from pyrogram import Client, enums
 from pyrogram.types import Message
-from youtubesearchpython import SearchVideos
-from yt_dlp import YoutubeDL
 from pyrogram.errors import YouBlockedUser
 from . import *
 from ubotlibs.ubot.database.accesdb import *
@@ -29,37 +28,38 @@ CAPTION_TEXT = """
 """
 
 async def downloadsong(m, message, vid_id):
-   try: 
-    m = await m.edit(text = f"📥 **Download**")
-    link =  YouTube(f"https://youtu.be/{vid_id}")
-    thumbloc = link.title + "thumb"
-    thumb = requests.get(link.thumbnail_url, allow_redirects=True)
-    open(thumbloc , 'wb').write(thumb.content)
-    songlink = link.streams.filter(only_audio=True).first()
-    down = songlink.download()
-    first, last = os.path.splitext(down)
-    song = first + '.mp3'
-    os.rename(down, song)
-    m = await m.edit(text = """
+    try: 
+        m = await m.edit(text = f"📥 **Download**")
+        link =  YouTube(f"https://youtu.be/{vid_id}")
+        title = link.title
+        thumbloc = f"downloads/{title}.jpg"
+        thumb = requests.get(link.thumbnail_url, allow_redirects=True)
+        open(thumbloc , 'wb').write(thumb.content)
+        songlink = link.streams.filter(only_audio=True).first()
+        down = songlink.download(output_path="downloads/")
+        first, last = os.path.splitext(down)
+        song = first + '.mp3'
+        os.rename(down, song)
+        m = await m.edit(text = """
 📤 **Upload Started**
-  """)
-    await message.reply_audio(song,
-    caption = CAPTION_TEXT.format(link.title, message.from_user.mention if message.from_user else "Anonymous Admin", "Youtube"),
-    thumb = thumbloc)
-    await m.delete()
-    if os.path.exists(song):
-        os.remove(song)
-    if os.path.exists(thumbloc):
-        os.remove(thumbloc)
-   except Exception as e:
-       await m.edit(f"Terjadi kesalahan. ⚠️ \nAnda juga bisa mendapatkan bantuan dari @kynansupport.__\n\n{str(e)}")
+        """)
+        await message.reply_audio(audio=song,
+            caption = f"{title}\n\n{CAPTION_TEXT.format(link.title, message.from_user.mention if message.from_user else 'Anonymous Admin', 'Youtube')}",
+            thumb=thumbloc)
+        await m.delete()
+        if os.path.exists(song):
+            os.remove(song)
+        if os.path.exists(thumbloc):
+            os.remove(thumbloc)
+    except Exception as e:
+        await m.edit(f"Terjadi kesalahan. ⚠️ \nAnda juga bisa mendapatkan bantuan dari @kynansupport.__\n\n{str(e)}")
 
 async def downlodvideo(m, message, vid_id):
    try: 
     m = await m.edit(text = "📥 Downloading...",)
     link =  YouTube(f"https://youtu.be/{vid_id}")
     videolink = link.streams.get_highest_resolution()
-    video = videolink.download()
+    video = videolink.download(output_path="downloads/")
     m = await m.edit(text = "📤 Uploading...")
     await message.reply_video(video, 
     caption=CAPTION_TEXT.format(link.title, message.from_user.mention if message.from_user else "Anonymous Admin", "Youtube"))
