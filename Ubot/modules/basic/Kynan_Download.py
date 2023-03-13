@@ -44,7 +44,7 @@ async def _(client, message):
     except Exception as error:
         return await infomsg.edit(error)
     title = search[1]
-    duration = search[2{
+    duration = search[2]
     url = search[3]
     views = search[4]
     channel = search[5]
@@ -86,5 +86,3 @@ async def _(client, message):
     for files in (thumbnail, file_path):
         if files and os.path.exists(files):
             os.remove(files)
-
-
