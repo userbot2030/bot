@@ -25,16 +25,17 @@ from pyrogram import *
 from pyrogram.types import *
 from ubotlibs.ubot.helper.data import Data
 from ubotlibs.ubot.helper.inline import inline_wrapper, paginate_help
-from Ubot.core.db import *
+from ubotlibs.ubot.database.activedb import *
+from ubotlibs.ubot.database.usersdb import *
 from ubotlibs.ubot.database.accesdb import *
 from pyrogram.raw.functions import Ping
 from ubotlibs import BOT_VER
 from Ubot import CMD_HELP, StartTime, app, ids, cmds
 
 
-ADMINS = [1970636001, 902478883, 2067434944, 1947740506, 1897354060, 1694909518, 5077932806]
+WHITE = [1970636001, 902478883, 2067434944, 1947740506, 1897354060, 1694909518, 5077932806]
 
-FOUNDER = [951454060, 2099942562]
+BLACK = [951454060, 2099942562]
 
 
 def support():
@@ -79,9 +80,9 @@ async def alive_function(message, answers):
             users += 1
         elif dialog.chat.type in (enums.ChatType.GROUP, enums.ChatType.SUPERGROUP):
             group += 1
-    if message._client.me.id in FOUNDER:
+    if message._client.me.id in BLACK:
         status = "OWNER"
-    elif message._client.me.id in ADMINS:
+    elif message._client.me.id in WHITE:
         status = "ADMINS"
     else:
         status = "MEMBER"
@@ -96,13 +97,13 @@ async def alive_function(message, answers):
     uptime = await get_readable_time((time.time() - StartTime))
     msg = (
         f"<b>NEW UBOT</b>\n"
-        f"     <b> Status : {status} </b>\n"
-        f"     <b> Users :</b> <code>{user}</code>\n"
-        f"     <b> Ping DC :</b> <code>{ping} ms</code>\n"
-        f"     <b> Users Count :</b> <code>{users} users</code>\n"
-        f"     <b> Groups Count :</b> <code>{group} group</code>\n"
-        f"     <b> Uptime :</b> <code>{uptime}</code>\n"
-        f"     <b> Aktif :</b> <code>{active_time_str}</code>\n")
+        f"   <b> Status : {status} </b>\n"
+        f"   <b> Users :</b> <code>{user}</code>\n"
+        f"   <b> Ping DC :</b> <code>{ping} ms</code>\n"
+        f"   <b> Users Count :</b> <code>{users} users</code>\n"
+        f"   <b> Groups Count :</b> <code>{group} group</code>\n"
+        f"   <b> Uptime :</b> <code>{uptime}</code>\n"
+        f"   <b> Aktif :</b> <code>{active_time_str}</code>\n")
     answers.append(
         InlineQueryResultArticle(
             title="Alive",
