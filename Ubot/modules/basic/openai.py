@@ -18,11 +18,13 @@ from config import OPENAI_API_KEY
 
 
 RMBG_API_KEY = "3RCCWg8tMBfDWdAs44YMfJmC"
+
+API = "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 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".split()
         
 
 @Ubot(["ai", "ask"], cmds)
 async def openai(c, m):
-    openai.api_key = random.choice(OPENAI_API_KEY)
+    openai.api_key = random.choice(API)
     if len(m.command) == 1:
         return await m.reply(f"Ketik <code>{prefix}{m.command[0]} [question]</code> Pertanyaan untuk menggunakan OpenAI")
     question = m.text.split(" ", maxsplit=1)[1]
