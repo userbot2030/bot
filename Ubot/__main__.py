@@ -20,7 +20,7 @@ from dotenv import load_dotenv
 
 MSG_BOT = """
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
-◉ **Alive
+**New Ubot Actived ✅**
 ◉ **Phython**: `{}`
 ◉ **Pyrogram**: `{}`
 ◉ **Users**: `{}`
