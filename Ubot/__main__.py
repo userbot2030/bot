@@ -66,7 +66,7 @@ async def main():
             msg = f"{ex.first_name} ({ex.id}) - Masa Aktif: {active_time_str}"
             ids.append(ex.id)
             await bot.send_message(BOTLOG_CHATID, MSG_ON.format(BOT_VER, pyro, py(), active_time_str, remaining_days, CMD_HNDLR))
-            user = len( await get_active_users())
+            user = len(ids)
         except Exception as e:
             LOGGER("X").info(f"{e}")
             if "Telegram says:" in str(e):
