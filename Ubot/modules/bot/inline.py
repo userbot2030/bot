@@ -30,11 +30,10 @@ from ubotlibs.ubot.database.usersdb import *
 from ubotlibs.ubot.database.accesdb import *
 from pyrogram.raw.functions import Ping
 from ubotlibs import BOT_VER
-from ubotlibs.ubot import Ubot, Devs
-from Ubot.modules.basic import ADMINS
-from Ubot import CMD_HELP, StartTime, app, ids, cmds, app
-from config import ADMIN1_ID, ADMIN2_ID, ADMIN3_ID, ADMIN4_ID, ADMIN5_ID
+from Ubot import CMD_HELP, StartTime, app, ids, cmds
 
+
+ADMINS = [1970636001, 951454060, 902478883, 2099942562, 2067434944, 1947740506, 1897354060, 1694909518, 5077932806]
 
 
 def support():
@@ -96,7 +95,7 @@ async def alive_function(message, answers):
         f"<b>Ubot-Pyro</b>\n"
         f"     <b> Status :</b>{status}\n"
         f"     <b> Users :</b> <code>{user}</code>\n"
-        f"     <b> Ping DC:</b> <code>{ping} ms</code>\n"
+        f"     <b> Ping DC :</b> <code>{ping} ms</code>\n"
         f"     <b> Users Count :</b> <code>{users} users</code>\n"
         f"     <b> Groups Count :</b> <code>{group} group</code>\n"
         f"     <b> Uptime :</b> <code>{uptime}</code>\n"
@@ -138,7 +137,7 @@ async def inline_query_handler(client: Client, query):
             return
         elif string_given.startswith("helper"):
             answers = await help_function(answers)
-            await client.answer_inline_query(query.id, results=answers, cache_time=0)
+            await client.answer_inline_query(query.id, results=answer)
         elif text.split()[0] == "alive":
             m = [obj for obj in get_objects() if id(obj) == int(query.query.split(None, 1)[1])][0]
             answerss = await alive_function(m, answers)
