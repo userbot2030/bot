@@ -12,8 +12,7 @@ from Ubot.logging import LOGGER
 from pyrogram import __version__ as pyro
 
 from Ubot.modules import ALL_MODULES
-from ubotlibs.ubot.database.activedb import *
-from ubotlibs.ubot.database.usersdb import *
+from Ubot.core.db import *
 from config import SUPPORT, CHANNEL, CMD_HNDLR, ADMIN1_ID, ADMIN2_ID, ADMIN3_ID, ADMIN4_ID, ADMIN5_ID, ADMIN6_ID, ADMIN7_ID
 import os
 from dotenv import load_dotenv
@@ -47,7 +46,6 @@ MSG = """
 
 
 async def main():
-    load_dotenv()
     await app.start()
     LOGGER("Ubot").info("Memulai Ubot Pyro..")
     LOGGER("Ubot").info("Loading Everything.")
@@ -62,7 +60,7 @@ async def main():
             LOGGER("√").info(f"Started as {ex.first_name} | {ex.id} ")
             await add_user(ex.id)
             user_active_time = await get_active_time(ex.id)
-            active_time_str = str(user_active_time.days) + " Hari " + str(user_active_time.seconds // 3600) + " Jam"
+            active_time_str = str(user_active_time.days) + " Hari"
             expired_date = await get_expired_date(ex.id)
             remaining_days = (expired_date - datetime.now()).days
             msg = f"{ex.first_name} ({ex.id}) - Masa Aktif: {active_time_str}"
@@ -72,12 +70,17 @@ async def main():
         except Exception as e:
             LOGGER("X").info(f"{e}")
             if "Telegram says:" in str(e):
+                load_dotenv()
+                session_name = None
                 for i in range(1, 201):
                     if os.getenv(f"SESSION{i}") == str(e):
-                        os.environ.pop(f"SESSION{i}")
-                        LOGGER("Ubot").info(f"Removed SESSION{i} from .env file due to error.")
-                        await app.send_message(SUPPORT, f"Removed SESSION{i} from .env file due to error.")
+                        session_name = f"SESSION{i}"
+                        os.environ.pop(session_name)
+                        LOGGER("Ubot").info(f"Removed {session_name} from .env file due to error.")
+                        await app.send_message(SUPPORT, f"Removed {session_name} from .env file due to error.")
                         break
+                if session_name is None:
+                   LOGGER("Ubot").info(f"Could not find session name in .env file for error: {str(e)}")
     await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
     await idle()
     await aiosession.close()
