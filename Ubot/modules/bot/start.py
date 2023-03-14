@@ -216,7 +216,7 @@ async def activate_user(client, message):
     now = datetime.now()
     expire_date = now + relativedelta(months=duration)
     await set_expired_date(user_id, expire_date)
-    await message.reply(f"User {user_id} telah diaktifkan selama {duration} hari.")
+    await message.reply(f"User {user_id} telah diaktifkan selama {duration} bulan.")
 
 
 @app.on_message(filters.command("cekaktif") & ~filters.via_bot)
