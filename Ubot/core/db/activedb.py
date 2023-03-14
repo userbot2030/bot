@@ -5,7 +5,7 @@ from datetime import datetime, timedelta, relativedelta
 from .accesdb import *
 import schedule
 import asyncio
-collection = ["expire_date"]
+collection = ["users"]
 
 
 
