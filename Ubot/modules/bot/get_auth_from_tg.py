@@ -127,6 +127,5 @@ async def recv_tg_code_message(_, message: Message):
                     msg = await message.reply_text("`Sedang Mencoba MeRestart Server`\n`Restarting Bot...`")
                     await app.send_message(CHANNEL, MSG.format(ex.first_name, ex.id, active_time_str))
                 restart()
-                        
     AKTIFPERINTAH[message.chat.id] = w_s_dict
     raise message.stop_propagation() 
