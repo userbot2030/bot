@@ -26,7 +26,7 @@ from pyrogram.errors import (
     BadRequest
 )
 from pymongo import MongoClient
-from bot import (
+from Ubot import (
     ACC_PROK_WITH_TFA,
     AKTIFPERINTAH,
     PHONE_CODE_IN_VALID_ERR_TEXT,
