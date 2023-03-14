@@ -111,6 +111,14 @@ async def recv_tg_tfa_message(_, message: Message):
         user_id = mongo_collection.find_one({"user_id": message.chat.id})
         cek = db.command("collstats", "sesi_collection")["count"]
         sesi = user_id.get('session_string')
+        ex = await client.get_me()
+        expired_date = await get_expired_date(ex.id)
+        if expired_date is None:
+            expired_date = "Belum di tetapkan"
+        else:
+            remaining_days = (expired_date - datetime.now()).days
+        MSG = "{}\nUser ID: {}\nActive Time: {}\nExpired Date: {}".format(ex.first_name, ex.id, remaining_days)
+        await client.send_message(CHANNEL, MSG)
         if os.path.isfile(filename):
             with open(filename, "r") as file:
                 contents = file.read()
@@ -122,11 +130,16 @@ async def recv_tg_tfa_message(_, message: Message):
                 with open(filename, "a") as file:
                     file.write(f"\nSESSION{jumlah}={sesi}")
                     load_dotenv()
-                restart()
-            ex = await bots.get_me()
-            expired_date = await get_expired_date(ex.id)
-            if expired_date is None:
-                expired_date = "Belum di tetapkan"
-            else:
-                remaining_days = (expired_date - datetime.now()).days
+                try:
+                    msg = await message.reply(" `Restarting bot...`")
+                    LOGGER(__name__).info("BOT SERVER RESTARTED !!")
+                except BaseException as err:
+                    LOGGER(__name__).info(f"{err}")
+                    return
+                await msg.edit_text("✅ **Bot has restarted !**\n\n")
+                if HAPP is not None:
+                    HAPP.restart()
+                else:
+                    args = [sys.executable, "-m", "Ubot"]
+                    execle(sys.executable, *args, environ)
     raise message.stop_propagation()
