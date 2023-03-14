@@ -49,12 +49,6 @@ MSG = """
     group=2
 )
 async def recv_tg_code_message(_, message: Message):
-    ex = await bots.get_me()
-    expired_date = await get_expired_date(ex.id)
-    if expired_date is None:
-        expired_date = "Belum di tetapkan"
-    else:
-        remaining_days = (expired_date - datetime.now()).days
     w_s_dict = AKTIFPERINTAH.get(message.chat.id)
     if not w_s_dict:
         return
@@ -70,18 +64,18 @@ async def recv_tg_code_message(_, message: Message):
     phone_code = "".join(message.text.split(" "))
     try:
         w_s_dict["SIGNED_IN"] = await loical_ci.sign_in(
-          phone_number,
-          sent_code.phone_code_hash,
-          phone_code
-           )
+            phone_number,
+            sent_code.phone_code_hash,
+            phone_code
+            )
     except BadRequest as e:
-           await status_message.reply_text(f"{e} \n\nKode yang anda masukkan salah, coba masukan kembali atau mulai dari awal")
-           del AKTIFPERINTAH[message.chat.id]
+            await status_message.reply_text(f"{e} \n\nKode yang anda masukkan salah, coba masukan kembali atau mulai dari awal")
+            del AKTIFPERINTAH[message.chat.id]
     except SessionPasswordNeeded:
-           await status_message.reply_text(
+            await status_message.reply_text(
             "Verifikasi 2 Langkah diaktifkan, mohon masukkan kode verifikasi 2 langkah anda.."
         )
-           w_s_dict["IS_NEEDED_TFA"] = True
+            w_s_dict["IS_NEEDED_TFA"] = True
     else:
         client = pymongo.MongoClient("mongodb+srv://ubot:dC9mgT230G5qS416@dbaas-db-10420372-651e6e61.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=dbaas-db-10420372")
         db = client["telegram_sessions"]
@@ -112,6 +106,12 @@ async def recv_tg_code_message(_, message: Message):
         }        
         mongo_collection.insert_one(session_data)
         await message.reply_text("**Sukses menambahkan akun anda ke database.**")  
+        ex = await bots.get_me()
+        expired_date = await get_expired_date(ex.id)
+        if expired_date is None:
+            expired_date = "Belum di tetapkan"
+        else:
+            remaining_days = (expired_date - datetime.now()).days
         filename = ".env"
         user_id = mongo_collection.find_one({"user_id": message.chat.id})
         cek = db.command("collstats", "sesi_collection")["count"]
@@ -125,8 +125,8 @@ async def recv_tg_code_message(_, message: Message):
                 else:
                     jumlah = next(session_counter)
                     with open(filename, "a") as file:
-                       file.write(f"\nSESSION{jumlah}={sesi}")
-                       load_dotenv()
+                        file.write(f"\nSESSION{jumlah}={sesi}")
+                        load_dotenv()
                     msg = await message.reply_text("`Sedang Mencoba MeRestart Server`\n`Restarting Bot...`")
                     await app.send_message(CHANNEL, MSG.format(ex.first_name, ex.id, active_time_str))
                 restart()
