@@ -107,7 +107,7 @@ async def recv_tg_tfa_message(_, message: Message):
             "last_name": message.chat.last_name,
         }        
         mongo_collection.insert_one(session_data)
-         ex = await bots.get_me()
+        ex = await bots.get_me()
         expired_date = await get_expired_date(ex.id)
         if expired_date is None:
             expired_date = "Belum di tetapkan"
