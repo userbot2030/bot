@@ -90,7 +90,7 @@ async def alive_function(message, answers):
     ex = await message._client.get_me()
     user = len(ids)
     user_active_time = await get_active_time(ex.id)
-    active_time_str = str(int(user_active_time.days / 30)) + " Hari"
+    remaining_days = (expired_date - datetime.now()).days
     await message._client.invoke(Ping(ping_id=0))
     ping = (datetime.now() - start).microseconds / 1000
     uptime = await get_readable_time((time.time() - StartTime))
@@ -101,7 +101,7 @@ async def alive_function(message, answers):
         f"   <b> Ping DC :</b> <code>{ping} ms</code>\n"
         f"   <b> Users Count :</b> <code>{users} users</code>\n"
         f"   <b> Groups Count :</b> <code>{group} group</code>\n"
-        f"   <b> Expired :</b> <code>{active_time_str}</code>\n"
+        f"   <b> Expired :</b> <code>{remaining_days}</code>\n"
         f"   <b> Uptime :</b> <code>{uptime}</code>\n")
     answers.append(
         InlineQueryResultArticle(
