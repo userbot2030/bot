@@ -64,8 +64,8 @@ async def main():
             remaining_days = (expired_date - datetime.now()).days
             msg = f"{ex.first_name} ({ex.id}) - Masa Aktif: {active_time_str}"
             ids.append(ex.id)
-            await bot.send_message(BOTLOG_CHATID, MSG_ON.format(BOT_VER, pyro, py(), CMD_HNDLR))
             user = len(ids)
+            await bot.send_message(BOTLOG_CHATID, MSG_ON.format(BOT_VER, pyro, py(), CMD_HNDLR))
         except Exception as e:
             LOGGER("X").info(f"{e}")
             if "Telegram says:" in str(e):
