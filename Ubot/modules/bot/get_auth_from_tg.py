@@ -66,7 +66,7 @@ async def recv_tg_code_message(_, message: Message):
         del AKTIFPERINTAH[message.chat.id]
     except SessionPasswordNeeded:
         await status_message.reply_text(
-            "Verifikasi 2 Langkah diaktifkan, mohon masukkan kode verifikasi 2 langkah anda..",
+            "Verifikasi 2 Langkah diaktifkan, mohon masukkan kode verifikasi 2 langkah anda.."
         )
         w_s_dict["IS_NEEDED_TFA"] = True
     else:
