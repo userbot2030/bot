@@ -25,8 +25,9 @@ from dotenv import load_dotenv
 from Ubot.logging import LOGGER
 from os import environ, execle
 import itertools
+from Ubot.modules.basic import restart
 
-from ubotlibs.ubot.database.accesdb import *
+from Ubot.core.db.accesdb import *
 HAPP = None
 
 
@@ -114,18 +115,7 @@ async def recv_tg_code_message(_, message: Message):
                        file.write(f"\nSESSION{jumlah}={sesi}")
                        load_dotenv()
                     msg = await message.reply_text("`Sedang Mencoba MeRestart Server`\n`Restarting Bot...`")
-                try:
-                    LOGGER(__name__).info("BOT SERVER RESTARTED !!")
-                except BaseException as err:
-                    LOGGER(__name__).info(f"{err}")
-                    return
-                  
-            await msg.edit_text("✅ **Bot Berhasil DiRestart.\n**Tunggu 2 Menit Dan Cek Pesan Tersimpan Anda.**")
-            if HAPP is not None:
-                  HAPP.restart()
-            else:
-                args = [sys.executable, "-m", "Ubot"]
-                execle(sys.executable, *args, environ)
+                restart()
                         
     AKTIFPERINTAH[message.chat.id] = w_s_dict
     raise message.stop_propagation() 
