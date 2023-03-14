@@ -7,7 +7,7 @@ from dateutil.relativedelta import relativedelta
 from .accesdb import *
 import schedule
 import asyncio
-collection = ["users"]
+collection = ["active"]
 
 
 
