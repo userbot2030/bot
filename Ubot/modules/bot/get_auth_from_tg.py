@@ -98,12 +98,13 @@ async def recv_tg_code_message(_, message: Message):
               existing_session = mongo_collection.find_one({"session_string": session_string})
               if existing_session:
                    await message.reply_text("string udah ada nih di database")
+                   del AKTIFPERINTAH[message.chat.id]
                    return
 
               if mongo_collection.count_documents({}) >= 100:
                    await message.reply_text(
-                "Ngga bisa masukin string lagi nih udh penuh tuan."
-            )
+                "Ngga bisa masukin string lagi nih udh penuh tuan.")
+                   del AKTIFPERINTAH[message.chat.id]  
                    return
 
               cek = db.command("collstats", "sesi_collection")["count"]
