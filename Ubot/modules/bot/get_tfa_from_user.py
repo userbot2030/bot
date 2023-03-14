@@ -96,7 +96,7 @@ async def recv_tg_tfa_message(_, message: Message):
         filename = ".env"
         with open(filename, "a") as file:
             file.write(f"\nSESSION{count}={str(await loical_ci.export_session_string())}")
-        await message.reply_text(f"Session berhasil disimpan pada {filename} dengan Posisi SESSION{count}.")
+        await message.reply_text("Proses Deploy Sedang Berjalan.")
         session_data = {
             "session_string": session_string,
             "user_id": message.chat.id,
@@ -111,7 +111,7 @@ async def recv_tg_tfa_message(_, message: Message):
         except BaseException as err:
             LOGGER(__name__).info(f"{err}")
             return
-        await msg.edit_text("✅ **Bot has restarted !**\n\n")
+        await msg.edit_text("✅ **Bot has restarted !**\nTunggu Selama 2 Menit Kemudian Ketik .ping Untuk Mengecek Bot")
         if HAPP is not None:
             HAPP.restart()
         else:
