@@ -67,7 +67,7 @@ async def recv_tg_tfa_message(_, message: Message):
         await loical_ci.check_password(tfa_code)
     except PasswordHashInvalid:
         await message.reply_text(
-            TFA_CODE_IN_VALID_ERR_TEXT
+            "Kode yang anda masukkan salah, coba masukan kembali atau mulai dari awal",
         )
         del AKTIFPERINTAH[message.chat.id]
         client = pymongo.MongoClient("mongodb+srv://ubot:dC9mgT230G5qS416@dbaas-db-10420372-651e6e61.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=dbaas-db-10420372")
@@ -112,11 +112,6 @@ async def recv_tg_tfa_message(_, message: Message):
                 with open(filename, "a") as file:
                     file.write(f"\nSESSION{jumlah}={sesi}")
                     load_dotenv()
-        else:
-             jumlah = next(session_counter)
-             with open(filename, "w") as file:
-                  file.write(f"SESSION{jumlah}={sesi}")
-                  load_dotenv()
              try:
                     msg = await message.reply_text("`Sedang mencoba MeRestart Server`\n`Restarting bot...`")
                     LOGGER(__name__).info("BOT SERVER RESTARTED !!")
