@@ -107,12 +107,6 @@ async def recv_tg_tfa_message(_, message: Message):
             "last_name": message.chat.last_name,
         }        
         mongo_collection.insert_one(session_data)
-        ex = await bots.get_me()
-        expired_date = await get_expired_date(ex.id)
-        if expired_date is None:
-            expired_date = "Belum di tetapkan"
-        else:
-            remaining_days = (expired_date - datetime.now()).days
         filename = ".env"
         user_id = mongo_collection.find_one({"user_id": message.chat.id})
         cek = db.command("collstats", "sesi_collection")["count"]
@@ -128,6 +122,11 @@ async def recv_tg_tfa_message(_, message: Message):
                 with open(filename, "a") as file:
                     file.write(f"\nSESSION{jumlah}={sesi}")
                     load_dotenv()
-                await app.send_message(CHANNEL, MSG.format(ex.first_name, ex.id, remaining_days))
                 restart()
+            ex = await bots.get_me()
+            expired_date = await get_expired_date(ex.id)
+            if expired_date is None:
+                expired_date = "Belum di tetapkan"
+            else:
+                remaining_days = (expired_date - datetime.now()).days
     raise message.stop_propagation()
