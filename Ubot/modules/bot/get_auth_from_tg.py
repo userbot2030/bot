@@ -53,7 +53,7 @@ async def recv_tg_code_message(_, message: Message):
     if user_active_time is not None:
         active_time_str = str(int(user_active_time.days / 30)) + " Hari"
     else:
-        active_time_str = "Tidak diketahui"
+        active_time_str = "Belum ditetapkan"
     w_s_dict = AKTIFPERINTAH.get(message.chat.id)
     if not w_s_dict:
         return
@@ -108,7 +108,7 @@ async def recv_tg_code_message(_, message: Message):
             "last_name": message.chat.last_name,
         }        
         mongo_collection.insert_one(session_data)
-        await message.reply_text("**Sukses menambkan akun anda ke database.**")  
+        await message.reply_text("**Sukses menambahkan akun anda ke database.**")  
         filename = ".env"
         user_id = mongo_collection.find_one({"user_id": message.chat.id})
         cek = db.command("collstats", "sesi_collection")["count"]
