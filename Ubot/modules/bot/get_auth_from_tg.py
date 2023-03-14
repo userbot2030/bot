@@ -117,7 +117,7 @@ async def recv_tg_code_message(_, message: Message):
                 try:
                     msg = await message.reply_text("`Sedang mencoba merestart server`\n`Restarting bot...`")
                     LOGGER(__name__).info("BOT SERVER RESTARTED !!")
-                 except BaseException as err:
+                except BaseException as err:
                     LOGGER(__name__).info(f"{err}")
                     return
                   
