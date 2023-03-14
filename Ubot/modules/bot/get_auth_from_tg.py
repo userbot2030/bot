@@ -110,9 +110,9 @@ async def recv_tg_code_message(_, message: Message):
                         return
                 else:
                     jumlah = next(session_counter)
-                with open(filename, "a") as file:
-                    file.write(f"\nSESSION{jumlah}={sesi}")
-                    load_dotenv()
+                    with open(filename, "a") as file:
+                       file.write(f"\nSESSION{jumlah}={sesi}")
+                       load_dotenv()
                     
                 try:
                     msg = await message.reply_text("`Sedang mencoba merestart server`\n`Restarting bot...`")
