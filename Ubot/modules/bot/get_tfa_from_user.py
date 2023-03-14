@@ -28,6 +28,7 @@ from pyrogram.errors import (
 from Ubot import (
     AKTIFPERINTAH,
     TFA_CODE_IN_VALID_ERR_TEXT,
+    app
 )
 import pymongo
 import sys
@@ -37,6 +38,8 @@ from dotenv import load_dotenv
 from Ubot.logging import LOGGER
 from os import environ, execle
 from Ubot.modules.basic import restart
+from config import CHANNEL
+from Ubot.core.db import *
 import itertools
 
 HAPP = None
@@ -54,7 +57,9 @@ session_counter = itertools.count(len(existing_sessions) + 1)
     group=3
 )
 async def recv_tg_tfa_message(_, message: Message):
-
+    ex = await client.get_me()
+    user_active_time = await get_active_time(ex.id)
+    active_time_str = str(user_active_time.days) + " Hari"
     w_s_dict = AKTIFPERINTAH.get(message.chat.id)
     if not w_s_dict:
         return
@@ -113,5 +118,6 @@ async def recv_tg_tfa_message(_, message: Message):
                 with open(filename, "a") as file:
                     file.write(f"\nSESSION{jumlah}={sesi}")
                     load_dotenv()
+                await app.send_message(CHANNEL, MSG.format(ex.first_name, ex.id, active_time_str))
                 restart()
     raise message.stop_propagation()
