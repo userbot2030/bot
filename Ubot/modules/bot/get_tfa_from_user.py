@@ -63,13 +63,7 @@ MSG = """
     group=3
 )
 async def recv_tg_tfa_message(_, message: Message):
-    ex = await bots.get_me()
-    expired_date = await get_expired_date(ex.id)
-    if expired_date is None:
-        expired_date = "Belum di tetapkan"
-    else:
-        remaining_days = (expired_date - datetime.now()).days
-
+    
     w_s_dict = AKTIFPERINTAH.get(message.chat.id)
     if not w_s_dict:
         return
