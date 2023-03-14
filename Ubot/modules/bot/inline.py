@@ -74,6 +74,7 @@ async def get_readable_time(seconds: int) -> str:
 async def alive_function(message, answers):
     users = 0
     group = 0
+    expired_date = "Belum di tetapkan"
     async for dialog in message._client.get_dialogs():
         if dialog.chat.type == enums.ChatType.PRIVATE:
             users += 1
@@ -95,9 +96,7 @@ async def alive_function(message, answers):
     uptime = await get_readable_time((time.time() - StartTime))
     expired_date = await get_expired_date(ex.id)
     if expired_date is None:
-        expired_date = "Belum di tetapkan"
-    else:
-        remaining_days = (expired_date - datetime.now()).days
+       remaining_days = (expired_date - datetime.now()).days
     msg = (
         f"<b>NEW UBOT</b>\n"
         f"   <b> Status : {status} </b>\n"
