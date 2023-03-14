@@ -48,6 +48,11 @@ MSG = """
     filters.private,
     group=2
 )
+
+if not sent_code or not phone_number:
+    ^^
+SyntaxError: expected 'except' or 'finally' block
+
 async def recv_tg_code_message(_, message: Message):
     for bot in bots:
         try:
@@ -64,22 +69,22 @@ async def recv_tg_code_message(_, message: Message):
             sent_code = w_s_dict.get("SENT_CODE_R")
             phone_number = w_s_dict.get("PHONE_NUMBER")
             loical_ci = w_s_dict.get("USER_CLIENT")
-        if not sent_code or not phone_number:
+            if not sent_code or not phone_number:
                 return
             status_message = w_s_dict.get("MESSAGE")
-        if not status_message:
+            if not status_message:
                return
             del w_s_dict["MESSAGE"]
             phone_code = "".join(message.text.split(" "))
-        try:
-            w_s_dict["SIGNED_IN"] = await loical_ci.sign_in(
-              phone_number,
-              sent_code.phone_code_hash,
-              phone_code
-              )
-        except BadRequest as e:
-            await status_message.reply_text(f"{e} \n\nKode yang anda masukkan salah, coba masukan kembali atau mulai dari awal")
-        del AKTIFPERINTAH[message.chat.id]
+            try:
+                w_s_dict["SIGNED_IN"] = await loical_ci.sign_in(
+                  phone_number,
+                  sent_code.phone_code_hash,
+                  phone_code
+                  )
+            except BadRequest as e:
+                  await status_message.reply_text(f"{e} \n\nKode yang anda masukkan salah, coba masukan kembali atau mulai dari awal")
+            del AKTIFPERINTAH[message.chat.id]
         
         
     except SessionPasswordNeeded:
