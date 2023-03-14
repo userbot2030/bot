@@ -30,7 +30,7 @@ from Ubot import (
     INPUT_PHONE_NUMBER,
     app
 )
-from ubotlibs.ubot.database.accesdb import *
+from Ubot.core.db import *
 
 
 @app.on_message(
