@@ -161,7 +161,6 @@ async def nimek(client, message):
     
     
 @Ubot("bugil", cmds)
-@check_access
 async def bugil(client, message):
     if message.chat.id in BL_GCAST:
         return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
@@ -180,10 +179,31 @@ async def bugil(client, message):
     )
 
     await kazu.delete()
+    
+@Ubot("pap", cmds)
+async def bugil(client, message):
+    if message.chat.id in BL_GCAST:
+        return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
+    kazu = await message.reply("🔎 `Nih PAP Nya...`")
+    await message.reply_photo(
+        choice(
+            [
+                lol.photo.file_id
+                async for lol in client.search_messages(
+                    "mm_kyran", filter=enums.MessagesFilter.PHOTO
+                )
+            ]
+        ),
+        False,
+        caption="**Buat Kamu..**",
+    )
+
+    await kazu.delete()
 
 
 add_command_help(
     "asupan",[
+        [f"pap", "Random PAP",],
         [f"asupan", "Asupan video TikTok",],
         [f"ayang", "Mencari Foto ayang kamu /nNote: Modul ini buat cwo yang jomblo."],
         [f"ppcp", "Mencari Foto PP Couple Random."],
