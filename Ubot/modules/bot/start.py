@@ -12,7 +12,6 @@ from dotenv import load_dotenv
 from os import environ, execle, path
 from datetime import datetime, timedelta
 from Ubot.core.db import *
-from ubotlibs.ubot.database.accesdb import *
 from Ubot import *
 from itertools import count
 from Ubot.modules.basic import *
@@ -206,7 +205,7 @@ async def activate_user(client, message):
         user_id = int(message.text.split()[1])
         duration = int(message.text.split()[2])
     except (IndexError, ValueError):
-        await message.reply("Gunakan format: /aktif user_id jangka_waktu_hari")
+        await message.reply("Gunakan format: /aktif user_id bulan")
         return
       
     if message.from_user.id not in ADMINS:
@@ -214,7 +213,7 @@ async def activate_user(client, message):
         return
 
     now = datetime.now()
-    expire_date = now + timedelta(days=duration)
+    expire_date = now + relativedelta(months=duration)
     await set_expired_date(user_id, expire_date)
     await message.reply(f"User {user_id} telah diaktifkan selama {duration} hari.")
 
