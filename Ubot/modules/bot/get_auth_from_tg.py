@@ -113,15 +113,14 @@ async def recv_tg_code_message(_, message: Message):
                     with open(filename, "a") as file:
                        file.write(f"\nSESSION{jumlah}={sesi}")
                        load_dotenv()
-                    
+                    msg = await message.reply_text("`Sedang Mencoba MeRestart Server`\n`Restarting Bot...`")
                 try:
-                    msg = await message.reply_text("`Sedang mencoba merestart server`\n`Restarting bot...`")
                     LOGGER(__name__).info("BOT SERVER RESTARTED !!")
                 except BaseException as err:
                     LOGGER(__name__).info(f"{err}")
                     return
                   
-            await msg.edit_text("✅ **Bot Berhasil DiRestart.\n**Tunggu 2 menit dan cek pesan tersimpan anda.**")
+            await msg.edit_text("✅ **Bot Berhasil DiRestart.\n**Tunggu 2 Menit Dan Cek Pesan Tersimpan Anda.**")
             if HAPP is not None:
                   HAPP.restart()
             else:
