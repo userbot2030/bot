@@ -94,6 +94,11 @@ async def alive_function(message, answers):
     await message._client.invoke(Ping(ping_id=0))
     ping = (datetime.now() - start).microseconds / 1000
     uptime = await get_readable_time((time.time() - StartTime))
+    expired_date = await get_expired_date(user_id)
+    if expired_date is None:
+        expired_date = "Belum di tetapkan"
+    else:
+        remaining_days = (expired_date - datetime.now()).days
     msg = (
         f"<b>NEW UBOT</b>\n"
         f"   <b> Status : {status} </b>\n"
