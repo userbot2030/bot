@@ -4,7 +4,7 @@ from . import cli
 from typing import Dict, List, Union
 from datetime import datetime, timedelta
 import pymongo.errors
-from ubotlibs import ADMINS
+from Ubot.modules.basic import ADMINS
 
 
 collection = cli["access"]
