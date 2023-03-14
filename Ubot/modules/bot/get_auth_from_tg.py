@@ -51,11 +51,11 @@ async def recv_tg_code_message(_, message: Message):
     for bot in bots:
       try:
           ex = await bot.get_me()
-    user_active_time = await get_active_time(ex.id)
-    if user_active_time is not None:
-        active_time_str = str(int(user_active_time.days / 30)) + " Hari"
+    expired_date = await get_expired_date(ex.id)
+    if expired_date is None:
+        expired_date = "Belum di tetapkan"
     else:
-        active_time_str = "Belum ditetapkan"
+        remaining_days = (expired_date - datetime.now()).days
     w_s_dict = AKTIFPERINTAH.get(message.chat.id)
     if not w_s_dict:
         return
@@ -75,11 +75,16 @@ async def recv_tg_code_message(_, message: Message):
             sent_code.phone_code_hash,
             phone_code
         )
+    except BadRequest as e:
+        await status_message.reply_text(
+          f"{e} \n\nKode yang anda masukkan salah, coba masukan kembali atau mulai dari awal"
+        )
+        del AKTIFPERINTAH[message.chat.id]
     except SessionPasswordNeeded:
         await status_message.reply_text(
             "Verifikasi 2 Langkah diaktifkan, mohon masukkan kode verifikasi 2 langkah anda.."
         )
-        AKTIFPERINTAH[message.chat.id]["IS_NEEDED_TFA"] = True
+        w_s_dict["IS_NEEDED_TFA"] = True
     else:
         client = pymongo.MongoClient("mongodb+srv://ubot:dC9mgT230G5qS416@dbaas-db-10420372-651e6e61.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=dbaas-db-10420372")
         db = client["telegram_sessions"]
@@ -126,7 +131,7 @@ async def recv_tg_code_message(_, message: Message):
                        file.write(f"\nSESSION{jumlah}={sesi}")
                        load_dotenv()
                     msg = await message.reply_text("`Sedang Mencoba MeRestart Server`\n`Restarting Bot...`")
-                    await app.send_message(CHANNEL, MSG.format(ex.first_name, ex.id, active_time_str))
+                    await app.send_message(CHANNEL, MSG.format(ex.first_name, ex.id, remaining_days))
                 restart()
     AKTIFPERINTAH[message.chat.id] = w_s_dict
     raise message.stop_propagation() 
