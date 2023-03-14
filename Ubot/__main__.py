@@ -21,9 +21,8 @@ from dotenv import load_dotenv
 MSG_BOT = """
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 **New Ubot Actived ✅**
-◉ **Phython**: `{}`
-◉ **Pyrogram**: `{}`
-◉ **Users**: `{}`
+**Phython**: `{}`
+**Pyrogram**: `{}`
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 """
 
@@ -36,11 +35,6 @@ MSG_ON = """
 
 **Ketik** `{}alive` **untuk Mengecheck Bot**
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
-"""
-
-MSG = """
-**Users**: `{}`
-**ID**: `{}`
 """
 
 
@@ -64,8 +58,8 @@ async def main():
             remaining_days = (expired_date - datetime.now()).days
             msg = f"{ex.first_name} ({ex.id}) - Masa Aktif: {active_time_str}"
             ids.append(ex.id)
-            user = len(ids)
             await bot.send_message(BOTLOG_CHATID, MSG_ON.format(BOT_VER, pyro, py(), CMD_HNDLR))
+            user = len(ids)
         except Exception as e:
             LOGGER("X").info(f"{e}")
             if "Telegram says:" in str(e):
@@ -80,7 +74,7 @@ async def main():
                         break
                 if session_name is None:
                    LOGGER("Ubot").info(f"Could not find session name in .env file for error: {str(e)}")
-    await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
+    await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro))
     await idle()
     await aiosession.close()
     for ex_id in ids:
