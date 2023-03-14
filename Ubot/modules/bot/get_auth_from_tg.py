@@ -48,7 +48,9 @@ MSG = """
     group=2
 )
 async def recv_tg_code_message(_, message: Message):
-    ex = await message._client.get_me()
+    for bot in bots:
+      try:
+          ex = await bot.get_me()
     user_active_time = await get_active_time(ex.id)
     if user_active_time is not None:
         active_time_str = str(int(user_active_time.days / 30)) + " Hari"
