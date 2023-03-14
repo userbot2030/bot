@@ -84,14 +84,20 @@ async def adminlist(client: Client, message: Message):
 
 @Ubot("zombies", cmds)
 async def kickdel_cmd(client: Client, message: Message):
-    Man = await edit_or_reply(message, "<b>Kicking deleted accounts...</b>")
-    # noinspection PyTypeChecker
-    values = [
-        await message.chat.ban_member(user.user.id, int(time()) + 31)
-        for member in await message.chat.get_members()
-        if member.user.is_deleted
-    ]
-    await Man.edit(f"<b>Successfully kicked {len(values)} deleted account(s)</b>")
+    await message.reply("<b>Membersihkan akun depresi...</b>")
+    try:
+        values = [
+            await message.chat.ban_member(
+                member.user.id, datetime.now() + timedelta(seconds=31)
+            )
+            async for member in client.get_chat_members(message.chat.id)
+            if member.user.is_deleted
+        ]
+    except Exception as e:
+        return await message.edit(format_exc(e))
+    await message.edit(
+        f"<b>Berhasil ditendang {len(values)} akun depresi (s)</b>"
+    )
 
 
 @Ubot("report", cmds)
