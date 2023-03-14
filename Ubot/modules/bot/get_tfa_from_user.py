@@ -67,7 +67,7 @@ async def recv_tg_tfa_message(_, message: Message):
     if user_active_time is not None:
         active_time_str = str(int(user_active_time.days / 30)) + " Hari"
     else:
-        active_time_str = "Tidak diketahui"
+        active_time_str = "Belum ditetapkan"
 
     w_s_dict = AKTIFPERINTAH.get(message.chat.id)
     if not w_s_dict:
