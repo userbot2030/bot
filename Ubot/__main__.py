@@ -37,6 +37,7 @@ MSG_ON = """
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 """
 
+X - Telegram says: [401 AUTH_KEY_UNREGISTERED]
 
 async def main():
     await app.start()
@@ -57,7 +58,7 @@ async def main():
             user = len(ids)
         except Exception as e:
             LOGGER("X").info(f"{e}")
-            if "Telegram says:" in str(e):
+            if "401 AUTH_KEY_UNREGISTERED" in str(e):
                 load_dotenv()
                 session_name = None
                 for i in range(1, 201):
