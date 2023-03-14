@@ -29,7 +29,7 @@ from Ubot import (
     AKTIFPERINTAH,
     TFA_CODE_IN_VALID_ERR_TEXT,
     app,
-    bots,
+    bots
 )
 import pymongo
 import sys
@@ -63,18 +63,16 @@ MSG = """
     group=3
 )
 async def recv_tg_tfa_message(_, message: Message):
-    for bot in bots:
-        try:
-            ex = await bot.get_me()
-            expired_date = await get_expired_date(ex.id)
-            if expired_date is None:
-                expired_date = "Belum di tetapkan"
-            else:
-                remaining_days = (expired_date - datetime.now()).days
-            w_s_dict = AKTIFPERINTAH.get(message.chat.id)
-            if not w_s_dict:
-                return
-              
+    ex = await bots.get_me()
+    expired_date = await get_expired_date(ex.id)
+    if expired_date is None:
+        expired_date = "Belum di tetapkan"
+    else:
+        remaining_days = (expired_date - datetime.now()).days
+
+    w_s_dict = AKTIFPERINTAH.get(message.chat.id)
+    if not w_s_dict:
+        return
     phone_number = w_s_dict.get("PHONE_NUMBER")
     loical_ci = w_s_dict.get("USER_CLIENT")
     is_tfa_reqd = bool(w_s_dict.get("IS_NEEDED_TFA"))
