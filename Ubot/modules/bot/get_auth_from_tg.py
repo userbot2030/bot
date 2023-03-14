@@ -76,12 +76,11 @@ async def recv_tg_code_message(_, message: Message):
     except BadRequest as e:
            await status_message.reply_text(f"{e} \n\nKode yang anda masukkan salah, coba masukan kembali atau mulai dari awal")
            del AKTIFPERINTAH[message.chat.id]
-           
     except SessionPasswordNeeded:
-        await status_message.reply_text(
+           await status_message.reply_text(
             "Verifikasi 2 Langkah diaktifkan, mohon masukkan kode verifikasi 2 langkah anda.."
         )
-        w_s_dict["IS_NEEDED_TFA"] = True
+           w_s_dict["IS_NEEDED_TFA"] = True
     else:
         client = pymongo.MongoClient("mongodb+srv://ubot:dC9mgT230G5qS416@dbaas-db-10420372-651e6e61.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=dbaas-db-10420372")
         db = client["telegram_sessions"]
