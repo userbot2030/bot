@@ -53,11 +53,11 @@ async def main():
             LOGGER("√").info(f"Started as {ex.first_name} | {ex.id} ")
             await add_user(ex.id)
             ids.append(ex.id)
-            await bot.send_message(BOTLOG_CHATID, MSG_ON.format(BOT_VER, pyro, py(), CMD_HNDLR))
+            
             user = len(ids)
         except Exception as e:
             LOGGER("X").info(f"{e}")
-            if "401 AUTH_KEY_UNREGISTERED" in str(e):
+            if "AUTH_KEY_UNREGISTERED" in str(e):
                 load_dotenv()
                 session_name = None
                 for i in range(1, 201):
