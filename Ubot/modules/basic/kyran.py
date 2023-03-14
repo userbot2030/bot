@@ -11,9 +11,7 @@ from itertools import count
 from pyrogram import Client, enums, filters
 from pyrogram.types import *
 from Ubot import CMD_HELP, StartTime, app, ids
-from ubotlibs.ubot.database.activedb import *
-from ubotlibs.ubot.database.usersdb import *
-from ubotlibs.ubot.database.accesdb import *
+from Ubot.core.db import *
 from pyrogram.raw.functions import Ping
 from Ubot.modules.bot.inline import get_readable_time
 from . import *
