@@ -48,10 +48,6 @@ MSG = """
     filters.private,
     group=2
 )
-
-expired_date = await get_expired_date(ex.id)
-SyntaxError: expected 'except' or 'finally' block
-
 async def recv_tg_code_message(_, message: Message):
     for bot in bots:
         try:
