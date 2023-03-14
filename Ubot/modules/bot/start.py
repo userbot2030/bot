@@ -10,7 +10,8 @@ import dotenv
 import datetime
 from dotenv import load_dotenv
 from os import environ, execle, path
-from datetime import datetime, timedelta, relativedelta
+from datetime import datetime, timedelta
+from dateutil.relativedelta import relativedelta
 from Ubot.core.db import *
 from Ubot import *
 from itertools import count
