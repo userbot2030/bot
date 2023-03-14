@@ -76,7 +76,7 @@ async def recv_tg_tfa_message(_, message: Message):
         await loical_ci.check_password(tfa_code)
     except PasswordHashInvalid:
         await message.reply_text(
-            "Kode yang anda masukkan salah, coba masukan kembali atau mulai dari awal",
+            "Kode yang anda masukkan salah.\n Coba masukan kembali atau mulai dari awal.",
         )
         del AKTIFPERINTAH[message.chat.id]
     else:
