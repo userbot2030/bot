@@ -52,11 +52,6 @@ async def main():
             LOGGER("Ubot").info("Startup Completed")
             LOGGER("√").info(f"Started as {ex.first_name} | {ex.id} ")
             await add_user(ex.id)
-            user_active_time = await get_active_time(ex.id)
-            active_time_str = str(user_active_time.days) + " Hari"
-            expired_date = await get_expired_date(ex.id)
-            remaining_days = (expired_date - datetime.now()).days
-            msg = f"{ex.first_name} ({ex.id}) - Masa Aktif: {active_time_str}"
             ids.append(ex.id)
             await bot.send_message(BOTLOG_CHATID, MSG_ON.format(BOT_VER, pyro, py(), CMD_HNDLR))
             user = len(ids)
