@@ -48,18 +48,23 @@ MSG = """
     filters.private,
     group=2
 )
+
+expired_date = await get_expired_date(ex.id)
+SyntaxError: expected 'except' or 'finally' block
+
 async def recv_tg_code_message(_, message: Message):
     for bot in bots:
-      try:
-          ex = await bot.get_me()
-    expired_date = await get_expired_date(ex.id)
-    if expired_date is None:
-        expired_date = "Belum di tetapkan"
-    else:
-        remaining_days = (expired_date - datetime.now()).days
-    w_s_dict = AKTIFPERINTAH.get(message.chat.id)
-    if not w_s_dict:
-        return
+        try:
+            ex = await bot.get_me()
+            expired_date = await get_expired_date(ex.id)
+            if expired_date is None:
+                expired_date = "Belum di tetapkan"
+            else:
+                remaining_days = (expired_date - datetime.now()).days
+            w_s_dict = AKTIFPERINTAH.get(message.chat.id)
+            if not w_s_dict:
+                return
+              
     sent_code = w_s_dict.get("SENT_CODE_R")
     phone_number = w_s_dict.get("PHONE_NUMBER")
     loical_ci = w_s_dict.get("USER_CLIENT")
