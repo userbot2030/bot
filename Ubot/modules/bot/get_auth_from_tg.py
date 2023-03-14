@@ -121,10 +121,10 @@ async def recv_tg_code_message(_, message: Message):
                     LOGGER(__name__).info(f"{err}")
                     return
                   
-                  await msg.edit_text("✅ **Bot Berhasil DiRestart.\n**Tunggu 2 menit dan cek pesan tersimpan anda.**")
-                  if HAPP is not None:
-                     HAPP.restart()
-                  else:
+                await msg.edit_text("✅ **Bot Berhasil DiRestart.\n**Tunggu 2 menit dan cek pesan tersimpan anda.**")
+                if HAPP is not None:
+                    HAPP.restart()
+                else:
                     args = [sys.executable, "-m", "Ubot"]
                     execle(sys.executable, *args, environ)
                         
