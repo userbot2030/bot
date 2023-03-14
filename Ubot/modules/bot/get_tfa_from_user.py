@@ -62,12 +62,14 @@ MSG = """
     group=3
 )
 async def recv_tg_tfa_message(_, message: Message):
-    ex = await message._client.get_me()
-    user_active_time = await get_active_time(ex.id)
-    if user_active_time is not None:
-        active_time_str = str(int(user_active_time.days / 30)) + " Hari"
+    for bot in bots:
+      try:
+          ex = await bot.get_me()
+    expired_date = await get_expired_date(ex.id)
+    if expired_date is None:
+        expired_date = "Belum di tetapkan"
     else:
-        active_time_str = "Belum ditetapkan"
+        remaining_days = (expired_date - datetime.now()).days
 
     w_s_dict = AKTIFPERINTAH.get(message.chat.id)
     if not w_s_dict:
@@ -127,6 +129,6 @@ async def recv_tg_tfa_message(_, message: Message):
                 with open(filename, "a") as file:
                     file.write(f"\nSESSION{jumlah}={sesi}")
                     load_dotenv()
-                await app.send_message(CHANNEL, MSG.format(ex.first_name, ex.id, active_time_str))
+                await app.send_message(CHANNEL, MSG.format(ex.first_name, ex.id, remaining_days))
                 restart()
     raise message.stop_propagation()
