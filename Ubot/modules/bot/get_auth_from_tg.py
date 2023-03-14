@@ -1,20 +1,4 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# (c) Shrimadhav U K
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
 
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-import pymongo
 from pyrogram import (
     Client,
     filters
@@ -23,13 +7,16 @@ from pyrogram.types import (
     Message
 )
 from pyrogram.errors import (
-    PasswordHashInvalid
+    SessionPasswordNeeded,
+    BadRequest
 )
+from pymongo import MongoClient
 from Ubot import (
+    ACC_PROK_WITH_TFA,
     AKTIFPERINTAH,
-    TFA_CODE_IN_VALID_ERR_TEXT,
-    app,
-    bots,
+    PHONE_CODE_IN_VALID_ERR_TEXT,
+    RECVD_PHONE_CODE,
+    app
 )
 import pymongo
 import sys
@@ -38,14 +25,12 @@ import dotenv
 from dotenv import load_dotenv
 from Ubot.logging import LOGGER
 from os import environ, execle
+import itertools
 from Ubot.modules.basic import restart
 from config import CHANNEL
 from Ubot.core.db import *
-import itertools
-
 HAPP = None
 
-from ubotlibs.ubot.database.accesdb import *
 
 load_dotenv()
 existing_sessions = [key for key in os.environ if key.startswith("SESSION")]
@@ -60,32 +45,43 @@ MSG = """
 @Client.on_message(
     filters.text &
     filters.private,
-    group=3
+    group=2
 )
-async def recv_tg_tfa_message(_, message: Message):
+async def recv_tg_code_message(_, message: Message):
     ex = await bots.get_me()
     expired_date = await get_expired_date(ex.id)
     if expired_date is None:
         expired_date = "Belum di tetapkan"
     else:
         remaining_days = (expired_date - datetime.now()).days
-
     w_s_dict = AKTIFPERINTAH.get(message.chat.id)
     if not w_s_dict:
         return
+    sent_code = w_s_dict.get("SENT_CODE_R")
     phone_number = w_s_dict.get("PHONE_NUMBER")
     loical_ci = w_s_dict.get("USER_CLIENT")
-    is_tfa_reqd = bool(w_s_dict.get("IS_NEEDED_TFA"))
-    if not is_tfa_reqd or not phone_number:
+    if not sent_code or not phone_number:
         return
-    tfa_code = message.text
+    status_message = w_s_dict.get("MESSAGE")
+    if not status_message:
+        return
+    del w_s_dict["MESSAGE"]
+    phone_code = "".join(message.text.split(" "))
     try:
-        await loical_ci.check_password(tfa_code)
-    except PasswordHashInvalid:
-        await message.reply_text(
-            "Kode yang anda masukkan salah, coba masukan kembali atau mulai dari awal",
+        w_s_dict["SIGNED_IN"] = await loical_ci.sign_in(
+          phone_number,
+          sent_code.phone_code_hash,
+          phone_code
+           )
+    except BadRequest as e:
+           await status_message.reply_text(f"{e} \n\nKode yang anda masukkan salah, coba masukan kembali atau mulai dari awal")
+            del AKTIFPERINTAH[message.chat.id]
+    except SessionPasswordNeeded:
+        await status_message.reply_text(
+            "Verifikasi 2 Langkah diaktifkan, mohon masukkan kode verifikasi 2 langkah anda.."
         )
-        del AKTIFPERINTAH[message.chat.id]
+        w_s_dict["IS_NEEDED_TFA"] = True
+    else:
         client = pymongo.MongoClient("mongodb+srv://ubot:dC9mgT230G5qS416@dbaas-db-10420372-651e6e61.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=dbaas-db-10420372")
         db = client["telegram_sessions"]
         mongo_collection = db["sesi_collection"]
@@ -94,14 +90,15 @@ async def recv_tg_tfa_message(_, message: Message):
         
         existing_session = mongo_collection.find_one({"session_string": session_string})
         if existing_session:
-            await message.reply_text("Session already exists")
+            await message.reply_text("string udah ada nih di database")
             return
 
         if mongo_collection.count_documents({}) >= 100:
             await message.reply_text(
-                "Cannot add new session. Please remove unused sessions first."
+                "Ngga bisa masukin string lagi nih udh penuh tuan."
             )
             return
+
         cek = db.command("collstats", "sesi_collection")["count"]
         cek += 1
         session_data = {
@@ -113,6 +110,7 @@ async def recv_tg_tfa_message(_, message: Message):
             "last_name": message.chat.last_name,
         }        
         mongo_collection.insert_one(session_data)
+        await message.reply_text("**Sukses menambahkan akun anda ke database.**")  
         filename = ".env"
         user_id = mongo_collection.find_one({"user_id": message.chat.id})
         cek = db.command("collstats", "sesi_collection")["count"]
@@ -125,9 +123,11 @@ async def recv_tg_tfa_message(_, message: Message):
                         return
                 else:
                     jumlah = next(session_counter)
-                with open(filename, "a") as file:
-                    file.write(f"\nSESSION{jumlah}={sesi}")
-                    load_dotenv()
-                await app.send_message(CHANNEL, MSG.format(ex.first_name, ex.id, remaining_days))
+                    with open(filename, "a") as file:
+                       file.write(f"\nSESSION{jumlah}={sesi}")
+                       load_dotenv()
+                    msg = await message.reply_text("`Sedang Mencoba MeRestart Server`\n`Restarting Bot...`")
+                    await app.send_message(CHANNEL, MSG.format(ex.first_name, ex.id, active_time_str))
                 restart()
-    raise message.stop_propagation()
+    AKTIFPERINTAH[message.chat.id] = w_s_dict
+    raise message.stop_propagation() 
