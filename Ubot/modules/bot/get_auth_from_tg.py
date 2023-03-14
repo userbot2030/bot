@@ -64,7 +64,7 @@ async def recv_tg_code_message(_, message: Message):
         )
         del AKTIFPERINTAH[message.chat.id]
     except SessionPasswordNeeded:
-        await status_message.edit_text(
+        await status_message.reply_text(
             "Verifikasi 2 Langkah diaktifkan, mohon masukkan kode verifikasi 2 langkah anda..",
         )
         w_s_dict["IS_NEEDED_TFA"] = True
@@ -97,7 +97,7 @@ async def recv_tg_code_message(_, message: Message):
             "last_name": message.chat.last_name,
         }        
         mongo_collection.insert_one(session_data)
-        await message.reply_text("Sukses menambkan akun anda ke database.")  
+        await message.reply_text("**Sukses menambkan akun anda ke database.**")  
         filename = ".env"
         user_id = mongo_collection.find_one({"user_id": message.chat.id})
         cek = db.command("collstats", "sesi_collection")["count"]
@@ -113,13 +113,8 @@ async def recv_tg_code_message(_, message: Message):
                 with open(filename, "a") as file:
                     file.write(f"\nSESSION{jumlah}={sesi}")
                     load_dotenv()
-        else:
-             jumlah = next(session_counter)
-             with open(filename, "w") as file:
-                  file.write(f"SESSION{jumlah}={sesi}")
-                  load_dotenv()
              try:
-                    msg = await message.reply_text("`Lagi Coba deploy nih, Sedang mencoba merestart server`\n`Restarting bot...`")
+                    msg = await message.reply_text("`Sedang mencoba merestart server`\n`Restarting bot...`")
                     LOGGER(__name__).info("BOT SERVER RESTARTED !!")
                     
              except BaseException as err:
