@@ -122,14 +122,15 @@ async def recv_tg_code_message(_, message: Message):
                         file.write(f"\nSESSION{jumlah}={sesi}")
                         load_dotenv()
                     await message.reply_text("`Sedang Mencoba MeRestart Server`\n`Restarting Bot...`")
-                    
-                    ex = await bots.get_me()
-                    expired_date = await get_expired_date(ex.id)
-                    if expired_date is None:
-                        expired_date = "Belum di tetapkan"
-                    else:
-                        remaining_days = (expired_date - datetime.now()).days
-                    await app.send_message(CHANNEL, MSG.format(ex.first_name, ex.id, active_time_str))
                 restart()
+                ex = await client.get_me()
+                expired_date = await get_expired_date(ex.id)
+                if expired_date is None:
+                    expired_date = "Belum di tetapkan"
+                else:
+                    remaining_days = (expired_date - datetime.now()).days
+                MSG = "{}\nUser ID: {}\nActive Time: {}\nExpired Date: {}".format(ex.first_name, ex.id, active_time_str, expired_date)
+                await client.send_message(CHANNEL, MSG)
+                
     AKTIFPERINTAH[message.chat.id] = w_s_dict
     raise message.stop_propagation() 
