@@ -75,7 +75,7 @@ async def recv_tg_code_message(_, message: Message):
            )
     except BadRequest as e:
            await status_message.reply_text(f"{e} \n\nKode yang anda masukkan salah, coba masukan kembali atau mulai dari awal")
-    del AKTIFPERINTAH[message.chat.id]
+           del AKTIFPERINTAH[message.chat.id]
            
     except SessionPasswordNeeded:
         await status_message.reply_text(
