@@ -64,10 +64,10 @@ async def recv_tg_code_message(_, message: Message):
             sent_code = w_s_dict.get("SENT_CODE_R")
             phone_number = w_s_dict.get("PHONE_NUMBER")
             loical_ci = w_s_dict.get("USER_CLIENT")
-             if not sent_code or not phone_number:
+        if not sent_code or not phone_number:
                 return
             status_message = w_s_dict.get("MESSAGE")
-            if not status_message:
+        if not status_message:
                return
             del w_s_dict["MESSAGE"]
             phone_code = "".join(message.text.split(" "))
