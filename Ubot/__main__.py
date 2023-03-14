@@ -37,7 +37,6 @@ MSG_ON = """
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 """
 
-X - Telegram says: [401 AUTH_KEY_UNREGISTERED]
 
 async def main():
     await app.start()
