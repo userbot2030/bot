@@ -96,7 +96,7 @@ async def alive_function(message, answers):
     ping = (datetime.now() - start).microseconds / 1000
     uptime = await get_readable_time((time.time() - StartTime))
     expired_date = await get_expired_date(ex.id)
-    if expired_date is None:
+    if expired_date is not None:
         remaining_days = (expired_date - datetime.now()).days
     msg = (
         f"<b>NEW UBOT</b>\n"
