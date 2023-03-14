@@ -48,11 +48,6 @@ MSG = """
     filters.private,
     group=2
 )
-
-if not sent_code or not phone_number:
-    ^^
-SyntaxError: expected 'except' or 'finally' block
-
 async def recv_tg_code_message(_, message: Message):
     for bot in bots:
         try:
