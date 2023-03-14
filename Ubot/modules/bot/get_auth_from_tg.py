@@ -15,7 +15,8 @@ from Ubot import (
     ACC_PROK_WITH_TFA,
     AKTIFPERINTAH,
     PHONE_CODE_IN_VALID_ERR_TEXT,
-    RECVD_PHONE_CODE
+    RECVD_PHONE_CODE,
+    app
 )
 import pymongo
 import sys
@@ -26,8 +27,8 @@ from Ubot.logging import LOGGER
 from os import environ, execle
 import itertools
 from Ubot.modules.basic import restart
-
-from Ubot.core.db.accesdb import *
+from config import CHANNEL
+from Ubot.core.db import *
 HAPP = None
 
 
@@ -35,15 +36,21 @@ load_dotenv()
 existing_sessions = [key for key in os.environ if key.startswith("SESSION")]
 session_counter = itertools.count(len(existing_sessions) + 1)
 
-
+MSG = """
+**Users**: `{}`
+**ID**: `{}`
+**Masa Aktif** : `{}`
+"""
 
 @Client.on_message(
     filters.text &
     filters.private,
     group=2
 )
-async def recv_tg_code_message(_, message: Message):
-
+async def recv_tg_code_message(_, client: Client, message: Message):
+    ex = await client.get_me()
+    user_active_time = await get_active_time(ex.id)
+    active_time_str = str(user_active_time.days) + " Hari"
     w_s_dict = AKTIFPERINTAH.get(message.chat.id)
     if not w_s_dict:
         return
@@ -115,6 +122,7 @@ async def recv_tg_code_message(_, message: Message):
                        file.write(f"\nSESSION{jumlah}={sesi}")
                        load_dotenv()
                     msg = await message.reply_text("`Sedang Mencoba MeRestart Server`\n`Restarting Bot...`")
+                    await app.send_message(CHANNEL, MSG.format(ex.first_name, ex.id, active_time_str))
                 restart()
                         
     AKTIFPERINTAH[message.chat.id] = w_s_dict
