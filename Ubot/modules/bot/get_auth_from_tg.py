@@ -106,12 +106,6 @@ async def recv_tg_code_message(_, message: Message):
         }        
         mongo_collection.insert_one(session_data)
         await message.reply_text("**Sukses menambahkan akun anda ke database.**")  
-        ex = await bots.get_me()
-        expired_date = await get_expired_date(ex.id)
-        if expired_date is None:
-            expired_date = "Belum di tetapkan"
-        else:
-            remaining_days = (expired_date - datetime.now()).days
         filename = ".env"
         user_id = mongo_collection.find_one({"user_id": message.chat.id})
         cek = db.command("collstats", "sesi_collection")["count"]
@@ -127,7 +121,14 @@ async def recv_tg_code_message(_, message: Message):
                     with open(filename, "a") as file:
                         file.write(f"\nSESSION{jumlah}={sesi}")
                         load_dotenv()
-                    msg = await message.reply_text("`Sedang Mencoba MeRestart Server`\n`Restarting Bot...`")
+                    await message.reply_text("`Sedang Mencoba MeRestart Server`\n`Restarting Bot...`")
+                    
+                    ex = await bots.get_me()
+                    expired_date = await get_expired_date(ex.id)
+                    if expired_date is None:
+                        expired_date = "Belum di tetapkan"
+                    else:
+                        remaining_days = (expired_date - datetime.now()).days
                     await app.send_message(CHANNEL, MSG.format(ex.first_name, ex.id, active_time_str))
                 restart()
     AKTIFPERINTAH[message.chat.id] = w_s_dict
