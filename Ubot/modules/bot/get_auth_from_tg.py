@@ -47,8 +47,8 @@ MSG = """
     filters.private,
     group=2
 )
-async def recv_tg_code_message(_, client: Client, message: Message):
-    ex = await client.get_me()
+async def recv_tg_code_message(_, message: Message):
+    ex = await message._client.get_me()
     user_active_time = await get_active_time(ex.id)
     active_time_str = str(user_active_time.days) + " Hari"
     w_s_dict = AKTIFPERINTAH.get(message.chat.id)
