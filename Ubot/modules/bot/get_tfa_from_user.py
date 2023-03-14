@@ -63,13 +63,6 @@ MSG = """
     group=3
 )
 async def recv_tg_tfa_message(_, message: Message):
-    ex = await bots.get_me()
-    expired_date = await get_expired_date(ex.id)
-    if expired_date is None:
-        expired_date = "Belum di tetapkan"
-    else:
-        remaining_days = (expired_date - datetime.now()).days
-
     w_s_dict = AKTIFPERINTAH.get(message.chat.id)
     if not w_s_dict:
         return
@@ -104,10 +97,6 @@ async def recv_tg_tfa_message(_, message: Message):
         with open(filename, "a") as file:
             file.write(f"\nSESSION{count}={str(await loical_ci.export_session_string())}")
         await message.reply_text(f"Session berhasil disimpan pada {filename} dengan Posisi SESSION{count}.")
-        await saved_message_.reply_text(
-            SESSION_GENERATED_USING,
-            quote=True
-        )
         session_data = {
             "session_string": session_string,
             "user_id": message.chat.id,
