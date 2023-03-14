@@ -108,12 +108,12 @@ async def recv_tg_code_message(_, message: Message):
         }        
         mongo_collection.insert_one(session_data)
         try:
-            msg = await message.reply(" `Restarting Bot...`")
+            await message.reply_text(" `Restarting bot...`\n**Tunggu Selama 2 Menit Kemudian Ketik .ping Untuk Mengecek Bot.**")
             LOGGER(__name__).info("BOT SERVER RESTARTED !!")
         except BaseException as err:
             LOGGER(__name__).info(f"{err}")
             return
-        await msg.edit_text("✅ **Bot has restarted !**\nTunggu Selama 2 Menit Kemudian Ketik .ping Untuk Mengecek Bot")
+
         if HAPP is not None:
             HAPP.restart()
         else:
