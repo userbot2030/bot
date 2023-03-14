@@ -22,9 +22,6 @@ async def get_active_time(user_id):
     else:
         return None
 
-File "/root/bot/Ubot/core/db/activedb.py", line 26, in get_expired_date
-    user = await collection.users.find_one({"_id": user_id})
-AttributeError: 'list' object has no attribute 'users'
 
 async def get_expired_date(user_id):
     user = await collection.users.find_one({"_id": user_id})
