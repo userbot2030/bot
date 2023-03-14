@@ -36,12 +36,13 @@ class WWW:
     NearestDC = "Country: `{}`\n" "Nearest Datacenter: `{}`\n" "This Datacenter: `{}`"
     
 kopi = [
-    "**Hadir Sayang** 😍",
+    "**Hadir Mas** 😍",
     "**Mmuaahh** 😘",
-    "**Hadir Cinta** 🤗",
-    "**Kenapa ganteng** 🥰",
-    "**Iya sayang Kenapa?** 😘",
-    "**Dalem sayang** 🤗",
+    "**Hadir** 🤗",
+    "**Kenapa Mas** 🥰",
+    "**Iya Mas Kenapa?** 😘",
+    "**Dalem Mas** 🤗",
+    "**Aku Mas ?**",
 ]
 
 APAKAH_STRING = ["Iya", 
