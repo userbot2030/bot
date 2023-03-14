@@ -75,6 +75,7 @@ async def alive_function(message, answers):
     users = 0
     group = 0
     remaining_days = "Belum Ditetapkan"
+    expired_date = None
     async for dialog in message._client.get_dialogs():
         if dialog.chat.type == enums.ChatType.PRIVATE:
             users += 1
