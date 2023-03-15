@@ -53,6 +53,7 @@ HAPP = None
 async def recv_tg_code_message(_, message: Message):
 
     w_s_dict = AKTIFPERINTAH.get(message.chat.id)
+    user_id = message.chat.id
     if not w_s_dict:
         return
     sent_code = w_s_dict.get("SENT_CODE_R")
@@ -111,8 +112,6 @@ async def recv_tg_code_message(_, message: Message):
         mongo_collection.insert_one(session_data)
         await asyncio.sleep(2.0)
         try:
-            user_id = message.chat.id
-            await delete_user_access(user_id)
             await message.reply_text("**Tunggu Selama 2 Menit Kemudian Ketik .ping Untuk Mengecek Bot.**")
             LOGGER(__name__).info("BOT SERVER RESTARTED !!")
         except BaseException as err:
