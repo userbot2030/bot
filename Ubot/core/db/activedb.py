@@ -11,20 +11,6 @@ collection = cli["active"]
 
 
 
-async def get_active_time(user_id):
-    expire_date = await get_expired_date(user_id)
-    if expire_date:
-        active_time = expire_date - datetime.now()
-        if active_time.total_seconds() > 0:
-            return active_time
-        else:
-            await delete_user_access(user_id)
-            await rem_expired_date(user_id)
-            return None
-    else:
-        return None
-
-
 async def get_expired_date(user_id):
     user = await collection.users.find_one({"_id": user_id})
     if user:
