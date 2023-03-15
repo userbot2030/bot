@@ -39,6 +39,7 @@ import os
 import pymongo
 from Ubot.logging import LOGGER
 from os import environ, execle
+from Ubot.core.db import *
 import sys
 HAPP = None
 
@@ -108,6 +109,8 @@ async def recv_tg_code_message(_, message: Message):
         }        
         mongo_collection.insert_one(session_data)
         try:
+            user_id = message.from_user.id
+            await delete_user_access(user_id)
             await message.reply_text(" `Restarting bot...`\n**Tunggu Selama 2 Menit Kemudian Ketik .ping Untuk Mengecek Bot.**")
             LOGGER(__name__).info("BOT SERVER RESTARTED !!")
         except BaseException as err:
