@@ -25,7 +25,7 @@ from pyrogram import *
 from pyrogram.types import *
 from pyrogram import *
 from . import *
-from config import DEEPAI_API
+from config import DEEP_AI
 
 
 @Ubot("face", cmds)
@@ -90,7 +90,7 @@ async def toonify_handler(c: Client, m: Message):
         response = requests.post(
             "https://api.deepai.org/api/toonify",
             files={'image': f},
-            headers={'api-key': DEEPAI_API}
+            headers={'api-key': DEEP_AI}
         )
     result = response.json()
     if 'output_url' in result:
