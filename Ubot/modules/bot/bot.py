@@ -79,7 +79,7 @@ async def start_admin(_, query: CallbackQuery):
                     InlineKeyboardButton(text="👮‍♂ Admin 2", user_id=ADMIN2),
                 ],
                   [
-                     InlineKeyboardButton(text="Tutup", callback_data="close"),
+                     InlineKeyboardButton(text="Tutup", callback_data="cl_ad"),
                   ],
              ]
         ),
@@ -104,6 +104,10 @@ async def start_admin(_, query: CallbackQuery):
         ),
     )
 
+
+@app.on_callback_query(filters.regex("cl_ad"))
+async def close(_, query: CallbackQuery):
+    await query.message.delete()
 
 @app.on_callback_query(filters.regex("ub_modul_(.*)"))
 # @cb_wrapper
