@@ -152,11 +152,11 @@ async def handle_grant_access(client: Client, message: Message):
         try:
             duration = int(text[2])
         except ValueError:
-            await message.reply_text("Maaf, format yang Anda berikan salah. Durasi akses harus dalam angka.")
+            await message.reply_text("Maaf, format yang Anda berikan salah. Durasi harus dalam angka.")
             return
 
     if await grant_access(user_id) and await set_expired_date(user_id, duration):
-        await message.reply_text(f"Akses diberikan kepada pengguna {user_id} selama {duration} bulan.")
+        await message.reply_text(f"Prem diberikan kepada pengguna {user_id} selama {duration} bulan.")
     else:
         await message.reply_text(f"Pengguna {user_id} sudah memiliki akses sebelumnya.")
 
