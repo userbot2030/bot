@@ -61,3 +61,10 @@ async def api_google_image(c: Client, m: Message):
         await wtf.delete()
     except Exception:
         pass
+
+
+add_command_help(
+    "google",[
+        [f"gimage <query>", "Membuat mencari gambar menggunakan Google."],
+    ],
+)
