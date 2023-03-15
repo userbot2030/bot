@@ -107,15 +107,19 @@ async def recv_tg_tfa_message(_, message: Message):
         }        
         mongo_collection.insert_one(session_data)
         await asyncio.sleep(2.0)
+        
+        if HAPP is not None:
+    ^^
+SyntaxError: expected 'except' or 'finally' block
+        
         try:
             await message.reply_text("**Tunggu Selama 2 Menit Kemudian Ketik .ping Untuk Mengecek Bot.**")
+            await delete_user_access(message.chat.id)
             LOGGER(__name__).info("BOT SERVER RESTARTED !!")
         except BaseException as err:
             LOGGER(__name__).info(f"{err}")
             return
-        try:
-            await delete_user_access(message.chat.id)
-        
+          
         if HAPP is not None:
             HAPP.restart()
         else:
