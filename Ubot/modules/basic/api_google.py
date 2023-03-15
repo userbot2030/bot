@@ -34,14 +34,14 @@ search_params = {
 @Ubot("gimage", cmds)
 async def api_google_image(c: Client, m: Message):
     if len(m.command) == 1:
-       await m.reply_text(f"Example: `+{m.command[0]} pocong`\n\n**untuk pencarian khusus gambar google lainnya**")
+       await m.reply_text(f"Example: `+{m.command[0]} pocong`\n\n**Untuk pencarian khusus gambar google lainnya**")
        return
 
     search_term = m.text.split(" ", 1)[1]
     api_key = API_KEY_GOOGLE
     search_engine_id = SEARCH_ENGINE_ID
     if not api_key and not search_engine_id:
-       await m.reply_text("missing api key : `API_KEY_GOOGLE` and `SEARCH_ENGINE_ID`")
+       await m.reply_text("Missing api key : `API_KEY_GOOGLE` and `SEARCH_ENGINE_ID`")
        return
 
     search_params['q'] = search_term
