@@ -8,7 +8,9 @@
 #
 # kopas repo dan hapus credit, ga akan jadikan lu seorang developer
 # ©2023 Ubot | Ram Team
-
+import os
+import sys
+from re import sub
 import asyncio
 from time import time
 from pyrogram import Client, filters, enums
@@ -16,7 +18,6 @@ from pyrogram.errors import ChatAdminRequired
 from pyrogram.types import ChatPermissions, ChatPrivileges, Message
 from . import *
 from ubotlibs.ubot.utils.misc import *
-from ubotlibs.ubot.helper import *
 from ubotlibs.ubot.database.accesdb import *
 
 
