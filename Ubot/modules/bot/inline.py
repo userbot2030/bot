@@ -83,8 +83,10 @@ async def alive_function(message, answers):
             group += 1
     if message._client.me.id in BLACK:
         status = "OWNER"
+        remaining_days = "None"
     elif message._client.me.id in WHITE:
         status = "ADMINS"
+        remaining_days = "None"
     else:
         status = "MEMBER"
     start = datetime.now()
@@ -98,8 +100,9 @@ async def alive_function(message, answers):
     expired_date = await get_expired_date(ex.id)
     if expired_date is not None:
         remaining_days = (expired_date - datetime.now()).days
+        remaining_days = (datetime.now() + timedelta(days=remaining_days)).strftime('%d-%m-%Y')
     msg = (
-        f"<b>NEW UBOT</b>\n"
+        f"<b>New Project</b>\n"
         f"   <b> Status : {status} </b>\n"
         f"   <b> Users :</b> <code>{user}</code>\n"
         f"   <b> Ping DC :</b> <code>{ping} ms</code>\n"
@@ -110,8 +113,6 @@ async def alive_function(message, answers):
     answers.append(
         InlineQueryResultArticle(
             title="Alive",
-            description="Check Bot's Stats",
-            thumb_url="https://telegra.ph/file/8254768833ab62009c125.jpg",
             input_message_content=InputTextMessageContent(
                 msg, parse_mode=ParseMode.HTML, disable_web_page_preview=True
             ),
