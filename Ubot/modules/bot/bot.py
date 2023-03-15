@@ -98,7 +98,7 @@ async def start_admin(_, query: CallbackQuery):
                     InlineKeyboardButton(text="👮‍♂ Admin 2", user_id=ADMIN2),
                 ],
                   [
-                     InlineKeyboardButton(text="Tutup", callback_data="close_help"),
+                     InlineKeyboardButton(text="Tutup", callback_data="closed"),
                   ],
              ]
         ),
