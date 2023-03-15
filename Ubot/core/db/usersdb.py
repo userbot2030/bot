@@ -21,21 +21,26 @@ async def get_active_users():
 
 
 async def add_ubot(user_id, api_id, api_hash, session_string):
-    return await collection.update_one(
+    ubot = {
+        "user_id": user_id,
+        "api_id": api_id,
+        "api_hash": api_hash,
+        "session_string": session_string,
+    }
+    result = await collection.update_one(
         {"user_id": user_id},
-        {
-            "$set": {
-                "api_id": api_id,
-                "api_hash": api_hash,
-                "session_string": session_string,
-            }
-        },
-        upsert=True,
+        {"$set": ubot},
+        upsert=True
     )
+    return result.acknowledged
 
 
-async def remove_ubot(user_id):
-    return await collection.delete_one({"user_id": user_id})
+async def remove_ubot(user_id, session_string):
+    result = await collection.delete_one({
+        "user_id": user_id,
+        "session_string": session_string
+    })
+    return result.deleted_count > 0
 
 
 async def get_userbots():
