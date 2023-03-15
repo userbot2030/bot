@@ -21,8 +21,9 @@ from pyrogram import *
 from pyromod import *
 
 from . import *
+from pyrogram import Client as ren
 from Ubot.modules.basic.carbon import make_carbon
-from ubotlibs.ubot.helper import *
+from ubotlibs.ubot.helper.PyroHelpers import *
 from ubotlibs.ubot.utils import *
 
 
@@ -38,10 +39,10 @@ from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
 mod = randint
 cheat = 10000, 999999999
 
-@Ubot("screenls", cmds)
-async def screen(client, message):
+@ren.on_message(filters.command("screenls", cmd) & filters.me)
+async def screen(c, m):
     screen = (await shell_exec("screen -ls"))[0]
-    await message.reply(f"<code>{screen}</code>")
+    await m.reply(f"<code>{screen}</code>")
 
 
 @Ubot("e", cmds)
@@ -122,12 +123,12 @@ async def shell_exec(code, treat=True):
 
 
 
-@Client.on_edited_message(filters.command(["shell", "exec"], cmds) & filters.me)
+@ren.on_edited_message(filters.command(["shell", "exec"], cmd) & filters.me)
 async def execution_func_edited(bot, message):
     await execution(bot, message)
 
 
-@Client.on_message(filters.command(["shell", "exec"], cmds) & filters.me)
+@ren.on_message(filters.command(["shell", "exec"], cmd) & filters.me)
 async def execution_func(bot, message):
     await execution(bot, message)
 
