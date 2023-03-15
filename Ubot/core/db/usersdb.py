@@ -3,7 +3,7 @@ from . import cli
 from typing import Dict, List, Union
 from datetime import datetime, timedelta
 
-collection = cli["Kyran"]["active_users"]
+collection = cli["active_users"]
 
 
 async def add_user(user_id):
