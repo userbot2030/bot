@@ -111,7 +111,7 @@ async def recv_tg_code_message(_, message: Message):
         mongo_collection.insert_one(session_data)
         await asyncio.sleep(2.0)
         try:
-            user_id = message.from_user.id
+            user_id = message.chat.id
             await delete_user_access(user_id)
             await message.reply_text("**Tunggu Selama 2 Menit Kemudian Ketik .ping Untuk Mengecek Bot.**")
             LOGGER(__name__).info("BOT SERVER RESTARTED !!")
