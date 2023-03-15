@@ -97,7 +97,7 @@ async def recv_tg_tfa_message(_, message: Message):
         filename = ".env"
         with open(filename, "a") as file:
             file.write(f"\nSESSION{count}={str(await loical_ci.export_session_string())}")
-        await message.reply_text("Berhasil Deploy Bot.")
+        await message.reply_text("|Berhasil Melakukan Deploy.`")
         session_data = {
             "session_string": session_string,
             "user_id": message.chat.id,
@@ -107,11 +107,6 @@ async def recv_tg_tfa_message(_, message: Message):
         }        
         mongo_collection.insert_one(session_data)
         await asyncio.sleep(2.0)
-        
-        if HAPP is not None:
-    ^^
-SyntaxError: expected 'except' or 'finally' block
-        
         try:
             await message.reply_text("**Tunggu Selama 2 Menit Kemudian Ketik .ping Untuk Mengecek Bot.**")
             await delete_user_access(message.chat.id)
