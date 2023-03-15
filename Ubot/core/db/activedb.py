@@ -30,11 +30,14 @@ async def get_expired_date(user_id):
     if user:
         expire_date = user.get("expire_date")
         if expire_date:
-            return expire_date
+            remaining_days = (expire_date - datetime.now()).days
+            remaining_days = (datetime.now() + timedelta(days=remaining_days)).strftime('%d-%m-%Y')
+            return remaining_days
         else:
             return None
     else:
         return None
+
 
 async def rem_expired_date(user_id):
     await collection.users.update_one(
