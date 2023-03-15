@@ -18,10 +18,21 @@ from pyrogram.raw import functions
 from pyrogram.types import Message
 from datetime import datetime
 from . import DEVS, Ubot
-from ubotlibs.ubot.helper import *
-from ubotlibs.ubot.helper import edit_or_reply
+from ubotlibs.ubot.helper.PyroHelpers import *
 from Ubot import *
 from Ubot.modules.bot.inline import get_readable_time
+
+async def edit_or_reply(message: Message, *args, **kwargs) -> Message:
+    apa = (
+        message.edit_text
+        if bool(message.from_user and message.from_user.is_self or message.outgoing)
+        else (message.reply_to_message or message).reply_text
+    )
+    return await apa(*args, **kwargs)
+
+
+eor = edit_or_reply
+
 
 class WWW:
     SpeedTest = (
