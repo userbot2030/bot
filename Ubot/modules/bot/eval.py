@@ -14,7 +14,7 @@ from pyrogram.types import (InlineKeyboardButton, InlineKeyboardMarkup,
                             Message, ReplyKeyboardMarkup)
 
 from Ubot import *
-from . import DEVS
+from Ubot.modules.basic import DEVS
 
 async def aexec(code, client, message):
     exec(
