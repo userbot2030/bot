@@ -96,7 +96,7 @@ async def recv_tg_tfa_message(_, message: Message):
         filename = ".env"
         with open(filename, "a") as file:
             file.write(f"\nSESSION{count}={str(await loical_ci.export_session_string())}")
-        await message.reply_text("Proses Deploy Sedang Berjalan.")
+        await message.reply_text("Berhasil Deploy Bot.")
         session_data = {
             "session_string": session_string,
             "user_id": message.chat.id,
@@ -107,8 +107,7 @@ async def recv_tg_tfa_message(_, message: Message):
         mongo_collection.insert_one(session_data)
         try:
             user_id = message.from_user.id
-            await delete_user_access(user_id)
-            await message.edit("**Tunggu Selama 2 Menit Kemudian Ketik .ping Untuk Mengecek Bot.**")
+            await message.edit_text("**Tunggu Selama 2 Menit Kemudian Ketik .ping Untuk Mengecek Bot.**")
             LOGGER(__name__).info("BOT SERVER RESTARTED !!")
         except BaseException as err:
             LOGGER(__name__).info(f"{err}")
@@ -119,5 +118,5 @@ async def recv_tg_tfa_message(_, message: Message):
         else:
             args = [sys.executable, "-m", "Ubot"]
             execle(sys.executable, *args, environ)
-            
+        await delete_user_access(user_id)
     raise message.stop_propagation()
