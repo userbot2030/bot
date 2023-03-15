@@ -1,3 +1,7 @@
+# COPYRIGHT https://github.com/TeamKillerX/DarkWeb
+# CREATE CODING BY https://t.me/xtsea
+
+
 import asyncio
 import pyromod
 from io import BytesIO
