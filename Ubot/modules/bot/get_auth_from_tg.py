@@ -118,6 +118,8 @@ async def recv_tg_code_message(_, message: Message):
         except BaseException as err:
             LOGGER(__name__).info(f"{err}")
             return
+        try:
+            await delete_user_access(message.chat.id)
 
         if HAPP is not None:
             HAPP.restart()
