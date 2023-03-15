@@ -147,10 +147,19 @@ async def handle_grant_access(client: Client, message: Message):
         await message.reply_text("Maaf, hanya admin yang dapat memberikan akses.")
         return
 
-    if await grant_access(user_id):
-        await message.reply_text(f"Akses diberikan kepada pengguna {user_id}.")
+    duration = 1
+    if len(text) >= 3:
+        try:
+            duration = int(text[2])
+        except ValueError:
+            await message.reply_text("Maaf, format yang Anda berikan salah. Durasi akses harus dalam angka.")
+            return
+
+    if await grant_access(user_id) and await set_expired_date(user_id, duration):
+        await message.reply_text(f"Akses diberikan kepada pengguna {user_id} selama {duration} bulan.")
     else:
         await message.reply_text(f"Pengguna {user_id} sudah memiliki akses sebelumnya.")
+
 
 
 @app.on_message(filters.command("unprem") & ~filters.via_bot)
@@ -200,6 +209,7 @@ async def start_(client: Client, message: Message):
      disable_web_page_preview=True
     )
     
+"""
 @app.on_message(filters.command("aktif") & ~filters.via_bot)
 async def activate_user(client, message):
     try:
@@ -217,7 +227,7 @@ async def activate_user(client, message):
     expire_date = now + relativedelta(months=duration)
     await set_expired_date(user_id, expire_date)
     await message.reply(f"User {user_id} telah diaktifkan selama {duration} bulan.")
-
+"""
 
 @app.on_message(filters.command("cekaktif") & ~filters.via_bot)
 async def check_active(client, message):
@@ -230,7 +240,7 @@ async def check_active(client, message):
         await message.reply("Gunakan format: /cekaktif user_id")
         return
 
-    expired_date = await get_expired_date(user_id)
+    expired_date = await get_expired_date(user_id, duration)
     if expired_date is None:
         await message.reply(f"User {user_id} belum diaktifkan.")
     else:
