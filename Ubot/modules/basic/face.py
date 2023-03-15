@@ -28,7 +28,7 @@ from . import *
 from config import DEEPAI_API
 
 
-@Ubot(("face", cmds) & filters.me)
+@Ubot("face", cmds)
 async def face_detect(c: Client, m: Message):
     pro = await m.reply_text("`Processing...`")
     await asyncio.sleep(5)
@@ -55,7 +55,7 @@ async def face_detect(c: Client, m: Message):
     except BaseException:
         pass
 
-@Ubot(("pcil", cmds) & filters.me)
+@Ubot("pcil", cmds)
 async def generate_sketch(c: Client, m: Message):
     if m.reply_to_message.photo:
         file_id = m.reply_to_message.photo
@@ -75,7 +75,7 @@ async def generate_sketch(c: Client, m: Message):
 
 
 
-@Ubot((["toonify", "cartoon"], cmds) & filters.me)
+@Ubot(["toonify", "cartoon"], cmds)
 async def toonify_handler(c: Client, m: Message):
     pro = await m.reply_text("`Processing...`")
     await asyncio.sleep(5)
