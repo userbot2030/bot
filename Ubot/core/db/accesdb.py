@@ -1,7 +1,7 @@
 from pyrogram.filters import chat
 from pyrogram import Client
 from . import cli
-from .activedb import *
+from .activedb import set_expired_date
 from typing import Dict, List, Union
 from datetime import datetime, timedelta
 import pymongo.errors
