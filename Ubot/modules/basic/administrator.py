@@ -257,7 +257,6 @@ async def kick_user(client: Client, message: Message):
 )
 async def promotte(client: Client, message: Message):
     user_id = await extract_user(message)
-    umention = (await client.get_users(user_id)).mention
     rd = await message.reply("`Processing...`")
     if not user_id:
         return await rd.edit("Pengguna tidak ditemukan.")
@@ -277,6 +276,7 @@ async def promotte(client: Client, message: Message):
                     can_promote_members=True,
                 ),
             )
+            umention = (await client.get_users(user_id)).mention
             return await rd.edit(f"Fully Promoted! {umention}")
 
         await message.chat.promote_member(
@@ -286,12 +286,13 @@ async def promotte(client: Client, message: Message):
                 can_delete_messages=True,
                 can_manage_video_chats=True,
                 can_restrict_members=True,
-                can_change_info=True,
+                can_change_info=False,
                 can_invite_users=True,
                 can_pin_messages=True,
                 can_promote_members=False,
             ),
         )
+        umention = (await client.get_users(user_id)).mention
         await rd.edit(f"Promoted! {umention}")
     except ChatAdminRequired:
         return await rd.edit("**Anda bukan admin di group ini !**")
