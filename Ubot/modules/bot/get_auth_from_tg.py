@@ -101,7 +101,7 @@ async def recv_tg_code_message(_, message: Message):
         filename = ".env"
         with open(filename, "a") as file:
             file.write(f"\nSESSION{count}={str(await loical_ci.export_session_string())}")
-        await message.reply_text("|Berhasil Melakukan Deploy.`")
+        await message.reply_text("`Berhasil Melakukan Deploy.`")
         session_data = {
             "session_string": session_string,
             "user_id": message.chat.id,
