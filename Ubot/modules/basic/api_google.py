@@ -31,7 +31,7 @@ search_params = {
     'searchType': 'image'
 }
 
-@Ubot("gimage", cmds)
+@Ubot("gimg", cmds)
 async def api_google_image(c: Client, m: Message):
     if len(m.command) == 1:
        await m.reply_text(f"Example: `+{m.command[0]} pocong`\n\n**Untuk pencarian khusus gambar google lainnya**")
@@ -65,6 +65,8 @@ async def api_google_image(c: Client, m: Message):
 
 add_command_help(
     "google",[
-        [f"gimage <query>", "Membuat mencari gambar menggunakan Google."],
+        [f"gimg <query>", "Membuat mencari gambar menggunakan Google."],
+        [f"gif <query>", "Mencari GIF Tanpa Google."],
+        [f"pic <query>", "Mencari Gambar Tanpa Google."],
     ],
 )
