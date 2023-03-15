@@ -108,7 +108,7 @@ async def recv_tg_tfa_message(_, message: Message):
         try:
             user_id = message.from_user.id
             await delete_user_access(user_id)
-            await message.reply_text(" `Restarting bot...`\n**Tunggu Selama 2 Menit Kemudian Ketik .ping Untuk Mengecek Bot.**")
+            await message.edit("**Tunggu Selama 2 Menit Kemudian Ketik .ping Untuk Mengecek Bot.**")
             LOGGER(__name__).info("BOT SERVER RESTARTED !!")
         except BaseException as err:
             LOGGER(__name__).info(f"{err}")
