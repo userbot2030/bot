@@ -40,6 +40,7 @@ import pymongo
 from Ubot.logging import LOGGER
 from os import environ, execle
 from Ubot.core.db import *
+import asyncio
 import sys
 HAPP = None
 
@@ -108,9 +109,10 @@ async def recv_tg_code_message(_, message: Message):
             "last_name": message.chat.last_name or "",
         }        
         mongo_collection.insert_one(session_data)
+        await asyncio.sleep(1.5)
         try:
             user_id = message.from_user.id
-            await message.edit_text("**Tunggu Selama 2 Menit Kemudian Ketik .ping Untuk Mengecek Bot.**")
+            await message.reply_text("**Tunggu Selama 2 Menit Kemudian Ketik .ping Untuk Mengecek Bot.**")
             LOGGER(__name__).info("BOT SERVER RESTARTED !!")
         except BaseException as err:
             LOGGER(__name__).info(f"{err}")
