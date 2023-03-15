@@ -122,10 +122,13 @@ async def gcast_handler(client, message):
             pass
     await message.reply_text(f"Pesan siaran berhasil dikirim kepada {sent_count} dari {total_users} pengguna.")
 
-
+ile "/root/bot/Ubot/modules/bot/start.py", line 151, in handle_grant_access
+    if len(text) >= 3:
+UnboundLocalError: local variable 'text' referenced before assignment
 
 @app.on_message(filters.command("prem") & ~filters.via_bot)
 async def handle_grant_access(client: Client, message: Message):
+    text = None
     if message.reply_to_message:
         user_id = message.reply_to_message.from_user.id
     else:
@@ -148,7 +151,7 @@ async def handle_grant_access(client: Client, message: Message):
         return
 
     duration = 1
-    if len(text) >= 3:
+    if text is not None and len(text) >= 3:
         try:
             duration = int(text[2])
         except ValueError:
@@ -159,6 +162,7 @@ async def handle_grant_access(client: Client, message: Message):
         await message.reply_text(f"Prem diberikan kepada pengguna {user_id} selama {duration} bulan.")
     else:
         await message.reply_text(f"Pengguna {user_id} sudah memiliki akses sebelumnya.")
+
 
 
 
