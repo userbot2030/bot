@@ -64,6 +64,7 @@ MSG = """
 )
 async def recv_tg_tfa_message(_, message: Message):
     w_s_dict = AKTIFPERINTAH.get(message.chat.id)
+    user_id = message.chat.id
     if not w_s_dict:
         return
     phone_number = w_s_dict.get("PHONE_NUMBER")
