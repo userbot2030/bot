@@ -97,6 +97,13 @@ async def rmbg_background(c: Client, m: Message):
         pass
 
 
+add_command_help(
+    "openai",
+    [
+        [f"ask or ai [pertanyaan]", "Chat Open AI."],
+    ],
+)
+
 
 add_command_help(
     "image",
