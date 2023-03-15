@@ -17,6 +17,7 @@ from pyrogram import Client, filters, enums
 from pyrogram.errors import ChatAdminRequired
 from pyrogram.types import ChatPermissions, ChatPrivileges, Message
 from . import *
+from ubotlibs.ubot.helper.basic import eor
 from .profile import extract_user, extract_userid
 from ubotlibs.ubot.database.accesdb import *
 
@@ -106,15 +107,15 @@ async def set_chat_photo(client: Client, message: Message):
 @Client.on_message(filters.command("ban", cmds) & filters.me)
 async def member_ban(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message, sender_chat=True)
-    rd = await message.reply("`Processing...`")
+    await message.edit("`Processing...`")
     if not user_id:
-        return await rd.edit("Tidak dapat menemukan pengguna.")
+        return await message.edit("Tidak dapat menemukan pengguna.")
     if user_id == client.me.id:
-        return await rd.edit("Tidak bisa banned diri sendiri.")
+        return await message.edit("Tidak bisa banned diri sendiri.")
     if user_id in DEVS:
-        return await rd.edit("Tidak bisa banned Devs!")
+        return await message.edit("Tidak bisa banned Devs!")
     if user_id in (await list_admins(client, message.chat.id)):
-        return await rd.edit("Tidak bisa banned admin.")
+        return await message.edit("Tidak bisa banned admin.")
     try:
         mention = (await client.get_users(user_id)).mention
     except IndexError:
@@ -130,33 +131,33 @@ async def member_ban(client: Client, message: Message):
         msg += f"**Reason:** {reason}"
     try:
         await message.chat.ban_member(user_id)
-        await rd.edit(msg)
+        await message.edit(msg)
     except ChatAdminRequired:
-        return await rd.edit("**Anda bukan admin di group ini !**")
+        return await message.edit("**Anda bukan admin di group ini !**")
 
 
 
 @Client.on_message(filters.command("unban", cmds) & filters.me)
 async def member_unban(client: Client, message: Message):
     reply = message.reply_to_message
-    rd = await message.reply("`Processing...`")
+    await message.edit("`Processing...`")
     if reply and reply.sender_chat and reply.sender_chat != message.chat.id:
-        return await rd.edit("Tidak bisa unban ch")
+        return await message.edit("Tidak bisa unban ch")
 
     if len(message.command) == 2:
         user = message.text.split(None, 1)[1]
     elif len(message.command) == 1 and reply:
         user = message.reply_to_message.from_user.id
     else:
-        return await rd.edit(
+        return await message.edit(
             "Berikan username, atau reply pesannya."
         )
     try:
         await message.chat.unban_member(user)
         umention = (await client.get_users(user)).mention
-        await rd.edit(f"Unbanned! {umention}")
+        await message.edit(f"Unbanned! {umention}")
     except ChatAdminRequired:
-        return await rd.edit("**Anda bukan admin di group ini !**")
+        return await message.edit("**Anda bukan admin di group ini !**")
 
 
 
@@ -164,36 +165,36 @@ async def member_unban(client: Client, message: Message):
 async def pin_message(client: Client, message):
     if not message.reply_to_message:
         return await message.edit_text("Balas ke pesan untuk pin/unpin .")
-    rd = await message.reply("`Processing...`")
+    await message.edit("`Processing...`")
     r = message.reply_to_message
     if message.command[0][0] == "u":
         await r.unpin()
-        return await rd.edit(
+        return await message.edit(
             f"**Unpinned [this]({r.link}) message.**",
             disable_web_page_preview=True,
         )
     try:
         await r.pin(disable_notification=True)
-        await rd.edit(
+        await message.edit(
             f"**Pinned [this]({r.link}) message.**",
             disable_web_page_preview=True,
         )
     except ChatAdminRequired:
-        return await rd.edit("**Anda bukan admin di group ini !**")
+        return await message.edit("**Anda bukan admin di group ini !**")
 
 
 @Client.on_message(filters.command("mute", cmds) & filters.me)
 async def mute(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message)
-    rd = await message.reply("`Processing...`")
+    await message.edit("`Processing...`")
     if not user_id:
-        return await rd.edit("Pengguna tidak ditemukan.")
+        return await message.edit("Pengguna tidak ditemukan.")
     if user_id == client.me.id:
-        return await rd.edit("Tidak bisa mute diri sendiri.")
+        return await message.edit("Tidak bisa mute diri sendiri.")
     if user_id in DEVS:
-        return await rd.edit("Tidak bisa mute dev!")
+        return await message.edit("Tidak bisa mute dev!")
     if user_id in (await list_admins(client, message.chat.id)):
-        return await rd.edit("Tidak bisa mute admin.")
+        return await message.edit("Tidak bisa mute admin.")
     mention = (await client.get_users(user_id)).mention
     msg = (
         f"**Muted User:** {mention}\n"
@@ -203,38 +204,38 @@ async def mute(client: Client, message: Message):
         msg += f"**Reason:** {reason}"
     try:
         await message.chat.restrict_member(user_id, permissions=ChatPermissions())
-        await rd.edit(msg)
+        await message.edit(msg)
     except ChatAdminRequired:
-        return await rd.edit("**Anda bukan admin di group ini !**")
+        return await message.edit("**Anda bukan admin di group ini !**")
 
 
 
 @Client.on_message(filters.command("unmute", cmds) & filters.me)
 async def unmute(client: Client, message: Message):
     user_id = await extract_user(message)
-    rd = await message.reply("`Processing...`")
+    await message.edit("`Processing...`")
     if not user_id:
-        return await rd.edit("Pengguna tidak ditemukan.")
+        return await message.edit("Pengguna tidak ditemukan.")
     try:
         await message.chat.restrict_member(user_id, permissions=unmute_permissions)
         umention = (await client.get_users(user_id)).mention
-        await rd.edit(f"Unmuted! {umention}")
+        await message.edit(f"Unmuted! {umention}")
     except ChatAdminRequired:
-        return await rd.edit("**Anda bukan admin di group ini !**")
+        return await message.edit("**Anda bukan admin di group ini !**")
 
 
 @Client.on_message(filters.command("kick", cmds) & filters.me)
 async def kick_user(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message)
-    rd = await message.reply("`Processing...`")
+    await message.edit("`Processing...`")
     if not user_id:
-        return await rd.edit("Pengguna tidak ditemukan.")
+        return await message.edit("Pengguna tidak ditemukan.")
     if user_id == client.me.id:
-        return await rd.edit("Tidak bisa kick diri sendiri.")
+        return await message.edit("Tidak bisa kick diri sendiri.")
     if user_id == DEVS:
-        return await rd.edit("Tidak bisa kick dev!.")
+        return await message.edit("Tidak bisa kick dev!.")
     if user_id in (await list_admins(client, message.chat.id)):
-        return await rd.edit("Tidak bisa kick admin.")
+        return await message.edit("Tidak bisa kick admin.")
     mention = (await client.get_users(user_id)).mention
     msg = f"""
 **Kicked User:** {mention}
@@ -245,11 +246,11 @@ async def kick_user(client: Client, message: Message):
         msg += f"\n**Reason:** `{reason}`"
     try:
         await message.chat.ban_member(user_id)
-        await rd.edit(msg)
+        await message.edit(msg)
         await asyncio.sleep(1)
         await message.chat.unban_member(user_id)
     except ChatAdminRequired:
-        return await rd.edit("**Anda bukan admin di group ini !**")
+        return await message.edit("**Anda bukan admin di group ini !**")
 
 
 @Client.on_message(
@@ -257,9 +258,9 @@ async def kick_user(client: Client, message: Message):
 )
 async def promotte(client: Client, message: Message):
     user_id = await extract_user(message)
-    rd = await message.reply("`Processing...`")
+    await message.edit("`Processing...`")
     if not user_id:
-        return await rd.edit("Pengguna tidak ditemukan.")
+        return await message.edit("Pengguna tidak ditemukan.")
     rd = (await client.get_chat_member(message.chat.id, client.me.id)).privileges
     try: 
         if message.command[0][0] == "f":
@@ -277,7 +278,7 @@ async def promotte(client: Client, message: Message):
                 ),
             )
             umention = (await client.get_users(user_id)).mention
-            return await rd.edit(f"Fully Promoted! {umention}")
+            return await message.edit(f"Fully Promoted! {umention}")
 
         await message.chat.promote_member(
             user_id,
@@ -293,9 +294,9 @@ async def promotte(client: Client, message: Message):
             ),
         )
         umention = (await client.get_users(user_id)).mention
-        await rd.edit(f"Promoted! {umention}")
+        await message.edit(f"Promoted! {umention}")
     except ChatAdminRequired:
-        return await rd.edit("**Anda bukan admin di group ini !**")
+        return await message.edit("**Anda bukan admin di group ini !**")
 
 
 @Client.on_message(
@@ -307,11 +308,11 @@ async def promotte(client: Client, message: Message):
 @Client.on_message(filters.group & filters.command("demote", cmds) & filters.me)
 async def demote(client: Client, message: Message):
     user_id = await extract_user(message)
-    rd = await message.reply("`Processing...`")
+    await message.edit("`Processing...`")
     if not user_id:
-        return await rd.edit("Pengguna tidak ditemukan")
+        return await message.edit("Pengguna tidak ditemukan")
     if user_id == client.me.id:
-        return await rd.edit("Tidak bisa demote diri sendiri.")
+        return await message.edit("Tidak bisa demote diri sendiri.")
     await message.chat.promote_member(
         user_id,
         privileges=ChatPrivileges(
@@ -326,7 +327,7 @@ async def demote(client: Client, message: Message):
         ),
     )
     umention = (await client.get_users(user_id)).mention
-    await rd.edit(f"Demoted! {umention}")
+    await message.edit(f"Demoted! {umention}")
 
 
 add_command_help(
