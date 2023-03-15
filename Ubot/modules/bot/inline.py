@@ -40,8 +40,8 @@ BLACK = [951454060, 2099942562]
 def support():
     buttons = [
         [
-            InlineKeyboardButton(text="Support", url=f"https://t.me/kynansupport"),
-            InlineKeyboardButton(text="Deploy", url=f"t.me/ProjectUbot?start"),
+            InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/kynansupport"),
+            InlineKeyboardButton(text="ᴅᴇᴘʟᴏʏ", url=f"t.me/ProjectUbot?start"),
         ],
     ]
     return buttons
