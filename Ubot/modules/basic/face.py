@@ -69,7 +69,7 @@ async def generate_sketch(c: Client, m: Message):
         sketch_path = "cache/pencil_sketch.jpg"
         cv2.imwrite(sketch_path, pencil_sketch)
 
-        await m.reply_photo(photo=sketch_path, caption=f"Create by {client.me.mention}")
+        await m.reply_photo(photo=sketch_path, caption=f"Create by {c.me.mention}")
         os.remove(photo_path)
         os.remove(sketch_path)
 
