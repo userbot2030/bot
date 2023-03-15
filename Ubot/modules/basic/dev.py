@@ -43,7 +43,7 @@ async def screen(client, message):
     await message.reply(f"<code>{screen}</code>")
 
 
-@Ubot("ev", cmds)
+@Ubot("e", cmds)
 async def evaluation_cmd_t(client, message):
     status_message = await message.reply("`Processing eval..`")
     try:
@@ -120,12 +120,12 @@ async def shell_exec(code, treat=True):
     return stdout, process
 
 
-@Client.on_edited_message(filters.command(["cshell", "cexec"], cmds) & filters.user(DEVS) & ~filters.me)
+
 @Client.on_edited_message(filters.command(["shell", "exec"], cmds) & filters.me)
 async def execution_func_edited(bot, message):
     await execution(bot, message)
 
-@Client.on_message(filters.command(["cshell", "cexec"], cmds) & filters.user(DEVS) & ~filters.me)
+
 @Client.on_message(filters.command(["shell", "exec"], cmds) & filters.me)
 async def execution_func(bot, message):
     await execution(bot, message)
