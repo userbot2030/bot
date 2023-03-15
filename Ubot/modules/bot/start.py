@@ -155,12 +155,8 @@ async def handle_grant_access(client: Client, message: Message):
             await message.reply_text("Maaf, format yang Anda berikan salah. Durasi harus dalam angka.")
             return
 
-    if await grant_access(user_id) and await set_expired_date(user_id, duration):
-        await message.reply_text(f"Prem diberikan kepada pengguna {user_id} selama {duration} bulan.")
-    else:
-        await message.reply_text(f"Pengguna {user_id} sudah memiliki akses sebelumnya.")
-
-
+    await check_and_grant_user_access(user_id, duration)
+    await message.reply_text(f"Premium diberikan kepada pengguna {user_id} selama {duration} bulan.")
 
 
 @app.on_message(filters.command("unprem") & ~filters.via_bot)
