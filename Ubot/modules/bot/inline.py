@@ -41,9 +41,11 @@ def support():
     buttons = [
         [
             InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/kynansupport"),
+            InlineKeyboardButton(text="ᴀᴅᴍɪɴ", callback_data="start_admin"),
         ],
         [
             InlineKeyboardButton(text="ᴅᴇᴘʟᴏʏ", url=f"t.me/ProjectUbot?start"),
+            InlineKeyboardButton(text="ᴄʟᴏsᴇ", callback_data="close"),
         ],
     ]
     return buttons
