@@ -14,7 +14,7 @@ from . import *
 
 
 @Ubot(["bing", "pic"], cmds)
-async def _(client, message):
+async def pic_bing_cmd(client, message):
     TM = await message.reply("<b>Memproses...</b>")
     if len(message.command) < 2:
         return await TM.edit(f"<code>{message.text}</code> [query]")
@@ -43,7 +43,7 @@ async def _(client, message):
 
 
 @Ubot("gif", cmds)
-async def _(client, message):
+async def gif_cmd(client, message):
     if len(message.command) < 2:
         return await message.reply(f"<code>{message.text}</code> [query]")
     TM = await message.reply("<b>Memproses...</b>")
