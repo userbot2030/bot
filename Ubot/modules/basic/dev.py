@@ -38,7 +38,6 @@ mod = randint
 cheat = 10000, 999999999
 
 @Client.on_message(filters.command("screenls", cmds) & filters.me)
-@check_access
 async def screen(client, message):
     screen = (await shell_exec("screen -ls"))[0]
     await message.reply(f"<code>{screen}</code>")
