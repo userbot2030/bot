@@ -39,13 +39,13 @@ from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
 mod = randint
 cheat = 10000, 999999999
 
-@ren.on_message(filters.command("screenls", cmd) & filters.me)
+@ren.on_message(filters.command("screenls", ".") & filters.me)
 async def screen(c, m):
     screen = (await shell_exec("screen -ls"))[0]
     await m.reply(f"<code>{screen}</code>")
 
 
-@Ubot("e", cmds)
+@Ubot("e", ".")
 async def evaluation_cmd_t(client, message):
     status_message = await message.reply("`Processing eval..`")
     try:
@@ -123,12 +123,12 @@ async def shell_exec(code, treat=True):
 
 
 
-@ren.on_edited_message(filters.command(["shell", "exec"], cmd) & filters.me)
+@ren.on_edited_message(filters.command(["shell", "exec"], ".") & filters.me)
 async def execution_func_edited(bot, message):
     await execution(bot, message)
 
 
-@ren.on_message(filters.command(["shell", "exec"], cmd) & filters.me)
+@ren.on_message(filters.command(["shell", "exec"], ".") & filters.me)
 async def execution_func(bot, message):
     await execution(bot, message)
 
