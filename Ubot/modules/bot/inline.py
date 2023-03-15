@@ -45,7 +45,7 @@ def support():
         ],
         [
             InlineKeyboardButton(text="ᴅᴇᴘʟᴏʏ", url=f"t.me/ProjectUbot?start"),
-            InlineKeyboardButton(text="ᴄʟᴏsᴇ", callback_data="close"),
+            InlineKeyboardButton(text="ᴄʟᴏsᴇ", callback_data="close_help"),
         ],
     ]
     return buttons
