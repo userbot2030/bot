@@ -305,7 +305,7 @@ async def leave_vc_test(client, message):
     if os.path.exists(group_call.input_filename):
         os.remove(group_call.input_filename)
     await group_call.stop()
-    await edit_or_reply(message, f"`❌ **Lagu Dihentikan Di** : {message.chat.title} - Vc`")
+    await edit_or_reply(message, f"❌ **Lagu Dihentikan Di** : {message.chat.title}")
     del GPC[(message.chat.id, client.me.id)]
     
 add_command_help(
