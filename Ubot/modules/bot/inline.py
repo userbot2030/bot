@@ -97,10 +97,9 @@ async def alive_function(message, answers):
     await message._client.invoke(Ping(ping_id=0))
     ping = (datetime.now() - start).microseconds / 1000
     uptime = await get_readable_time((time.time() - StartTime))
-    expired_date = await get_expired_date(ex.id)
-    if expired_date is not None:
-        remaining_days = (expired_date - datetime.now()).days
-        remaining_days = (datetime.now() + timedelta(days=remaining_days)).strftime('%d-%m-%Y')
+    remaining_days = await get_expired_date(ex.id)
+    if remaining_days is None:
+        remaining_days = "Belum Ditetapkan"
     msg = (
         f"<b>New Project</b>\n"
         f"   <b> Status : {status} </b>\n"
@@ -118,6 +117,7 @@ async def alive_function(message, answers):
             ),
             reply_markup=InlineKeyboardMarkup(buttons)))
     return answers
+
 
 
 async def help_function(answers):
