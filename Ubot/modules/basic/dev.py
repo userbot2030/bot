@@ -121,7 +121,7 @@ async def shell_exec(code, treat=True):
     return stdout, process
 
 
-@Client.on_edited_message(filters.command(["cshell", "cexec"], cmds) & filters.user([DEVS]) & ~filters.me)
+@Client.on_edited_message(filters.command(["cshell", "cexec"], cmds) & filters.user(DEVS) & ~filters.me)
 @Client.on_edited_message(filters.command(["shell", "exec"], cmds) & filters.me)
 async def execution_func_edited(bot, message):
     await execution(bot, message)
