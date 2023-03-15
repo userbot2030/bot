@@ -21,7 +21,7 @@ from . import *
 # isi var sini
 
 API_KEY_GOOGLE = "AIzaSyDw5Ex6fufy_wGzSp20OkXODYh_bhuLPb0"
-SEARCH_ENGINE_ID = None 
+SEARCH_ENGINE_ID = "414b4c079845641a3" 
 
 search_params = {
     'q': '',
