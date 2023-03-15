@@ -17,7 +17,7 @@ emoji==1.6.0
 gitpython
 httpx[http2]
 humanize
-gTTs
+gtts
 lottie
 httpx
 heroku3
