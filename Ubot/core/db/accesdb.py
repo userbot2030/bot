@@ -137,6 +137,3 @@ async def check_and_grant_user_access(user_id: int, duration: int) -> None:
         await delete_user_access(user_id)
     if await grant_access(user_id) and await set_expired_date(user_id, duration):
         return
-    else:
-        await delete_user_access(user_id)
-
