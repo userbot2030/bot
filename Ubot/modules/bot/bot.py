@@ -105,10 +105,6 @@ async def start_admin(_, query: CallbackQuery):
     )
 
 
-@app.on_callback_query(filters.regex("close"))
-async def close(_, query: CallbackQuery):
-    await query.message.delete()
-
 @app.on_callback_query(filters.regex("ub_modul_(.*)"))
 # @cb_wrapper
 async def on_plug_in_cb(_, callback_query: CallbackQuery):
