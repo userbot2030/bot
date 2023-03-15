@@ -111,5 +111,8 @@ add_command_help(
         [f"rmbg [reply photo]", "Untuk menghapus background pada gambar."],
         [f"toanime <reply to foto>", "Convert foto ke anime menggunakan ai bot"],
         [f"toimg <reply stiker>", "Convert stiker ke foto."],
+        [f"cartoon [reply to image]", "Ubah gambar menggunakan deepai api."],
+        [f"toonify [reply to image]", "Untuk mempercantik gambar menggunakan deepai api."],
+        [f"face [reply to image]", "Untuk memeriksa deteksi wajah."],
     ],
 )
