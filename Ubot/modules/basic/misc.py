@@ -52,7 +52,6 @@ async def alive(client: Client, message: Message):
 
 
 @Ubot("id", cmds)
-@check_access
 async def get_id(bot: Client, message: Message):
     file_id = None
     user_id = None
