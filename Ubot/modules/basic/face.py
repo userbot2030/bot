@@ -25,7 +25,7 @@ from pyrogram import *
 from pyrogram.types import *
 from pyrogram import *
 from . import *
-from config import DEEP_AI
+DEEP_AI = "d7394561-0528-4714-a1ee-edd7020b48e1"
 
 
 @Ubot("face", cmds)
