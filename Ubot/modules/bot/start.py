@@ -91,11 +91,10 @@ async def user(client: Client, message: Message):
     for X in bots:
         try:
             user += f"""
-❏ USERBOT KE {count}
+❏ USERBOT KE {count + 1}
  ├ AKUN: <a href=tg://user?id={X.me.id}>{X.me.first_name} {X.me.last_name or ''}</a> 
  ╰ ID: <code>{X.me.id}</code>
 """
-            count += 1
         except:
             pass
     if int(len(str(user))) > 4096:
