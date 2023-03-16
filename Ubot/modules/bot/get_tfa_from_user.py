@@ -13,6 +13,8 @@
 
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
+from . import cli
+collection = cli["access"]
 
 import pymongo
 from pyrogram import (
@@ -42,7 +44,7 @@ from Ubot.modules.basic import restart
 from config import CHANNEL
 from Ubot.core.db import *
 import itertools
-import asyncio
+
 HAPP = None
 
 from ubotlibs.ubot.database.accesdb import *
@@ -63,8 +65,14 @@ MSG = """
     group=3
 )
 async def recv_tg_tfa_message(_, message: Message):
+    ex = await bots.get_me()
+    expired_date = await get_expired_date(ex.id)
+    if expired_date is None:
+        expired_date = "Belum di tetapkan"
+    else:
+        remaining_days = (expired_date - datetime.now()).days
+
     w_s_dict = AKTIFPERINTAH.get(message.chat.id)
-    user_id = message.chat.id
     if not w_s_dict:
         return
     phone_number = w_s_dict.get("PHONE_NUMBER")
@@ -77,7 +85,7 @@ async def recv_tg_tfa_message(_, message: Message):
         await loical_ci.check_password(tfa_code)
     except PasswordHashInvalid:
         await message.reply_text(
-            "Kode yang anda masukkan salah.\n Coba masukan kembali atau mulai dari awal.",
+            "Kode yang anda masukkan salah, coba masukan kembali atau mulai dari awal",
         )
         del AKTIFPERINTAH[message.chat.id]
     else:
@@ -97,7 +105,11 @@ async def recv_tg_tfa_message(_, message: Message):
         filename = ".env"
         with open(filename, "a") as file:
             file.write(f"\nSESSION{count}={str(await loical_ci.export_session_string())}")
-        await message.reply_text("`Berhasil Melakukan Deploy.`")
+        await message.reply_text(f"Session berhasil disimpan pada {filename} dengan Posisi SESSION{count}.")
+        await saved_message_.reply_text(
+            SESSION_GENERATED_USING,
+            quote=True
+        )
         session_data = {
             "session_string": session_string,
             "user_id": message.chat.id,
@@ -106,19 +118,25 @@ async def recv_tg_tfa_message(_, message: Message):
             "last_name": message.chat.last_name or "",
         }        
         mongo_collection.insert_one(session_data)
-        await asyncio.sleep(2.0)
         try:
-            await message.reply_text("**Tunggu Selama 2 Menit Kemudian Ketik .ping Untuk Mengecek Bot.**")
+            msg = await message.reply(" `Restarting bot...`")
             LOGGER(__name__).info("BOT SERVER RESTARTED !!")
         except BaseException as err:
             LOGGER(__name__).info(f"{err}")
             return
-          
+        await msg.edit_text("✅ **Bot has restarted !**\n\n")
         if HAPP is not None:
             HAPP.restart()
         else:
             args = [sys.executable, "-m", "Ubot"]
             execle(sys.executable, *args, environ)
-        await delete_user_access(user_id)
-        
+            
+        try:
+            result = await collection.users.delete_one({'user_id': user_id})
+            if result.deleted_count > 0:
+                return True
+            else:
+                return False
+        except pymongo.errors.PyMongoError:
+                return False
     raise message.stop_propagation()
