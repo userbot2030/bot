@@ -60,8 +60,7 @@ async def main():
 #            ex = await bot.get_me()
 #            await remove_ubot(int(ex.id), bot.session_string)
 #            await app.send_message(
-#                SUPPORT, f"✅ {bot['name']} Berhasil Dihapus Dari Database"
-            )
+#                SUPPORT, f"✅ {bot['name']} Berhasil Dihapus Dari Database")
 #            LOGGER("√").info(f"✅ {bot['name']} Berhasil Dihapus Dari Database")
     await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
     await idle()
