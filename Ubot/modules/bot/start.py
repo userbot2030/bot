@@ -21,6 +21,8 @@ from pyrogram import *
 from platform import python_version as py
 from pyrogram import __version__ as pyro
 from pyrogram.types import * 
+from io import BytesIO
+
 from Ubot.logging import LOGGER
 from config import SUPPORT
 
@@ -82,19 +84,28 @@ async def create_env(client, message):
 
 @app.on_message(filters.command(["user"]))
 async def user(client: Client, message: Message):
-    with open(".env") as f:
-        for i, line in enumerate(f, start=1):
-            print(f"Processing line {i}: {line.strip()}")
-            session_name = line.strip().split("=")[1]
-            print(f"  session_name: {session_name}")
-            session_number = int(session_name.split("SESSION")[1])
-            print(f"  session_number: {session_number}")
-            if i == session_number:
-                try:
-                    ex = await bot.get_me(session=session_name)
-                    await app.send_message(SUPPORT, ANU.format(i, ex.first_name, ex.id))
-                except Exception as e:
-                    print(f"Failed to get name for {session_name}: {e}")
+    if message.from_user.id not in Devs:
+        return
+    count = 0
+    user = ""
+    for X in bots:
+        try:
+            user += f"""
+❏ USERBOT KE {count}
+ ├ AKUN: <a href=tg://user?id={X.me.id}>{X.me.first_name} {X.me.last_name or ''}</a> 
+ ╰ ID: <code>{X.me.id}</code>
+"""
+            count += 1
+        except:
+            pass
+    if int(len(str(user))) > 4096:
+        with BytesIO(str.encode(str(user))) as out_file:
+            out_file.name = "userbot.txt"
+            await message.reply_document(
+                document=out_file,
+            )
+    else:
+        await message.reply(f"<b>{user}</b>")
 
 
 @app.on_message(filters.command("ubot") & ~filters.via_bot)
