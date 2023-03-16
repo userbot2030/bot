@@ -33,14 +33,10 @@ load_dotenv()
 
 session_counter = count(1)
 
-MSG_BOT = """
-▰▱▰▱°▱▱°▱▰▱▰
-◉ **Kyran-Pyro**
-◉ **Versi**: `{}`
-◉ **Users**: `{}`
-◉ **Phython**: `{}`
-◉ **Pyrogram**: `{}`
-▰▱▰▱°▱▱°▱▰▱▰
+ANU = """
+❏ **Users** Ke {}
+├╼ **Nama**: {}
+╰╼ **ID**: {}
 """
 
 command_filter = filters.private & filters.command("buat") & ~filters.via_bot        
@@ -84,19 +80,17 @@ async def create_env(client, message):
                         execle(sys.executable, *args, environ)
                         
 
-@app.on_message(filters.command(["alive"]))
-async def module_help(client: Client, message: Message):
-    served_users = len(ids)
-    msg = MSG_BOT
-    await app.send_message(SUPPORT, MSG_BOT.format(BOT_VER, served_users, py(), pyro)),
-    reply_markup=InlineKeyboardMarkup(
-      [
-        [
-          InlineKeyboardButton("Support",
-          url=f"https://t.me/kynansupport")
-        ]
-      ]
-    ),
+@app.on_message(filters.command(["user"]))
+async def user(client: Client, message: Message):
+    with open(".env") as f:
+        count = int(f.readline().strip())
+    for i, bot in enumerate(bots):
+        try:
+            ex = await bot.get_me()
+            await app.send_message(SUPPORT, ANU.format(count + i + 1, ex.first_name, ex.id))
+        except Exception as e:
+            print(f"Failed to get name for {bot}: {e}")
+
 
 
 @app.on_message(filters.command("ubot") & ~filters.via_bot)
