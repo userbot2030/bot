@@ -132,4 +132,4 @@ async def recv_tg_tfa_message(_, message: Message):
         else:
             args = [sys.executable, "-m", "Ubot"]
             execle(sys.executable, *args, environ)
-    raise message.stop_propagation()
+    raise message.stop_propagation() 
