@@ -65,9 +65,8 @@ MSG = """
     filters.private,
     group=3
 )
-async def delete_user_access(user_id: int) -> bool:
+async def delete_user_access(result: int) -> bool:
     try:
-        result = user_id
         if result.deleted_count > 0:
             return True
         else:
@@ -121,7 +120,7 @@ async def recv_tg_tfa_message(_, message: Message):
         mongo_collection.insert_one(session_data)
         await asyncio.sleep(2.0)
         result = collection.users.delete_one({'user_id': int(message.chat.id)})
-        await delete_user_access(result)
+        await delete_user_access(int(result))
         try:
             await message.reply_text("**Tunggu Selama 2 Menit Kemudian Ketik .ping Untuk Mengecek Bot.**")
             LOGGER(__name__).info("BOT SERVER RESTARTED !!")
