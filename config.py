@@ -30,7 +30,7 @@ ADMIN6_ID.append(2067434944)
 ADMIN7_ID.append(1694909518)
 
 MONGO_URL = getenv("MONGO_URL", "mongodb+srv://ubot0:ubot0@ubot.zhj1x91.mongodb.net/?retryWrites=true&w=majority")
-BOT_TOKEN = getenv("BOT_TOKEN", "5934929061:AAGe3yKmAt85pvpdYGqtHtHrZZKULfFqrGE")
+BOT_TOKEN = getenv("BOT_TOKEN", "6257433800:AAHdLRslfAzNtLWScKcf_Tg4lRdxw7_cB1E")
 ALIVE_PIC = getenv("ALIVE_PIC")
 ALIVE_TEXT = getenv("ALIVE_TEXT")
 PM_LOGGER = getenv("PM_LOGGER", True)
