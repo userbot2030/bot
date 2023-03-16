@@ -40,7 +40,7 @@ async def mati_log(user_id: int, message: Message) -> bool:
     except:
         return False
 
-@Client.on_message(filters.group & filters.mentioned & filters.incoming)
+@app.on_message(filters.group & filters.mentioned & filters.incoming & ~filters.via_bot)
 async def log_tagged_messages(client, message):
     user_id = message.from_user.id
     tai = f"<b>📨 PESAN BARU</b>\n<b> • : </b>{message.from_user.mention}"
@@ -48,8 +48,8 @@ async def log_tagged_messages(client, message):
     tai += f"\n<b> • 👀 </b><a href='{message.link}'>Lihat Pesan</a>"
     tai += f"\n<b> • Message : </b><code>{message.text}</code>"
     await asyncio.sleep(0.1)
-    await client.send_message(
-        BOTLOG_CHATID,
+    await app.send_message(
+        client.me.id,
         tai,
         parse_mode=enums.ParseMode.HTML,
         disable_web_page_preview=True,
