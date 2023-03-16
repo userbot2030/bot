@@ -54,8 +54,7 @@ async def main():
             ids.append(ex.id)
             user = len(ids)
         except RPCError:
-            user_id = int(bot["name"])
-            await remove_ubot(user_id, bot["session"])
+            await remove_ubot(int(bot["name"]))
             await app.send_message(
                 SUPPORT, f"✅ {bot['name']} Berhasil Dihapus Dari Database"
             )
