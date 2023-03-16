@@ -213,9 +213,9 @@ async def handle_revoke_access(client: Client, message: Message):
 @app.on_message(filters.command(["start"]) & filters.private)
 async def start_(client: Client, message: Message):
     await message.reply_text(
-        f"""<b>👋 **Halo {message.from_user.first_name}** \n
-💭 **Apa ada yang bisa saya bantu **
-💡 **Jika ingin membuat bot . Kamu bisa ketik /deploy untuk membuat bot.\n Atau Hubungi Admin Untuk Meminta Akses.**
+        f"""<b>👋 Halo {message.from_user.first_name} \n
+💭 Apa ada yang bisa saya bantu
+💡 Jika ingin membuat bot . Kamu bisa ketik /deploy untuk membuat bot.\n Atau Hubungi Admin Untuk Meminta Akses.
 </b>""",
         reply_markup=InlineKeyboardMarkup(
             [ 
