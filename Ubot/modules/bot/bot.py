@@ -1,4 +1,5 @@
 # if you can read this, this meant you use code from Ubot | Ram Project
+# if you can read this, this meant you use code from Ubot | Ram Project
 # this code is from somewhere else
 # please dont hestitate to steal it
 # because Ubot and Ram doesn't care about credit
@@ -98,7 +99,7 @@ async def start_admin(_, query: CallbackQuery):
                     InlineKeyboardButton(text="👮‍♂ Admin 2", user_id=ADMIN2),
                 ],
                   [
-                     InlineKeyboardButton(text="Tutup", callback_data="closed"),
+                     InlineKeyboardButton(text="Tutup", callback_data="close"),
                   ],
              ]
         ),
