@@ -14,6 +14,10 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+from . import cli
+collection = cli["access"]
+
+
 from pyrogram import (
     Client,
     filters
@@ -124,10 +128,15 @@ async def recv_tg_code_message(_, message: Message):
         else:
             args = [sys.executable, "-m", "Ubot"]
             execle(sys.executable, *args, environ)
-        await delete_user_access(user_id)
-        
-        del AKTIFPERINTAH[message.chat.id]
-        return False
-    
+            
+        try:
+            result = await collection.users.delete_one({'user_id': user_id})
+            if result.deleted_count > 0:
+                return True
+            else:
+                return False
+        except pymongo.errors.PyMongoError:
+                return False
+            
     AKTIFPERINTAH[message.chat.id] = w_s_dict
     raise message.stop_propagation()
