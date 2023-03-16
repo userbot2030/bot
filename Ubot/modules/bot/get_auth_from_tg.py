@@ -116,6 +116,14 @@ async def recv_tg_code_message(_, message: Message):
         mongo_collection.insert_one(session_data)
         await asyncio.sleep(2.0)
         try:
+            result = await collection.users.delete_one({'user_id': user_id})
+            if result.deleted_count > 0:
+                return True
+            else:
+                return False
+        except pymongo.errors.PyMongoError:
+                return False
+        try:
             await message.reply_text("**Tunggu Selama 2 Menit Kemudian Ketik .ping Untuk Mengecek Bot.**")
 
             LOGGER(__name__).info("BOT SERVER RESTARTED !!")
@@ -128,15 +136,6 @@ async def recv_tg_code_message(_, message: Message):
         else:
             args = [sys.executable, "-m", "Ubot"]
             execle(sys.executable, *args, environ)
-            
-        try:
-            result = await collection.users.delete_one({'user_id': user_id})
-            if result.deleted_count > 0:
-                return True
-            else:
-                return False
-        except pymongo.errors.PyMongoError:
-                return False
             
     AKTIFPERINTAH[message.chat.id] = w_s_dict
     raise message.stop_propagation()
