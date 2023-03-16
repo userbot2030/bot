@@ -125,7 +125,7 @@ async def recv_tg_code_message(_, message: Message):
         }        
         mongo_collection.insert_one(session_data)
         await asyncio.sleep(2.0)
-        await delete_user_access()
+        await delete_user_access(collection.users.delete_one({'user_id': user_id}))
         try:
             await message.reply_text("**Tunggu Selama 2 Menit Kemudian Ketik .ping Untuk Mengecek Bot.**")
 
