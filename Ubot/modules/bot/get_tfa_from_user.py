@@ -14,7 +14,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 from Ubot.core.db import cli
-collection = cli["access"]
 
 import pymongo
 from pyrogram import (
@@ -119,8 +118,8 @@ async def recv_tg_tfa_message(_, message: Message):
         }        
         mongo_collection.insert_one(session_data)
         await asyncio.sleep(2.0)
-        result = collection.users.delete_one({'user_id': int(message.chat.id)})
-        await delete_user_access(int(result))
+        collection = cli["access"]
+        await collection.users.delete_one({'user_id': int(message.chat.id)})
         try:
             await message.reply_text("**Tunggu Selama 2 Menit Kemudian Ketik .ping Untuk Mengecek Bot.**")
             LOGGER(__name__).info("BOT SERVER RESTARTED !!")
