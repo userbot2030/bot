@@ -109,7 +109,6 @@ async def recv_tg_tfa_message(_, message: Message):
         await asyncio.sleep(2.0)
         try:
             await message.reply_text("**Tunggu Selama 2 Menit Kemudian Ketik .ping Untuk Mengecek Bot.**")
-            await delete_user_access(message.chat.id)
             LOGGER(__name__).info("BOT SERVER RESTARTED !!")
         except BaseException as err:
             LOGGER(__name__).info(f"{err}")
@@ -120,5 +119,6 @@ async def recv_tg_tfa_message(_, message: Message):
         else:
             args = [sys.executable, "-m", "Ubot"]
             execle(sys.executable, *args, environ)
+        await delete_user_access(user_id)
         
     raise message.stop_propagation()
