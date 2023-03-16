@@ -111,6 +111,17 @@ async def aexec(code, c, m):
     return await locals()["__aexec"](c, m)
 
 
+
+@ren.on_edited_message(filters.command(["shell", "exec"], ".") & filters.me)
+async def execution_func_edited(bot, message):
+    await execution(bot, message)
+
+
+@ren.on_message(filters.command(["shell", "exec"], ".") & filters.me)
+async def execution_func(bot, message):
+    await execution(bot, message)
+
+
 async def shell_exec(code, treat=True):
     process = await asyncio.create_subprocess_shell(
         code, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.STDOUT
@@ -121,16 +132,6 @@ async def shell_exec(code, treat=True):
         stdout = stdout.decode().strip()
     return stdout, process
 
-
-
-@ren.on_edited_message(filters.command(["shell", "exec"], ".") & filters.me)
-async def execution_func_edited(bot, message):
-    await execution(bot, message)
-
-
-@ren.on_message(filters.command(["shell", "exec"], ".") & filters.me)
-async def execution_func(bot, message):
-    await execution(bot, message)
 
 async def execution(bot: Client, message: Message):
     cmd = message.text.split(" ", maxsplit=1)[1]
