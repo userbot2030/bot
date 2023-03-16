@@ -78,18 +78,20 @@ async def create_env(client, message):
                     else:
                         args = [sys.executable, "-m", "Ubot"]
                         execle(sys.executable, *args, environ)
-                        
+
 
 @app.on_message(filters.command(["user"]))
 async def user(client: Client, message: Message):
     with open(".env") as f:
-        count = int(f.readline().strip())
-    for i, bot in enumerate(bots):
-        try:
-            ex = await bot.get_me()
-            await app.send_message(SUPPORT, ANU.format(count + i + 1, ex.first_name, ex.id))
-        except Exception as e:
-            print(f"Failed to get name for {bot}: {e}")
+        for i, line in enumerate(f, start=1):
+            count = i
+            session_name = line.strip().split("=")[0]
+            try:
+                ex = await bot.get_me(session=session_name)
+                await app.send_message(SUPPORT, ANU.format(count, ex.first_name, ex.id))
+            except Exception as e:
+                print(f"Failed to get name for {session_name}: {e}")
+
 
 
 
