@@ -54,7 +54,8 @@ async def main():
             LOGGER("√").info(f"Started as {ex.first_name} | {ex.id} ")
             ids.append(ex.id)
             user = len(ids)
-        except RPCError:
+        except Exception as e:
+            LOGGER("X").info(f"{e}")
             await bot.start()
             ex = await bot.get_me()
             await remove_ubot(int(ex.id), bot.session_string)
