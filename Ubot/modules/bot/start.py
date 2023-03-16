@@ -84,13 +84,14 @@ async def create_env(client, message):
 async def user(client: Client, message: Message):
     with open(".env") as f:
         for i, line in enumerate(f, start=1):
-            count = i
-            session_name = line.strip().split("=")[0]
-            try:
-                ex = await bot.get_me(session=session_name)
-                await app.send_message(SUPPORT, ANU.format(count, ex.first_name, ex.id))
-            except Exception as e:
-                print(f"Failed to get name for {session_name}: {e}")
+            session_name = line.strip().split("=")[1]
+            if i == int(session_name.split("SESSION")[1]):
+                try:
+                    ex = await bot.get_me(session=session_name)
+                    await app.send_message(SUPPORT, ANU.format(i, ex.first_name, ex.id))
+                except Exception as e:
+                    print(f"Failed to get name for {session_name}: {e}")
+
 
 
 
