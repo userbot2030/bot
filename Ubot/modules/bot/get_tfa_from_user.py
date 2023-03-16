@@ -44,6 +44,7 @@ from Ubot.modules.basic import restart
 from config import CHANNEL
 from Ubot.core.db import *
 import itertools
+import asyncio
 
 HAPP = None
 
@@ -64,6 +65,16 @@ MSG = """
     filters.private,
     group=3
 )
+async def delete_user_access(user_id: int) -> bool:
+    try:
+        result = await collection.users.delete_one({'user_id': user_id})
+        if result.deleted_count > 0:
+            return True
+        else:
+            return False
+    except pymongo.errors.PyMongoError:
+        return False
+    
 async def recv_tg_tfa_message(_, message: Message):
     
     w_s_dict = AKTIFPERINTAH.get(message.chat.id)
@@ -109,6 +120,7 @@ async def recv_tg_tfa_message(_, message: Message):
         }        
         mongo_collection.insert_one(session_data)
         await asyncio.sleep(2.0)
+        await delete_user_access(message.chat.id)
         try:
             await message.reply_text("**Tunggu Selama 2 Menit Kemudian Ketik .ping Untuk Mengecek Bot.**")
             LOGGER(__name__).info("BOT SERVER RESTARTED !!")
@@ -121,13 +133,4 @@ async def recv_tg_tfa_message(_, message: Message):
         else:
             args = [sys.executable, "-m", "Ubot"]
             execle(sys.executable, *args, environ)
-            
-        try:
-            result = await collection.users.delete_one({'user_id': user_id})
-            if result.deleted_count > 0:
-                return True
-            else:
-                return False
-        except pymongo.errors.PyMongoError:
-                return False
     raise message.stop_propagation()
