@@ -8,6 +8,7 @@ import asyncio
 from typing import Dict, List, Union
 from datetime import datetime, timedelta
 from Ubot import BOTLOG_CHATID, app
+from Ubot.modules.bot.start import log_tagged_messages
 
 collection = cli["tag_log"]
 
@@ -39,21 +40,6 @@ async def mati_log(user_id: int, message: Message) -> bool:
             return False
     except:
         return False
-
-@app.on_message(filters.group & filters.mentioned & filters.incoming & ~filters.via_bot)
-async def log_tagged_messages(client, message):
-    user_id = message.from_user.id
-    tai = f"<b>📨 PESAN BARU</b>\n<b> • : </b>{message.from_user.mention}"
-    tai += f"\n<b> • Group : </b>{message.chat.title}"
-    tai += f"\n<b> • 👀 </b><a href='{message.link}'>Lihat Pesan</a>"
-    tai += f"\n<b> • Message : </b><code>{message.text}</code>"
-    await asyncio.sleep(0.1)
-    await app.send_message(
-        client.me.id,
-        tai,
-        parse_mode=enums.ParseMode.HTML,
-        disable_web_page_preview=True,
-    )
 
 
 
