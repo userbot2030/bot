@@ -106,8 +106,9 @@ async def user(client: Client, message: Message):
     user = ""
     for X in bots:
         try:
+            count += 1
             user += f"""
-❏ USERBOT KE {count + 1}
+❏ USERBOT KE {count}
  ├ AKUN: <a href=tg://user?id={X.me.id}>{X.me.first_name} {X.me.last_name or ''}</a> 
  ╰ ID: <code>{X.me.id}</code>
 """
