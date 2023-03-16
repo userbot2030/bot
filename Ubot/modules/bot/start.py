@@ -84,7 +84,7 @@ async def create_env(client, message):
 
 @app.on_message(filters.command(["user"]))
 async def user(client: Client, message: Message):
-    if message.from_user.id not in Devs:
+    if message.from_user.id not in DEVS:
         return
     count = 0
     user = ""
