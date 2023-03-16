@@ -64,15 +64,7 @@ MSG = """
     filters.private,
     group=3
 )
-async def delete_user_access(result: int) -> bool:
-    try:
-        if result.deleted_count > 0:
-            return True
-        else:
-            return False
-    except pymongo.errors.PyMongoError:
-        return False
-    
+
 async def recv_tg_tfa_message(_, message: Message):
     
     w_s_dict = AKTIFPERINTAH.get(message.chat.id)
@@ -132,4 +124,4 @@ async def recv_tg_tfa_message(_, message: Message):
         else:
             args = [sys.executable, "-m", "Ubot"]
             execle(sys.executable, *args, environ)
-    raise message.stop_propagation() 
+    raise message.stop_propagation()
