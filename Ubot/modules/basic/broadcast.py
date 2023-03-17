@@ -89,9 +89,9 @@ async def gucast(client: Client, message: Message):
 
 @Ubot("addbl", cmds)
 async def addblacklist(client: Client, message: Message):
-    xxnx = await edit_or_reply(message, "`Processing...`")
+    await message.reply_text("`Processing...`")
     if HAPP is None:
-        return await xxnx.edit(
+        return await message.edit_text(
             "**Silahkan Tambahkan Var** `HEROKU_APP_NAME` **untuk menambahkan blacklist**",
         )
     blgc = f"{BLACKLIST_GCAST} {message.chat.id}"
@@ -103,7 +103,7 @@ async def addblacklist(client: Client, message: Message):
         .replace("]", "")
         .replace("set() ", "")
     )
-    await xxnx.edit(
+    await message.edit_text(
         f"**Berhasil Menambahkan** `{message.chat.id}` **ke daftar blacklist gcast.**\n\nSedang MeRestart ntuk Menerapkan Perubahan."
     )
     if await in_heroku():
@@ -116,16 +116,16 @@ async def addblacklist(client: Client, message: Message):
 
 @Ubot("delbl", cmds)
 async def delblacklist(client: Client, message: Message):
-    xxnx = await edit_or_reply(message, "`Processing...`")
+    await message.reply_text("`Processing...`")
     if HAPP is None:
-        return await xxnx.edit(
+        return await message.edit_text(
             "**Silahkan Tambahkan Var** `HEROKU_APP_NAME` **untuk menambahkan blacklist**",
         )
     blchat = f"{BLACKLIST_GCAST} {message.chat.id}"
     gett = str(message.chat.id)
     if gett in blchat:
         blacklistgrup = blchat.replace(gett, "")
-        await xxnx.edit(
+        await message.edit_text(
             f"**Berhasil Menghapus** `{message.chat.id}` **dari daftar blacklist gcast.**\n\nSedang MeRestart untuk Menerapkan Perubahan."
         )
         if await in_heroku():
@@ -136,7 +136,7 @@ async def delblacklist(client: Client, message: Message):
             dotenv.set_key(path, "BLACKLIST_GCAST", blacklistgrup)
         restart()
     else:
-        await xxnx.edit("**Grup ini tidak ada dalam daftar blacklist gcast.**")
+        await message.edit_text("**Grup ini tidak ada dalam daftar blacklist gcast.**")
 
 
 add_command_help(
