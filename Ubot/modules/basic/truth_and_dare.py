@@ -13,18 +13,17 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import asyncio
 import random
-from pyrogram import *
-from pyrogram.types import *
+
+import Ubot.modules.basic.truth_and_dare_string as tod
 
 from . import *
+
 
 # LU GABISA CODING LU KONTOL
 # BELAJAR CODING DARI NOL
 
 
-import Ubot.modules.basic.truth_and_dare_string as tod
-
-@Client.on_message(filters.command("apakah", cmds) & filters.me)
+@Ubot("apakah", cmds)
 async def apakah(client, message):
     cot = message.text.split(None, 1)[1]
     if not cot:
@@ -32,34 +31,35 @@ async def apakah(client, message):
         return
     await message.reply(f"{random.choice(tod.AP)}")
 
-@Client.on_message(filters.command("kenapa", cmds) & filters.me)
-async def apakah(client, message):
+
+@Ubot("kenapa", cmds)
+async def kenapa(client, message):
     cot = message.text.split(None, 1)[1]
     if not cot:
         await message.reply("Berikan saya pertanyaan 😐")
         return
     await message.reply(f"{random.choice(tod.KN)}")
-    
-@Client.on_message(filters.command("bagaimana", cmds) & filters.me)
-async def apakah(client, message):
+
+
+@Ubot("bagaimana", cmds)
+async def bagaimana(client, message):
     cot = message.text.split(None, 1)[1]
     if not cot:
-        await message.reply("Berikan saya pertanyaan 😐")
-        return
+        return await message.reply("Berikan saya pertanyaan 😐")
     await message.reply(f"{random.choice(tod.BG)}")
 
-@Client.on_message(filters.command("dare", cmds) & filters.me)
+
+@Ubot("dare", cmds)
 async def dare(client, message):
-    try:
-        
+    try:        
         await message.edit_text(f"{random.choice(tod.DARE)}")
     except BaseException:
         pass
 
-@Client.on_message(filters.command("truth", cmds) & filters.me)
+
+@Ubot("truth", cmds)
 async def truth(client, message):
     try:
-        
         await message.edit_text(f"{random.choice(tod.TRUTH)}")
     except Exception:
         pass
