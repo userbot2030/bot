@@ -82,7 +82,7 @@ async def yt_video(client, message):
 async def yt_audio(client, message):
     if len(message.command) < 2:
         return await message.reply_text(
-            "❌ <b>Video tidak ditemukan,</b>\nmohon masukan judul video dengan benar.",
+            "❌ <b>Audio tidak ditemukan,</b>\nmohon masukan judul video dengan benar.",
         )
     infomsg = await message.reply_text("<b>🔍 Pencarian...</b>", quote=False)
     try:
