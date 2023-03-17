@@ -187,7 +187,7 @@ async def play_m(client, message):
             return await u_s.edit(f"**Error:** `{e}`")
         group_call.add_handler(playout_ended_handler, GroupCallFileAction.PLAYOUT_ENDED)
         group_call.input_filename = raw_file_name
-        return await u_s.edit(f"🔖 **Sedang memainkan** \n📀 **Judul** `{vid_title}`\n 💌 **Group**: `{message.chat.title}`!")
+        return await u_s.edit(f"🔖 **Sedang memainkan** \n📀 **Judul**: `{vid_title}`\n 💌 **Group**: `{message.chat.title}`!")
     elif not group_call.is_connected:
         try:
             await group_call.start(message.chat.id)
@@ -196,7 +196,7 @@ async def play_m(client, message):
         group_call.add_handler(playout_ended_handler, GroupCallFileAction.PLAYOUT_ENDED)
         group_call.input_filename = raw_file_name
         group_call.song_name = vid_title
-        return await u_s.edit(f"🔖 **Sedang memainkan** \n📀 **Judul** `{vid_title}`\n 💌 **Group**: `{message.chat.title}`!")
+        return await u_s.edit(f"🔖 **Sedang memainkan** \n📀 **Judul**: `{vid_title}`\n 💌 **Group**: `{message.chat.title}`!")
     else:
         s_d = s_dict.get((message.chat.id, client.me.id))
         f_info = {"song_name": vid_title,
