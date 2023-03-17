@@ -54,14 +54,7 @@ async def main():
             LOGGER("√").info(f"Started as {ex.first_name} | {ex.id} ")
             ids.append(ex.id)
             user = len(ids)
-        except Exception as e:
-            LOGGER("X").info(f"{e}")
-#            await bot.start()
-#            ex = await bot.get_me()
-#            await remove_ubot(int(ex.id), bot.session_string)
-#            await app.send_message(
-#                SUPPORT, f"✅ {bot['name']} Berhasil Dihapus Dari Database")
-#            LOGGER("√").info(f"✅ {bot['name']} Berhasil Dihapus Dari Database")
+        
     await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
     await idle()
     await aiosession.close()
