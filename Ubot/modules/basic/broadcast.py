@@ -28,7 +28,7 @@ HAPP = None
 @Ubot("gcast", cmds)
 async def gcast_cmd(client: Client, message: Message):
     if message.reply_to_message or get_arg(message):
-        tex = await message.reply_text("`Memulai Gcast...`")
+        await message.reply_text("`Memulai Gcast...`")
     else:
         return await message.edit_text("**Balas ke pesan/berikan sebuah pesan**")
     done = 0
@@ -51,7 +51,7 @@ async def gcast_cmd(client: Client, message: Message):
                 except Exception:
                     error += 1
                     await asyncio.sleep(0.3)
-    await tex.edit_text(
+    await message.edit_text(
         f"**Berhasil mengirim ke** `{done}` **Groups chat, Gagal mengirim ke** `{error}` **Groups**"
     )
 
@@ -59,7 +59,7 @@ async def gcast_cmd(client: Client, message: Message):
 @Ubot("gucast", cmds)
 async def gucast(client: Client, message: Message):
     if message.reply_to_message or get_arg(message):
-        text = await message.reply_text("`Started global broadcast...`")
+        await message.reply_text("`Started global broadcast...`")
     else:
         return await message.edit_text("**Berikan sebuah pesan atau balas ke pesan**")
     done = 0
@@ -82,7 +82,7 @@ async def gucast(client: Client, message: Message):
                 except Exception:
                     error += 1
                     await asyncio.sleep(0.3)
-    await text.edit_text(
+    await message.edit_text(
         f"**Successfully Sent Message To** `{done}` **chat, Failed to Send Message To** `{error}` **chat**"
     )
 
