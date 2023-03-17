@@ -18,6 +18,7 @@ from ubotlibs.ubot.database.accesdb import *
 
 @Ubot("limit", cmds)
 async def spamban(client: Client, m: Message):
+  await m.edit_text("`Processing...`")
     await client.unblock_user("SpamBot")
     response = await client.send(
         raw.functions.messages.StartBot(
