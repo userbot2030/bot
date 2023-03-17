@@ -24,7 +24,6 @@ MSG_BOT = """
 **New Ubot Actived ✅**
 **Phython**: `{}`
 **Pyrogram**: `{}`
-**User**: `{}`
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 """
 
@@ -62,7 +61,7 @@ async def main():
 #            await app.send_message(
 #                SUPPORT, f"✅ {bot['name']} Berhasil Dihapus Dari Database")
 #            LOGGER("√").info(f"✅ {bot['name']} Berhasil Dihapus Dari Database")
-    await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
+    await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro))
     await idle()
     await aiosession.close()
 
