@@ -121,7 +121,7 @@ async def pingme(client: Client, message: Message):
     duration = (end - start).microseconds / 1000
     await message.reply_text(
         f"❏ **PONG!!🏓**\n"
-        f"├╼ **Pinger** - `%sms`\n"
-        f"╰╼ **Uptime -** `{uptime}` \n" % (duration)
+        f"├ **Pinger** - `%sms`\n"
+        f"╰ **Uptime -** `{uptime}` \n" % (duration)
     )
     await ping_.delete()
