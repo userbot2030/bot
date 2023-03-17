@@ -27,8 +27,7 @@ from . import *
 async def apakah(client, message):
     cot = message.text.split(None, 1)[1]
     if not cot:
-        await message.reply("Berikan saya pertanyaan 😐")
-        return
+        return await message.reply("Berikan saya pertanyaan 😐")
     await message.reply(f"{random.choice(tod.AP)}")
 
 
@@ -36,8 +35,7 @@ async def apakah(client, message):
 async def kenapa(client, message):
     cot = message.text.split(None, 1)[1]
     if not cot:
-        await message.reply("Berikan saya pertanyaan 😐")
-        return
+        return await message.reply("Berikan saya pertanyaan 😐")
     await message.reply(f"{random.choice(tod.KN)}")
 
 
@@ -52,7 +50,7 @@ async def bagaimana(client, message):
 @Ubot("dare", cmds)
 async def dare(client, message):
     try:        
-        await message.edit_text(f"{random.choice(tod.DARE)}")
+        await message.editf"{random.choice(tod.DARE)}")
     except BaseException:
         pass
 
@@ -60,7 +58,7 @@ async def dare(client, message):
 @Ubot("truth", cmds)
 async def truth(client, message):
     try:
-        await message.edit_text(f"{random.choice(tod.TRUTH)}")
+        await message.edit(f"{random.choice(tod.TRUTH)}")
     except Exception:
         pass
 
