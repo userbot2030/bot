@@ -40,9 +40,9 @@ mod = randint
 cheat = 10000, 999999999
 
 @ren.on_message(filters.command("screenls", ".") & filters.me)
-async def screen(c, m):
+async def screen(client, message):
     screen = (await shell_exec("screen -ls"))[0]
-    await m.reply(f"<code>{screen}</code>")
+    await message.reply(f"<code>{screen}</code>")
 
 
 @Ubot("e", ".")
@@ -103,15 +103,6 @@ async def evaluation_cmd_t(client, message):
         await status_message.edit(final_output, parse_mode=enums.ParseMode.MARKDOWN)
 
 
-async def aexec(code, c, m):
-    exec(
-        "async def __aexec(c, m): "
-        + "".join(f"\n {l_}" for l_ in code.split("\n"))
-    )
-    return await locals()["__aexec"](c, m)
-
-
-
 @ren.on_edited_message(filters.command(["shell", "exec"], ".") & filters.me)
 async def execution_func_edited(bot, message):
     await execution(bot, message)
@@ -121,6 +112,13 @@ async def execution_func_edited(bot, message):
 async def execution_func(bot, message):
     await execution(bot, message)
 
+
+async def aexec(code, client, message):
+    exec(
+        "async def __aexec(c, m): "
+        + "".join(f"\n {l_}" for l_ in code.split("\n"))
+    )
+    return await locals()["__aexec"](client, message)
 
 async def shell_exec(code, treat=True):
     process = await asyncio.create_subprocess_shell(
@@ -132,8 +130,7 @@ async def shell_exec(code, treat=True):
         stdout = stdout.decode().strip()
     return stdout, process
 
-
-async def execution(bot: Client, message: Message):
+async def execution(bot, message):
     cmd = message.text.split(" ", maxsplit=1)[1]
 
     reply_to_id = message.id
