@@ -50,7 +50,7 @@ async def bagaimana(client, message):
 @Ubot("dare", cmds)
 async def dare(client, message):
     try:        
-        await message.editf"{random.choice(tod.DARE)}")
+        await message.edit(f"{random.choice(tod.DARE)}")
     except BaseException:
         pass
 
