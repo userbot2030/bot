@@ -21,29 +21,31 @@ from . import *
 
 # LU GABISA CODING LU KONTOL
 # BELAJAR CODING DARI NOL
-
-
 @Ubot("apakah", cmds)
 async def apakah(client, message):
-    cot = message.text.split(None, 1)[1]
-    if not cot:
+    split_text = message.text.split(None, 1)
+    if len(split_text) < 2:
         return await message.reply("Berikan saya pertanyaan 😐")
+    cot = split_text[1]
     await message.reply(f"{random.choice(tod.AP)}")
+
 
 
 @Ubot("kenapa", cmds)
 async def kenapa(client, message):
-    cot = message.text.split(None, 1)[1]
-    if not cot:
+    split_text = message.text.split(None, 1)
+    if len(split_text) < 2:
         return await message.reply("Berikan saya pertanyaan 😐")
+    cot = split_text[1]
     await message.reply(f"{random.choice(tod.KN)}")
 
 
 @Ubot("bagaimana", cmds)
 async def bagaimana(client, message):
-    cot = message.text.split(None, 1)[1]
-    if not cot:
+    split_text = message.text.split(None, 1)
+    if len(split_text) < 2:
         return await message.reply("Berikan saya pertanyaan 😐")
+    cot = split_text[1]
     await message.reply(f"{random.choice(tod.BG)}")
 
 
