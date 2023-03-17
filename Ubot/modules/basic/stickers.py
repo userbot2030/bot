@@ -39,27 +39,7 @@ babi= [
     "Minta dong banh ...",
 ]
 
-@Client.on_message(filters.command("pack", cmds) & filters.me)
-async def createpack(client, message):
-    if not message.reply_to_message:
-        await message.reply_text("Mohon balas ke stikers")
-        return
-    replied_sticker = message.reply_to_message.sticker
-    if not replied_sticker:
-        await message.reply_text("Mohon balas ke stikers")
-        return
-    await message.reply_text("Masukkan Nama Pack Anda")
-    pack_name_message = await client.read_history(message.chat.id, limit=1)[0]
-    pack_name = pack_name_message.text
 
-    await client.create_new_sticker_set(
-        user_id=message.from_user.id,
-        name=pack_name,
-        title=pack_name,
-        emojis=replied_sticker.emoji,
-        png_sticker=replied_sticker.file_id
-    )
-    await message.reply_text(f"Pack '{pack_name}' berhasil dibuat")
 
 @Ubot("kang", cmds)
 async def kang(client: Client, message: Message):
