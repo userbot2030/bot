@@ -43,7 +43,7 @@ def support():
             InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/kynansupport"),
         ],
         [
-            InlineKeyboardButton(text="ᴅᴇᴘʟᴏʏ", url=f"t.me/ProjectUbot?start"),
+            InlineKeyboardButton(text="ᴅᴇᴘʟᴏʏ", url=f"t.me/GagalProjectBot?start"),
             InlineKeyboardButton(text="ᴄʟᴏsᴇ", callback_data="close"),
         ],
     ]
