@@ -276,7 +276,7 @@ async def no_song_play(client, message):
     if not group_call.is_connected:
         await edit_or_reply(message, "**Tidak Ada Pemutaran**")
         return    
-    await edit_or_reply(message, f"`⏸ Dijeda {str(group_call.input_filename).replace('.raw', '')}.`")
+    await edit_or_reply(message, f"⏸ **Dijeda** `{str(group_call.input_filename).replace('.raw', '')}.`")
     group_call.pause_playout()
     
 
@@ -290,7 +290,7 @@ async def wow_dont_stop_songs(client, message):
         await edit_or_reply(message, "**Tidak Ada Pemutaran**")
         return    
     group_call.resume_playout()
-    await edit_or_reply(message, "`▶️ Dilanjutkan.`")
+    await edit_or_reply(message, "**▶️ Dilanjutkan.**")
         
 
 @Ubot("end", cmds)
