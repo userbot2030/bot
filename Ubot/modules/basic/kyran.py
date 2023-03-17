@@ -1,5 +1,6 @@
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
+from dateutil.relativedelta import relativedelta
 import asyncio
 import os
 from gc import get_objects
@@ -21,50 +22,64 @@ load_dotenv()
 session_counter = count(1)
 
     
-    
-@Ubot("prem", cmds)
+@Client.on_message(filters.command("prem") & filters.me)
 async def handle_grant_access(client: Client, message: Message):
+    text = None
     if message.reply_to_message:
         user_id = message.reply_to_message.from_user.id
     else:
         text = message.text.split()
         if len(text) < 2:
-            await message.edit("Maaf, format yang Anda berikan salah. Mohon balas ke pengguna atau berikan username/user ID.")
+            await message.reply_text("Maaf, format yang Anda berikan salah. Mohon balas ke pengguna atau berikan username/user ID.")
             return
         username = text[1]
-        user = await client.get_users(username)
+        try:
+            user = await client.get_users(username)
+        except ValueError:
+            user = None
         if user is None:
-            await message.edit(f"`Maaf, pengguna {username} tidak ditemukan`.")
+            await message.reply_text(f"Maaf, pengguna {username} tidak ditemukan.")
             return
         user_id = user.id
 
     if message.from_user.id not in ADMINS:
-        await message.edit("`Maaf, hanya admin yang dapat memberikan akses.`")
+        await message.reply_text("Maaf, hanya admin yang dapat memberikan akses.")
         return
 
-    if await grant_access(user_id):
-        await message.edit(f"`Akses diberikan kepada pengguna {user_id}.`")
-    else:
-        await message.edit(f"`Pengguna {user_id} sudah memiliki akses sebelumnya.`")
+    duration = 1
+    if text is not None and len(text) >= 3:
+        try:
+            duration = int(text[2])
+        except ValueError:
+            await message.reply_text("Maaf, format yang Anda berikan salah. Durasi harus dalam angka.")
+            return
+
+    await check_and_grant_user_access(user_id, duration)
+    await message.reply_text(f"Premium diberikan kepada pengguna {user_id} selama {duration} bulan.")
 
 
-@Ubot("unprem", cmds)
+@Client.on_message(filters.command("unprem") & filters.me)
 async def handle_revoke_access(client: Client, message: Message):
     if message.reply_to_message:
         user_id = message.reply_to_message.from_user.id
     else:
         text = message.text.split()
         if len(text) < 2:
-            await message.edit("Maaf, format yang Anda berikan salah. Mohon balas ke pengguna atau berikan username/user ID.")
+            await message.reply_text("Maaf, format yang Anda berikan salah. Mohon balas ke pengguna atau berikan username/user ID.")
             return
         username = text[1]
-        user = await client.get_users(username)
+        try:
+            user = await client.get_users(username)
+        except ValueError:
+            user = None
         if user is None:
-            await message.edit(f"`Maaf, pengguna {username} tidak ditemukan.`")
+            await message.reply_text(f"Maaf, pengguna {username} tidak ditemukan.")
             return
         user_id = user.id
+
     if message.from_user.id not in ADMINS:
-        await message.edit("`Maaf, hanya admin yang dapat mencabut akses.`")
+        await message.reply_text("Maaf, hanya admin yang dapat mencabut akses.")
         return
+
     await delete_user_access(user_id)
-    await message.edit(f"`Akses dicabut untuk pengguna {user_id}.`")
+    await message.reply_text(f"Akses dicabut untuk pengguna {user_id}.")
