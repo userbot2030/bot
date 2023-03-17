@@ -43,6 +43,7 @@ async def _(client, message):
             "geo_bypass": True,
         }
     )
+    await infomsg.edit(f"<b>📥 Downloader...</b>")
     try:
         ytdl_data = await run_sync(ydl.extract_info, link, download=True)
         file_path = ydl.prepare_filename(ytdl_data)
