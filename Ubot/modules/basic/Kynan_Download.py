@@ -42,7 +42,7 @@ async def _(client, message):
     try:
         search = YouTubeSearch(message.text.split(None, 1)[1])
     except Exception as error:
-        return await infomsg.edit(error)
+        return await infomsg.edit(f"<b>🔍 Pencarian...\n\n❌ Error: {error}</b>")
     title = search[1]
     duration = search[2]
     url = search[3]
@@ -63,7 +63,7 @@ async def _(client, message):
         ytdl_data = await run_sync(ydl.extract_info, url, download=True)
         file_path = ydl.prepare_filename(ytdl_data)
     except Exception as error:
-        return await infomsg.edit(error)
+        return await infomsg.edit(f"<b>📥 Downloader...\n\n❌ Error: {error}</b>")
     thumbnail = wget.download(thumbs)
     await client.send_video(
         message.chat.id,
