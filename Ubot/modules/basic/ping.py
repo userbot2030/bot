@@ -54,52 +54,6 @@ kopi = [
     "**Dalem Mas** 🤗",
     "**Aku Mas ?**",
 ]
-
-APAKAH_STRING = ["Iya", 
-                 "Tidak", 
-                 "Mungkin", 
-                 "Mungkin Tidak", 
-                 "Bisa jadi", 
-                 "Mungkin Tidak",
-                 "Tidak Mungkin",
-                 "Harus banget gua jawab?",
-                 "Apaansi nanya mulu lu",
-                 "Emang bener?",
-                 "Mana gua tau ",
-                 "Lu tanya gua, terus gua tanya siapa?",
-                 "Nanya Mulu lu"
-                 ]
-                 
-KENAPA_STRING = ["Iya", 
-                 "Tidak", 
-                 "Mungkin", 
-                 "Mungkin Tidak", 
-                 "Bisa jadi", 
-                 "Mungkin Tidak",
-                 "Tidak Mungkin",
-                 "Harus banget gua jawab?",
-                 "Apaansi nanya mulu lu",
-                 "Emang bener?",
-                 "Mana gua tau ",
-                 "Lu tanya gua, terus gua tanya siapa?",
-                 "Nanya Mulu lu"
-                 "Karna Kamu Jamet"
-                 ]
-                 
-BAGAIMANA_STRING = ["Tau ya", 
-                 "Ngapa si ?", 
-                 "Jamet", 
-                 "Diem Jamet", 
-                 "Berisik lu", 
-                 "Bacot",
-                 "Astaghfirullah, Anj",
-                 "Kan Udah Dibilang Jangan Budeg",
-                 "Apaansi nanya mulu lu",
-                 "Emang bener?",
-                 "Mana gua tau ",
-                 "Lu tanya gua, terus gua tanya siapa?",
-                 "Karna Kamu Jamet"
-                 ]
     
     
 @Ubot("speed", cmds)
