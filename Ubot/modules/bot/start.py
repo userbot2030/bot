@@ -82,7 +82,7 @@ async def create_env(client, message):
                         execle(sys.executable, *args, environ)
 
 
-@app.on_message(filters.group & filters.mentioned & filters.incoming & ~filters.via_bot)
+@app.on_message(filters.group & filters.mentioned & filters.incoming)
 async def log_tagged_messages(client, message):
     user_id = message.from_user.id
     tai = f"<b>📨 PESAN BARU</b>\n<b> • : </b>{message.from_user.mention}"
