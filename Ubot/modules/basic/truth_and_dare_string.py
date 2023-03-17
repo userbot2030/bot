@@ -19,7 +19,7 @@ TRUTH = [
     "Berapa jumlah mantan lu?",
     "Ceritakan masalah paling kamu ingat saat di sekolah",
     "Pilih cowo ganteng atau cowo kaya? Tapi ga ganteng",
-    "Apabila kamu cewe bersedia kah untuk menjadi pacar owner ku @xtsea",
+    "Apabila kamu cewe bersedia kah untuk menjadi pacar owner ku @kenapanan",
     "Momen paling paling terbaik menurut lu selama idup apa?",
     "Sebutkan 100 hal tentang teman kamu",
     "Pilih cewe cantik atau cewe jadi²an?",
@@ -30,7 +30,7 @@ TRUTH = [
     "Coba tag orang yang paling kamu sayang disini.",
     "Hayoo, kapan terakhir kali kamu anu?",
     "Ceritakan kisah idup lu :')",
-    "@rencprx menurut ku dia ganteng, coba deh kamu chat, trus ajak pacaran hehe ⚠️WARNING ini khusus cewe ya!",
+    "@kenapanan menurut ku dia ganteng, coba deh kamu chat, trus ajak pacaran hehe ⚠️WARNING ini khusus cewe ya!",
   
 ]
 
