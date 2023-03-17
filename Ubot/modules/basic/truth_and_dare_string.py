@@ -103,12 +103,12 @@ AP = ["Iya",
                  ]
                  
 KN = ["Iya", 
-                 "Tidak", 
-                 "Mungkin", 
-                 "Mungkin Tidak", 
-                 "Bisa jadi", 
-                 "Mungkin Tidak",
-                 "Tidak Mungkin",
+                 "Kaga Tau Ya", 
+                 "Kok Nanya Gue", 
+                 "Nanya Apaan", 
+                 "Tanya Emak Lu", 
+                 "Tanya Bokap Lu Coba",
+                 "Karena Lu Belom Mandi",
                  "Harus banget gua jawab?",
                  "Apaansi nanya mulu lu",
                  "Emang bener?",
@@ -119,8 +119,8 @@ KN = ["Iya",
                  ]
                  
 BG = ["Tau ya", 
-                 "Ngapa si ?", 
-                 "Jamet", 
+                 "Lah Au Ya ?", 
+                 "Mandi Aer Got", 
                  "Diem Jamet", 
                  "Berisik lu", 
                  "Bacot",
@@ -129,7 +129,7 @@ BG = ["Tau ya",
                  "Apaansi nanya mulu lu",
                  "Emang bener?",
                  "Mana gua tau ",
-                 "Lu tanya gua, terus gua tanya siapa?",
-                 "Karna Kamu Jamet"
+                 "Hahahaah, Au Ya?",
+                 "Mending Diem"
                  ]
 
