@@ -71,8 +71,7 @@ async def main():
     await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
     await idle()
     await aiosession.close()
-    for ex_id in ids:
-        await remove_user(ex_id)
+    
 
 
               
