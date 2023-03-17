@@ -51,7 +51,7 @@ async def apakah(client, message):
 @Client.on_message(filters.command("dare", cmds) & filters.me)
 async def dare(client, message):
     try:
-        await message.reply_text("`Processing.....`")
+        
         await message.edit_text(f"{random.choice(tod.DARE)}")
     except BaseException:
         pass
@@ -59,7 +59,7 @@ async def dare(client, message):
 @Client.on_message(filters.command("truth", cmds) & filters.me)
 async def truth(client, message):
     try:
-        await message.reply_text("`Processing.....`")
+        
         await message.edit_text(f"{random.choice(tod.TRUTH)}")
     except Exception:
         pass
