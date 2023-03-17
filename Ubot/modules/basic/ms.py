@@ -36,8 +36,8 @@ GPC = {}
 @Ubot("playlist", cmds)
 async def pl(client, message):
     group_call = GPC.get((message.chat.id, client.me.id))
-    play = await edit_or_reply(message, "**Processing!**")
-    song = f"**📋 Daftar Plaslist {message.chat.title} :** \n"
+    play = await edit_or_reply(message, "**Processing**")
+    song = f"**📋 Daftar Playlist {message.chat.title}** : \n"
     s = s_dict.get((message.chat.id, client.me.id))
     if not group_call:
         return await play.edit("**Obrolan Suara Tidak Ditemukan**")
@@ -79,7 +79,7 @@ async def playout_ended_handler(group_call, filename):
     raw_file = s[0]['raw']
     link = s[0]['url']
     file_size = humanbytes(os.stat(raw_file).st_size)
-    song_info = f"<b>📀 Sedang dimainkan</b>"
+    song_info = f"📌 <b>Sedang dimainkan</b> \n📀 <b>Judul:</b> <a href="{link}">{name_}</a> \n🎸 <b>Artis:</b> <code>{singer_}</code> \n⏲️ <b>Waktu:</b> <code>{dur_}</code> \n📂 <b>Ukuran:</b> <code>{file_size}</code>"
     await client_.send_message(
         chat_, 
         song_info,
@@ -123,7 +123,7 @@ async def skip_m(client, message):
             os.remove(audio_original)
         group_call.input_filename = raw_file_name
         group_call.song_name = vid_title
-        return await message.edit_text(f"📌 **Memutar Lagu Berikutnya**\n📀 **Judul**: `{vid_title}`\n💌 **Artis**: `{uploade_r}`")
+        return await message.edit_text(f"📌 **Memutar Lagu Berikutnya**\n📀 **Judul**: {vid_title}\n💌 **Artis**: {uploade_r}")
 
 
 
@@ -275,7 +275,7 @@ async def no_song_play(client, message):
     if not group_call.is_connected:
         await edit_or_reply(message, "**Tidak Ada Pemutaran**")
         return    
-    await edit_or_reply(message, f"⏸ **Dijeda.** `{str(group_call.input_filename).replace('.raw', '')}.**")
+    await edit_or_reply(message, f"⏸ **Dijeda.** {str(group_call.input_filename).replace('.raw', '')}.")
     group_call.pause_playout()
     
 
@@ -289,7 +289,7 @@ async def wow_dont_stop_songs(client, message):
         await edit_or_reply(message, "**Tidak Ada Pemutaran**")
         return    
     group_call.resume_playout()
-    await edit_or_reply(message, "▶️** Dilanjutkan.**")
+    await edit_or_reply(message, "▶️**Dilanjutkan.**")
         
 
 @Ubot("end", cmds)
@@ -304,7 +304,7 @@ async def leave_vc_test(client, message):
     if os.path.exists(group_call.input_filename):
         os.remove(group_call.input_filename)
     await group_call.stop()
-    await edit_or_reply(message, f"❌ **Lagu Dihentikan Di** : {message.chat.title}")
+    await edit_or_reply(message, f"❌ **Lagu Dihentikan Di**  {message.chat.title}")
     del GPC[(message.chat.id, client.me.id)]
     
 add_command_help(
