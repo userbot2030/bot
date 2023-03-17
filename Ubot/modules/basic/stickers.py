@@ -24,7 +24,7 @@ from pyrogram.enums import ParseMode
 from pyrogram.errors import StickersetInvalid, YouBlockedUser
 from pyrogram.raw.functions.messages import GetStickerSet
 from pyrogram.raw.types import InputStickerSetShortName
-from pyrogram.types import Message, InputMediaPhoto, InputMediaSticker
+from pyrogram.types import Message, InputMedia, InputMediaPhoto
 
 from . import *
 from ubotlibs.ubot.database.accesdb import *
