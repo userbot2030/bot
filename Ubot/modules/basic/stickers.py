@@ -24,7 +24,8 @@ from pyrogram.enums import ParseMode
 from pyrogram.errors import StickersetInvalid, YouBlockedUser
 from pyrogram.raw.functions.messages import GetStickerSet
 from pyrogram.raw.types import InputStickerSetShortName
-from pyrogram.types import Message, InputMediaPhoto
+from pyrogram.types import Message, InputMediaPhoto, InputMediaSticker
+
 from . import *
 from ubotlibs.ubot.database.accesdb import *
 from ubotlibs.ubot.helper.PyroHelpers import ReplyCheck
@@ -39,17 +40,16 @@ babi= [
     "Minta dong banh ...",
 ]
 
-
-
 @Client.on_message(filters.command(["pack"], cmds) & filters.me)
 def create_pack(client, message):
-    pack_name = message.text.split(' ')[1]
-    if not pack_name:
-        message.reply_text("Kirim perintah dengan format pack [nama pack]")
+    biji = message.text.split(' ')
+    if len(biji) < 2:
+        message.edit_text("Kirim perintah dengan format pack [nama pack]")
         return
+    pack_name = words[1]
 
-    if not message.reply_to_message or not message.reply_to_message.photo:
-        message.reply_text("Balas pesan dengan file gambar untuk ditambahkan ke pack sticker.")
+    if not message.reply_to_message or not message.reply_to_message.sticker:
+        message.edit_text("Balas pesan stiker untuk ditambahkan ke pack sticker.")
         return
     pack = client.create_sticker_set(
         user_id=message.from_user.id,
@@ -57,12 +57,13 @@ def create_pack(client, message):
         title=pack_name,
         emojis="👍"
     )
-    sticker_file_id = message.reply_to_message.photo.file_id
+    sticker_file_id = message.reply_to_message.sticker.file_id
     pack.add_sticker(
         file_id=sticker_file_id,
         emojis="👍"
     )
-    message.reply_text(f"Sticker pack {pack_name} telah berhasil dibuat.")
+    message.edit_text(f"Sticker pack {pack_name} telah berhasil dibuat.")
+
 
 
 @Ubot("kang", cmds)
