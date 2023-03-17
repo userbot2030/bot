@@ -11,7 +11,7 @@ from asyncio import get_event_loop
 import wget
 from Ubot import app, cmds
 from ubotlibs.ubot import Ubot
-from youtubesearchpython import VideosSearch
+from youtubesearchpython import SearchVideos
 from yt_dlp import YoutubeDL
 
 
@@ -19,17 +19,6 @@ def run_sync(func, *args, **kwargs):
     return get_event_loop().run_in_executor(None, partial(func, *args, **kwargs))
 
 
-def YouTubeSearch(query):
-    search = VideosSearch(query, limit=1).result()
-    data = search["result"][0]
-    videoid = data["id"]
-    title = data["title"]
-    duration = data["duration"]
-    url = f"https://youtu.be/{videoid}"
-    views = data["viewCount"]["text"]
-    channel = data["channel"]["name"]
-    thumbnail = data["thumbnails"][0]["url"].split("?")[0]
-    return [videoid, title, duration, url, views, channel, thumbnail]
 
 
 @Ubot("Tomi_Vid", cmds)
@@ -40,15 +29,10 @@ async def _(client, message):
         )
     infomsg = await message.reply_text("<b>🔍 Pencarian...</b>", quote=False)
     try:
-        search = YouTubeSearch(message.text.split(None, 1)[1])
+        search = SearchVideos(str(message.text.split(None, 1)[1]), offset=1, mode="dict", max_results=1).result().get("search_result")
+        link = f"https://youtu.be/{[0]['id']}"
     except Exception as error:
         return await infomsg.edit(f"<b>🔍 Pencarian...\n\n❌ Error: {error}</b>")
-    title = search[1]
-    duration = search[2]
-    url = search[3]
-    views = search[4]
-    channel = search[5]
-    thumbs = search[6]
     ydl = YoutubeDL(
         {
             "quiet": True,
@@ -60,8 +44,15 @@ async def _(client, message):
         }
     )
     try:
-        ytdl_data = await run_sync(ydl.extract_info, url, download=True)
+        ytdl_data = await run_sync(ydl.extract_info, link, download=True)
         file_path = ydl.prepare_filename(ytdl_data)
+        videoid = ytdl_data["id"]
+        title = ytdl_data["title"]
+        url = f"https://youtu.be/{videoid}"
+        duration = ytdl_data["duration"]
+        channel = ytdl_data["uploader"]
+        views = f"{ytdl_data['view_count']:,}".replace(",", ".")
+        thumb = f"https://img.youtube.com/vi/{videoid}/hqdefault.jpg" 
     except Exception as error:
         return await infomsg.edit(f"<b>📥 Downloader...\n\n❌ Error: {error}</b>")
     thumbnail = wget.download(thumbs)
