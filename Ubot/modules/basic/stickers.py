@@ -46,7 +46,7 @@ def create_pack(client, message):
     if len(biji) < 2:
         message.edit_text("Kirim perintah dengan format pack [nama pack]")
         return
-    pack_name = words[1]
+    pack_name = biji[1]
 
     if not message.reply_to_message or not message.reply_to_message.sticker:
         message.edit_text("Balas pesan stiker untuk ditambahkan ke pack sticker.")
