@@ -210,7 +210,7 @@ async def play_m(client, message):
         else:
             s_dict[(message.chat.id, client.me.id)] = [f_info]
         s_d = s_dict.get((message.chat.id, client.me.id))
-        return await u_s.edit(f"✚ **Ditambahkan ke antrian**\n 🔖 **Judul**: `{vid_title}\n 📑 **Di posisi** :`#{len(s_d)+1}`!")
+        return await u_s.edit(f"✚ **Ditambahkan ke antrian**\n 🔖 **Judul**: `{vid_title}`\n 📑 **Di posisi** :`#{len(s_d)+1}`!")
 
 
 @run_in_exc
