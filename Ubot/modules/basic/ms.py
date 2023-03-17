@@ -79,7 +79,7 @@ async def playout_ended_handler(group_call, filename):
     raw_file = s[0]['raw']
     link = s[0]['url']
     file_size = humanbytes(os.stat(raw_file).st_size)
-    song_info = f"<u><b>📀 Sedang dimainkan</b></u> \n<b>🎵 Lagu :</b> <a href="{link}">{name_}</a> \n<b>🎸 Artis :</b> <code>{singer_}</code> \n<b>⏲️ Waktu :</b> <code>{dur_}</code>"
+    song_info = f"<b>📀 Sedang dimainkan</b>"
     await client_.send_message(
         chat_, 
         song_info,
