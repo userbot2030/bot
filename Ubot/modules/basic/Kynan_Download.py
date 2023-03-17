@@ -30,7 +30,7 @@ async def _(client, message):
     infomsg = await message.reply_text("<b>🔍 Pencarian...</b>", quote=False)
     try:
         search = SearchVideos(str(message.text.split(None, 1)[1]), offset=1, mode="dict", max_results=1).result().get("search_result")
-        link = f"https://youtu.be/{[0]['id']}"
+        link = f"https://youtu.be/{search[0]['id']}"
     except Exception as error:
         return await infomsg.edit(f"<b>🔍 Pencarian...\n\n❌ Error: {error}</b>")
     ydl = YoutubeDL(
