@@ -51,18 +51,26 @@ def create_pack(client, message):
     if not message.reply_to_message or not message.reply_to_message.sticker:
         message.edit_text("Balas pesan stiker untuk ditambahkan ke pack sticker.")
         return
-    pack = client.create_sticker_set(
-        user_id=message.from_user.id,
-        name=pack_name,
-        title=pack_name,
-        emojis="👍"
-    )
+    
     sticker_file_id = message.reply_to_message.sticker.file_id
-    pack.add_sticker(
-        file_id=sticker_file_id,
-        emojis="👍"
-    )
+    
+    try:
+        pack = client.create_new_sticker_set(
+            user_id=message.from_user.id,
+            name=pack_name,
+            title=pack_name,
+            emojis="👍",
+            png_sticker=sticker_file_id
+        )
+    except ValueError as e:
+        if str(e) == "Stickerset_invalid":
+            message.edit_text(f"Sticker pack {pack_name} sudah ada, tambahkan stiker lainnya ke pack.")
+            return
+        else:
+            raise e
+        
     message.edit_text(f"Sticker pack {pack_name} telah berhasil dibuat.")
+
 
 
 
