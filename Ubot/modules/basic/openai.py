@@ -9,7 +9,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 from pyrogram.errors import MessageNotModified
 from . import *
-from Ubot.modules.basic.dev import *
+from Ubot.core.func import *
 from ubotlibs.ubot.database.accesdb import *
 from asyncio import gather
 from Ubot.core.what import *
