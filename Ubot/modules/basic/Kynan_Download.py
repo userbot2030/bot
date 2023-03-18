@@ -7,7 +7,7 @@
 
 import os
 from asyncio import get_event_loop
-
+from functools import partial
 import wget
 from Ubot import app, cmds
 from ubotlibs.ubot import Ubot
@@ -16,8 +16,7 @@ from yt_dlp import YoutubeDL
 
 
 def run_sync(func, *args, **kwargs):
-    return get_event_loop().run_in_executor(None, lambda: func(*args, **kwargs))
-
+    return get_event_loop().run_in_executor(None, partial(func, *args, **kwargs))
 
 
 @Ubot("Tomi_Vid", cmds)
