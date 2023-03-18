@@ -5,7 +5,7 @@ from contextlib import redirect_stdout
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from Ubot.core.func import
+from Ubot.core.func import *
 from . import *
 
 
