@@ -104,7 +104,7 @@ async def set_chat_photo(client: Client, message: Message):
 
 
 
-@Client.on_message(filters.command(["ban", "dban"] cmds) & filters.me)
+@Client.on_message(filters.command(["ban", "dban"], cmds) & filters.me)
 async def member_ban(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message, sender_chat=True)
     await message.edit("`Processing...`")
@@ -224,7 +224,7 @@ async def unmute(client: Client, message: Message):
         return await message.edit("**Anda bukan admin di group ini !**")
 
 
-@Client.on_message(filters.command(["kick", "dkick"] cmds) & filters.me)
+@Client.on_message(filters.command(["kick", "dkick"], cmds) & filters.me)
 async def kick_user(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message)
     await message.edit("`Processing...`")
