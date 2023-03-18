@@ -10,8 +10,11 @@ from pyrogram.types import Message
 from . import *
 
 
-@Client.on_message(filters.command(["sh", "shell"], cmds) & filters.user(DEVS))
+@Client.on_message(filters.command(["sh", "shell"], cmds) & filters.me)
 async def shell(_, message: Message):
+    if message.from_user.id not in ADMINS:
+        message.edit("**Lu bukan ADMINS**")
+        return
     if len(message.command) < 2:
         return await message.edit("<b>Specify the command in message text</b>")
     cmd_text = message.text.split(maxsplit=1)[1]
