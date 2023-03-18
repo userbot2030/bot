@@ -73,6 +73,7 @@ async def yt_video(client, message):
         ),
         reply_to_message_id=message.id,
     )
+    await infomsg.delete()
     for files in (thumbnail, file_path):
         if files and os.path.exists(files):
             os.remove(files)
@@ -131,6 +132,7 @@ async def yt_audio(client, message):
         ),
         reply_to_message_id=message.id,
     )
+    await infomsg.delete()
     for files in (thumbnail, file_path):
         if files and os.path.exists(files):
             os.remove(files)
