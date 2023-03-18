@@ -3,7 +3,7 @@ import random
 from glob import glob
 from pyrogram import Client, filters, types
 from pyrogram.errors import PeerIdInvalid
-from pyrogram.raw.functions.messages import UploadMediaRequest
+
 from pyrogram.types import InputPeerSelf, InputStickerSetID, InputStickerSetItem, InputMediaUploadedDocument, InputMediaUploadedPhoto
 from . import *
 
