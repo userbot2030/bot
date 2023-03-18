@@ -129,7 +129,7 @@ async def pingme(client: Client, message: Message):
     
     
     
-@Client.on_message(filters.command("pung" prefix) & filters.me)
+@Client.on_message(filters.command("pung", prefix) & filters.me)
 async def pingme(client, message):
     uptime = await get_readable_time((time.time() - StartTime))
     start = datetime.now()
