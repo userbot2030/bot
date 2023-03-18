@@ -1,6 +1,12 @@
 
 from . import cli
+from config import MONGO_URL
+from pymongo import MongoClient
 from typing import List
+
+
+client = MongoClient(MONGO_URL)
+cli = client["ubot"]
 
 collection = cli["prefix"]
 
