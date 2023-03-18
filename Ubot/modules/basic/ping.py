@@ -20,6 +20,7 @@ from datetime import datetime
 from . import DEVS, Ubot
 from ubotlibs.ubot.helper.PyroHelpers import *
 from Ubot import *
+from Ubot.core.db.pref import *
 from Ubot.modules.bot.inline import get_readable_time
 
 async def edit_or_reply(message: Message, *args, **kwargs) -> Message:
@@ -122,6 +123,27 @@ async def pingme(client: Client, message: Message):
     await message.reply_text(
         f"❏ **PONG!!🏓**\n"
         f"├ **Pinger** - `%sms`\n"
+        f"╰ **Uptime -** `{uptime}` \n" % (duration)
+    )
+    await ping_.delete()
+    
+    
+    
+@Client.on_message(filters.command("pung") & filters.me)
+async def pingme(client, message):
+    uptime = await get_readable_time((time.time() - StartTime))
+    start = datetime.now()
+    pref = await get_prefix(message.from_user.id)
+    if prefix is None:
+        ping_ = await client.send_message(client.me.id, "`Ping`")
+    else:
+        ping_ = await client.send_message(client.me.id, f"{pref}ping")
+    end = datetime.now()
+    duration = (end - start).microseconds / 1000
+    await message.reply_text(
+        f"❏ **PONG!!🏓**\n"
+        f"├ **Pinger** - `%sms`\n"
+        f"├ **Prefix** - `{prefix}`\n"
         f"╰ **Uptime -** `{uptime}` \n" % (duration)
     )
     await ping_.delete()
