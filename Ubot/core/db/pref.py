@@ -2,6 +2,7 @@
 from . import cli
 from config import MONGO_URL
 from pyrogram.types import Message
+from pyrogram import Client, filters
 from pymongo import MongoClient
 from typing import List
 
@@ -10,18 +11,24 @@ client = MongoClient(MONGO_URL)
 cli = client["ubot"]
 collection = cli["prefix"]
 
-async def get_prefix(user_id: int) -> str:
-    result = await collection.find_one({"user_id": user_id})
-    if result is None:
-        return "."
-    else:
-        return result.get("prefix", ".")
+import pymongo
 
-async def set_prefix(user_id: int, prefix: str) -> None:
-    if prefix is None:
-        prefix = ""
-    collection.update_one({"user_id": user_id}, {"$set": {"prefix": prefix}}, upsert=True)
+mongo_client = pymongo.MongoClient(MONGO_URL)
+db = mongo_client["mydatabase"]
 
-async def get_users_with_prefix() -> List[int]:
-    results = await collection.find({"prefix": {"$ne": ""}})
-    return [result["user_id"] for result in results]
+
+async def set_prefix(user_id, prefix):
+    db_prefix = db.get(f"user.{user_id}", "prefix", ".")
+    if prefix != db_prefix:
+        db.set(f"user.{user_id}", "prefix", prefix)
+        return True
+    return False
+
+
+def get_prefix(func):
+    async def wrapper(client, message):
+        user_id = message.from_user.id
+        db_prefix = db.get(f"user.{user_id}", "prefix", ".")
+        prefix = db_prefix if db_prefix is not None else ""
+        return await func(client, message, prefix)
+    return wrapper
