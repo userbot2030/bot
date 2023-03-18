@@ -3,7 +3,7 @@ from io import BytesIO
 from pyrogram import *
 from pyrogram.types import *
 
-from .dev import *
+from Ubot.core.func import *
 from .carbon import make_carbon
 from . import *
 from ubotlibs.ubot.database.accesdb import *
