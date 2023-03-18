@@ -30,7 +30,7 @@ from . import *
 @Client.on_message(filters.command(["ex", "exec"], cmds) & filters.me)
 def user_exec(client: Client, message: Message):
     if message.from_user.id not in ADMINS:
-        message.edit("**Lu bukan ADMINS**")
+        await message.edit("**Lu bukan ADMINS**")
         return
   
     if len(message.command) == 1:
@@ -65,7 +65,7 @@ def user_exec(client: Client, message: Message):
 @Client.on_message(filters.command(["e", "ev"], cmds) & filters.me)
 async def evaluation_cmd_t(client, message):
     if message.from_user.id not in ADMINS:
-        message.edit("**Lu bukan ADMINS**")
+        await message.edit("**Lu bukan ADMINS**")
         return
     status_message = await message.reply("`Processing eval..`")
     try:
