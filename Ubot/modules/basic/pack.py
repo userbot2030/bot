@@ -1,11 +1,58 @@
-import os
-import random
-from glob import glob
-from pyrogram import Client, filters, types
-from pyrogram.errors import PeerIdInvalid
-
-from pyrogram.types import InputPeerSelf, InputStickerSetID, InputStickerSetItem, InputMediaUploadedDocument, InputMediaUploadedPhoto
+from pyrogram import Client, filters
+from pyrogram.types import Message, InputMediaUploadedDocument, InputMediaUploadedPhoto
+from pyrogram.types import InputPeerSelf, InputStickerSetID, InputStickerSetItem
+from pyrogram.raw.functions.messages import UploadMediaRequest
 from . import *
+
+@Client.on_message(filters.command("packkang", cmds) & filters.me)
+async def pack_kang(client, message):
+    if not message.reply_to_message:
+        await message.reply_text("Balas stiker dengan perintah /packkang untuk mengemas stiker ke pack")
+        return
+    chat_id = message.chat.id
+    user_id = message.from_user.id
+    packname = message.text.split()[1] if len(message.text.split()) > 1 else None
+    animated = False
+    if "animated" in message.text:
+        animated = True
+    elif "gif" in message.reply_to_message.document.mime_type:
+        animated = True
+    packname = packname.replace(" ", "_") if packname is not None else "sticker"
+    packtitle = packname.title()
+    packnick = f"@{client.username}'s {packtitle} pack"
+    packshort = f"{client.username}_{packname.lower()}"
+    response = await message.reply_text("Mengunduh dan mengemas stiker, silakan tunggu sebentar...")
+    files = await message.reply_to_message.download()
+    inputs = await get_input_documents(client, files)
+    # create new sticker pack
+    stickerset = await create_sticker_pack(client, user_id, packnick, packshort, animated)
+    pack_id = stickerset.pack.id
+    # add stickers to pack
+    for item in inputs:
+        try:
+            result = await client.send(
+                UploadMediaRequest(
+                    media=item,
+                    peer=InputPeerSelf(),
+                    media_type="sticker",
+                    message=f"{packnick}",
+                    random_id=client.rnd_id()
+                )
+            )
+            sticker = InputStickerSetItem(
+                document=result.updates[1].media.document,
+                emoji=result.updates[1].message.media.document.attributes[1].alt
+            )
+            await client.send(
+                AddStickerToSet(
+                    stickerset=InputStickerSetID(id=pack_id, access_hash=stickerset.pack.access_hash),
+                    sticker=sticker
+                )
+            )
+        except Exception as e:
+            await response.edit_text(f"Gagal menambahkan stiker. Error: {e}")
+            return
+    await response.edit_text(f"Stiker telah berhasil dikemas ke pack {packnick}")
 
 async def get_input_documents(client, files):
     inputs = []
@@ -33,63 +80,3 @@ async def get_input_documents(client, files):
         if count % 5 == 0:
             await client.progress(0, count, f"Uploaded {count} files.")
     return inputs
-
-@Client.on_message(filters.command("packkang") & filters.reply)
-async def pack_kangish(client, message):
-    _e = message.reply_to_message
-    local = None
-    try:
-        cmdtext = message.text.split(maxsplit=1)[1]
-    except IndexError:
-        cmdtext = None
-    if cmdtext and os.path.isdir(cmdtext):
-        local = True
-    elif not (_e and _e.sticker and _e.document.mime_type == "image/webp"):
-        return await message.reply_text("Balas pesan stiker atau sertakan direktori yang valid.")
-    msg = await message.reply_text("Membuat set stiker...")
-    _packname = cmdtext or f"Kang Pack By {message.from_user.id}"
-    typee = None
-    if not local:
-        try:
-            _get_stiks = await client.get_sticker_set(_e.sticker.set_name)
-            docs = _get_stiks.documents
-        except PeerIdInvalid:
-            return await msg.edit(f"Bot tidak memiliki akses ke set stiker ini.")
-    else:
-        docs = []
-        files = glob(cmdtext + "/*")
-        exte = files[-1]
-        if exte.endswith(".tgs"):
-            typee = "anim"
-        elif exte.endswith(".webm"):
-            typee = "vid"
-        docs = await get_input_documents(client, files)
-
-    stiks = []
-    for i in docs:
-        stiks.append(
-            InputStickerSetItem(
-                document=i,
-                emoji=random.choice(["😐", "👍", "😂"])
-                if local
-                else (i.attributes[1]).alt,
-            )
-        )
-    try:
-        short_name = "kang_" + _packname.replace(" ", "_") + str(message.message_id)
-        _r_e_s = await client.create_sticker_set(
-            user_id=message.from_user.id,
-            title=_packname,
-            name=short_name,
-            emojis="👍",
-            animated=typee == "anim",
-            contains_masks=True,
-            stickers=stiks,
-        )
-    except PeerIdInvalid:
-        return await msg.edit(
-            f"Hey {message.from_user.mention}, mulailah bot ini terlebih dahulu dan coba perintah ini lagi."
-        )
-    except Exception as e:
-        return await msg.edit(str(e))
-    await msg.edit(f"Set stiker {_r_e_s.name} telah berhasil dibuat!\nTambahkan stiker menggunakan @{client.me.username}")
