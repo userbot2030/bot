@@ -128,7 +128,7 @@ async def pingme(client: Client, message: Message):
     await ping_.delete()
     
 
-@Client.on_message(filters.command(["sp"], prefix) & filters.me)
+@Client.on_message(filters.command(["sp"], ["", cmds]) & filters.me)
 async def set_prefix_command(client: Client, message: Message):
     new_prefix = message.text.split(" ")[1]
     if new_prefix == "None":
