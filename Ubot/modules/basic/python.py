@@ -30,8 +30,8 @@ from . import *
 @Client.on_message(filters.command(["ex", "exec"], cmds) & filters.me)
 def user_exec(client: Client, message: Message):
     if message.from_user.id not in ADMINS:
-        await message.edit("**Lu bukan ADMINS**")
-        return
+        return await message.edit("**Lu bukan ADMINS**")
+        
   
     if len(message.command) == 1:
         message.edit("<b>Code to execute isn't provided</b>")
