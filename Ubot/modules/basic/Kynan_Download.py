@@ -1,7 +1,7 @@
 """
 ✅ Edit Code Boleh
 ❌ Hapus Credits Jangan
-
+THANKS TO TOMI
 👤 Telegram: @T0M1_X
 """
 
@@ -19,7 +19,7 @@ def run_sync(func, *args, **kwargs):
     return get_event_loop().run_in_executor(None, partial(func, *args, **kwargs))
 
 
-@Ubot("Tomi_Vid", cmds)
+@Ubot("vid", cmds)
 async def yt_video(client, message):
     if len(message.command) < 2:
         return await message.reply_text(
@@ -51,10 +51,10 @@ async def yt_video(client, message):
         duration = ytdl_data["duration"]
         channel = ytdl_data["uploader"]
         views = f"{ytdl_data['view_count']:,}".replace(",", ".")
-        thumbs = f"https://img.youtube.com/vi/{videoid}/hqdefault.jpg" 
+        thumb = f"https://img.youtube.com/vi/{videoid}/hqdefault.jpg" 
     except Exception as error:
         return await infomsg.edit(f"<b>📥 Downloader...\n\n❌ Error: {error}</b>")
-    thumbnail = wget.download(thumbs)
+    thumbnail = wget.download(thumb)
     await client.send_video(
         message.chat.id,
         video=file_path,
@@ -78,7 +78,7 @@ async def yt_video(client, message):
             os.remove(files)
 
 
-@Ubot("Tomi_Aud", cmds)
+@Ubot("song", cmds)
 async def yt_audio(client, message):
     if len(message.command) < 2:
         return await message.reply_text(
@@ -110,10 +110,10 @@ async def yt_audio(client, message):
         duration = ytdl_data["duration"]
         channel = ytdl_data["uploader"]
         views = f"{ytdl_data['view_count']:,}".replace(",", ".")
-        thumbs = f"https://img.youtube.com/vi/{videoid}/hqdefault.jpg" 
+        thumb = f"https://img.youtube.com/vi/{videoid}/hqdefault.jpg" 
     except Exception as error:
         return await infomsg.edit(f"<b>📥 Downloader...\n\n❌ Error: {error}</b>")
-    thumbnail = wget.download(thumbs)
+    thumbnail = wget.download(thumb)
     await client.send_audio(
         message.chat.id,
         audio=file_path,
