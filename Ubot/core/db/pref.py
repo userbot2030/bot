@@ -26,6 +26,6 @@ async def get_users_with_prefix() -> List[int]:
     results = await collection.find({"prefix": {"$ne": ""}})
     return [result["user_id"] for result in results]
 
-prefix = await get_prefix("core.main", "prefix", ".")
+prefix = get_prefix("core.main", "prefix", ".")
 
 
