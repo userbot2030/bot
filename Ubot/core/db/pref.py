@@ -19,7 +19,7 @@ async def get_prefix(user_id: int) -> str:
     if result is None:
         return None
     else:
-        return result["prefix"]
+        return result.get("prefix", "")
 
 
 async def set_prefix(user_id: int, prefix: str) -> None:
