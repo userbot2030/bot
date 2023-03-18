@@ -3,9 +3,12 @@ import random
 from glob import glob
 from pyrogram import Client, filters, types
 from pyrogram.errors import PeerIdInvalid
-from pyrogram.raw.functions.messages import UploadMediaRequest
+from pyrogram.raw.functions import UploadMediaRequest
+
 from pyrogram.types import InputPeerSelf, InputStickerSetID, InputStickerSetItem
 from . import *
+
+
 
 async def get_input_documents(client, files):
     inputs = []
