@@ -32,4 +32,4 @@ async def get_users_with_prefix() -> List[int]:
     return [result["user_id"] for result in results]
 
 user_id = message.from_user.id
-prefix = await get_prefix(user_id)
+prefix = get_prefix(user_id)
