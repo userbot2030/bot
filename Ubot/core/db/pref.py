@@ -12,6 +12,8 @@ collection = cli["prefix"]
 
 
 
+prefix = get_prefix(user_id)
+
 async def get_prefix(user_id: int) -> str:
     result = await collection.find_one({"user_id": user_id})
     if result is None:
