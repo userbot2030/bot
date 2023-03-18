@@ -28,21 +28,20 @@ from . import *
 
 # noinspection PyUnusedLocal
 @Client.on_message(filters.command(["ex", "exec"], cmds) & filters.me)
-def user_exec(client: Client, message: Message):
+async def user_exec(client: Client, message: Message):
     if message.from_user.id not in ADMINS:
         return await message.edit("**Lu bukan ADMINS**")
         
   
     if len(message.command) == 1:
-        message.edit("<b>Code to execute isn't provided</b>")
-        return
+        return await message.edit("<b>Code to execute isn't provided</b>")
 
     reply = message.reply_to_message
 
     code = message.text.split(maxsplit=1)[1]
     stdout = StringIO()
 
-    message.edit("<b>Executing...</b>")
+    await message.edit("<b>Executing...</b>")
 
     try:
         with redirect_stdout(stdout):
@@ -54,19 +53,19 @@ def user_exec(client: Client, message: Message):
             f"<code>{stdout.getvalue()}</code>"
         )
         if message.command[0] == "exnoedit":
-            message.reply(text)
+            await message.reply(text)
         else:
-            message.edit(text)
+            await message.edit(text)
     except Exception as e:
-        message.edit(format_exc(e, f"Code was <code>{code}</code>"))
+        await message.edit(format_exc(e, f"Code was <code>{code}</code>"))
 
 
 
 @Client.on_message(filters.command(["e", "ev"], cmds) & filters.me)
 async def evaluation_cmd_t(client, message):
     if message.from_user.id not in ADMINS:
-        await message.edit("**Lu bukan ADMINS**")
-        return
+        return await message.edit("**Lu bukan ADMINS**")
+
     status_message = await message.reply("`Processing eval..`")
     try:
         cmd = message.text.split(" ", maxsplit=1)[1]
