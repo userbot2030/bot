@@ -84,7 +84,7 @@ async def downlodvideo(m, message, vid_id):
            raise e
 
 
-@Ubot("song", cmds)
+@Ubot("song2", cmds)
 async def songdown(client: Client, message: Message):
    try: 
     if len(message.command) < 2:
@@ -100,7 +100,7 @@ Silakan periksa, Anda menggunakan format yang benar atau ejaan Anda benar dan co
        """)
 
 
-@Ubot(["vid", "video"], cmds)
+@Ubot(["vid2", "video2"], cmds)
 async def videodown(client: Client, message: Message):
    try: 
     if len(message.command) < 2:
