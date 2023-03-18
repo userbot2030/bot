@@ -129,7 +129,7 @@ async def pingme(client: Client, message: Message):
     
 
 @Client.on_message(
-    filters.command(["setprefix"]) & filters.me
+    filters.command(["setprefix"], "") & filters.me
 )
 @get_prefix
 async def setprefix(client, message, prefix):
