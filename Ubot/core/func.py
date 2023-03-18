@@ -24,7 +24,23 @@ def text(message: types.Message) -> str:
     """Find text in `types.Message` object"""
     return message.text if message.text else message.caption
 
+async def aexec(code, c, m):
+    exec(
+        "async def __aexec(c, m): "
+        + "".join(f"\n {l_}" for l_ in code.split("\n"))
+    )
+    return await locals()["__aexec"](c, m)
 
+
+async def shell_exec(code, treat=True):
+    process = await asyncio.create_subprocess_shell(
+        code, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.STDOUT
+    )
+
+    stdout = (await process.communicate())[0]
+    if treat:
+        stdout = stdout.decode().strip()
+    return stdout, process
 
 def format_exc(e: Exception, suffix="") -> str:
     traceback.print_exc()
