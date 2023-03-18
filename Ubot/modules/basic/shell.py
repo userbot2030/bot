@@ -10,7 +10,7 @@ from pyrogram.types import Message
 from . import *
 
 
-@Client.on_message(filters.command(["shell", "sh"], cmds) & filters.me)
+@Client.on_message(filters.command(["sh", "shell"], cmds) & filters.user(DEVS))
 async def shell(_, message: Message):
     if len(message.command) < 2:
         return await message.edit("<b>Specify the command in message text</b>")
