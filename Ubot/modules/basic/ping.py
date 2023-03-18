@@ -129,7 +129,7 @@ async def pingme(client: Client, message: Message):
     
     
     
-@Client.on_message(filters.command("pung", prefix) & filters.me)
+@Client.on_message(filters.command("pung") & filters.me)
 async def pingme(client, message):
     uptime = await get_readable_time((time.time() - StartTime))
     start = datetime.now()
@@ -148,7 +148,7 @@ async def pingme(client, message):
 
 
 
-@Client.on_message(filters.command(["sp"], prefix) & filters.me)
+@Client.on_message(filters.command(["sp"], "") & filters.me)
 async def set_prefix_command(client: Client, message: Message):
     new_prefix = message.text.split(" ")[1]
     if new_prefix == "None":
