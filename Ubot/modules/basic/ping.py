@@ -20,7 +20,7 @@ from datetime import datetime
 from . import DEVS, Ubot
 from ubotlibs.ubot.helper.PyroHelpers import *
 from Ubot import *
-from Ubot.core.db.pref import *
+
 from Ubot.modules.bot.inline import get_readable_time
 
 async def edit_or_reply(message: Message, *args, **kwargs) -> Message:
@@ -126,24 +126,4 @@ async def pingme(client: Client, message: Message):
         f"╰ **Uptime -** `{uptime}` \n" % (duration)
     )
     await ping_.delete()
-    
-
-@Client.on_message(
-    filters.command(["setprefix"], "") & filters.me
-)
-@get_prefix
-async def setprefix(client, message, prefix):
-    if len(message.command) > 1:
-        new_prefix = message.command[1] if message.command[1] is not None else ""
-        success = await set_prefix(message.from_user.id, new_prefix)
-        if success:
-            await message.reply_text(f"Prefix telah diubah menjadi {new_prefix}")
-        else:
-            await message.reply_text(f"Prefix sudah diatur ke {new_prefix}")
-    else:
-        await message.reply_text("Prefix tidak boleh kosong")
-
-@Client.on_message(filters.command(["tes"]) & filters.me)
-@get_prefix
-async def p(client, message, prefix):
-    await message.reply_text("Tes Doang Bang")
+  
