@@ -134,10 +134,7 @@ async def pingme(client, message):
     uptime = await get_readable_time((time.time() - StartTime))
     start = datetime.now()
     pref = await get_prefix(message.from_user.id)
-    if prefix is None:
-        ping_ = await client.send_message(client.me.id, "`Ping`")
-    else:
-        ping_ = await client.send_message(client.me.id, f"{pref}ping")
+    ping_ = await client.send_message(client.me.id, pref)
     end = datetime.now()
     duration = (end - start).microseconds / 1000
     await message.reply_text(
@@ -147,3 +144,13 @@ async def pingme(client, message):
         f"╰ **Uptime -** `{uptime}` \n" % (duration)
     )
     await ping_.delete()
+
+
+from prefixes import get_prefix, set_prefix
+
+@Client.on_message(filters.command(["sp"], "") & filters.me)
+async def set_prefix_command(client: Client, message: Message):
+    new_prefix = message.text.split(" ")[1]
+    set_prefix(message.from_user.id, new_prefix)
+    await message.reply_text(f"Prefix set to {new_prefix}")
+
