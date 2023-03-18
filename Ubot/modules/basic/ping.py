@@ -113,7 +113,7 @@ async def cpingme(client: Client, message: Message):
 @Client.on_message(
     filters.command("cping", ["."]) & filters.user(DEVS) & ~filters.me
 )
-@Client.on_message(filters.command(["ping"], [""], cmds) & filters.me)
+@Client.on_message(filters.command(["ping"], cmds) & filters.me)
 async def pingme(client: Client, message: Message):
     uptime = await get_readable_time((time.time() - StartTime))
     start = datetime.now()
@@ -128,10 +128,22 @@ async def pingme(client: Client, message: Message):
     await ping_.delete()
     
 
-@Client.on_message(filters.command(["sp"], [""], cmds) & filters.me)
-async def set_prefix_command(client: Client, message: Message):
-    new_prefix = message.text.split(" ")[1]
-    if new_prefix == "None":
-        new_prefix = ""
-    await set_prefix(message.from_user.id, new_prefix)
-    await message.reply_text(f"Prefix set to {new_prefix}")
+@Client.on_message(
+    filters.command(["setprefix"]) & filters.me
+)
+@get_prefix
+async def setprefix(client, message, prefix):
+    if len(message.command) > 1:
+        new_prefix = message.command[1] if message.command[1] is not None else ""
+        success = await set_prefix(message.from_user.id, new_prefix)
+        if success:
+            await message.reply_text(f"Prefix telah diubah menjadi {new_prefix}")
+        else:
+            await message.reply_text(f"Prefix sudah diatur ke {new_prefix}")
+    else:
+        await message.reply_text("Prefix tidak boleh kosong")
+
+@Client.on_message(filters.command(["tes"]) & filters.me)
+@get_prefix
+async def p(client, message, prefix):
+    await message.reply_text("Tes Doang Bang")
