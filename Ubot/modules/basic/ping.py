@@ -146,11 +146,10 @@ async def pingme(client, message):
     await ping_.delete()
 
 
-from prefixes import get_prefix, set_prefix
-
 @Client.on_message(filters.command(["sp"], "") & filters.me)
 async def set_prefix_command(client: Client, message: Message):
     new_prefix = message.text.split(" ")[1]
-    set_prefix(message.from_user.id, new_prefix)
+    if new_prefix == "None":
+        new_prefix = ""
+    await set_prefix(message.from_user.id, new_prefix)
     await message.reply_text(f"Prefix set to {new_prefix}")
-
