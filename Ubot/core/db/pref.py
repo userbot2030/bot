@@ -21,7 +21,7 @@ async def get_prefix(user_id: int) -> str:
 
 
 async def set_prefix(user_id: int, prefix: str) -> None:
-    await collection.update_one({"user_id": user_id}, {"$set": {"prefix": prefix}}, upsert=True)
+    collection.update_one({"user_id": user_id}, {"$set": {"prefix": prefix}}, upsert=True)
 
 
 async def get_users_with_prefix() -> List[int]:
