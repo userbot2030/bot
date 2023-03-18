@@ -14,6 +14,7 @@ import time
 from pyrogram import Client, enums
 from pyrogram.types import Message
 from . import *
+from Ubot.core.func import *
 from ubotlibs.ubot.helper.basic import edit_or_reply
 from ubotlibs.ubot.helper.parser import mention_html, mention_markdown
 from ubotlibs.ubot.database.accesdb import *
