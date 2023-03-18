@@ -19,7 +19,7 @@ def run_sync(func, *args, **kwargs):
     return get_event_loop().run_in_executor(None, partial(func, *args, **kwargs))
 
 
-@Ubot("vid", cmds)
+@Ubot(["vid", "video"], cmds)
 async def yt_video(client, message):
     if len(message.command) < 2:
         return await message.reply_text(
@@ -51,10 +51,10 @@ async def yt_video(client, message):
         duration = ytdl_data["duration"]
         channel = ytdl_data["uploader"]
         views = f"{ytdl_data['view_count']:,}".replace(",", ".")
-        thumb = f"https://img.youtube.com/vi/{videoid}/hqdefault.jpg" 
+        thumbs = f"https://img.youtube.com/vi/{videoid}/hqdefault.jpg" 
     except Exception as error:
         return await infomsg.edit(f"<b>📥 Downloader...\n\n❌ Error: {error}</b>")
-    thumbnail = wget.download(thumb)
+    thumbnail = wget.download(thumbs)
     await client.send_video(
         message.chat.id,
         video=file_path,
@@ -110,10 +110,10 @@ async def yt_audio(client, message):
         duration = ytdl_data["duration"]
         channel = ytdl_data["uploader"]
         views = f"{ytdl_data['view_count']:,}".replace(",", ".")
-        thumb = f"https://img.youtube.com/vi/{videoid}/hqdefault.jpg" 
+        thumbs = f"https://img.youtube.com/vi/{videoid}/hqdefault.jpg" 
     except Exception as error:
         return await infomsg.edit(f"<b>📥 Downloader...\n\n❌ Error: {error}</b>")
-    thumbnail = wget.download(thumb)
+    thumbnail = wget.download(thumbs)
     await client.send_audio(
         message.chat.id,
         audio=file_path,
