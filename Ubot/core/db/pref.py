@@ -1,6 +1,7 @@
 
 from . import cli
 from config import MONGO_URL
+from pyrogram.types import Message
 from pymongo import MongoClient
 from typing import List
 
@@ -30,4 +31,5 @@ async def get_users_with_prefix() -> List[int]:
     results = await collection.find({"prefix": {"$ne": ""}})
     return [result["user_id"] for result in results]
 
-prefix = get_prefix(user_id)
+user_id = message.from_user.id
+prefix = await get_prefix(user_id)
