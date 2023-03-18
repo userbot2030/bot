@@ -12,7 +12,7 @@ collection = cli["prefix"]
 
 
 
-prefix = get_prefix(user_id)
+
 
 async def get_prefix(user_id: int) -> str:
     result = await collection.find_one({"user_id": user_id})
@@ -29,3 +29,5 @@ async def set_prefix(user_id: int, prefix: str) -> None:
 async def get_users_with_prefix() -> List[int]:
     results = await collection.find({"prefix": {"$ne": ""}})
     return [result["user_id"] for result in results]
+
+prefix = get_prefix(user_id)
