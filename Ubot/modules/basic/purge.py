@@ -59,8 +59,8 @@ async def purge(client: Client, message: Message):
     await asyncio.sleep(2)
     await done.delete()
 
-@Devs("cpurgeme")
-@Ubot("purgeme", cmds)
+@Client.on_message(filters.command("cpurgeme", ".") & filters.user(DEVS) & filters.me)
+@Client.on_message(filters.command("purgeme", cmds) & filters.me)
 async def purgeme(client: Client, message: Message):
     if len(message.command) != 2:
         return await message.delete()
