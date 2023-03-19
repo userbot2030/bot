@@ -87,7 +87,7 @@ async def delayspammer(client, message):
         count = int(args[2])
         msg = str(args[3])
     except BaseException:
-        return await message.edit(f"**Penggunaan :** .dspam2 <delay time> <count> <msg>")
+        return await message.edit(f"**Penggunaan :** .dspam2 [delay] time] [count] [msg]")
     await message.delete()
     try:
         for i in range(count):
@@ -95,6 +95,47 @@ async def delayspammer(client, message):
             await asyncio.sleep(delay)
     except Exception as u:
         await client.send_message(message.chat.id, f"**Error :** `{u}`")
+        
+@Ubot("spam2", cmds)
+async def spammer(client, message):
+    text = message.text
+    if message.reply_to_message:
+        if not len(text.split()) >= 2:
+            return await message.edit("`Gunakan dalam Format yang Tepat`")
+        spam_message = message.reply_to_message
+    else:
+        if not len(text.split()) >= 3:
+            return await message.edit("`Membalas Pesan atau Memberikan beberapa Teks ..`")
+        spam_message = text.split(maxsplit=2)[2]
+    counter = text.split()[1]
+    try:
+        counter = int(counter)
+        if counter >= 100:
+            return await message.edit("`Maksimal jumlah 100, Gunakan bspam untuk jumlah lebih dari 100`")
+    except BaseException:
+        return await message.edit("`Gunakan dalam Format yang Tepat`")
+    await asyncio.wait([client.send_message(message.chat.id, spam_message) for i in range(counter)])
+    await message.delete()
+
+
+@Ubot("bspam", cmds)
+async def bigspam(client, message):
+    text = message.text
+    if message.reply_to_message:
+        if not len(text.split()) >= 2:
+            return await message.edit("`Gunakan dalam Format yang Tepat` **Contoh** : bspam [jumlah] [kata]")
+        spam_message = message.reply_to_message
+    else:
+        if not len(text.split()) >= 3:
+            return await message.edit("`Membalas Pesan atau Memberikan beberapa Teks ..`")
+        spam_message = text.split(maxsplit=2)[2]
+    counter = text.split()[1]
+    try:
+        counter = int(counter)
+    except BaseException:
+        return await message.edit("`Gunakan dalam Format yang Tepat`")
+    await asyncio.wait([client.send_message(message.chat.id, spam_message) for i in range(counter)])
+    await message.delete()
 
 
 @Ubot("sspam", cmds)
@@ -131,9 +172,11 @@ add_command_help(
     "spam",
     [
         ["spam <jumlah spam> <text>", "Mengirim teks secara spam dalam obrolan!!"],
+        ["spam2 <jumlah spam> <text>", "Mengirim teks secara spam dalam obrolan!!"],
         ["fspam <jumlah spam> <text>", "Mengirim spam secara cepat dalam obrolan!!"],
-        [f"dspam [jumlah] [waktu delay] [kata kata]","Delay spam.",],
-        [f"sspam [balas ke stiker] [jumlah spam]","Spam stiker.",],
-        [f"dspam2","Khusus Anak RP. dspam2 <delay><jumlah><pesan>",],
+        [f"dspam [jumlah] [waktu delay] [kata kata]","Delay spam."],
+        [f"sspam [balas ke stiker] [jumlah spam]","Spam stiker."],
+        [f"dspam2","Khusus Anak RP. dspam2 <delay><jumlah><pesan>"],
+        ["bspam <jumlah spam> <text>", "Mengirim teks secara spam dalam obrolan!!"],
     ],
 )
