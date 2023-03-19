@@ -62,36 +62,41 @@ async def sspam(client, message):
     amount = 1
     text = ""
 
-
+    # check if the command is replying to a message
     replied_message = message.reply_to_message
-    replied_text = replied_message.text
+    if replied_message:
+        replied_text = replied_message.text
+    else:
+        # check if the command has a custom text to spam
+        args = message.text.split(maxsplit=1)[1:]
+        if args:
+            text = args[0]
+        else:
+            await message.reply_text("You need to reply to a message or provide a custom text to spam.")
+            return
 
-
-    args = message.text.split(maxsplit=1)[1:]
-    if args:
-        try:
-            amount = int(args[0])
-        except ValueError:
-            pass
-        if len(args) > 1:
-            text = args[1]
-
-
+    # set the cooldown for each type of spam
     cooldown = {"spam": 0.15, "statspam": 0.5, "slowspam": 0.9, "fspam": 0.5}
 
-
+    # delete the command message
     await message.delete()
 
-
+    # loop to send the spam messages
     for i in range(amount):
         if text:
+            # if custom text is provided, send it
             sent = await client.send_message(message.chat.id, text)
         else:
+            # if replying to a message, send the same message
             sent = await replied_message.reply(replied_text)
-        if message.command[0] == "statspam":
-            await asyncio.sleep(0.2)
-            await sent.delete()
+
+        # apply the appropriate cooldown for the spam type
         await asyncio.sleep(cooldown[message.command[0]])
+
+        # delete the message for statspam type
+        if message.command[0] == "statspam":
+            await sent.delete()
+
 
 
 
