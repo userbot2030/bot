@@ -1,5 +1,5 @@
 import asyncio
-from threading import Event
+from threading import Even
 
 from pyrogram import Client, enums, filters
 from pyrogram.types import Message
