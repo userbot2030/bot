@@ -24,8 +24,8 @@ from pyrogram import (
 )
 from Ubot.logging import LOGGER
 from Ubot import (
-    API_HASH,
-    API_ID,
+    API_HASH1,
+    API_ID1,
     BOT_WORKERS
 )
 
@@ -36,8 +36,8 @@ class User(Client):
     def __init__(self):
         super().__init__(
             name="ubot",
-            api_hash=API_HASH,
-            api_id=API_ID,
+            api_hash=API_HASH1,
+            api_id=API_ID1,
             workers=BOT_WORKERS,
             in_memory=True,
             parse_mode=enums.ParseMode.HTML
