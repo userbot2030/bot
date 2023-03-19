@@ -58,46 +58,43 @@ async def delayspam(client: Client, message: Message):
 
 
 @Ubot(commands, cmds)
-async def sspam(client, message):
-    amount = 1
-    text = ""
+async def sspam(client: Client, message: Message):
+    amount = int(message.command[1])
+    text = " ".join(message.command[2:])
 
-    # check if the command is replying to a message
-    replied_message = message.reply_to_message
-    if replied_message:
-        replied_text = replied_message.text
-    else:
-        # check if the command has a custom text to spam
-        args = message.text.split(maxsplit=1)[1:]
-        if args:
-            text = args[0]
-        else:
-            await message.reply_text("You need to reply to a message or provide a custom text to spam.")
-            return
+    cooldown = {"spam": 0.5, "statspam": 0.2, "slowspam": 0.8, "fspam": 0.1}
 
-    # set the cooldown for each type of spam
-    cooldown = {"spam": 0.15, "statspam": 0.5, "slowspam": 0.9, "fspam": 0.5}
-
-    # delete the command message
     await message.delete()
 
-    # loop to send the spam messages
-    for i in range(amount):
-        if text:
-            # if custom text is provided, send it
-            sent = await client.send_message(message.chat.id, text)
+    for msg in range(amount):
+        if message.reply_to_message:
+            sent = await message.reply_to_message.reply(text)
         else:
-            # if replying to a message, send the same message
-            sent = await replied_message.reply(replied_text)
+            sent = await client.send_message(message.chat.id, text)
 
-        # apply the appropriate cooldown for the spam type
-        await asyncio.sleep(cooldown[message.command[0]])
-
-        # delete the message for statspam type
         if message.command[0] == "statspam":
+            await asyncio.sleep(0.5)
             await sent.delete()
 
+        await asyncio.sleep(cooldown[message.command[0]])
 
+
+@Ubot("dspam2", cmds)
+async def delayspammer(client, message):
+    try:
+        args = message.text.split(" ", 3)
+        delay = float(args[1])
+        count = int(args[2])
+        msg = str(args[3])
+    except BaseException:
+        return await message.edit(f"**Penggunaan :** .dspam2 <delay time> <count> <msg>")
+    await message.delete()
+    try:
+        for i in range(count):
+            await client.send_message(message.chat.id, msg)
+            await asyncio.sleep(delay)
+    except Exception as u:
+        await client.send_message(message.chat.id, f"**Error :** `{u}`")
 
 
 @Ubot("sspam", cmds)
@@ -137,5 +134,6 @@ add_command_help(
         ["fspam <jumlah spam> <text>", "Mengirim spam secara cepat dalam obrolan!!"],
         [f"dspam [jumlah] [waktu delay] [kata kata]","Delay spam.",],
         [f"sspam [balas ke stiker] [jumlah spam]","Spam stiker.",],
+        [f"dspam2","Khusus Anak RP. dspam2 <delay><jumlah><pesan>",],
     ],
 )
