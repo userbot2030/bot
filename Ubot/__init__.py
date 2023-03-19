@@ -123,8 +123,8 @@ if not BOT_TOKEN:
 
 app = Client(
     name="app",
-    api_id=API_ID,
-    api_hash=API_HASH,
+    api_id=API_ID1,
+    api_hash=API_HASH1,
     bot_token=BOT_TOKEN,
     sleep_threshold=5,
     plugins=dict(root="Ubot/modules/bot"),
@@ -135,8 +135,8 @@ app = Client(
 bot1 = (
     Client(
         name="bot1",
-        api_id=API_ID,
-        api_hash=API_HASH,
+        api_id=API_ID1,
+        api_hash=API_HASH1,
         session_string=SESSION1,
         plugins=dict(root="Ubot/modules"),
     )
