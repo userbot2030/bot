@@ -46,6 +46,8 @@ SUPPORT = int(getenv("SUPPORT", "-1001812143750"))
 CHANNEL = int(getenv("CHANNEL", "-1001896537650"))
 
 API_ID1 = int(getenv("API_ID1", "1234"))
+API_HASH1 = getenv("API_HASH1")
+API_ID2 = int(getenv("API_ID2", "03910"))
 API_HASH2 = getenv("API_HASH2", "")
 API_ID3 = int(getenv("API_ID3", "1234"))
 API_HASH3 = getenv("API_HASH3", "")
