@@ -162,8 +162,17 @@ async def on_plug_prev_in_cb(_, callback_query: CallbackQuery):
 async def on_plug_next_in_cb(_, callback_query: CallbackQuery):
     current_page_number = int(callback_query.matches[0].group(1))
     buttons = paginate_help(current_page_number + 1, CMD_HELP, "helpme")
-    await app.edit_inline_text(
-        callback_query.inline_message_id,
-        Data.text_help_menu,
-        reply_markup=InlineKeyboardMarkup(buttons),
-    )
+    try:
+        await app.edit_inline_text(
+            callback_query.inline_message_id,
+            Data.text_help_menu,
+            reply_markup=InlineKeyboardMarkup(buttons),
+        )
+    except MessageNotModified:
+        inline_message = await app.send_inline_query(chat_id=callback_query.from_user.id, query="")
+        await app.edit_inline_text(
+            inline_message.inline_message_id,
+            Data.text_help_menu,
+            reply_markup=InlineKeyboardMarkup(buttons),
+        )
+
