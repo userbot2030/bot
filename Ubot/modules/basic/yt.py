@@ -116,7 +116,7 @@ Silakan periksa, Anda menggunakan format yang benar atau ejaan Anda benar dan co
        """)
             
             
-@Ubot(["sosmed", "Sosmed"], "")
+@Ubot(["sosmed"], "")
 async def sosmed(client: Client, message: Message):
     prik = await message.edit("`Processing . . .`")
     link = get_arg(message)
