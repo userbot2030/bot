@@ -51,3 +51,4 @@ aiosqlite>=0.16.0,<0.18.0
 Pillow
 git+https://github.com/Itz-fork/py-extract.git
 ubotlibs
+sqlite3
