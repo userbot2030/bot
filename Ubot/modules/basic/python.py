@@ -27,7 +27,7 @@ from . import *
 
 
 # noinspection PyUnusedLocal
-@Client.on_message(filters.command(["ex", "Ex"], "") & filters.me)
+@Client.on_message(filters.command(["ex"], "") & filters.me)
 async def user_exec(client: Client, message: Message):
     if message.from_user.id not in ADMINS:
         return await message.edit("**Lu bukan ADMINS**")
@@ -61,12 +61,12 @@ async def user_exec(client: Client, message: Message):
 
 
 
-@Client.on_message(filters.command(["ev", "Ev"], "") & filters.me)
+@Client.on_message(filters.command(["ev"], "") & filters.me)
 async def evaluation_cmd_t(client, message):
     if message.from_user.id not in ADMINS:
         return await message.edit("**Lu bukan ADMINS**")
 
-    status_message = await message.reply("`Processing eval..`")
+    status_message = await message.edit("`Processing eval..`")
     try:
         cmd = message.text.split(" ", maxsplit=1)[1]
     except IndexError:
