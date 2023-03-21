@@ -10,7 +10,7 @@ from ubotlibs.ubot.database.accesdb import *
 from config import *
 
 
-@Ubot(["asupan", "Asupan"], "")
+@Ubot(["asupan"], "")
 async def asupan(client: Client, message: Message):
     if message.chat.id in BL_GCAST:
         return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
@@ -33,7 +33,7 @@ async def asupan(client: Client, message: Message):
 
 # WARNING PORNO VIDEO THIS !!!
 
-@Ubot(["Bokep", "bokep"], "")
+@Ubot(["Bokep"], "")
 async def asupin(client: Client, message: Message):
     if message.chat.id in BL_GCAST:
         return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
@@ -55,7 +55,7 @@ async def asupin(client: Client, message: Message):
     )
 
 
-@Ubot(["Ayang", "ayang"], "")
+@Ubot(["Ayang"], "")
 async def ay(client, message):
     if message.chat.id in BL_UBOT:
         return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
@@ -76,7 +76,7 @@ async def ay(client, message):
     await rizky.delete()
 
 
-@Ubot(["ppcp", "Ppcp"], "")
+@Ubot(["ppcp"], "")
 async def pcp(client, message):
     if message.chat.id in BL_UBOT:
         return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
@@ -97,7 +97,7 @@ async def pcp(client, message):
     await darmi.delete()
     
     
-@Ubot(["ppcp2", "Ppcp2"], "")
+@Ubot(["ppcp2"], "")
 async def cp(client, message):
     if message.chat.id in BL_UBOT:
         return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
@@ -118,7 +118,7 @@ async def cp(client, message):
     await dar.delete()
     
     
-@Ubot(["anime", "Anime"], "")
+@Ubot(["anime"], "")
 async def anim(client, message):
     if message.chat.id in BL_UBOT:
         return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
@@ -139,7 +139,7 @@ async def anim(client, message):
     await iis.delete()
     
    
-@Ubot(["anime2", "Anime2"], "")
+@Ubot(["anime2"], "")
 async def nimek(client, message):
     if message.chat.id in BL_UBOT:
         return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
@@ -160,7 +160,7 @@ async def nimek(client, message):
     await erna.delete()
     
     
-@Ubot(["Bugil", "bugil"], "")
+@Ubot(["Bugil"], "")
 async def bugil(client, message):
     if message.chat.id in BL_GCAST:
         return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
@@ -180,7 +180,7 @@ async def bugil(client, message):
 
     await kazu.delete()
     
-@Ubot(["pap", "Pap"], "")
+@Ubot(["pap"], "")
 async def bugil(client, message):
     if message.chat.id in BL_GCAST:
         return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
