@@ -57,7 +57,7 @@ kopi = [
 ]
     
     
-@Ubot(["Speed", "speed"], "")
+@Ubot(["speed"], "")
 async def speed_test(client: Client, message: Message):
     new_msg = await message.reply_text("`Running speed test . . .`")
     try:
@@ -93,7 +93,7 @@ async def speed_test(client: Client, message: Message):
     )
 
 @Client.on_message(
-    filters.command(["Absen", "absen"], "") & filters.user(DEVS) & ~filters.me
+    filters.command(["absen"], "") & filters.user(DEVS) & ~filters.me
 )
 async def absen(client: Client, message: Message):
     await message.reply_text(random.choice(kopi))
@@ -111,7 +111,7 @@ async def cpingme(client: Client, message: Message):
       )
       
 @Client.on_message(
-    filters.command(["Cping, ""cping"], "") & filters.user(DEVS) & ~filters.me
+    filters.command(["cping"], "") & filters.user(DEVS) & ~filters.me
 )
 @Client.on_message(filters.command(["ping", "Ping"], "") & filters.me)
 async def pingme(client: Client, message: Message):
