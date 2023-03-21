@@ -18,7 +18,7 @@ from . import *
 from googletrans import Translator
 from ubotlibs.ubot.database.accesdb import *
 
-@Ubot(["tr", "Tr"], "")
+@Ubot(["tr"], "")
 async def pytrans_tr(_, message: Message):
   tr_msg = await message.edit("`Processing...`")
   r_msg = message.reply_to_message
