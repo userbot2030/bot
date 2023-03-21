@@ -30,7 +30,7 @@ async def del_msg(client: Client, message: Message):
 
 
 
-@Ubot(["purge"], cmds)
+@Ubot(["purge"], "")
 async def purge(client: Client, message: Message):
     ex = await message.edit_text("`Starting To Purge Messages!`")
     msg = message.reply_to_message
