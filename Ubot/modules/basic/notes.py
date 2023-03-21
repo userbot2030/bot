@@ -4,6 +4,7 @@ from ubotlibs.ubot.database.notesdb import *
 from pyrogram.types import Message
 from ubotlibs.ubot.utils.tools import *
 from . import *
+from Ubot import BOTLOG_CHATID
 from ubotlibs.ubot.database.accesdb import *
 
 
