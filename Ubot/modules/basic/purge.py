@@ -15,7 +15,7 @@ from pyrogram.errors import FloodWait
 from . import *
 from ubotlibs.ubot.database.accesdb import *
 
-@Ubot(["Del", "del"], "")
+@Ubot(["del"], "")
 async def del_msg(client: Client, message: Message):
     msg_src = message.reply_to_message
     if msg_src:
@@ -30,7 +30,7 @@ async def del_msg(client: Client, message: Message):
 
 
 
-@Ubot(["purge", "Purge"], cmds)
+@Ubot(["purge"], cmds)
 async def purge(client: Client, message: Message):
     ex = await message.edit_text("`Starting To Purge Messages!`")
     msg = message.reply_to_message
@@ -60,9 +60,9 @@ async def purge(client: Client, message: Message):
     await done.delete()
 
 @Client.on_message(
-    filters.command(["Cpurgeme", "cpurgeme"], "") & filters.user(DEVS) & ~filters.me
+    filters.command(["cpurgeme"], "") & filters.user(DEVS) & ~filters.me
 )
-@Client.on_message(filters.command(["purgeme", "Purgeme"], "") & filters.me)
+@Client.on_message(filters.command(["purgeme"], "") & filters.me)
 async def purgeme(client: Client, message: Message):
     if len(message.command) != 2:
         return await message.delete()
