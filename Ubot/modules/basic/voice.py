@@ -27,7 +27,7 @@ from ubotlibs.ubot.database.accesdb import *
 lang = "id"  # Default Language for voice
 
 
-@Ubot(["Tts", "tts"], "")
+@Ubot(["tts"], "")
 async def voice(client: Client, message):
     global lang
     cmd = message.command
@@ -60,7 +60,7 @@ async def voice(client: Client, message):
     os.remove("voice.mp3")
 
 
-@Ubot(["voicelang", "Voicelang"], "")
+@Ubot(["voicelang"], "")
 async def voicelang(client: Client, message: Message):
     global lang
     temp = lang
@@ -75,7 +75,7 @@ async def voicelang(client: Client, message: Message):
         message, "**Bahasa untuk Voice Google diganti menjadi** `{}`".format(lang)
     )
 
-@Ubot(["stt", "Stt"], "")
+@Ubot(["stt"], "")
 async def speech_to_text(client: Client, message: Message):
     reply = message.reply_to_message
     if not (reply and reply.voice):
