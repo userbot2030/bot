@@ -20,7 +20,7 @@ from ubotlibs.ubot.helper.parser import mention_html, mention_markdown
 from ubotlibs.ubot.database.accesdb import *
 
 
-@Ubot(["admins"], "")
+@Ubot(["admin"], "")
 async def adminlist(client: Client, message: Message):
     replyid = None
     toolong = False
