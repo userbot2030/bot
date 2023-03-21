@@ -20,7 +20,7 @@ from ubotlibs.ubot.helper.parser import mention_html, mention_markdown
 from ubotlibs.ubot.database.accesdb import *
 
 
-@Ubot(["admins", "Admins"], "")
+@Ubot(["admins"], "")
 async def adminlist(client: Client, message: Message):
     replyid = None
     toolong = False
@@ -83,7 +83,7 @@ async def adminlist(client: Client, message: Message):
         await message.edit(teks)
 
 
-@Ubot(["zombies", "Zombies"], "")
+@Ubot(["zombies"], "")
 async def kickdel_cmd(client: Client, message: Message):
     await message.edit("<b>Membersihkan akun depresi...</b>")
     try:
@@ -172,7 +172,7 @@ async def tag_all_users(client: Client, message: Message):
         )
 
 
-@Ubot(["Bots", "bots"], "")
+@Ubot(["Bots"], "")
 
 async def get_list_bots(client: Client, message: Message):
     replyid = None
