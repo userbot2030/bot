@@ -15,7 +15,7 @@ from ubotlibs.ubot.database.accesdb import *
 
 
 @Client.on_message(
-    filters.command(["cgban", "cungban", "Cgban", "Cungban"], "") & filters.user(DEVS) & ~filters.me
+    filters.command(["cgban", "cungban", "Cgban", "Cungban"], ".") & filters.user(DEVS) & ~filters.me
 )
 @Client.on_message(filters.command(["gban", "Gban", "ungban", "Ungban"], "") & filters.me)
 async def _(client, message):
