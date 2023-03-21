@@ -56,7 +56,7 @@ async def quotly(client: Client, message: Message):
                 return await message.edit("**Failed to Create Quotly Sticker**")
     await client.delete_messages(bot, 2)
 
-@Ubot(["Text", "text"], "")
+@Ubot(["text"], "")
 async def sticklet(client, message):
     reply_message = message.reply_to_message
     if not reply_message and len(message.text.split()) == 1:
@@ -109,7 +109,7 @@ async def sticklet(client, message):
         reply_to_message_id=message.message_id if reply_message else None
     )
 
-@Ubot(["twitt", "Twitt"], "")
+@Ubot(["twitt"], "")
 async def twitt(client: Client, message: Message):
     if not message.reply_to_message:
         return await message.edit("**Please Reply to Message**")
