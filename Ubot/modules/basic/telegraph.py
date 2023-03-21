@@ -21,7 +21,7 @@ r = telegraph.create_account(short_name="telegram")
 auth_url = r["auth_url"]
 
 
-@Ubot(["tg", "tm", "Tg", "Tm"], "")
+@Ubot(["tg", "tm"], "")
 async def uptotelegraph(client: Client, message: Message):
     tex = await message.edit_text("`Processing . . .`")
     if not message.reply_to_message:
