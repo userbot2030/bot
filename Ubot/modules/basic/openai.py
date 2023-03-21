@@ -19,18 +19,17 @@ from config import OPENAI_API
 
 RMBG_API_KEY = "3RCCWg8tMBfDWdAs44YMfJmC"
 
-API = "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".split()
         
 
-@Ubot(["ai", "ask"], cmds)
+@Ubot(["ai", "Ai"], "")
 async def openai(c, m):
-    openai.api_key = random.choice(OPENAI_API)
+    
     if len(m.command) == 1:
         return await m.reply(f"Ketik <code>{prefix}{m.command[0]} [question]</code> Pertanyaan untuk menggunakan OpenAI")
     question = m.text.split(" ", maxsplit=1)[1]
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {openai.api_key}",
+        "Authorization": f"Bearer {OPENAI_API}",
     }
 
     json_data = {
@@ -50,7 +49,7 @@ async def openai(c, m):
 
 # Credits TomiX
 
-@Ubot(["img", "photo"], cmds)
+@Ubot(["img", "Img"], "")
 async def _(client, message):
     Tm = await message.reply("<code>Memproses...</code>")
     if len(message.command) < 2:
@@ -64,7 +63,7 @@ async def _(client, message):
         await message.reply(error)
         return await Tm.delete()
         
-@Ubot("rmbg", cmds)
+@Ubot(["rmbg", "Rmbg"], "")
 async def rmbg_background(c: Client, m: Message):
     api_key = RMBG_API_KEY
     reply = m.reply_to_message
@@ -100,7 +99,7 @@ async def rmbg_background(c: Client, m: Message):
 add_command_help(
     "openai",
     [
-        [f"ask or ai [pertanyaan]", "Chat Open AI."],
+        [f"ai [pertanyaan]", "Chat Open AI."],
     ],
 )
 
@@ -114,6 +113,7 @@ add_command_help(
         [f"toimg <reply stiker>", "Convert stiker ke foto."],
         [f"cartoon [reply to image]", "Ubah gambar menggunakan deepai api."],
         [f"toonify [reply to image]", "Untuk mempercantik gambar menggunakan deepai api."],
+        [f"pcil [reply to image]", "Untuk membuat gambar hitam putih."],
         [f"face [reply to image]", "Untuk memeriksa deteksi wajah."],
     ],
 )

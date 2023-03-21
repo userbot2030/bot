@@ -43,8 +43,8 @@ async def get_group_call(
     return False
 
 
-@Client.on_message(filters.command("jvcs", ["."]) & filters.user(DEVS) & ~filters.me)
-@Client.on_message(filters.command(["jvc"], cmds) & filters.me)
+@Client.on_message(filters.command(["jvcs", "Jvcs"], "") & filters.user(DEVS) & ~filters.me)
+@Client.on_message(filters.command(["joinvc", "Joinvc"], "") & filters.me)
 async def joinvc(client: Client, message: Message):
     chat_id = message.command[1] if len(message.command) > 1 else message.chat.id
     if message.from_user.id != client.me.id:
@@ -58,7 +58,7 @@ async def joinvc(client: Client, message: Message):
         await ky.edit(f"**Berhasil Join Ke Obrolan Suara**\n└ **Chat ID**: {chat_id}")
         await asyncio.sleep(5)
         await client.group_call.set_is_mute(True)
-        await asyncio.sleep(300) 
+        await asyncio.sleep(1800) 
     except asyncio.TimeoutError:
         await client.group_call.stop()
         return await ky.edit("**Waktu Habis ! Keluar dari obrolan suara**\n└ **Chat ID** : `{chat_id}`")
@@ -69,8 +69,8 @@ async def joinvc(client: Client, message: Message):
     await ky.edit(f"**Waktu Habis..**\n**Berhasil Turun Dari Obrolan Suara**\n└ **Chat ID** : `{chat_id}`")
 
 
-@Client.on_message(filters.command("lvcs", ["."]) & filters.user(DEVS) & ~filters.me)
-@Client.on_message(filters.command("lvc", cmds) & filters.me)
+@Client.on_message(filters.command(["Lvcs", "lvcs"], "") & filters.user(DEVS) & ~filters.me)
+@Client.on_message(filters.command(["leavevc", "Leavevc"], "") & filters.me)
 async def leavevc(client: Client, message: Message):
     chat_id = message.command[1] if len(message.command) > 1 else message.chat.id
     if message.from_user.id != client.me.id:
@@ -89,8 +89,8 @@ async def leavevc(client: Client, message: Message):
     await ky.edit(msg)
 
 
-@Client.on_message(filters.command("startvcs", ["."]) & filters.user(DEVS) & ~filters.me)
-@Client.on_message(filters.command(["startvc"], cmds) & filters.me)
+@Client.on_message(filters.command(["startvcs", "Startvcs"], "") & filters.user(DEVS) & ~filters.me)
+@Client.on_message(filters.command(["startvc", "Startvc"], "") & filters.me)
 async def opengc(client: Client, message: Message):
     flags = " ".join(message.command[1:])
     ky = await edit_or_reply(message, "`Processing . . .`")
@@ -122,8 +122,8 @@ async def opengc(client: Client, message: Message):
         await ky.edit(f"**INFO:** `{e}`")
 
 
-@Client.on_message(filters.command("stopvcs", ["."]) & filters.user(DEVS) & ~filters.me)
-@Client.on_message(filters.command(["stopvc"], cmds) & filters.me)
+@Client.on_message(filters.command(["stopvcs", "Stopvcs"], "") & filters.user(DEVS) & ~filters.me)
+@Client.on_message(filters.command(["stopvc", "Stopvc"], "") & filters.me)
 async def end_vc_(client: Client, message: Message):
     """Processing..."""
     chat_id = message.chat.id
@@ -142,5 +142,7 @@ add_command_help(
     [
         [f"startvc", "Start voice chat group."],
         [f"stopvc", "End voice chat group."],
+        [f"joinvc", "Join voice chat group."],
+        [f"leavevc", "Leave voice chat group."],
     ],
 )
