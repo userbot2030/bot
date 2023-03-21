@@ -19,5 +19,4 @@ create_database(bot4.name)
 create_database(bot5.name)
 create_database(bot6.name)
 create_database(bot7.name)
-create_database(bot8.name)
-create_database(bot9.name)
+
