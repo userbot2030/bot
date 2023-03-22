@@ -92,7 +92,7 @@ async def set_chat_photo(client: Client, message: Message):
     can_change_admin = zuzu.can_change_info
     can_change_member = message.chat.permissions.can_change_info
     if not (can_change_admin or can_change_member):
-        await message.edit_text("Kamu tidak punya akses wewenang")
+        await message.reply("Kamu tidak punya akses wewenang")
     if message.reply_to_message:
         if message.reply_to_message.photo:
             await client.set_chat_photo(
@@ -100,14 +100,14 @@ async def set_chat_photo(client: Client, message: Message):
             )
             return
     else:
-        await message.edit_text("Balas ke photo untuk set!")
+        await message.edit("Balas ke photo untuk set!")
 
 
 
 @Client.on_message(filters.command(["ban", "dban"], "") & filters.me)
 async def member_ban(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message, sender_chat=True)
-    await message.edit("`Processing...`")
+    await message.reply("`Processing...`")
     if not user_id:
         return await message.edit("Tidak dapat menemukan pengguna.")
     if user_id == client.me.id:
@@ -140,7 +140,7 @@ async def member_ban(client: Client, message: Message):
 @Client.on_message(filters.command(["unban"], "") & filters.me)
 async def member_unban(client: Client, message: Message):
     reply = message.reply_to_message
-    await message.edit("`Processing...`")
+    await message.reply("`Processing...`")
     if reply and reply.sender_chat and reply.sender_chat != message.chat.id:
         return await message.edit("Tidak bisa unban ch")
 
@@ -164,7 +164,7 @@ async def member_unban(client: Client, message: Message):
 @Client.on_message(filters.command(["pin", "unpin"], "") & filters.me)
 async def pin_message(client: Client, message):
     if not message.reply_to_message:
-        return await message.edit_text("Balas ke pesan untuk pin/unpin .")
+        return await message.reply("Balas ke pesan untuk pin/unpin .")
     await message.edit("`Processing...`")
     r = message.reply_to_message
     if message.command[0][0] == "u":
@@ -186,7 +186,7 @@ async def pin_message(client: Client, message):
 @Client.on_message(filters.command(["mute"], "") & filters.me)
 async def mute(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message)
-    await message.edit("`Processing...`")
+    await message.reply("`Processing...`")
     if not user_id:
         return await message.edit("Pengguna tidak ditemukan.")
     if user_id == client.me.id:
@@ -213,7 +213,7 @@ async def mute(client: Client, message: Message):
 @Client.on_message(filters.command(["unmute"], "") & filters.me)
 async def unmute(client: Client, message: Message):
     user_id = await extract_user(message)
-    await message.edit("`Processing...`")
+    await message.reply("`Processing...`")
     if not user_id:
         return await message.edit("Pengguna tidak ditemukan.")
     try:
@@ -227,7 +227,7 @@ async def unmute(client: Client, message: Message):
 @Client.on_message(filters.command(["kick", "dkick"], "") & filters.me)
 async def kick_user(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message)
-    await message.edit("`Processing...`")
+    await message.reply("`Processing...`")
     if not user_id:
         return await message.edit("Pengguna tidak ditemukan.")
     if user_id == client.me.id:
@@ -258,7 +258,7 @@ async def kick_user(client: Client, message: Message):
 )
 async def promotte(client: Client, message: Message):
     user_id = await extract_user(message)
-    await message.edit("`Processing...`")
+    await message.reply("`Processing...`")
     if not user_id:
         return await message.edit("Pengguna tidak ditemukan.")
     rd = (await client.get_chat_member(message.chat.id, client.me.id)).privileges
@@ -308,7 +308,7 @@ async def promotte(client: Client, message: Message):
 @Client.on_message(filters.group & filters.command(["demote"], "") & filters.me)
 async def demote(client: Client, message: Message):
     user_id = await extract_user(message)
-    await message.edit("`Processing...`")
+    await message.reply("`Processing...`")
     if not user_id:
         return await message.edit("Pengguna tidak ditemukan")
     if user_id == client.me.id:
