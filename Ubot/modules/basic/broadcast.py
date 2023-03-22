@@ -30,7 +30,7 @@ else:
 @Ubot(["Gcast"], "")
 async def gcast_cmd(client: Client, message: Message):
     if message.reply_to_message or get_arg(message):
-        await message.edit_text("`Memulai Gcast...`")
+        await message.reply_text("`Memulai Gcast...`")
     else:
         return await message.edit_text("**Balas ke pesan/berikan sebuah pesan**")
     done = 0
@@ -61,7 +61,7 @@ async def gcast_cmd(client: Client, message: Message):
 @Ubot(["gucast"], "")
 async def gucast(client: Client, message: Message):
     if message.reply_to_message or get_arg(message):
-        await message.edit_text("`Started global broadcast...`")
+        await message.reply_text("`Started global broadcast...`")
     else:
         return await message.edit_text("**Berikan sebuah pesan atau balas ke pesan**")
     done = 0
@@ -91,7 +91,7 @@ async def gucast(client: Client, message: Message):
 
 @Ubot(["addbl"], "")
 async def addblacklist(client: Client, message: Message):
-    await message.edit_text("`Processing...`")
+    await message.reply_text("`Processing...`")
     if HAPP is None:
         return await message.edit_text(
             "**Silahkan Tambahkan Var** `HEROKU_APP_NAME` **untuk menambahkan blacklist**",
@@ -118,7 +118,7 @@ async def addblacklist(client: Client, message: Message):
 
 @Ubot(["delbl"], "")
 async def delblacklist(client: Client, message: Message):
-    await message.edit_text("`Processing...`")
+    await message.reply_text("`Processing...`")
     if HAPP is None:
         return await message.edit_text(
             "**Silahkan Tambahkan Var** `HEROKU_APP_NAME` **untuk menambahkan blacklist**",
