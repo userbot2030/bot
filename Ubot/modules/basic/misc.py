@@ -124,7 +124,7 @@ async def get_id(bot: Client, message: Message):
         else:
             user_detail = f"**User ID**: `{message.reply_to_message.from_user.id}`\n"
         user_detail += f"**Message ID**: `{message.reply_to_message.id}`"
-        await message.edit(user_detail)
+        await message.reply(user_detail)
     elif file_id:
         if rep.forward_from:
             user_detail = (
