@@ -91,9 +91,9 @@ async def gucast(client: Client, message: Message):
 
 @Ubot(["addbl"], "")
 async def addblacklist(client: Client, message: Message):
-    await message.reply_text("`Processing...`")
+    ky = await message.reply("`Processing...`")
     if HAPP is None:
-        return await message.edit_text(
+        return await message.edit(
             "**Silahkan Tambahkan Var** `HEROKU_APP_NAME` **untuk menambahkan blacklist**",
         )
     blgc = f"{BLACKLIST_GCAST} {message.chat.id}"
@@ -105,7 +105,8 @@ async def addblacklist(client: Client, message: Message):
         .replace("]", "")
         .replace("set() ", "")
     )
-    await message.edit_text(
+    await ky.delete()
+    await message.edit(
         f"**Berhasil Menambahkan** `{message.chat.id}` **ke daftar blacklist gcast.**\n\nSedang MeRestart ntuk Menerapkan Perubahan."
     )
     if await in_heroku():
@@ -118,16 +119,17 @@ async def addblacklist(client: Client, message: Message):
 
 @Ubot(["delbl"], "")
 async def delblacklist(client: Client, message: Message):
-    await message.reply_text("`Processing...`")
+    nay = await message.reply("`Processing...`")
     if HAPP is None:
-        return await message.edit_text(
+        return await message.edit(
             "**Silahkan Tambahkan Var** `HEROKU_APP_NAME` **untuk menambahkan blacklist**",
         )
     blchat = f"{BLACKLIST_GCAST} {message.chat.id}"
     gett = str(message.chat.id)
     if gett in blchat:
         blacklistgrup = blchat.replace(gett, "")
-        await message.edit_text(
+        await nay.delete()
+        await message.edit(
             f"**Berhasil Menghapus** `{message.chat.id}` **dari daftar blacklist gcast.**\n\nSedang MeRestart untuk Menerapkan Perubahan."
         )
         if await in_heroku():
