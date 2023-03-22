@@ -41,7 +41,7 @@ async def carbon_func(client: Client, message: Message):
         text = message.reply_to_message.text or message.reply_to_message.caption
     if not text:
         return await message.delete()
-    ex = await message.edit_text("`Preparing Carbon . . .`")
+    ex = await message.reply("`Preparing Carbon . . .`")
     carbon = await make_carbon(text)
     await ex.edit("`Uploading . . .`")
     await asyncio.gather(
