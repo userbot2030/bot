@@ -19,7 +19,7 @@ from ubotlibs.ubot.database.accesdb import *
 @Ubot(["dm"], "")
 @check_access
 async def dm(coli: Client, memek: Message):
-    Ubot = await memek.reply_text("` Proccessing.....`")
+    Ubot = await memek.reply("` Proccessing.....`")
     quantity = 1
     inp = memek.text.split(None, 2)[1]
     user = await coli.get_chat(inp)
