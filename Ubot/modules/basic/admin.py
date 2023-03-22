@@ -54,22 +54,22 @@ async def adminlist(client: Client, message: Message):
     admin.sort()
     badmin.sort()
     totaladmins = len(creator) + len(admin) + len(badmin)
-    teks = "**Admins in {}**\n".format(grup.title)
-    teks += "**Creator**\n"
+    teks = "**Daftar Admin Di {}**\n".format(grup.title)
+    teks += "**Pemilik**\n"
     for x in creator:
         teks += "• {}\n\n".format(x)
         if len(teks) >= 4096:
             await message.reply(message.chat.id, teks, reply_to_message_id=replyid)
             teks = ""
             toolong = True
-    teks += "\n**{} Human Administrator**\n".format(len(admin))
+    teks += "\n**{} Admin**\n".format(len(admin))
     for x in admin:
         teks += "• {}\n".format(x)
         if len(teks) >= 4096:
             await message.reply(message.chat.id, teks, reply_to_message_id=replyid)
             teks = ""
             toolong = True
-    teks += "\n**{} Bot Administrator**\n".format(len(badmin))
+    teks += "\n**{} Bot Admin**\n".format(len(badmin))
     for x in badmin:
         teks += "• {}\n".format(x)
         if len(teks) >= 4096:
@@ -80,12 +80,12 @@ async def adminlist(client: Client, message: Message):
     if toolong:
         await message.reply(message.chat.id, teks, reply_to_message_id=replyid)
     else:
-        await message.edit(teks)
+        await message.reply(teks)
 
 
 @Ubot(["zombies"], "")
 async def kickdel_cmd(client: Client, message: Message):
-    await message.edit("<b>Membersihkan akun depresi...</b>")
+    await message.reply("<b>Membersihkan akun depresi...</b>")
     try:
         values = [
             await message.chat.ban_member(
@@ -195,15 +195,15 @@ async def get_list_bots(client: Client, message: Message):
             nama = "☠️ Deleted account"
         if a.user.is_bot:
             bots.append(mention_markdown(a.user.id, nama))
-    teks = "**All bots in group {}**\n".format(grup.title)
-    teks += "╒═══「 Bots 」\n"
+    teks = "**Daftar Bot Di {}**\n".format(grup.title)
+    teks += "Bots\n"
     for x in bots:
-        teks += "│ • {}\n".format(x)
-    teks += "╘══「 Total {} Bots 」".format(len(bots))
+        teks += "• {}\n".format(x)
+    teks += "Total {} Bot".format(len(bots))
     if replyid:
         await client.send_message(message.chat.id, teks, reply_to_message_id=replyid)
     else:
-        await message.edit(teks)
+        await message.reply(teks)
 
 add_command_help(
     "adminmisc",
