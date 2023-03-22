@@ -34,7 +34,7 @@ search_params = {
 @Ubot(["gimg"], "")
 async def api_google_image(c: Client, m: Message):
     if len(m.command) == 1:
-       await m.reply_text(f"Example: `+{m.command[0]} pocong`\n\n**Untuk pencarian khusus gambar google lainnya**")
+       await m.reply_text(f"Example: `{m.command[0]} pocong`\n\n**Untuk pencarian khusus gambar google lainnya**")
        return
 
     search_term = m.text.split(" ", 1)[1]
