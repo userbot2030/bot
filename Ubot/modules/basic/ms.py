@@ -36,7 +36,7 @@ GPC = {}
 @Ubot(["playlist"], "")
 async def pl(client, message):
     group_call = GPC.get((message.chat.id, client.me.id))
-    play = await edit_or_reply(message, "**Processing**")
+    play = await message.reply("**Processing**")
     song = f"**📋 Daftar Playlist {message.chat.title}** : \n"
     s = s_dict.get((message.chat.id, client.me.id))
     if not group_call:
@@ -96,7 +96,7 @@ async def skip_m(client, message):
     group_call = GPC.get((message.chat.id, client.me.id))
     s_d = s_dict.get((message.chat.id, client.me.id))
     if not group_call:
-        return await message.edit_text("**Tidak sedang memutar apa-apa!**")
+        return await message.reply_text("**Tidak sedang memutar apa-apa!**")
     if not s_d:
         return await message.edit_text("**Antrian kosong!**")
     next_song = s_d.pop(0)
@@ -130,7 +130,7 @@ async def skip_m(client, message):
 @Ubot(["play"], "")
 async def play_m(client, message):
     group_call = GPC.get((message.chat.id, client.me.id))
-    u_s = await edit_or_reply(message, "**Processing..**")
+    u_s = await message.reply_text("**Processing..**")
     input_str = get_text(message)
     if not input_str:
         if not message.reply_to_message:
@@ -270,12 +270,12 @@ FFMPEG_PROCESSES = {}
 async def no_song_play(client, message):
     group_call = GPC.get((message.chat.id, client.me.id))
     if not group_call:
-        await edit_or_reply(message, "**Tidak Ada Pemutaran**")
+        await message.reply_text("**Tidak Ada Pemutaran**")
         return
     if not group_call.is_connected:
-        await edit_or_reply(message, "**Tidak Ada Pemutaran**")
+        await message.edit_text("**Tidak Ada Pemutaran**")
         return    
-    await edit_or_reply(message, f"⏸ **Dijeda.** {str(group_call.input_filename).replace('.raw', '')}.")
+    await message.edit_text(f"⏸ **Dijeda.** {str(group_call.input_filename).replace('.raw', '')}.")
     group_call.pause_playout()
     
 
@@ -283,28 +283,28 @@ async def no_song_play(client, message):
 async def wow_dont_stop_songs(client, message):
     group_call = GPC.get((message.chat.id, client.me.id))
     if not group_call:
-        await edit_or_reply(message, "**Tidak Ada Pemutaran**")
+        await message.reply_text("**Tidak Ada Pemutaran**")
         return    
     if not group_call.is_connected:
-        await edit_or_reply(message, "**Tidak Ada Pemutaran**")
+        await message.edit_text("**Tidak Ada Pemutaran**")
         return    
     group_call.resume_playout()
-    await edit_or_reply(message, "▶️**Dilanjutkan.**")
+    await message.edit_text("▶️**Dilanjutkan.**")
         
 
 @Ubot(["end"], "")
 async def leave_vc_test(client, message):
     group_call = GPC.get((message.chat.id, client.me.id))
     if not group_call:
-        await edit_or_reply(message, "**Tidak Ada Pemutaran**")
+        await message.reply_text("**Tidak Ada Pemutaran**")
         return
     if not group_call.is_connected:
-        await edit_or_reply(message, "**Tidak Ada Pemutaran**")
+        await message.edit_text("**Tidak Ada Pemutaran**")
         return
     if os.path.exists(group_call.input_filename):
         os.remove(group_call.input_filename)
     await group_call.stop()
-    await edit_or_reply(message, f"❌ **Lagu Dihentikan Di**  {message.chat.title}")
+    await message.edit_text(f"❌ **Lagu Dihentikan Di**  {message.chat.title}")
     del GPC[(message.chat.id, client.me.id)]
     
 add_command_help(
