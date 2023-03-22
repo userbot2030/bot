@@ -62,7 +62,7 @@ async def inv(client: Client, message: Message):
 
 @Client.on_message(filters.command("invitelink", "") & filters.me)
 async def invite_link(client: Client, message: Message):
-    um = await message.edit_text("`Processing...`")
+    um = await message.reply_text("`Processing...`")
     if message.chat.type in [ChatType.GROUP, ChatType.SUPERGROUP]:
         message.chat.title
         try:
