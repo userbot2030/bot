@@ -24,8 +24,8 @@ from pyrogram import (
 from Ubot.logging import LOGGER
 
 from Ubot import (
-    API_HASH1,
-    API_ID1,
+    API_HASH,
+    API_ID,
     BOT_TOKEN,
     BOT_WORKERS
 )
@@ -37,8 +37,8 @@ class Bot(Client):
     def __init__(self):
         super().__init__(
             name="Ubot",
-            api_hash=API_HASH1
-            api_id=API_ID1,
+            api_hash=API_HASH,
+            api_id=API_ID,
             bot_token=BOT_TOKEN,
             plugins={
                 "root": "Ubot/modules/bot"
