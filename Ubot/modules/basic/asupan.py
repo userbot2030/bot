@@ -12,9 +12,9 @@ from config import *
 
 @Ubot(["asupan"], "")
 async def asupan(client: Client, message: Message):
-    if message.chat.id in BL_GCAST:
-        return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
-    ky = await edit_or_reply(message, "`Mencari asupan... 🔎`")
+    if message.chat.id in BL_UBOT:
+        return await message.reply("**Tidak bisa di gunakan di Group Support**")
+    ky = await message.edit("`Mencari asupan... 🔎`")
     await gather(
         ky.delete(),
         client.send_video(
@@ -35,9 +35,9 @@ async def asupan(client: Client, message: Message):
 
 @Ubot(["Bokep"], "")
 async def asupin(client: Client, message: Message):
-    if message.chat.id in BL_GCAST:
-        return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
-    ran = await edit_or_reply(message, "`Mencari bahan... 🔎`")
+    if message.chat.id in BL_UBOT:
+        return await message.reply("**Tidak bisa di gunakan di Group Support**")
+    ran = await message.edit("`Mencari bahan... 🔎`")
     await gather(
         ran.delete(),
         client.send_video(
@@ -58,8 +58,8 @@ async def asupin(client: Client, message: Message):
 @Ubot(["Ayang"], "")
 async def ay(client, message):
     if message.chat.id in BL_UBOT:
-        return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
-    rizky = await message.reply("🔎 `Search Ayang...`")
+        return await message.reply("**Tidak bisa di gunakan di Group Support**")
+    rizky = await message.edit("🔎 `Search Ayang...`")
     await message.reply_photo(
         choice(
             [
@@ -79,8 +79,8 @@ async def ay(client, message):
 @Ubot(["ppcp"], "")
 async def pcp(client, message):
     if message.chat.id in BL_UBOT:
-        return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
-    darmi = await message.reply("🔎 `Search PPCP...`")
+        return await message.reply("**Tidak bisa di gunakan di Group Support**")
+    darmi = await message.edit("🔎 `Search PPCP...`")
     await message.reply_photo(
         choice(
             [
@@ -100,8 +100,8 @@ async def pcp(client, message):
 @Ubot(["ppcp2"], "")
 async def cp(client, message):
     if message.chat.id in BL_UBOT:
-        return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
-    dar = await message.reply("🔎 `Search Ppcp 2...`")
+        return await message.reply("**Tidak bisa di gunakan di Group Support**")
+    dar = await message.edit("🔎 `Search Ppcp 2...`")
     await message.reply_photo(
         choice(
             [
@@ -121,8 +121,8 @@ async def cp(client, message):
 @Ubot(["anime"], "")
 async def anim(client, message):
     if message.chat.id in BL_UBOT:
-        return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
-    iis = await message.reply("🔎 `Search Anime...`")
+        return await message.reply("**Tidak bisa di gunakan di Group Support**")
+    iis = await message.edit("🔎 `Search Anime...`")
     await message.reply_photo(
         choice(
             [
@@ -142,8 +142,8 @@ async def anim(client, message):
 @Ubot(["anime2"], "")
 async def nimek(client, message):
     if message.chat.id in BL_UBOT:
-        return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
-    erna = await message.reply("🔎 `Search Anime...`")
+        return await message.reply("**Tidak bisa di gunakan di Group Support**")
+    erna = await message.edit("🔎 `Search Anime...`")
     await message.reply_photo(
         choice(
             [
@@ -162,9 +162,9 @@ async def nimek(client, message):
     
 @Ubot(["Bugil"], "")
 async def bugil(client, message):
-    if message.chat.id in BL_GCAST:
-        return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
-    kazu = await message.reply("🔎 `Search PP Bugil...`")
+    if message.chat.id in BL_UBOT:
+        return await message.reply("**Tidak bisa di gunakan di Group Support**")
+    kazu = await message.edit("🔎 `Search PP Bugil...`")
     await message.reply_photo(
         choice(
             [
@@ -182,9 +182,9 @@ async def bugil(client, message):
     
 @Ubot(["pap"], "")
 async def bugil(client, message):
-    if message.chat.id in BL_GCAST:
-        return await edit_or_reply(message, "**Tidak bisa di gunakan di Group Support**")
-    kazu = await message.reply("🔎 `Nih PAP Nya...`")
+    if message.chat.id in BL_UBOT:
+        return await message.reply("**Tidak bisa di gunakan di Group Support**")
+    kazu = await message.edit("🔎 `Nih PAP Nya...`")
     await message.reply_photo(
         choice(
             [
