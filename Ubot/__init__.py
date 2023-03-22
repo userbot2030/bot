@@ -123,8 +123,8 @@ if not BOT_TOKEN:
 
 app = Client(
     name="app",
-    api_id=API_ID1,
-    api_hash=API_HASH1,
+    api_id=API_ID,
+    api_hash=API_HASH,
     bot_token=BOT_TOKEN,
     sleep_threshold=5,
     plugins=dict(root="Ubot/modules/bot"),
@@ -135,8 +135,8 @@ app = Client(
 bot1 = (
     Client(
         name="bot1",
-        api_id=API_ID1,
-        api_hash=API_HASH1,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION1,
         plugins=dict(root="Ubot/modules"),
     )
@@ -147,8 +147,8 @@ bot1 = (
 bot2 = (
     Client(
         name="bot2",
-        api_id=API_ID2,
-        api_hash=API_HASH2,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION2,
         plugins=dict(root="Ubot/modules"),
     )
@@ -159,8 +159,8 @@ bot2 = (
 bot3 = (
     Client(
         name="bot3",
-        api_id=API_ID3,
-        api_hash=API_HASH3,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION3,
         plugins=dict(root="Ubot/modules"),
     )
@@ -171,8 +171,8 @@ bot3 = (
 bot4 = (
     Client(
         name="bot4",
-        api_id=API_ID4,
-        api_hash=API_HASH4,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION4,
         plugins=dict(root="Ubot/modules"),
     )
@@ -183,8 +183,8 @@ bot4 = (
 bot5 = (
     Client(
         name="bot5",
-        api_id=API_ID5,
-        api_hash=API_HASH5,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION5,
         plugins=dict(root="Ubot/modules"),
     )
@@ -194,8 +194,8 @@ bot5 = (
 bot6 = (
     Client(
         name="bot6",
-        api_id=API_ID6,
-        api_hash=API_HASH6,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION6,
         plugins=dict(root="Ubot/modules"),
     )
@@ -206,8 +206,8 @@ bot6 = (
 bot7 = (
     Client(
         name="bot7",
-        api_id=API_ID7,
-        api_hash=API_HASH7,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION7,
         plugins=dict(root="Ubot/modules"),
     )
@@ -218,8 +218,8 @@ bot7 = (
 bot8 = (
     Client(
         name="bot8",
-        api_id=API_ID8,
-        api_hash=API_HASH8,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION8,
         plugins=dict(root="Ubot/modules"),
     )
@@ -230,8 +230,8 @@ bot8 = (
 bot9 = (
     Client(
         name="bot9",
-        api_id=API_ID9,
-        api_hash=API_HASH9,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION9,
         plugins=dict(root="Ubot/modules"),
     )
@@ -242,8 +242,8 @@ bot9 = (
 bot10 = (
     Client(
         name="bot10",
-        api_id=API_ID10,
-        api_hash=API_HASH10,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION10,
         plugins=dict(root="Ubot/modules"),
     )
@@ -254,8 +254,8 @@ bot10 = (
 bot11 = (
     Client(
         name="bot11",
-        api_id=API_ID11,
-        api_hash=API_HASH11,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION11,
         plugins=dict(root="Ubot/modules"),
     )
@@ -266,8 +266,8 @@ bot11 = (
 bot12 = (
     Client(
         name="bot12",
-        api_id=API_ID12,
-        api_hash=API_HASH12,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION12,
         plugins=dict(root="Ubot/modules"),
     )
@@ -278,8 +278,8 @@ bot12 = (
 bot13 = (
     Client(
         name="bot13",
-        api_id=API_ID13,
-        api_hash=API_HASH13,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION13,
         plugins=dict(root="Ubot/modules"),
     )
@@ -290,8 +290,8 @@ bot13 = (
 bot14 = (
     Client(
         name="bot14",
-        api_id=API_ID14,
-        api_hash=API_HASH14,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION14,
         plugins=dict(root="Ubot/modules"),
     )
@@ -302,8 +302,8 @@ bot14 = (
 bot15 = (
     Client(
         name="bot15",
-        api_id=API_ID15,
-        api_hash=API_HASH15,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION15,
         plugins=dict(root="Ubot/modules"),
     )
@@ -314,8 +314,8 @@ bot15 = (
 bot16 = (
     Client(
         name="bot16",
-        api_id=API_ID16,
-        api_hash=API_HASH16,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION16,
         plugins=dict(root="Ubot/modules"),
     )
@@ -326,8 +326,8 @@ bot16 = (
 bot17 = (
     Client(
         name="bot17",
-        api_id=API_ID17,
-        api_hash=API_HASH17,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION17,
         plugins=dict(root="Ubot/modules"),
     )
@@ -338,8 +338,8 @@ bot17 = (
 bot18 = (
     Client(
         name="bot18",
-        api_id=API_ID18,
-        api_hash=API_HASH18,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION18,
         plugins=dict(root="Ubot/modules"),
     )
@@ -350,8 +350,8 @@ bot18 = (
 bot19 = (
     Client(
         name="bot19",
-        api_id=API_ID19,
-        api_hash=API_HASH19,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION19,
         plugins=dict(root="Ubot/modules"),
     )
@@ -362,8 +362,8 @@ bot19 = (
 bot20 = (
     Client(
         name="bot20",
-        api_id=API_ID20,
-        api_hash=API_HASH20,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION20,
         plugins=dict(root="Ubot/modules"),
     )
@@ -373,8 +373,8 @@ bot20 = (
 bot21 = (
     Client(
         name="bot21",
-        api_id=API_ID21,
-        api_hash=API_HASH21,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION21,
         plugins=dict(root="Ubot/modules"),
     )
@@ -385,8 +385,8 @@ bot21 = (
 bot22 = (
     Client(
         name="bot22",
-        api_id=API_ID22,
-        api_hash=API_HASH22,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION22,
         plugins=dict(root="Ubot/modules"),
     )
@@ -397,8 +397,8 @@ bot22 = (
 bot23 = (
     Client(
         name="bot23",
-        api_id=API_ID23,
-        api_hash=API_HASH23,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION23,
         plugins=dict(root="Ubot/modules"),
     )
@@ -409,8 +409,8 @@ bot23 = (
 bot24 = (
     Client(
         name="bot24",
-        api_id=API_ID24,
-        api_hash=API_HASH24,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION24,
         plugins=dict(root="Ubot/modules"),
     )
@@ -421,8 +421,8 @@ bot24 = (
 bot25 = (
     Client(
         name="bot25",
-        api_id=API_ID25,
-        api_hash=API_HASH25,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION25,
         plugins=dict(root="Ubot/modules"),
     )
@@ -433,8 +433,8 @@ bot25 = (
 bot26 = (
     Client(
         name="bot26",
-        api_id=API_ID26,
-        api_hash=API_HASH26,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION26,
         plugins=dict(root="Ubot/modules"),
     )
@@ -445,8 +445,8 @@ bot26 = (
 bot27 = (
     Client(
         name="bot27",
-        api_id=API_ID27,
-        api_hash=API_HASH27,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION27,
         plugins=dict(root="Ubot/modules"),
     )
@@ -457,8 +457,8 @@ bot27 = (
 bot28 = (
     Client(
         name="bot28",
-        api_id=API_ID28,
-        api_hash=API_HASH28,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION28,
         plugins=dict(root="Ubot/modules"),
     )
@@ -469,8 +469,8 @@ bot28 = (
 bot29 = (
     Client(
         name="bot29",
-        api_id=API_ID29,
-        api_hash=API_HASH29,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION29,
         plugins=dict(root="Ubot/modules"),
     )
@@ -481,8 +481,8 @@ bot29 = (
 bot30 = (
     Client(
         name="bot30",
-        api_id=API_ID30,
-        api_hash=API_HASH30,
+        api_id=API_ID,
+        api_hash=API_HASH,
         session_string=SESSION30,
         plugins=dict(root="Ubot/modules"),
     )
