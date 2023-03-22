@@ -107,7 +107,7 @@ async def set_chat_photo(client: Client, message: Message):
 @Client.on_message(filters.command(["ban", "dban"], "") & filters.me)
 async def member_ban(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message, sender_chat=True)
-    await message.reply("`Processing...`")
+    ky = await message.reply("`Processing...`")
     if not user_id:
         return await message.edit("Tidak dapat menemukan pengguna.")
     if user_id == client.me.id:
@@ -117,6 +117,7 @@ async def member_ban(client: Client, message: Message):
     if user_id in (await list_admins(client, message.chat.id)):
         return await message.edit("Tidak bisa banned admin.")
     try:
+        await ky.delete()
         mention = (await client.get_users(user_id)).mention
     except IndexError:
         mention = (
@@ -186,7 +187,7 @@ async def pin_message(client: Client, message):
 @Client.on_message(filters.command(["mute"], "") & filters.me)
 async def mute(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message)
-    await message.reply("`Processing...`")
+    nay = await message.reply("`Processing...`")
     if not user_id:
         return await message.edit("Pengguna tidak ditemukan.")
     if user_id == client.me.id:
@@ -195,6 +196,7 @@ async def mute(client: Client, message: Message):
         return await message.edit("Tidak bisa mute dev!")
     if user_id in (await list_admins(client, message.chat.id)):
         return await message.edit("Tidak bisa mute admin.")
+    await nay.delete()
     mention = (await client.get_users(user_id)).mention
     msg = (
         f"**Muted User:** {mention}\n"
@@ -227,7 +229,7 @@ async def unmute(client: Client, message: Message):
 @Client.on_message(filters.command(["kick", "dkick"], "") & filters.me)
 async def kick_user(client: Client, message: Message):
     user_id, reason = await extract_user_and_reason(message)
-    await message.reply("`Processing...`")
+    ny = await message.reply("`Processing...`")
     if not user_id:
         return await message.edit("Pengguna tidak ditemukan.")
     if user_id == client.me.id:
@@ -236,6 +238,7 @@ async def kick_user(client: Client, message: Message):
         return await message.edit("Tidak bisa kick dev!.")
     if user_id in (await list_admins(client, message.chat.id)):
         return await message.edit("Tidak bisa kick admin.")
+    await ny.delete()
     mention = (await client.get_users(user_id)).mention
     msg = f"""
 **Kicked User:** {mention}
