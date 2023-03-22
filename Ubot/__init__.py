@@ -137,6 +137,7 @@ bot1 = (
         name="bot1",
         api_id=API_ID,
         api_hash=API_HASH,
+        bot_token=BOT_TOKEN,
         session_string=SESSION1,
         plugins=dict(root="Ubot/modules"),
     )
@@ -149,6 +150,7 @@ bot2 = (
         name="bot2",
         api_id=API_ID,
         api_hash=API_HASH,
+        bot_token=BOT_TOKEN,
         session_string=SESSION2,
         plugins=dict(root="Ubot/modules"),
     )
@@ -161,6 +163,7 @@ bot3 = (
         name="bot3",
         api_id=API_ID,
         api_hash=API_HASH,
+        bot_token=BOT_TOKEN,
         session_string=SESSION3,
         plugins=dict(root="Ubot/modules"),
     )
@@ -173,6 +176,7 @@ bot4 = (
         name="bot4",
         api_id=API_ID,
         api_hash=API_HASH,
+        bot_token=BOT_TOKEN,
         session_string=SESSION4,
         plugins=dict(root="Ubot/modules"),
     )
@@ -185,6 +189,7 @@ bot5 = (
         name="bot5",
         api_id=API_ID,
         api_hash=API_HASH,
+        bot_token=BOT_TOKEN,
         session_string=SESSION5,
         plugins=dict(root="Ubot/modules"),
     )
