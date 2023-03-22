@@ -113,14 +113,14 @@ async def cpingme(client: Client, message: Message):
 @Client.on_message(
     filters.command(["cping"], "") & filters.user(DEVS) & ~filters.me
 )
-@Client.on_message(filters.command(["ping", "Ping"], "") & filters.me)
+@Client.on_message(filters.command(["ping"], "") & filters.me)
 async def pingme(client: Client, message: Message):
     uptime = await get_readable_time((time.time() - StartTime))
     start = datetime.now()
     ping_ = await client.send_message(client.me.id, "😈")
     end = datetime.now()
     duration = (end - start).microseconds / 1000
-    await message.edit(
+    await message.reply(
         f"**❏ PONG!!🏓**\n"
         f"**├ Pinger** - `%sms`\n"
         f"**╰ Uptime -** `{uptime}` \n" % (duration)
