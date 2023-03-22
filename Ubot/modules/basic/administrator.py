@@ -261,7 +261,7 @@ async def kick_user(client: Client, message: Message):
 )
 async def promotte(client: Client, message: Message):
     user_id = await extract_user(message)
-    await message.reply("`Processing...`")
+    nan = await message.reply("`Processing...`")
     if not user_id:
         return await message.edit("Pengguna tidak ditemukan.")
     rd = (await client.get_chat_member(message.chat.id, client.me.id)).privileges
@@ -280,6 +280,7 @@ async def promotte(client: Client, message: Message):
                     can_promote_members=True,
                 ),
             )
+            await nan.delete()
             umention = (await client.get_users(user_id)).mention
             return await message.edit(f"Fully Promoted! {umention}")
 
@@ -296,6 +297,7 @@ async def promotte(client: Client, message: Message):
                 can_promote_members=False,
             ),
         )
+        await nan.delete()
         umention = (await client.get_users(user_id)).mention
         await message.edit(f"Promoted! {umention}")
     except ChatAdminRequired:
@@ -311,7 +313,7 @@ async def promotte(client: Client, message: Message):
 @Client.on_message(filters.group & filters.command(["demote"], "") & filters.me)
 async def demote(client: Client, message: Message):
     user_id = await extract_user(message)
-    await message.reply("`Processing...`")
+    nn = await message.reply("`Processing...`")
     if not user_id:
         return await message.edit("Pengguna tidak ditemukan")
     if user_id == client.me.id:
@@ -329,6 +331,7 @@ async def demote(client: Client, message: Message):
             can_promote_members=False,
         ),
     )
+    await nn.delete()
     umention = (await client.get_users(user_id)).mention
     await message.edit(f"Demoted! {umention}")
 
