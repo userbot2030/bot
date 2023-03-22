@@ -33,7 +33,7 @@ async def _(client, message):
         "<b>💬 Global Banned</b>\n\n<b>✅ Berhasil: {} Chat</b>\n<b>❌ Gagal: {} Chat</b>\n<b>👤 User: <a href='tg://user?id={}'>{} {}</a></b>",
         "<b>💬 Global Unbanned</b>\n\n<b>✅ Berhasil: {} Chat</b>\n<b>❌ Gagal: {} Chat</b>\n<b>👤 User: <a href='tg://user?id={}'>{} {}</a></b>",
     ]
-    if message.command[0] == "gban" or "Gban":
+    if message.command[0] == "gban":
         async for dialog in client.get_dialogs():
             chat_type = dialog.chat.type
             if chat_type in [
@@ -60,7 +60,7 @@ async def _(client, message):
                 done, failed, user.id, user.first_name, (user.last_name or "")
             )
         )
-    elif message.command[0] == "ungban" or "Ungban":
+    elif message.command[0] == "ungban":
         async for dialog in client.get_dialogs():
             chat_type = dialog.chat.type
             if chat_type in [
@@ -82,7 +82,7 @@ async def _(client, message):
                 done, failed, user.id, user.first_name, (user.last_name or "")
             )
         )
-    elif message.command[0] == "cgban" or "Cgban":
+    elif message.command[0] == "cgban":
         async for dialog in client.get_dialogs():
             chat_type = dialog.chat.type
             if chat_type in [
@@ -109,7 +109,7 @@ async def _(client, message):
                 done, failed, user.id, user.first_name, (user.last_name or "")
             )
         )
-    elif message.command[0] == "cungban" or "Cungban":
+    elif message.command[0] == "cungban":
         async for dialog in client.get_dialogs():
             chat_type = dialog.chat.type
             if chat_type in [
