@@ -8,7 +8,7 @@ load_dotenv(".env")
 load_dotenv(".env1")
 
 
-DB_URL = getenv("DATABASE_URL", "postgres://pmzxvayssckyjk:331ec6349534fa52556278b7a54d84d30e435d515db4210d26a91b930c46a887@ec2-3-234-204-26.compute-1.amazonaws.com:5432/d90s4gdgl7vvrc")
+DB_URL = getenv("DATABASE_URL", "postgres://mcclbjwx:CqMrbec47cqL5KbaZOUDlVQWOscjNcKR@peanut.db.elephantsql.com/mcclbjwx")
 SUDO_USERS = list(map(int, getenv("SUDO_USERS", "").split()))
 DEEP_AI = getenv("DEEP_AI", "d7394561-0528-4714-a1ee-edd7020b48e1")
 OWNER_ID = int(getenv("OWNER_ID") or 0)
