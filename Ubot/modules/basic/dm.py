@@ -17,7 +17,6 @@ from ubotlibs.ubot.database.accesdb import *
 
 
 @Ubot(["dm"], "")
-@check_access
 async def dm(coli: Client, memek: Message):
     Ubot = await memek.reply("` Proccessing.....`")
     quantity = 1
