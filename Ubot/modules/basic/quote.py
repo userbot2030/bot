@@ -76,7 +76,7 @@ async def quote_cmd(client: Client, message: types.Message):
     else:
         await message.edit("<b>Generating...</b>")
 
-    url = "https://bot.lyo.su/quote/generate"
+    url = "https://quotes.fl1yd.su/generate"
     params = {
         "messages": [
             await render_message(client, msg)
@@ -140,7 +140,7 @@ async def fake_quote_cmd(client: Client, message: types.Message):
     else:
         await message.edit("<b>Generating...</b>")
 
-    url = "https://bot.lyo.su/quote/generate"
+    url = "https://quotes.fl1yd.su/generate"
     params = {
         "messages": [await render_message(client, q_message)],
         "quote_color": "#162330",
