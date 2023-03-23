@@ -280,7 +280,7 @@ async def get_pmermit(client, message):
     wow = await message.reply("`Processing...`")
     nob = sql.gvarstatus("unapproved_msg")
     if nob is not None:
-        await message.edit("**Pesan PMPERMIT Yang Sekarang:**" f"\n\n{custom_message}")
+        await message.edit("**Pesan PMPERMIT Yang Sekarang:**" f"\n\n{nob}")
     else:
         await wow.delete()
         await message.edit(
@@ -293,7 +293,7 @@ async def get_pmermit(client, message):
 async def reset_pmpermit(client, message):
     if gvarstatus("PMPERMIT") and gvarstatus("PMPERMIT") == "false":
         return await message.edit(
-            f"**Anda Harus Menyetel Var** `PM_AUTO_BAN` **Ke** `True`\n\n**Bila ingin Mengaktifkan PMPERMIT Silahkan Ketik:** `{cmd}setvar PM_AUTO_BAN True`"
+            f"**Anda Harus Menyetel Var** `PM_AUTO_BAN` **Ke** `True`\n\n**Bila ingin Mengaktifkan PMPERMIT Silahkan Ketik:** `setvar PM_AUTO_BAN True`"
         )
     try:
         import Ubot.core.SQL.globals as sql
