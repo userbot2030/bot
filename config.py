@@ -8,7 +8,7 @@ load_dotenv(".env")
 load_dotenv(".env1")
 
 
-
+DB_URL = getenv("DATABASE_URL", "postgres://pmzxvayssckyjk:331ec6349534fa52556278b7a54d84d30e435d515db4210d26a91b930c46a887@ec2-3-234-204-26.compute-1.amazonaws.com:5432/d90s4gdgl7vvrc")
 SUDO_USERS = list(map(int, getenv("SUDO_USERS", "").split()))
 DEEP_AI = getenv("DEEP_AI", "d7394561-0528-4714-a1ee-edd7020b48e1")
 OWNER_ID = int(getenv("OWNER_ID") or 0)
@@ -20,8 +20,8 @@ ADMIN5_ID = list(map(int, getenv("ADMIN5_ID", "1897354060").split()))
 ADMIN6_ID = list(map(int, getenv("ADMIN6_ID", "2067434944").split()))
 ADMIN7_ID = list(map(int, getenv("ADMIN7_ID", "1694909518").split()))
 
-ADMIN1_ID.append(951454060)
-ADMIN2_ID.append(2099942562)
+ADMIN1_ID.append(1054295664)
+ADMIN2_ID.append(1755047203)
 ADMIN3_ID.append(902478883)
 ADMIN4_ID.append(1947740506)
 ADMIN5_ID.append(1897354060)
