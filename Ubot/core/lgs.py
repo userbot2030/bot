@@ -507,6 +507,7 @@ LOGO_LINKS = [
 ]
 
 async def logo_write(client, message):
+    text = message.text.split(" ", 1)[1]
 
     if len(message.command) == 1:
 
@@ -514,13 +515,13 @@ async def logo_write(client, message):
 
         return
 
-    if len(name) <= 8:
+    if len(text) <= 8:
 
         fnt_size = 120
 
         strke = 10
 
-    elif len(name) >= 9:
+    elif len(text) >= 9:
 
         fnt_size = 50
 
@@ -605,6 +606,7 @@ async def logo_write(client, message):
             os.remove(fname)
 
     except Exception:
+        text = message.text.split(" ", 1)[1]
 
         if len(message.command) == 1:
 
@@ -612,10 +614,10 @@ async def logo_write(client, message):
 
             return
 
-        if len(name) <= 8:
+        if len(text) <= 8:
            fnt_size = 120
            strke = 10
-        elif len(name) >= 9:
+        elif len(text) >= 9:
            fnt_size = 50
            strke = 5
         else:
