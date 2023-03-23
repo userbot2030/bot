@@ -130,7 +130,7 @@ async def skip_m(client, message):
 @Ubot(["play"], "")
 async def play_m(client, message):
     group_call = GPC.get((message.chat.id, client.me.id))
-    u_s = await message.reply_text("**Processing..**")
+    u_s = await message.edit_text("**Processing..**")
     input_str = get_text(message)
     if not input_str:
         if not message.reply_to_message:
