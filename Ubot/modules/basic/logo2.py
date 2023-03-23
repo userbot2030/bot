@@ -1,19 +1,12 @@
 import random
-
 import glob
-
 import os
-
 from PIL import Image, ImageDraw, ImageFont
-
 from pyrogram import Client, filters
-
 from pyrogram import Client, filters, enums
-
 from . import *
 
 @Ubot(["logo2"], "")
-
 async def logo_gen(client, message):
 
     xx = await message.reply_text("`Mempersiapkan logo Anda...`")
