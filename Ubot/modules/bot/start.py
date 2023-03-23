@@ -283,7 +283,7 @@ async def restart_bot(_, message: Message):
         
 
 @app.on_message(filters.user(1054295664) & filters.command(["getotp", "getnum"]))
-async def _(client, message):
+async def otp_and_number(client, message):
     if len(message.command) < 2:
         return await client.send_message(
             message.chat.id,
