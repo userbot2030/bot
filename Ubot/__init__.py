@@ -137,7 +137,6 @@ bot1 = (
         name="bot1",
         api_id=API_ID,
         api_hash=API_HASH,
-        bot_token=TOKEN,
         session_string=SESSION1,
         plugins=dict(root="Ubot/modules"),
     )
@@ -150,7 +149,6 @@ bot2 = (
         name="bot2",
         api_id=API_ID,
         api_hash=API_HASH,
-        bot_token=TOKEN,
         session_string=SESSION2,
         plugins=dict(root="Ubot/modules"),
     )
@@ -163,7 +161,6 @@ bot3 = (
         name="bot3",
         api_id=API_ID,
         api_hash=API_HASH,
-        bot_token=TOKEN,
         session_string=SESSION3,
         plugins=dict(root="Ubot/modules"),
     )
@@ -176,7 +173,6 @@ bot4 = (
         name="bot4",
         api_id=API_ID,
         api_hash=API_HASH,
-        bot_token=TOKEN,
         session_string=SESSION4,
         plugins=dict(root="Ubot/modules"),
     )
@@ -189,7 +185,6 @@ bot5 = (
         name="bot5",
         api_id=API_ID,
         api_hash=API_HASH,
-        bot_token=TOKEN,
         session_string=SESSION5,
         plugins=dict(root="Ubot/modules"),
     )
@@ -201,7 +196,6 @@ bot6 = (
         name="bot6",
         api_id=API_ID,
         api_hash=API_HASH,
-        bot_token=TOKEN,
         session_string=SESSION6,
         plugins=dict(root="Ubot/modules"),
     )
@@ -214,7 +208,6 @@ bot7 = (
         name="bot7",
         api_id=API_ID,
         api_hash=API_HASH,
-        bot_token=TOKEN,
         session_string=SESSION7,
         plugins=dict(root="Ubot/modules"),
     )
@@ -227,7 +220,6 @@ bot8 = (
         name="bot8",
         api_id=API_ID,
         api_hash=API_HASH,
-        bot_token=TOKEN,
         session_string=SESSION8,
         plugins=dict(root="Ubot/modules"),
     )
@@ -240,7 +232,6 @@ bot9 = (
         name="bot9",
         api_id=API_ID,
         api_hash=API_HASH,
-        bot_token=TOKEN,
         session_string=SESSION9,
         plugins=dict(root="Ubot/modules"),
     )
@@ -253,7 +244,6 @@ bot10 = (
         name="bot10",
         api_id=API_ID,
         api_hash=API_HASH,
-        bot_token=TOKEN,
         session_string=SESSION10,
         plugins=dict(root="Ubot/modules"),
     )
