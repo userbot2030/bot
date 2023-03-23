@@ -276,7 +276,7 @@ async def restart_bot(_, message: Message):
         
         
 """
- ✅ EDIT CODE BOLEH
+✅ EDIT CODE BOLEH
 ❌ HAPUS CREDIT JANGAN
 👤 CREDIT: https://t.me/T0M1_X
 """
