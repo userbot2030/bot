@@ -24,7 +24,7 @@ async def _(client, message):
     if not user_id:
         return await nay.edit("<b>User tidak ditemukan</b>")
     if user_id == client.me.id:
-        return await message.edit("Tidak bisa Gban diri sendiri.")
+        return await nay.edit("Tidak bisa Gban diri sendiri.")
     try:
         user = await client.get_users(user_id)
     except Exception as error:
