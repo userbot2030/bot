@@ -132,7 +132,7 @@ async def set_gruplog(client: Client, message: Message):
 
 
 add_command_help(
-    "log",
+    "logger",
     [
         [
             "pmlog [on atau off]",
