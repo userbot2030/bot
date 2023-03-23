@@ -11,6 +11,7 @@
 
 import html
 import time
+import asyncio
 from pyrogram import Client, enums
 from pyrogram.types import Message
 from . import *
@@ -85,7 +86,7 @@ async def adminlist(client: Client, message: Message):
 
 @Ubot(["zombies"], "")
 async def kickdel_cmd(client: Client, message: Message):
-    await message.reply("<b>Membersihkan akun depresi...</b>")
+    kntl = await message.reply("<b>Membersihkan akun depresi...</b>")
     try:
         values = [
             await message.chat.ban_member(
@@ -96,6 +97,8 @@ async def kickdel_cmd(client: Client, message: Message):
         ]
     except Exception as e:
         return await message.edit(format_exc(e))
+    await asyncio.sleep(0.1)
+    await kntl.delete()
     await message.edit(
         f"<b>Berhasil ditendang {len(values)} akun depresi (s)</b>"
     )
