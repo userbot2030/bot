@@ -27,7 +27,6 @@ from pyrogram.raw.types import InputStickerSetShortName
 from pyrogram.types import Message, InputMedia, InputMediaPhoto
 
 from . import *
-from ubotlibs.ubot.database.accesdb import *
 from ubotlibs.ubot.helper.PyroHelpers import ReplyCheck
 from ubotlibs.ubot.utils import *
 
@@ -431,17 +430,17 @@ async def tinying(client: Client, message: Message):
 @Ubot(["mmf"], "")
 async def memify(client: Client, message: Message):
     if not message.reply_to_message_id:
-        await message.edit_text("**Mohon balas ke stikers!**")
+        await message.reply("**Mohon balas ke stikers!**")
         return
     reply_message = message.reply_to_message
     if not reply_message.media:
-        await message.text("**Mohon balas ke stikers!**")
+        await message.reply("**Mohon balas ke stikers!**")
         return
     file = await client.download_media(reply_message)
-    mm = await message.edit_text("`Processing . . .`")
+    mm = await message.edit("`Processing . . .`")
     text = get_arg(message)
     if len(text) < 1:
-        return await mm.edit("`Please Type `.mmf text")
+        return await message.edit("`Please Type `.mmf text")
     meme = await add_text_img(file, text)
     await asyncio.gather(
         mm.delete(),
