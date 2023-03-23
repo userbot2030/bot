@@ -215,11 +215,12 @@ async def mute(client: Client, message: Message):
 @Client.on_message(filters.command(["unmute"], "") & filters.me)
 async def unmute(client: Client, message: Message):
     user_id = await extract_user(message)
-    await message.reply("`Processing...`")
+    nanay = await message.reply("`Processing...`")
     if not user_id:
         return await message.edit("Pengguna tidak ditemukan.")
     try:
         await message.chat.restrict_member(user_id, permissions=unmute_permissions)
+        await nanay.delete()
         umention = (await client.get_users(user_id)).mention
         await message.edit(f"Unmuted! {umention}")
     except ChatAdminRequired:
