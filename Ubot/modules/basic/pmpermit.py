@@ -210,11 +210,12 @@ async def setpm_limit(client, message):
     )
     if not input_str:
         return await message.edit("**Harap masukan angka untuk PM_LIMIT.**")
-    Man = await message.edit("`Processing...`")
+    kuy = await message.reply("`Processing...`")
     if input_str and not input_str.isnumeric():
         return await Man.edit("**Harap masukan angka untuk PM_LIMIT.**")
+    await kuy.delete()
     addgvar("PM_LIMIT", input_str)
-    await Man.edit(f"**Set PM limit to** `{input_str}`")
+    await message.edit(f"**Set PM limit to** `{input_str}`")
 
 
 @Ubot(["antipm"], "")
@@ -276,11 +277,12 @@ async def get_pmermit(client, message):
     except AttributeError:
         await message.edit("**Running on Non-SQL mode!**")
         return
-    await message.reply("`Processing...`")
+    wow = await message.reply("`Processing...`")
     nob = sql.gvarstatus("unapproved_msg")
     if nob is not None:
         await message.edit("**Pesan PMPERMIT Yang Sekarang:**" f"\n\n{custom_message}")
     else:
+        await wow.delete()
         await message.edit(
             "**Anda Belum Menyetel Pesan Costum PMPERMIT,**\n"
             f"**Masih Menggunakan Pesan PM Default:**\n\n{DEF_UNAPPROVED_MSG}"
@@ -298,13 +300,14 @@ async def reset_pmpermit(client, message):
     except AttributeError:
         await message.edit("**Running on Non-SQL mode!**")
         return
-    await message.reply("`Processing...`")
+    wah = await message.reply("`Processing...`")
     nob = sql.gvarstatus("unapproved_msg")
 
     if nob is None:
         await message.edit("**Pesan Antipm Anda Sudah Default**")
     else:
         sql.delgvar("unapproved_msg")
+        await wah.delete()
         await message.edit("**Berhasil Mengubah Pesan Custom Antipm menjadi Default**")
 
 
