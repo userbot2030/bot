@@ -613,22 +613,14 @@ async def logo_write(client, message):
             return
 
         if len(name) <= 8:
-
-        fnt_size = 120
-
-        strke = 10
-
-    elif len(name) >= 9:
-
-        fnt_size = 50
-
-        strke = 5
-
-    else:
-
-        fnt_size = 100
-
-        strke = 20
+           fnt_size = 120
+           strke = 10
+        elif len(name) >= 9:
+           fnt_size = 50
+           strke = 5
+        else:
+           fnt_size = 100
+           strke = 20
 
         pro = await message.reply_text("`Processing...`")
 
