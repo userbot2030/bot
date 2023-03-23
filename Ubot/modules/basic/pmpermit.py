@@ -320,7 +320,7 @@ add_command_help(
             "Menolak pesan seseorang dengan cara balas pesannya atau tag dan juga untuk dilakukan di pm",
         ],
         [
-            "pmlimit <angka>",
+            "setlimit <angka>",
             "Untuk mengcustom pesan limit auto block pesan",
         ],
         [
