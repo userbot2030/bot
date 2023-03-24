@@ -7,6 +7,11 @@ from datetime import datetime
 from logging.handlers import RotatingFileHandler
 from typing import Any, Dict
 from aiohttp import ClientSession
+from pyrogram.types import Message
+from pyrogram import Client, errors
+from pyrogram.errors.exceptions.bad_request_400 import PeerIdInvalid, ChannelInvalid
+from pyrogram.types import Chat, User
+from pymongo import MongoClient
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from gpytranslate import Translator
 from pyrogram import Client, filters
@@ -38,6 +43,16 @@ START_TIME = datetime.now()
 TEMP_SETTINGS: Dict[Any, Any] = {}
 TEMP_SETTINGS["PM_COUNT"] = {}
 TEMP_SETTINGS["PM_LAST_MSG"] = {}
+
+
+mongo = MongoClient(MONGO_URL)
+db = mongo.Ubot
+DB_NAME = "ubot"
+try:
+    client = MongoClient(MONGO_URL)
+except PyMongoError:
+    exiter(1)
+mdb = client[DB_NAME]
 
 LOOP = asyncio.get_event_loop_policy()
 event_loop = LOOP.get_event_loop()
