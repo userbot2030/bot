@@ -28,7 +28,7 @@ usersdb = db.users
 usersdb.update_many({}, {"$set": {"bot_log_group_id": None}})
 
 
-async def buat_log():
+async def buat_log(bots):
     for bot in bots:
         botlog_chat_id = os.environ.get('BOTLOG_CHATID')
         if not botlog_chat_id:
