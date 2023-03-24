@@ -1,7 +1,7 @@
 import random
 from datetime import datetime
 
-from pyrogram import filters
+from pyrogram import filters, Client
 from pyrogram.enums import ChatType
 
 from . import *
