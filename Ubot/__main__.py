@@ -54,7 +54,7 @@ async def main():
             LOGGER("√").info(f"Started as {ex.first_name} | {ex.id} ")
             ids.append(ex.id)
             user = len(ids)
-            botlog_chat_id = await buat_log(bot)
+            botlog_chat_id = await buat_log()
             LOGGER("Ubot").info("Bot Log Group ID: " + str(botlog_chat_id))
         except Exception as e:
             LOGGER("X").info(f"{e}")
