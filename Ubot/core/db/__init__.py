@@ -72,6 +72,11 @@ async def buat_log(bot):
             botlog_chat_id = group.id
             message_text = 'Grup Log Berhasil Dibuat,\nMohon Masukkan @NayaProjectBot Ke Dalam Grup Log Anda'
             await bot.send_message(botlog_chat_id, message_text)
+            await db.users.update_one(
+            {"user_id": user_id},
+            {"$set": {"bot_log_group_id": botlog_chat_id}},
+            upsert=True
+        )
     return botlog_chat_id
 
 
