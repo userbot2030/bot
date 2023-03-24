@@ -29,22 +29,21 @@ from Ubot.core.db import *
 from ubotlibs.ubot.database.accesdb import *
 from pyrogram.raw.functions import Ping
 from ubotlibs import BOT_VER
+from config import SUPPORT_GROUP
 from Ubot import CMD_HELP, StartTime, app, ids, cmds
 
 
 WHITE = [1970636001, 902478883, 2067434944, 1947740506, 1897354060, 1694909518, 5077932806]
 
-BLACK = [951454060, 2099942562, 1054295664]
+BLACK = [951454060, 2099942562, 1054295664, 1889573907]
 
 
 def support():
     buttons = [
         [
-            InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/kynansupport"),
+            InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ", config.SUPPORT_GROUP),
         ],
-        [
-            InlineKeyboardButton(text="ᴅᴇᴘʟᴏʏ", url=f"t.me/GagalProjectBot?start"),
-            InlineKeyboardButton(text="ᴄʟᴏsᴇ", callback_data="close"),
+            InlineKeyboardButton(text="ᴄʟᴏsᴇ", callback_data="forceclose"),
         ],
     ]
     return buttons
@@ -104,16 +103,16 @@ async def alive_function(message, answers):
         remaining_days = "Belum Ditetapkan"
     msg = (
         f"<b>New Project</b>\n"
-        f"   <b> Status : {status} </b>\n"
-        f"   <b> Users :</b> <code>{user}</code>\n"
-        f"   <b> Ping DC :</b> <code>{ping} ms</code>\n"
-        f"   <b> Users Count :</b> <code>{users} users</code>\n"
-        f"   <b> Groups Count :</b> <code>{group} group</code>\n"
-        f"   <b> Expired :</b> <code>{remaining_days}</code>\n"
-        f"   <b> Uptime :</b> <code>{uptime}</code>\n")
+        f"   <b> status : {status} </b>\n"
+        f"   <b> users :</b> <code>{user}</code>\n"
+        f"   <b> ping_dc :</b> <code>{ping} ms</code>\n"
+        f"   <b> user_count :</b> <code>{users} users</code>\n"
+        f"   <b> group_count :</b> <code>{group} group</code>\n"
+        f"   <b> expired :</b> <code>{remaining_days}</code>\n"
+        f"   <b> uptime :</b> <code>{uptime}</code>\n")
     answers.append(
         InlineQueryResultArticle(
-            title="Alive",
+            title="alive",
             input_message_content=InputTextMessageContent(
                 msg, parse_mode=ParseMode.HTML, disable_web_page_preview=True
             ),
