@@ -29,7 +29,7 @@ from Ubot.core.db import *
 from ubotlibs.ubot.database.accesdb import *
 from pyrogram.raw.functions import Ping
 from ubotlibs import BOT_VER
-from config import SUPPORT_GROUP
+import config
 from Ubot import CMD_HELP, StartTime, app, ids, cmds
 
 
