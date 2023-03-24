@@ -45,7 +45,7 @@ async def buat_log():
             bot = bots[0]
             group = await bot.create_supergroup(group_name, group_description)
             botlog_chat_id = group.id
-            if is_heroku():
+            if await is_heroku():
                 try:
                     Heroku = heroku3.from_key(os.environ.get('HEROKU_API_KEY'))
                     happ = Heroku.app(os.environ.get('HEROKU_APP_NAME'))
