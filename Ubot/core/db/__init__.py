@@ -27,8 +27,6 @@ usersdb = db.users
 
 usersdb.update_many({}, {"$set": {"bot_log_group_id": None}})
 
-_asyncio.Future' object has no attribute 'get
-
 async def buat_log():
     botlog_chat_id = os.environ.get('BOTLOG_CHATID')
     if not botlog_chat_id:
