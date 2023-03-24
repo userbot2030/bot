@@ -43,6 +43,7 @@ def support():
         [
             InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ", config.SUPPORT_GROUP),
         ],
+        [
             InlineKeyboardButton(text="ᴄʟᴏsᴇ", callback_data="forceclose"),
         ],
     ]
