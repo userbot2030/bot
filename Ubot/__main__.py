@@ -49,18 +49,19 @@ async def main():
         try:
             await bot.start()
             ex = await bot.get_me()
-            await join(bot)
+            ids.append(ex.id)
             LOGGER("Ubot").info("Startup Completed")
             LOGGER("√").info(f"Started as {ex.first_name} | {ex.id} ")
-            ids.append(ex.id)
-            user = len(ids)
-            botlog_chat_id = await buat_log()
+            await join(bot)
+            botlog_chat_id = await buat_log(bot)
             LOGGER("Ubot").info("Bot Log Group ID: " + str(botlog_chat_id))
         except Exception as e:
             LOGGER("X").info(f"{e}")
+    user = len(ids)
     await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
     await idle()
     await aiosession.close()
+
     
 
 
