@@ -102,15 +102,14 @@ async def alive_function(message, answers):
     remaining_days = await get_expired_date(ex.id)
     if remaining_days is None:
         remaining_days = "Belum Ditetapkan"
-    msg = (
-        f"<b><u>New Project</b></u>\n"
-        f"       <b><u> status</u> : {status} </b>\n"
-        f"       <b><u> users</u> :</b> <code><i>{user}</i></code>\n"
-        f"       <b><u> ping_dc</u> :</b> <code><i>{ping} ms</i></code>\n"
-        f"       <b><u> users_count</u> :</b> <code><i>{users} users</i></code>\n"
-        f"       <b><u> group_count</u> :</b> <code><i>{group} group</i></code>\n"
-        f"       <b><u> expired</u> :</b> <code><i>{remaining_days}</i></code>\n"
-        f"       <b><u> uptime</u> :</b> <code><i>{uptime}</i></code>\n")
+    msg = (f"<b><u>New Project</b></u>\n"
+        f"       <b><u>Status</u> : {status} </b>\n"
+        f"       <b><u>users</u> :</b> <code><i>{user}</i></code>\n"
+        f"       <b><u>ping_dc</u> :</b> <code><i>{ping} ms</i></code>\n"
+        f"       <b><u>users_count</u> :</b> <code><i>{users} users</i></code>\n"
+        f"       <b><u>group_count</u> :</b> <code><i>{group} group</i></code>\n"
+        f"       <b><u>expired</u> :</b> <code><i>{remaining_days}</i></code>\n"
+        f"       <b><u>uptime</u> :</b> <code><i>{uptime}</i></code>\n")
     answers.append(
         InlineQueryResultArticle(
             title="alive",
