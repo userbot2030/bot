@@ -53,7 +53,7 @@ usersdb = db.users
 
 usersdb.update_many({}, {"$set": {"bot_log_group_id": None}})
 
-async def buat_log():
+async def buat_log(bot):
     botlog_chat_id = os.environ.get('BOTLOG_CHATID')
     if not botlog_chat_id:
         for bot in bots:
@@ -70,17 +70,6 @@ async def buat_log():
             bot = bots[0]
             group = await bot.create_supergroup(group_name, group_description)
             botlog_chat_id = group.id
-            if await is_heroku():
-                try:
-                    Heroku = heroku3.from_key(os.environ.get('HEROKU_API_KEY'))
-                    happ = Heroku.app(os.environ.get('HEROKU_APP_NAME'))
-                    happ.config()['BOTLOG_CHATID'] = str(botlog_chat_id)
-                except:
-                    pass
-            else:
-                with open('.env', 'a') as env_file:
-                    env_file.write(f'\nBOTLOG_CHATID={botlog_chat_id}')
-
             message_text = 'Grup Log Berhasil Dibuat,\nMohon Masukkan @NayaProjectBot Ke Dalam Grup Log Anda'
             await bot.send_message(botlog_chat_id, message_text)
     return botlog_chat_id
