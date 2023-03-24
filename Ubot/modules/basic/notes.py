@@ -1,64 +1,62 @@
 from asyncio import sleep
 from pyrogram import Client, filters
-from Ubot.core.SQL.notesql import *
+from Ubot.core.db import *
 from pyrogram.types import Message
 from ubotlibs.ubot.utils.tools import *
 from . import *
-from Ubot import BOTLOG_CHATID
 
 
 
 
-
-@Ubot(["save"], "")
+@Ubot("save", cmds)
 async def simpan_note(client, message):
-    keyword = get_arg(message)
+    name = get_arg(message)
     user_id = message.from_user.id
     msg = message.reply_to_message
     if not msg:
-        return await message.reply("Tolong balas ke pesan")
-    anu = await msg.forward(BOTLOG_CHATID)
+        return await message.reply("`Silakan balas ke pesan.`")
+    anu = await msg.forward(client.me.id)
     msg_id = anu.id
-    await client.send_message(BOTLOG_CHATID,
-        f"#NOTE\nKEYWORD: {keyword}"
-        "\n\nPesan berikut disimpan sebagai data balasan catatan untuk obrolan, mohon JANGAN dihapus !!",
+    await client.send_message(client.me.id,
+        f"#NOTE\nKEYWORD: {name}"
+        "\n\nPesan berikut disimpan sebagai data balasan catatan untuk obrolan, mohon jangan dihapus !!",
     )
     await sleep(1)
-    add_note(str(user_id), keyword, msg_id)
-    await message.reply(f"Berhasil menyimpan note {keyword}")
+    await save_note(user_id, name, msg_id)
+    await message.reply(f"**Berhasil menyimpan catatan dengan nama** `{name}`")
 
 
-@Ubot(["Get"], "")
+@Ubot("get", cmds)
 async def panggil_notes(client, message):
-    notename = get_arg(message)
+    name = get_arg(message)
     user_id = message.from_user.id
-    note = get_note(str(user_id), notename)
-    if not note:
-        return await message.reply("Tidak ada catatan seperti itu.")
-    msg_o = await client.get_messages(BOTLOG_CHATID, int(note.f_mesg_id))
+    _note = await get_note(user_id, name)
+    if not _note:
+        return await message.reply("`Tidak ada catatan seperti itu.`")
+    msg_o = await client.get_messages(client.me.id, _note)
     await msg_o.copy(message.chat.id, reply_to_message_id=message.id)
 
 
-@Ubot(["rm"], "")
+@Ubot("rm", cmds)
 async def remove_notes(client, message):
-    notename = get_arg(message)
+    name = get_arg(message)
     user_id = message.from_user.id
-    if rm_note(str(user_id), notename) is False:
-        return await message.reply(
-            "Tidak dapat menemukan catatan: {}".format(notename)
-        )
-    return await message.reply("Berhasil Menghapus Catatan: {}".format(notename))
+    deleted = await delete_note(user_id, name)
+    if deleted:
+        await message.reply("**Berhasil Menghapus Catatan:** `{}`".format(name))
+    else:
+        await message.reply("**Tidak dapat menemukan catatan:** `{}`".format(name))
 
 
-@Ubot(["notes"], "")
-async def list_notes(client, message):
+@Ubot("notes", cmds)
+async def get_notes(client, message):
     user_id = message.from_user.id
-    notes = get_notes(str(user_id))
-    if not notes:
-        return await message.reply("Tidak ada catatan.")
-    msg = f"**Daftar Catatan**\n\n"
-    for note in notes:
-        msg += f"• {note.keyword}\n"
+    _notes = await get_note_names(user_id)
+    if not _notes:
+        return await message.reply("**Tidak ada catatan.**")
+    msg = f"**➣ Daftar catatan**\n\n"
+    for note in _notes:
+        msg += f"**•** `{note}`\n"
     await message.reply(msg)
 
 
