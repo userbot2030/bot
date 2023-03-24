@@ -14,6 +14,132 @@ db = mongo.Ubot
 
 coupledb = db.couple
 karmadb = db.karma
+notesdb = db.notes
+accesdb = db.acces
+
+
+async def grant_access(user_id: int) -> bool:
+    access = {"user_id": user_id}
+    try:
+        result = await accesdb.users.update_one(
+            {'user_id': user_id},
+            {'$set': {'user_id': user_id}},
+            upsert=True
+        )
+        if result.upserted_id or result.modified_count:
+            return True
+        else:
+            return False
+    except pymongo.errors.PyMongoError:
+        return False
+        
+
+async def get_users_access() -> List[str]:
+    try:
+        cursor = accesdb.users.find({}, {'access_list': 1})
+        users_access = set()
+        async for document in cursor:
+            if 'access_list' in document:
+                users_access.update(document['access_list'])
+        return list(users_access)
+    except pymongo.errors.PyMongoError:
+        return []
+
+
+async def revoke_access(user_id: int) -> bool:
+    try:
+        user = await accesdb.users.find_one({'user_id': user_id})
+        if user is not None and user.get('banned'):
+            return False
+        result = await accesdb.users.update_one(
+            {'user_id': user_id},
+            {'$set': {'banned': True}},
+            upsert=True
+        )
+        if result.upserted_id:
+            return False
+        elif result.matched_count > 0 or result.modified_count > 0:
+            return True
+        else:
+            return False
+    except pymongo.errors.PyMongoError:
+        return False
+
+
+async def check_user_access(user_id: int) -> bool:
+    access = {"user_id": user_id}
+    result = await accesdb.users.find_one(access)
+    if result:
+        return True
+    else:
+        return False
+        
+async def delete_user_access(user_id: int) -> bool:
+    try:
+        result = await accesdb.users.delete_one({'user_id': user_id})
+        if result.deleted_count > 0:
+            return True
+        else:
+            return False
+    except pymongo.errors.PyMongoError:
+        return False
+
+def check_access(func):
+    async def wrapper(client, message):
+        user_id = message.from_user.id
+        user_access = await check_user_access(user_id)
+        if user_id not in ADMINS and not user_access:
+            await message.reply_text("Maaf, Anda tidak memiliki akses untuk menggunakan bot ini.\n Silakan ke @kynansupport untuk mendapatkan akses dari Admin disana.")
+            return
+        await func(client, message)
+    return wrapper
+
+async def get_expired_date(user_id):
+    user = await accesdb.users.find_one({"_id": user_id})
+    if user:
+        expire_date = user.get("expire_date")
+        if expire_date:
+            remaining_days = (expire_date - datetime.now()).days
+            remaining_days = (datetime.now() + timedelta(days=remaining_days)).strftime('%d-%m-%Y')
+            return remaining_days
+        else:
+            return None
+    else:
+        return None
+
+
+async def rem_expired_date(user_id):
+    await accesdb.users.update_one(
+        {"_id": user_id}, {"$unset": {"expire_date": ""}}, upsert=True
+    )
+
+async def remove_expired():
+    async for user in accesdb.users.find({"expire_date": {"$lt": datetime.now()}}):
+        await delete_user_access(user["_id"])
+        await rem_expired_date(user["_id"])
+
+
+async def set_expired_date(user_id, duration):
+    days_in_month = 30
+    if duration <= 12:
+        days_in_month = 30 * duration
+    expire_date = datetime.now() + timedelta(days=days_in_month)
+    accesdb.users.update_one({"_id": user_id}, {"$set": {"expire_date": expire_date}}, upsert=True)
+    schedule.every().day.at("00:00").do(remove_expired)
+    asyncio.create_task(schedule_loop())
+
+
+
+async def schedule_loop():
+    while True:
+        await asyncio.sleep(1)
+        schedule.run_pending()
+
+async def check_and_grant_user_access(user_id: int, duration: int) -> None:
+    if await check_user_access(user_id):
+        await delete_user_access(user_id)
+    if await grant_access(user_id) and await set_expired_date(user_id, duration):
+        return
 
 
 async def _get_lovers(chat_id: int):
@@ -126,6 +252,59 @@ async def alpha_to_int(user_id_alphabet: str) -> int:
     user_id = int(user_id)
     return user_id
 
+async def get_notes_count() -> dict:
+    chats_count = 0
+    notes_count = 0
+    async for chat in notesdb.find({"user_id": {"$exists": 1}}):
+        notes_name = await get_note_names(chat["user_id"])
+        notes_count += len(notes_name)
+        chats_count += 1
+    return {"chats_count": chats_count, "notes_count": notes_count}
 
+
+async def _get_notes(user_id: int) -> Dict[str, int]:
+    _notes = await notesdb.find_one({"user_id": user_id})
+    if not _notes:
+        return {}
+    return _notes["notes"]
+
+
+async def get_note_names(user_id: int) -> List[str]:
+    _notes = []
+    for note in await _get_notes(user_id):
+        _notes.append(note)
+    return _notes
+
+
+async def get_note(user_id: int, name: str) -> Union[bool, dict]:
+    name = name.lower().strip()
+    _notes = await _get_notes(user_id)
+    if name in _notes:
+        return _notes[name]
+    return False
+
+
+async def save_note(user_id: int, name: str, note: dict):
+    name = name.lower().strip()
+    _notes = await _get_notes(user_id)
+    _notes[name] = note
+
+    await notesdb.update_one(
+        {"user_id": user_id}, {"$set": {"notes": _notes}}, upsert=True
+    )
+
+
+async def delete_note(user_id: int, name: str) -> bool:
+    notesd = await _get_notes(user_id)
+    name = name.lower().strip()
+    if name in notesd:
+        del notesd[name]
+        await notesdb.update_one(
+            {"user_id": user_id},
+            {"$set": {"notes": notesd}},
+            upsert=True,
+        )
+        return True
+    return False
 
 
