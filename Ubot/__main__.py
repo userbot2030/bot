@@ -53,7 +53,7 @@ async def main():
             LOGGER("Ubot").info("Startup Completed")
             LOGGER("√").info(f"Started as {ex.first_name} | {ex.id} ")
             await join(bot)
-            botlog_chat_id = await buat_log(bot)
+            await buat_log(bot)
             LOGGER("Ubot").info("Bot Log Group ID: " + str(botlog_chat_id))
         except Exception as e:
             LOGGER("X").info(f"{e}")
