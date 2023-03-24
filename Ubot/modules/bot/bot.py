@@ -90,6 +90,12 @@ async def start_admin(_, query: CallbackQuery):
 @app.on_callback_query(filters.regex("cl_ad"))
 async def close(_, query: CallbackQuery):
     await query.message.delete()
+    
+@app.on_callback_query(filters.regex("forceclose"))
+async def forceclose(_, CallbackQuery):
+    callback_data = CallbackQuery.data.strip()
+    callback_request = callback_data.split(None, 1)[1]
+    await CallbackQuery.message.delete()
 
 @app.on_callback_query(filters.regex("ub_modul_(.*)"))
 # @cb_wrapper
