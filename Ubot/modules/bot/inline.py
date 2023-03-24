@@ -103,14 +103,14 @@ async def alive_function(message, answers):
     if remaining_days is None:
         remaining_days = "Belum Ditetapkan"
     msg = (
-        f"<b>New Project</b>\n"
-        f"   <b> status : {status} </b>\n"
-        f"   <b> users :</b> <code>{user}</code>\n"
-        f"   <b> ping_dc :</b> <code>{ping} ms</code>\n"
-        f"   <b> user_count :</b> <code>{users} users</code>\n"
-        f"   <b> group_count :</b> <code>{group} group</code>\n"
-        f"   <b> expired :</b> <code>{remaining_days}</code>\n"
-        f"   <b> uptime :</b> <code>{uptime}</code>\n")
+        f"<b><u>New Project</b></u>\n"
+        f"       <b><u> status</u> : {status} </b>\n"
+        f"       <b><u> users</u> :</b> <code><i>{user}</i></code>\n"
+        f"       <b><u> ping_dc</u> :</b> <code><i>{ping} ms</i></code>\n"
+        f"       <b><u> users_count</u> :</b> <code><i>{users} users</i></code>\n"
+        f"       <b><u> group_count</u> :</b> <code><i>{group} group</i></code>\n"
+        f"       <b><u> expired</u> :</b> <code><i>{remaining_days}</i></code>\n"
+        f"       <b><u> uptime</u> :</b> <code><i>{uptime}</i></code>\n")
     answers.append(
         InlineQueryResultArticle(
             title="alive",
