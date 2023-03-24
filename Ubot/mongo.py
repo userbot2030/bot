@@ -9,14 +9,14 @@ from Ubot.confing import get_int_key, get_str_key
 
 MONGO_PORT = get_int_key("27017")
 MONGO_URL = get_str_key("MONGO_URL")
-MONGO_DB = "ubot"
+MONGO_DB = "Ubot"
 
 
 client = MongoClient()
 client = MongoClient(MONGO_URL, MONGO_PORT)[MONGO_DB]
 motor = motor_asyncio.AsyncIOMotorClient(MONGO_URL, MONGO_PORT)
 db = motor[MONGO_DB]
-db = client["ubot"]
+db = client["Ubot"]
 try:
     asyncio.get_event_loop().run_until_complete(motor.server_info())
 except ServerSelectionTimeoutError:
