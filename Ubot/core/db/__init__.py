@@ -54,35 +54,29 @@ usersdb = db.users
 usersdb.update_many({}, {"$set": {"bot_log_group_id": None}})
 
 async def buat_log(bot):
-    botlog_chat_id = os.environ.get('BOTLOG_CHATID')
-    if not botlog_chat_id:
-        for bot in bots:
-            user = await bot.get_me()
-            user_id = user.id
-            user_data = await db.users.find_one({"user_id": user_id})
-            if user_data:
-                botlog_chat_id = user_data.get("bot_log_group_id")
+    user = await bot.get_me()
+    user_id = user.id
+    user_data = await db.users.find_one({"user_id": user_id})
+    botlog_chat_id = None
 
-                break
-        if not botlog_chat_id:
-            group_name = 'Naya Project Bot Log'
-            group_description = 'This group is used to log my bot activities'
-            bot = bots[0]
-            group = await bot.create_supergroup(group_name, group_description)
-            botlog_chat_id = group.id
-            message_text = 'Grup Log Berhasil Dibuat,\nMohon Masukkan @NayaProjectBot Ke Dalam Grup Log Anda'
-            await bot.send_message(botlog_chat_id, message_text)
-        
-        user = await bot.get_me()
-        user_id = user.id
-        user_data = await db.users.find_one({"user_id": user_id})
-        if not user_data.get("bot_in_group"):
-            await bot.send_message(botlog_chat_id, "@nayaprojectbot")
-            member = await bot.get_chat_member(botlog_chat_id, "nayaprojectbot")
-            await bot.add_chat_member(botlog_chat_id, member.user.id)
-            await db.users.update_one({"user_id": user_id}, {"$set": {"bot_in_group": True}})
-    
+    if user_data:
+        botlog_chat_id = user_data.get("bot_log_group_id")
+
+    if not botlog_chat_id:
+        group_name = 'Naya Project Bot Log'
+        group_description = 'This group is used to log my bot activities'
+        group = await bot.create_supergroup(group_name, group_description)
+        botlog_chat_id = group.id
+        message_text = 'Grup Log Berhasil Dibuat,\nMohon Masukkan @NayaProjectBot Ke Dalam Grup Log Anda'
+        await bot.send_message(botlog_chat_id, message_text)
+        await db.users.update_one(
+            {"user_id": user_id},
+            {"$set": {"bot_log_group_id": botlog_chat_id}},
+            upsert=True
+        )
+
     return botlog_chat_id
+
 
 
 
