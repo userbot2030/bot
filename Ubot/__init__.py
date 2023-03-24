@@ -47,7 +47,7 @@ TEMP_SETTINGS["PM_LAST_MSG"] = {}
 
 mongo = MongoClient(MONGO_URL)
 db = mongo.Ubot
-DB_NAME = "ubot"
+DB_NAME = "Ubot"
 try:
     client = MongoClient(MONGO_URL)
 except PyMongoError:
