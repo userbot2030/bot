@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 import pymongo.errors
 from Ubot.modules.basic import ADMINS
 from dateutil.relativedelta import relativedelta
-
+from ubotlibs.ubot.database import cli
 
 import schedule
 import asyncio
