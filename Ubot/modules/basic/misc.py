@@ -22,20 +22,6 @@ from ubotlibs.ubot.database.accesdb import *
 from Ubot.modules.bot.inline import get_readable_time
 
 
-alive_logo = ALIVE_PIC or ""
-
-if ALIVE_TEXT:
-   txt = ALIVE_TEXT
-else:
-    txt = (
-         f"▰▱▰▱°▱▱°▱▰▱▰\n"
-        f" ◉ **Kyran-Pyro**\n\n"
-        f" ◉ **Versi**: `{BOT_VER}`\n"
-        f" ◉ **Uptime**: `{str(datetime.now() - START_TIME).split('.')[0]}`\n"
-        f" ◉ **Phython**: `{python_version()}`\n"
-        f" ◉ **Pyrogram**: `{__version__}`\n"
-        f" ▰▱▰▱°▱▱°▱▰▱▰\n"
-    )
 
 @Client.on_message(filters.command(["alive"], "") & filters.me)
 async def alive(client: Client, message: Message):
