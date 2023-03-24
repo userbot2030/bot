@@ -22,6 +22,50 @@ coupledb = db.couple
 karmadb = db.karma
 notesdb = db.notes
 accesdb = db.acces
+usersdb = db.users
+
+
+usersdb.update_many({}, {"$set": {"bot_log_group_id": None}})
+
+
+async def buat_log():
+    for bot in bots:
+        botlog_chat_id = os.environ.get('BOTLOG_CHATID')
+        if not botlog_chat_id:
+            user = await bot.get_me()
+            user_id = user.id
+            user_data = db.users.find_one({"user_id": user_id})
+            if user_data:
+                botlog_chat_id = user_data.get("bot_log_group_id")
+
+        if not botlog_chat_id:
+            group_name = 'Naya Project Bot Log'
+            group_description = 'This group is used to log my bot activities'
+            group = await bot.create_supergroup(group_name, group_description)
+            botlog_chat_id = group.id
+
+            user = await bot.get_me()
+            user_id = user.id
+            db.users.update_one({"user_id": user_id}, {"$set": {"bot_log_group_id": botlog_chat_id}})
+
+            if await is_heroku():
+                try:
+                    Heroku = heroku3.from_key(os.environ.get('HEROKU_API_KEY'))
+                    happ = Heroku.app(os.environ.get('HEROKU_APP_NAME'))
+                    happ.config()['BOTLOG_CHATID'] = str(botlog_chat_id)
+                except:
+                    pass
+            else:
+                with open('.env', 'a') as env_file:
+                    env_file.write(f'\nBOTLOG_CHATID={botlog_chat_id}')
+
+            message_text = 'Group Log Berhasil Dibuat,\n Mohon Masukan Bot @NayaProjectBot Ke Group ini.'
+            await bot.send_message(botlog_chat_id, message_text)
+            restart()
+
+        message = 'Test log message'
+        await bot.send_message(botlog_chat_id, message)
+
 
 
 async def grant_access(user_id: int) -> bool:
