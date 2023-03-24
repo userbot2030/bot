@@ -50,11 +50,12 @@ async def main():
             await bot.start()
             ex = await bot.get_me()
             await join(bot)
-            await buat_log()
             LOGGER("Ubot").info("Startup Completed")
             LOGGER("√").info(f"Started as {ex.first_name} | {ex.id} ")
             ids.append(ex.id)
             user = len(ids)
+            botlog_chat_id = await buat_log(bot)
+            LOGGER("Ubot").info("Bot Log Group ID: " + str(botlog_chat_id))
         except Exception as e:
             LOGGER("X").info(f"{e}")
     await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
