@@ -141,7 +141,7 @@ async def member_ban(client: Client, message: Message):
 @Client.on_message(filters.command(["unban"], "") & filters.me)
 async def member_unban(client: Client, message: Message):
     reply = message.reply_to_message
-    await message.reply("`Processing...`")
+    ini = await message.reply("`Processing...`")
     if reply and reply.sender_chat and reply.sender_chat != message.chat.id:
         return await message.edit("Tidak bisa unban ch")
 
@@ -154,7 +154,9 @@ async def member_unban(client: Client, message: Message):
             "Berikan username, atau reply pesannya."
         )
     try:
+        await asyncio.sleep(0.1)
         await message.chat.unban_member(user)
+        await ini.delete()
         umention = (await client.get_users(user)).mention
         await message.edit(f"Unbanned! {umention}")
     except ChatAdminRequired:
