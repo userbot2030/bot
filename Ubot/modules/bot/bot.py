@@ -91,10 +91,13 @@ async def start_admin(_, query: CallbackQuery):
 async def close(_, query: CallbackQuery):
     await query.message.delete()
     
-    
 @app.on_callback_query(filters.regex("forceclose"))
 async def forceclose(_, CallbackQuery):
-    await CallbackQuery.message.delete()
+    try:
+        await CallbackQuery.message.delete()
+    except:
+        pass
+
 
 @app.on_callback_query(filters.regex("ub_modul_(.*)"))
 # @cb_wrapper
