@@ -36,6 +36,7 @@ ALIVE_TEXT = getenv("ALIVE_TEXT")
 PM_LOGGER = getenv("PM_LOGGER", True)
 PM_AUTO_BAN = getenv("PM_AUTO_BAN", True)
 OPENAI_API = getenv("OPENAI_API")
+SUPPORT_GROUP = "https://t.me/kynansupport"
 BOTLOG_CHATID = int(getenv("BOTLOG_CHATID") or 0)
 BLACKLIST_GCAST = {int(x) for x in getenv("BLACKLIST_GCAST", "").split()}
 GIT_TOKEN = getenv("GIT_TOKEN") #personal access token
