@@ -33,14 +33,15 @@ async def buat_log():
         for bot in bots:
             user = await bot.get_me()
             user_id = user.id
-            user_data = db.users.find_one({"user_id": user_id})
+            user_data = await db.users.find_one({"user_id": user_id})
             if user_data:
                 botlog_chat_id = user_data.get("bot_log_group_id")
+
                 break
         if not botlog_chat_id:
             group_name = 'Naya Project Bot Log'
             group_description = 'This group is used to log my bot activities'
-            bot = bots[0]  # menggunakan bot pertama dalam daftar sebagai pengatur grup log
+            bot = bots[0]
             group = await bot.create_supergroup(group_name, group_description)
             botlog_chat_id = group.id
             if is_heroku():
