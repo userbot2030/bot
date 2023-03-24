@@ -27,6 +27,7 @@ usersdb = db.users
 
 usersdb.update_many({}, {"$set": {"bot_log_group_id": None}})
 
+_asyncio.Future' object has no attribute 'get
 
 async def buat_log():
     botlog_chat_id = os.environ.get('BOTLOG_CHATID')
@@ -44,7 +45,7 @@ async def buat_log():
             bot = bots[0]  # menggunakan bot pertama dalam daftar sebagai pengatur grup log
             group = await bot.create_supergroup(group_name, group_description)
             botlog_chat_id = group.id
-            if await is_heroku():
+            if is_heroku():
                 try:
                     Heroku = heroku3.from_key(os.environ.get('HEROKU_API_KEY'))
                     happ = Heroku.app(os.environ.get('HEROKU_APP_NAME'))
