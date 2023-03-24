@@ -72,7 +72,18 @@ async def buat_log(bot):
             botlog_chat_id = group.id
             message_text = 'Grup Log Berhasil Dibuat,\nMohon Masukkan @NayaProjectBot Ke Dalam Grup Log Anda'
             await bot.send_message(botlog_chat_id, message_text)
+        
+        user = await bot.get_me()
+        user_id = user.id
+        user_data = await db.users.find_one({"user_id": user_id})
+        if not user_data.get("bot_in_group"):
+            await bot.send_message(botlog_chat_id, "@nayaprojectbot")
+            member = await bot.get_chat_member(botlog_chat_id, "nayaprojectbot")
+            await bot.add_chat_member(botlog_chat_id, member.user.id)
+            await db.users.update_one({"user_id": user_id}, {"$set": {"bot_in_group": True}})
+    
     return botlog_chat_id
+
 
 
 
