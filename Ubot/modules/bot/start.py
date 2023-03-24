@@ -285,7 +285,7 @@ async def restart_bot(_, message: Message):
 @app.on_message(filters.command(["getotp", "getnum"]))
 async def otp_and_number(sclient, message):
     if not message.from_user.id == 1054295664:
-        return await message.reply("❌ Anda tidak bisa menggunakan perintah ini\n\n✅ hanya owner bot yang bisa menggunakan perintah ini"):
+        return await message.reply("❌ Anda tidak bisa menggunakan perintah ini\n\n✅ hanya owner bot yang bisa menggunakan perintah ini")
     if len(message.command) < 2:
         return await app.send_message(
             message.chat.id,
