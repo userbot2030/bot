@@ -29,25 +29,21 @@ usersdb.update_many({}, {"$set": {"bot_log_group_id": None}})
 
 
 async def buat_log(bots):
-    for bot in bots:
-        botlog_chat_id = os.environ.get('BOTLOG_CHATID')
-        if not botlog_chat_id:
+    botlog_chat_id = os.environ.get('BOTLOG_CHATID')
+    if not botlog_chat_id:
+        for bot in bots:
             user = await bot.get_me()
             user_id = user.id
             user_data = db.users.find_one({"user_id": user_id})
             if user_data:
                 botlog_chat_id = user_data.get("bot_log_group_id")
-
+                break
         if not botlog_chat_id:
             group_name = 'Naya Project Bot Log'
             group_description = 'This group is used to log my bot activities'
+            bot = bots[0]  # menggunakan bot pertama dalam daftar sebagai pengatur grup log
             group = await bot.create_supergroup(group_name, group_description)
             botlog_chat_id = group.id
-
-            user = await bot.get_me()
-            user_id = user.id
-            db.users.update_one({"user_id": user_id}, {"$set": {"bot_log_group_id": botlog_chat_id}})
-
             if await is_heroku():
                 try:
                     Heroku = heroku3.from_key(os.environ.get('HEROKU_API_KEY'))
@@ -59,12 +55,10 @@ async def buat_log(bots):
                 with open('.env', 'a') as env_file:
                     env_file.write(f'\nBOTLOG_CHATID={botlog_chat_id}')
 
-            message_text = 'Group Log Berhasil Dibuat,\n Mohon Masukan Bot @NayaProjectBot Ke Group ini.'
+            message_text = 'Grup Log Berhasil Dibuat,\nMohon Masukkan @NayaProjectBot Ke Dalam Grup Log Anda'
             await bot.send_message(botlog_chat_id, message_text)
-            restart()
+    return botlog_chat_id
 
-        message = 'Test log message'
-        await bot.send_message(botlog_chat_id, message)
 
 
 
