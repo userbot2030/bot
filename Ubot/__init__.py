@@ -45,14 +45,6 @@ TEMP_SETTINGS["PM_COUNT"] = {}
 TEMP_SETTINGS["PM_LAST_MSG"] = {}
 
 
-mongo = MongoClient(MONGO_URL)
-db = mongo.Ubot
-DB_NAME = "Ubot"
-try:
-    client = MongoClient(MONGO_URL)
-except PyMongoError:
-    exiter(1)
-mdb = client[DB_NAME]
 
 LOOP = asyncio.get_event_loop_policy()
 event_loop = LOOP.get_event_loop()
@@ -142,7 +134,7 @@ app = Client(
     api_hash=API_HASH,
     bot_token=BOT_TOKEN,
     sleep_threshold=5,
-    plugins=dict(root="Ubot/modules/bot"),
+    plugins=dict(root="Ubot/modules"),
     in_memory=True,
 )
 
