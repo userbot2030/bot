@@ -32,6 +32,10 @@ from pyrogram import Client, filters, errors, types
 from . import *
 from Ubot.core.func import *
 
+def deEmojify(inputString: str) -> str:
+    """Remove emojis and other non-safe characters from string"""
+    return get_emoji_regexp().sub("", inputString)
+
 
 @Ubot(["q", "quotly"], cmds)
 async def quotly(client: Client, message: Message):
@@ -61,12 +65,6 @@ async def quotly(client: Client, message: Message):
             else:
                 return await message.edit("**Failed to Create Quotly Sticker**")
     await client.delete_messages(bot, 2)
-
-
-def deEmojify(inputString: str) -> str:
-    """Remove emojis and other non-safe characters from string"""
-    return get_emoji_regexp().sub("", inputString)
-
 
 
 @Ubot(["text"], "")
