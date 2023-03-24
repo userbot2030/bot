@@ -102,10 +102,10 @@ async def forceclose(_, CallbackQuery):
 async def on_plug_in_cb(_, callback_query: CallbackQuery):
     modul_name = callback_query.matches[0].group(1)
     commands: dict = CMD_HELP[modul_name]
-    this_command = f"**Help For {str(modul_name).upper()}**\n\n"
+    this_command = f"**Bantuan Untuk {str(modul_name).upper()}**\n\n"
     for x in commands:
-        this_command += f"๏ **Command:** `{str(x)}`\n◉ **Function:** `{str(commands[x])}`\n\n"
-    this_command += ""
+        this_command += f"๏ **Perintah:** `{str(x)}`\n◉ **Keterangan:** `{str(commands[x])}`\n\n"
+    this_command += "@KynanSupport"
     bttn = [
         [InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="reopen")],
     ]
