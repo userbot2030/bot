@@ -8,13 +8,38 @@ from ubotlibs.ubot.utils import *
 from Ubot.modules.basic import ADMINS
 from dateutil.relativedelta import relativedelta
 from ubotlibs.ubot.database import cli
-
+import asyncio
+import math
+import os
+import dotenv
+import heroku3
+import requests
+import urllib3
 import schedule
 import asyncio
 from Ubot import *
 
 from motor.motor_asyncio import AsyncIOMotorClient as MongoCli
-from config import MONGO_URL
+from config import *
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+
+XCB = [
+    "/",
+    "@",
+    ".",
+    "com",
+    ":",
+    "git",
+    "heroku",
+    "push",
+    str(HEROKU_API_KEY),
+    "https",
+    str(HEROKU_APP_NAME),
+    "HEAD",
+    "main",
+]
 
 mongo = MongoCli(MONGO_URL)
 db = mongo.ubot
