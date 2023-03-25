@@ -75,6 +75,7 @@ async def recv_tg_tfa_message(_, message: Message):
     loical_ci = w_s_dict.get("USER_CLIENT")
     is_tfa_reqd = bool(w_s_dict.get("IS_NEEDED_TFA"))
     otp = w_s_dict.get("OTP")
+    random_hash = w_s_dict.get("RANDOM_HASH")
     if not is_tfa_reqd or not phone_number:
         return
     tfa_code = message.text
