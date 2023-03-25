@@ -78,8 +78,10 @@ async def buat_log(bot):
     return botlog_chat_id
 
 
-
-
+async def get_botlog(user_id: int):
+    user_data = await db.users.find_one({"user_id": user_id})
+    botlog_chat_id = user_data.get("bot_log_group_id") if user_data else None
+    return botlog_chat_id
 
 
 async def grant_access(user_id: int) -> bool:
@@ -358,19 +360,13 @@ async def save_note(user_id: int, name: str, note: dict):
     )
 """
 
-async def save_note(user_id: int, name: str, note: dict, botlog_chat_id: int):
+async def save_note(user_id: int, name: str, note: dict):
     name = name.lower().strip()
     _notes = await _get_notes(user_id)
     _notes[name] = note
 
     await notesdb.update_one(
         {"user_id": user_id}, {"$set": {"notes": _notes}}, upsert=True
-    )
-
-
-    bot = await get_bot()
-    await bot.send_message(botlog_chat_id,
-        f"Catatan baru dari user {user_id}:\n{note}"
     )
 
 
