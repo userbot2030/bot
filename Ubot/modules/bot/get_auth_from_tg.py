@@ -15,7 +15,9 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from Ubot.core.db import cli
-
+import requests
+from typing import tuple
+import random
 
 from pyrogram import (
     Client,
