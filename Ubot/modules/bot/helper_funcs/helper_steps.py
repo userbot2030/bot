@@ -21,7 +21,7 @@
 from telegram import (
     Message
 )
-from ..my_telegram_org  import *
+from ....my_telegram_org  import *
 from Ubot import app
 # from telethon import events
 # from bot import app
