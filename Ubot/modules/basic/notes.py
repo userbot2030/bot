@@ -34,7 +34,10 @@ async def simpan_note(client, message):
     if not msg:
         return await message.reply("`Silakan balas ke pesan.`")
 
-    botlog_chat_id = await buat_log(bot)
+    botlog_chat_id = await get_botlog(user_id)
+
+    if not botlog_chat_id:
+        return await message.reply("`Maaf, tidak dapat menemukan ID chat log bot.`")
 
     anu = await msg.forward(botlog_chat_id)
     msg_id = anu.id
@@ -45,8 +48,9 @@ async def simpan_note(client, message):
     )
     await sleep(1)
 
-    await save_note(user_id, name, msg_id, botlog_chat_id)
+    await save_note(user_id, name, msg_id)
     await message.reply(f"**Berhasil menyimpan catatan dengan nama** `{name}`")
+
 
 
 @Ubot("get", cmds)
