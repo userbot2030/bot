@@ -18,6 +18,7 @@ import os
 from dotenv import load_dotenv
 from pyrogram.errors import RPCError
 
+BOT_VER ="8.1.0"
 
 MSG_BOT = """
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
@@ -54,7 +55,9 @@ async def main():
             LOGGER("√").info(f"Started as {ex.first_name} | {ex.id} ")
             await join(bot)
             await buat_log(bot)
-            
+            botlog_chat_id = await get_botlog(user_id)
+            await asyncio.sleep(0.1)
+            await app.send_message(botlog_chat_id, MSG_ON.format(BOT_VER, py(), pyro))
         except Exception as e:
             LOGGER("X").info(f"{e}")
     user = len(ids)
@@ -64,7 +67,7 @@ async def main():
 
     
 
-
+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
               
 
 if __name__ == "__main__":
