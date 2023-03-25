@@ -30,7 +30,7 @@ from Ubot import (
     app
 )
 from Ubot.user import User
-from ..helper_funcs.helper_steps import *
+from ...helper_funcs.helper_steps import *
 
 
 @app.on_message(
