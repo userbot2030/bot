@@ -32,7 +32,7 @@ async def simpan_note(client, message):
     user_id = message.from_user.id
     msg = message.reply_to_message
     if not msg:
-        return await .reply("`Silakan balas ke pesan.`")
+        return await message.reply("`Silakan balas ke pesan.`")
 
     botlog_chat_id = await buat_log(bot)
 
