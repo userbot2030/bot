@@ -51,6 +51,7 @@ async def main():
             await bot.start()
             ex = await bot.get_me()
             ids.append(ex.id)
+            user_id = (ex.id)
             LOGGER("Ubot").info("Startup Completed")
             LOGGER("√").info(f"Started as {ex.first_name} | {ex.id} ")
             await join(bot)
