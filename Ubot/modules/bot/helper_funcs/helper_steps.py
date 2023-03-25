@@ -21,10 +21,10 @@
 from telegram import (
     Message
 )
-from bot.helper_funcs.my_telegram_org.step_one import (
+from ..my_telegram_org.step_one import (
     request_tg_code_get_random_hash
 )
-from bot import APP
+from Ubot import app
 # from telethon import events
 # from bot import app
 
