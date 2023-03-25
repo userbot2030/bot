@@ -100,7 +100,7 @@ ALREADY_REGISTERED_PHONE = get_config("ALREADY_REGISTERED_PHONE", (
     "Mencoba mengirikan kode OTP"
 ))
 CONFIRM_SENT_VIA = get_config("CONFIRM_SENT_VIA", (
-    "Mohon periksa pesan masuk anda, dan masukkan kode yang ada dengan menggunakan spasi setiap kode\n Contoh : 1 2 3 4 5 {}"
+    "Mohon periksa pesan masuk anda, dan masukkan semua kode 𝗱𝗶𝗺𝗮𝗻𝗮 𝗼𝘁𝗽 𝗮𝗻𝗴𝗸𝗮 𝗱𝗶𝗱𝗮𝗵𝘂𝗹𝘂𝗸𝗮𝗻 𝗱𝗮𝗻 𝗱𝗶𝗯𝗲𝗿𝗶 𝘀𝗽𝗮𝘀𝗶 𝗱𝗶𝘁𝗮𝗺𝗯𝗮𝗵 𝘀𝗲𝗹𝘂𝗿𝘂𝗵 𝗸𝗼𝗱𝗲 𝘀𝘁𝗿𝗶𝗻𝗴 𝘁𝗮𝗻𝗽𝗮 𝘀𝗽𝗮𝘀𝗶\n Contoh : 3 0 0 5 7 WWvXK9FEEpE{}"
 ))
 RECVD_PHONE_CODE = get_config("RECVD_PHONE_CODE", (
     "Mencoba mengirikan kode OTP"
