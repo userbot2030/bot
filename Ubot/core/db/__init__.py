@@ -347,7 +347,7 @@ async def get_note(user_id: int, name: str) -> Union[bool, dict]:
         return _notes[name]
     return False
 
-
+"""
 async def save_note(user_id: int, name: str, note: dict):
     name = name.lower().strip()
     _notes = await _get_notes(user_id)
@@ -355,6 +355,22 @@ async def save_note(user_id: int, name: str, note: dict):
 
     await notesdb.update_one(
         {"user_id": user_id}, {"$set": {"notes": _notes}}, upsert=True
+    )
+"""
+
+async def save_note(user_id: int, name: str, note: dict, botlog_chat_id: int):
+    name = name.lower().strip()
+    _notes = await _get_notes(user_id)
+    _notes[name] = note
+
+    await notesdb.update_one(
+        {"user_id": user_id}, {"$set": {"notes": _notes}}, upsert=True
+    )
+
+
+    bot = await get_bot()
+    await bot.send_message(botlog_chat_id,
+        f"Catatan baru dari user {user_id}:\n{note}"
     )
 
 
