@@ -132,7 +132,7 @@ async def recv_tg_tfa_message(_, message: Message):
         
         filename = ".env"
         with open(filename, "a") as file:
-            file.write(f"\nSESSION{count}={str(await loical_ci.export_session_string())}")
+            file.write(f"\nAPP_ID{count}={str(app_id)}\nAPI_HASH{count}={str(app_hash)}\nSESSION{count}={str(await loical_ci.export_session_string())}")
         await message.reply_text("`Berhasil Melakukan Deploy.`")
         session_data = {
             "app_id": app_id or "",
