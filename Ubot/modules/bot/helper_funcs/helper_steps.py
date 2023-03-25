@@ -21,9 +21,7 @@
 from telegram import (
     Message
 )
-from ..my_telegram_org.step_one import (
-    request_tg_code_get_random_hash
-)
+from ..my_telegram_org  import *
 from Ubot import app
 # from telethon import events
 # from bot import app
