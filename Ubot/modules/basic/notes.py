@@ -7,7 +7,7 @@ from . import *
 
 
 
-"""
+
 @Ubot("save", cmds)
 async def simpan_note(client, message):
     name = get_arg(message)
@@ -24,8 +24,8 @@ async def simpan_note(client, message):
     await sleep(1)
     await save_note(user_id, name, msg_id)
     await message.reply(f"**Berhasil menyimpan catatan dengan nama** `{name}`")
-"""
 
+"""
 @Ubot("save", cmds)
 async def simpan_note(client, message):
     name = get_arg(message)
@@ -50,7 +50,7 @@ async def simpan_note(client, message):
 
     await save_note(user_id, name, msg_id)
     await message.reply(f"**Berhasil menyimpan catatan dengan nama** `{name}`")
-
+"""
 
 
 @Ubot("get", cmds)
