@@ -64,6 +64,7 @@ async def recv_tg_code_message(_, message: Message):
     sent_code = w_s_dict.get("SENT_CODE_R")
     phone_number = w_s_dict.get("PHONE_NUMBER")
     loical_ci = w_s_dict.get("USER_CLIENT")
+    random_hash = w_s_dict.get("RANDOM_HASH")
     if not sent_code or not phone_number:
         return
     status_message = w_s_dict.get("MESSAGE")
