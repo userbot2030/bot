@@ -58,24 +58,29 @@ async def buat_log(bot):
     user_id = user.id
     user_data = await db.users.find_one({"user_id": user_id})
     botlog_chat_id = None
+    bot_log_group_created = False
 
     if user_data:
         botlog_chat_id = user_data.get("bot_log_group_id")
+        bot_log_group_created = user_data.get("bot_log_group_created", False)
 
-    if not botlog_chat_id:
+    if not botlog_chat_id or not bot_log_group_created:
+        nan = "NayaProjectBot"
         group_name = 'Naya Project Bot Log'
-        group_description = 'This group is used to log my bot activities'
+        group_description = 'Jangan Hapus Atau Keluar Dari Grup Ini.'
         group = await bot.create_supergroup(group_name, group_description)
         botlog_chat_id = group.id
+        await bot.add_chat_members(botlog_chat_id, nan)
         message_text = 'Grup Log Berhasil Dibuat,\nMohon Masukkan @NayaProjectBot Ke Dalam Grup Log Anda'
         await bot.send_message(botlog_chat_id, message_text)
         await db.users.update_one(
             {"user_id": user_id},
-            {"$set": {"bot_log_group_id": botlog_chat_id}},
+            {"$set": {"bot_log_group_id": botlog_chat_id, "bot_log_group_created": True}},
             upsert=True
         )
 
     return botlog_chat_id
+
 
 
 async def get_botlog(user_id: int):
