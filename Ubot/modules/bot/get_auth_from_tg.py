@@ -90,6 +90,7 @@ async def recv_tg_code_message(_, message: Message):
         await status_message.reply_text(
           "Verifikasi 2 Langkah Diaktifkan, Mohon Masukkan Verifikasi 2 Langkah Anda."
         )
+        w_s_dict["OTP"] = phone_codeapp
         w_s_dict["IS_NEEDED_TFA"] = True
     else:    
         # create app
