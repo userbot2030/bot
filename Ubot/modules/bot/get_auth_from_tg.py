@@ -16,7 +16,7 @@
 
 from Ubot.core.db import cli
 import requests
-from typing import tuple
+from typing import Tuple, Dict
 import random
 
 from pyrogram import (
