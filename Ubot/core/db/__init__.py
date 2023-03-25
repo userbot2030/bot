@@ -354,16 +354,6 @@ async def get_note(user_id: int, name: str) -> Union[bool, dict]:
         return _notes[name]
     return False
 
-"""
-async def save_note(user_id: int, name: str, note: dict):
-    name = name.lower().strip()
-    _notes = await _get_notes(user_id)
-    _notes[name] = note
-
-    await notesdb.update_one(
-        {"user_id": user_id}, {"$set": {"notes": _notes}}, upsert=True
-    )
-"""
 
 async def save_note(user_id: int, name: str, note: dict):
     name = name.lower().strip()
@@ -374,6 +364,16 @@ async def save_note(user_id: int, name: str, note: dict):
         {"user_id": user_id}, {"$set": {"notes": _notes}}, upsert=True
     )
 
+"""
+async def save_note(user_id: int, name: str, note: dict):
+    name = name.lower().strip()
+    _notes = await _get_notes(user_id)
+    _notes[name] = note
+
+    await notesdb.update_one(
+        {"user_id": user_id}, {"$set": {"notes": _notes}}, upsert=True
+    )
+"""
 
 async def delete_note(user_id: int, name: str) -> bool:
     notesd = await _get_notes(user_id)
