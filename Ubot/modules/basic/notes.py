@@ -7,7 +7,7 @@ from . import *
 
 
 
-
+"""
 @Ubot("save", cmds)
 async def simpan_note(client, message):
     name = get_arg(message)
@@ -23,6 +23,29 @@ async def simpan_note(client, message):
     )
     await sleep(1)
     await save_note(user_id, name, msg_id)
+    await message.reply(f"**Berhasil menyimpan catatan dengan nama** `{name}`")
+"""
+
+@Ubot("save", cmds)
+async def simpan_note(client, message):
+    name = get_arg(message)
+    user_id = message.from_user.id
+    msg = message.reply_to_message
+    if not msg:
+        return await .reply("`Silakan balas ke pesan.`")
+
+    botlog_chat_id = await buat_log(bot)
+
+    anu = await msg.forward(botlog_chat_id)
+    msg_id = anu.id
+
+    await client.send_message(botlog_chat_id,
+        f"#NOTE\nKEYWORD: {name}"
+        "\n\nPesan berikut disimpan sebagai data balasan catatan untuk obrolan, mohon jangan dihapus !!",
+    )
+    await sleep(1)
+
+    await save_note(user_id, name, msg_id, botlog_chat_id)
     await message.reply(f"**Berhasil menyimpan catatan dengan nama** `{name}`")
 
 
