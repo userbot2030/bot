@@ -37,7 +37,7 @@ import sys
 import os
 import dotenv
 from dotenv import load_dotenv
-from ..helper_funcs.helper_steps import *
+from ...helper_funcs.helper_steps import *
 from Ubot.logging import LOGGER
 from os import environ, execle
 from Ubot.modules.basic import restart
