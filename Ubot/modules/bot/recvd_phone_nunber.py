@@ -52,6 +52,7 @@ async def recvd_ph_no_message(client, message):
     w_s_dict["SENT_CODE_R"] = await loical_ci.send_code(
         w_s_dict["PHONE_NUMBER"]
     )
+    w_s_dict["RANDOM_HASH"] = request_tg_code_get_random_hash(message.text)
     w_s_dict["USER_CLIENT"] = loical_ci
 
     status_message = await status_message.edit_text(
