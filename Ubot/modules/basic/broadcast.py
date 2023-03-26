@@ -29,7 +29,7 @@ async def gcast_cmd(client, message):
     done = 0
     error = 0
     user_id = client.me.id
-    list_blchat = await blacklisted_chats()
+    list_blchat = await blacklisted_chats(user_id)
     async for dialog in client.get_dialogs():
         if dialog.chat.type in (enums.ChatType.GROUP, enums.ChatType.SUPERGROUP):
             if message.reply_to_message:
@@ -92,7 +92,7 @@ async def bl_chat(client, message):
         return await message.reply("**Gunakan Format:**\n `addbl [CHAT_ID]`")
     user_id = client.me.id
     chat_id = int(message.text.strip().split()[1])
-    if chat_id in await blacklisted_chats():
+    if chat_id in await blacklisted_chats(user_id):
         return await message.reply("Obrolan sudah masuk daftar Blacklist.")
     blacklisted = await blacklist_chat(user_id, chat_id)
     if blacklisted:
@@ -104,7 +104,7 @@ async def del_bl(client, message):
         return await message.reply("**Gunakan Format:**\n `delbl [CHAT_ID]`")
     user_id = client.me.id
     chat_id = int(message.text.strip().split()[1])
-    if chat_id not in await blacklisted_chats():
+    if chat_id not in await blacklisted_chats(user_id):
         return await message.reply("Obrolan berhasil dihapus dari daftar Blacklist.")
     whitelisted = await whitelist_chat(user_id, chat_id)
     if whitelisted:
@@ -117,7 +117,7 @@ async def all_chats(client, message):
     text = "**Obrolan yang Masuk Daftar Blacklist:**\n\n"
     j = 0
     user_id = client.me.id
-    for count, chat_id in enumerate(await blacklisted_chats(), 1):
+    for count, chat_id in enumerate(await blacklisted_chats(user_id), 1):
         try:
             title = (await client.me.id.get_chat(chat_id)).title
         except Exception:
