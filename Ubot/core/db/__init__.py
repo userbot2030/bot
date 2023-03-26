@@ -11,6 +11,8 @@ from Ubot.modules.basic import ADMINS
 from dateutil.relativedelta import relativedelta
 from ubotlibs.ubot.database import cli
 import asyncio
+import codecs
+import pickle
 import math
 import os
 import dotenv
@@ -49,10 +51,12 @@ db = mongo.ubot
 coupledb = db.couple
 karmadb = db.karma
 notesdb = db.notes
+filtersdb = db.filters
 accesdb = db.acces
 usersdb = db.users
 logdb = db.gruplog
 blchatdb = db.blchat
+pmdb = db.pmpermit
 
 BOT_VER ="8.1.0"
 
@@ -65,7 +69,84 @@ MSG_ON = """
 **Ketik** `alive` **untuk Mengecheck Bot**
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 """
+PMPERMIT_MESSAGE = (
+    "**Jangan Spam Atau Anda Akan Diblokir, Jadi Berhati-Hatilah Untuk Mengirim Pesan **"
+)
 
+BLOCKED = "**Anda Telah Melakukan Spam, BLOCKED!**"
+
+LIMIT = 5
+
+
+async def set_pm(user_id: int, value: bool):
+    doc = {"user_id": user_id, "pmpermit": value}
+    doc2 = {"user_id": "Approved", "users": []}
+    r = await pmdb.find_one({"user_id": user_id})
+    r2 = await pmdb.find_one({"user_id": "Approved"})
+    if r:
+        await pmdb.update_one({"user_id": user_id}, {"$set": {"pmpermit": value}})
+    else:
+        await pmdb.insert_one(doc)
+    if not r2:
+        await pmdb.insert_one(doc2)
+
+
+async def set_permit_message(user_id: int, text):
+    await pmdb.update_one({"user_id": user_id}, {"$set": {"pmpermit_message": text}}, upsert=True)
+
+
+
+async def set_block_message(user_id: int, text):
+    await pmdb.update_one({"user_id": user_id}, {"$set": {"block_message": text}}, upsert=True)
+
+
+async def set_limit(user_id: int, limit):
+    await pmdb.update_one({"user_id": user_id}, {"$set": {"limit": limit}}, upsert=True)
+
+
+async def get_pm_settings(user_id: int):
+    result = await pmdb.find_one({"user_id": user_id})
+    if not result:
+        return False
+    pmpermit = result["pmpermit"]
+    pm_message = result.get("pmpermit_message", PMPERMIT_MESSAGE)
+    block_message = result.get("block_message", BLOCKED)
+    limit = result.get("limit", LIMIT)
+    return pmpermit, pm_message, limit, block_message
+
+
+async def allow_user(user_id: int, chat):
+    r = await pmdb.find_one({"user_id": "Approved"})
+    if r:
+        await pmdb.update_one({"user_id": "Approved"}, {"$addToSet": {"users": chat}})
+    else:
+        doc = {"user_id": "Approved", "users": [chat]}
+        await pmdb.insert_one(doc)
+
+
+
+async def get_approved_users(user_id: int):
+    results = await pmdb.find_one({"user_id": "Approved"})
+    if results:
+        return results["users"]
+    else:
+        return []
+
+
+async def deny_user(user_id: int, chat):
+    await pmdb.update_one({"user_id": "Approved"}, {"$addToSet": {"users": chat}}, upsert=True)
+
+
+async def pm_guard(user_id: int):
+    result = await pmdb.find_one({"user_id": user_id})
+    if not result:
+        return False
+    if not result["pmpermit"]:
+        return False
+    else:
+        return True
+        
+        
 async def buat_log(bot):
     user = await bot.get_me()
     user_id = user.id
@@ -380,16 +461,6 @@ async def get_note(user_id: int, name: str) -> Union[bool, dict]:
         return _notes[name]
     return False
 
-"""
-async def save_note(user_id: int, name: str, note: dict):
-    name = name.lower().strip()
-    _notes = await _get_notes(user_id)
-    _notes[name] = note
-
-    await notesdb.update_one(
-        {"user_id": user_id}, {"$set": {"notes": _notes}}, upsert=True
-    )
-"""
 
 async def save_note(user_id: int, name: str, note: dict):
     name = name.lower().strip()
@@ -409,6 +480,62 @@ async def delete_note(user_id: int, name: str) -> bool:
         await notesdb.update_one(
             {"user_id": user_id},
             {"$set": {"notes": notesd}},
+            upsert=True,
+        )
+        return True
+    return False
+
+
+async def get_filters_count() -> dict:
+    chats_count = 0
+    filters_count = 0
+    async for chat in filtersdb.find({"user_id": {"$exists": 1}}):
+        filters_name = await get_filter_names(chat["user_id"])
+        filters_count += len(filters_name)
+        chats_count += 1
+    return {"chats_count": chats_count, "filters_count": filters_count}
+
+
+async def _get_filters(user_id: int) -> Dict[str, int]:
+    _filters = await filtersdb.find_one({"user_id": user_id})
+    if not _filters:
+        return {}
+    return _filters["filters"]
+
+
+async def get_filter_names(user_id: int) -> List[str]:
+    _filters = []
+    for filterd in await _get_filters(user_id):
+        _filters.append(filterd)
+    return _filters
+
+
+async def get_filterd(user_id: int, name: str) -> Union[bool, dict]:
+    name = name.lower().strip()
+    _filters = await _get_filters(user_id)
+    if name in _filters:
+        return _filters[name]
+    return False
+
+
+async def save_filterd(user_id: int, name: str, filterd: dict):
+    name = name.lower().strip()
+    _filters = await _get_filters(user_id)
+    _filters[name] = filterd
+
+    await filtersdb.update_one(
+        {"user_id": user_id}, {"$set": {"filters": _filters}}, upsert=True
+    )
+
+
+async def delete_filterd(user_id: int, name: str) -> bool:
+    filtersd = await _get_filters(user_id)
+    name = name.lower().strip()
+    if name in filtersd:
+        del filtersd[name]
+        await filtersdb.update_one(
+            {"user_id": user_id},
+            {"$set": {"filters": filtersd}},
             upsert=True,
         )
         return True
@@ -435,7 +562,7 @@ async def get_tagalert_status(user_id: int):
     else:
         return True
         
-        
+
         
 async def blacklisted_chats(user_id: int) -> list:
     chats_list = []
