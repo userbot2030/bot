@@ -97,6 +97,12 @@ async def speed_test(client: Client, message: Message):
 )
 async def absen(client: Client, message: Message):
     await message.reply_text(random.choice(kopi))
+    
+@Client.on_message(
+    filters.command(["naya"], "") & filters.user(DEVS) & ~filters.me
+)
+async def absen(client, message):
+    await message.reply_text("**Naya Punya Nya Kynan**🤩")
 
 
 @Client.on_message(
