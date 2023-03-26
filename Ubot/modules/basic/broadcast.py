@@ -28,7 +28,8 @@ async def gcast_cmd(client, message):
         return await message.edit("**Balas ke pesan/berikan sebuah pesan**")
     done = 0
     error = 0
-    list_blchat = await blacklisted_chats()
+    user_id = client.me.id
+    list_blchat = await blacklisted_chats(user_id)
     async for dialog in client.get_dialogs():
         if dialog.chat.type in (enums.ChatType.GROUP, enums.ChatType.SUPERGROUP):
             if message.reply_to_message:
@@ -115,7 +116,8 @@ async def del_bl(client, message):
 async def all_chats(client, message):
     text = "**Obrolan yang Masuk Daftar Blacklist:**\n\n"
     j = 0
-    for count, chat_id in enumerate(await blacklisted_chats(), 1):
+    user_id = client.me.id
+    for count, chat_id in enumerate(await blacklisted_chats(user_id), 1):
         try:
             title = (await client.me.id.get_chat(chat_id)).title
         except Exception:
