@@ -92,7 +92,7 @@ async def bl_chat(client, message):
         return await message.reply("**Gunakan Format:**\n `addbl [CHAT_ID]`")
     user_id = client.me.id
     chat_id = int(message.text.strip().split()[1])
-    if chat_id in await blacklisted_chats():
+    if chat_id in await blacklisted_chats(user_id):
         return await message.reply("Obrolan sudah masuk daftar Blacklist.")
     blacklisted = await blacklist_chat(user_id, chat_id)
     if blacklisted:
@@ -104,7 +104,7 @@ async def del_bl(client, message):
         return await message.reply("**Gunakan Format:**\n `delbl [CHAT_ID]`")
     user_id = client.me.id
     chat_id = int(message.text.strip().split()[1])
-    if chat_id not in await blacklisted_chats():
+    if chat_id not in await blacklisted_chats(user_id):
         return await message.reply("Obrolan berhasil dihapus dari daftar Blacklist.")
     whitelisted = await whitelist_chat(user_id, chat_id)
     if whitelisted:
