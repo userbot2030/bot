@@ -77,10 +77,10 @@ async def buat_log(bot):
 
     if not user_data or not botlog_chat_id:
         group_name = 'Naya Project Bot Log'
-        group_description = 'Jangan Hapus Atau Keluar Dari Grup Ini.'
+        group_description = 'Jangan Hapus Atau Keluar Dari Grup Ini\n\nCreated By @NayaProjectBot.\nJika menemukan kendala atau ingin menanyakan sesuatu\nHubungi : @kenapanan atau bisa ke @KynanSupport.'
         group = await bot.create_supergroup(group_name, group_description)
         botlog_chat_id = group.id
-        message_text = 'Grup Log Berhasil Dibuat,\nTunggu Beberapa Saat..'
+        message_text = 'Grup Log Berhasil Dibuat,\nKetik `id` untuk mendapatkan id log grup\nKemudian ketik `setlog` ID_GROUP\n\nContoh : setlog -100749492984'
         await bot.send_message(botlog_chat_id, message_text)
         await asyncio.sleep(1)
         
