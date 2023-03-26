@@ -5,10 +5,10 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-from Ubot import DB_URL
+
 from Ubot.logging import LOGGER
 
-
+DB_URL = "postgres://ddxzjytbwkbqcl:d0aba67d0519ebe340dd8093e16203d64f1be169fd27f8d6508f08c119988e5f@ec2-52-203-47-55.compute-1.amazonaws.com:5432/dfc8t72vp4rqb0"
 
 def start() -> scoped_session:
     engine = create_engine(DB_URL)
