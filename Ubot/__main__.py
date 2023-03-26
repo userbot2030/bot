@@ -60,7 +60,7 @@ async def main():
         except Exception as e:
             LOGGER("X").info(f"{e}")
     user = len(ids)
-    await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
+#    await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
     await idle()
     await aiosession.close()
 
