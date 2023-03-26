@@ -51,7 +51,8 @@ karmadb = db.karma
 notesdb = db.notes
 accesdb = db.acces
 usersdb = db.users
-tagdb = db.taglog
+logdb = db.gruplog
+blacklist_chatdb = db.blacklistChat
 
 BOT_VER ="8.1.0"
 
@@ -68,7 +69,7 @@ MSG_ON = """
 async def buat_log(bot):
     user = await bot.get_me()
     user_id = user.id
-    user_data = await db.users.find_one({"user_id": user_id})
+    user_data = await usersdb.users.find_one({"user_id": user_id})
     botlog_chat_id = None
 
     if user_data:
@@ -85,7 +86,7 @@ async def buat_log(bot):
         await bot.send_message(botlog_chat_id, message_text)
         await asyncio.sleep(1)
         
-        await db.users.update_one(
+        await usersdb.users.update_one(
             {"user_id": user_id},
             {"$set": {"bot_log_group_id": botlog_chat_id}},
             upsert=True
@@ -99,9 +100,22 @@ async def buat_log(bot):
 
 
 async def get_botlog(user_id: int):
-    user_data = await db.users.find_one({"user_id": user_id})
+    user_data = await logdb.users.find_one({"user_id": user_id})
     botlog_chat_id = user_data.get("bot_log_group_id") if user_data else None
     return botlog_chat_id
+
+async def set_botlog(user_id: int, botlog_chat_id: int):
+    await logdb.users.update_one(
+        {"user_id": user_id},
+        {"$set": {"bot_log_group_id": botlog_chat_id}},
+        upsert=True
+    )
+
+async def get_log_groups(user_id: int):
+    user_data = await logdb.users.find_one({"user_id": user_id})
+    botlog_chat_id = user_data.get("bot_log_group_id") if user_data else []
+    return botlog_chat_id
+
 
 async def grant_access(user_id: int) -> bool:
     access = {"user_id": user_id}
@@ -422,3 +436,24 @@ async def get_tagalert_status(user_id: int):
         return user_data.get("tagalert_enabled")
     else:
         return True
+        
+        
+async def blacklisted_chats() -> list:
+    chats_list = []
+    async for chat in blacklist_chatdb.find({"chat_id": {"$lt": 0}}):
+        chats_list.append(chat["chat_id"])
+    return chats_list
+
+
+async def blacklist_chat(chat_id: int) -> bool:
+    if not await blacklist_chatdb.find_one({"chat_id": chat_id}):
+        await blacklist_chatdb.insert_one({"chat_id": chat_id})
+        return True
+    return False
+
+
+async def whitelist_chat(chat_id: int) -> bool:
+    if await blacklist_chatdb.find_one({"chat_id": chat_id}):
+        await blacklist_chatdb.delete_one({"chat_id": chat_id})
+        return True
+    return False
