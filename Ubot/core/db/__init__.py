@@ -437,12 +437,12 @@ async def get_tagalert_status(user_id: int):
     else:
         return True
         
-        
-async def blacklisted_chats() -> list:
+async def blacklisted_chats(user_id: int) -> list:
     chats_list = []
-    async for chat in blacklist_chatdb.find({"user_id", "chat_id": {"$lt": 0}}):
-        chats_list.append(chat["user_id", "chat_id"])
+    async for chat in blacklist_chatdb.find({"user_id": user_id, "chat_id": {"$lt": 0}}):
+        chats_list.append({"user_id": chat["user_id"], "chat_id": chat["chat_id"]})
     return chats_list
+
 
 
 async def blacklist_chat(user_id: int, chat_id: int) -> bool:
