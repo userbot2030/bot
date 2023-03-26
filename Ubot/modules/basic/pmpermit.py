@@ -191,7 +191,7 @@ async def disapprovepm(client, message):
 
 @Ubot(["setlimit"], "")
 async def setpm_limit(client, message):
-    user_id = message.from_user.id
+    user_id = client.me.id
     try:
         from Ubot.core.SQL.globals import addgvar
     except AttributeError:
@@ -222,7 +222,7 @@ async def onoff_pmpermit(client, message):
         tai = False
     elif blok == "on":
         tai = True
-    user_id = message.from_user.id
+    user_id = client.me.id
     if gvarstatus(str(user_id), "PMPERMIT") and gvarstatus(str(user_id), "PMPERMIT") == "false":
         PMPERMIT = False
     else:
@@ -242,7 +242,7 @@ async def onoff_pmpermit(client, message):
 
 @Ubot(["setpm"], "")
 async def setpmpermit(client, message):
-    user_id = message.from_user.id
+    user_id = client.me.id
     try:
         import Ubot.core.SQL.globals as sql
     except AttributeError:
@@ -264,7 +264,7 @@ async def setpmpermit(client, message):
 
 @Ubot(["getpm"], "")
 async def get_pmermit(client, message):
-    user_id = message.from_user.id
+    user_id = client.me.id
     try:
         import Ubot.core.SQL.globals as sql
     except AttributeError:
@@ -284,7 +284,7 @@ async def get_pmermit(client, message):
 
 @Ubot(["resetpm"], "")
 async def reset_pmpermit(client, message):
-    user_id = message.from_user.id
+    user_id = client.me.id
     try:
         import Ubot.core.SQL.globals as sql
     except AttributeError:
