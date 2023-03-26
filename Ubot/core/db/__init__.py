@@ -452,6 +452,6 @@ async def blacklist_chat(user_id: int, chat_id: int) -> bool:
 
 async def whitelist_chat(user_id: int, chat_id: int) -> bool:
     if await blchatdb.users.find_one({"user_id": user_id, "chat_id": chat_id}):
-        await blchatdb.users.insert_one({"user_id": user_id, "chat_id": chat_id})
+        await blchatdb.users.delete_one({"user_id": user_id, "chat_id": chat_id})
         return True
     return False
