@@ -445,14 +445,14 @@ async def blacklisted_chats() -> list:
     return chats_list
 
 
-async def blacklist_chat(chat_id: int) -> bool:
+async def blacklist_chat(user_id: int, chat_id: int) -> bool:
     if not await blacklist_chatdb.find_one({"user_id": user_id}, {"chat_id": chat_id}):
         await blacklist_chatdb.insert_one({"user_id": user_id}, {"chat_id": chat_id})
         return True
     return False
 
 
-async def whitelist_chat(chat_id: int) -> bool:
+async def whitelist_chat(user_id: int, chat_id: int) -> bool:
     if await blacklist_chatdb.find_one({"user_id": user_id}, {"chat_id": chat_id}):
         await blacklist_chatdb.insert_one({"user_id": user_id}, {"chat_id": chat_id})
         return True
