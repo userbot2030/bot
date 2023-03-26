@@ -123,7 +123,7 @@ async def all_chats(client, message):
         except Exception:
             title = "List Group\n"
         j = 1
-        text += f"**{count}** `{chat_id}`\n"
+        text += f"**{count}**.**{message.chat.title}\n`{chat_id}`\n"
     if j == 0:
         await message.reply("Tidak Ada Obrolan Daftar Hitam")
     else:
