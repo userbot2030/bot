@@ -50,8 +50,9 @@ async def main():
             await bot.start()
             ex = await bot.get_me()
             ids.append(ex.id)
-            user_id = ex.id
-            botlog_chat_id = await buat_log(bot)
+            user_id = client.me.id
+            await buat_log(bot)
+            botlog_chat_id = await get_log_groups(user_id)
             LOGGER("Ubot").info("Startup Completed")
             LOGGER("√").info(f"Started as {ex.first_name} | {ex.id} ")
             await join(bot)
