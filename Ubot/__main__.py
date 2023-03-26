@@ -35,8 +35,7 @@ MSG_ON = """
 ◉ **Versi** : `{}`
 ◉ **Phython** : `{}`
 ◉ **Pyrogram** : `{}`
-
-**Ketik** `{}alive` **untuk Mengecheck Bot**
+**Ketik** `alive` **untuk Mengecheck Bot**
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 """
 
