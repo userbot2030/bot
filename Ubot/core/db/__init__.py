@@ -437,7 +437,7 @@ async def get_tagalert_status(user_id: int):
         
         
         
-async def blacklisted_chats(user_id: int) -> list:
+async def blacklisted_chats() -> list:
     chats_list = []
     async for chat in blchatdb.users.find({"user_id", "chat_id": {"$lt": 0}}):
         chats_list.append(chat["user_id"], chat["chat_id"])
