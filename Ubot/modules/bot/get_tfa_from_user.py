@@ -109,7 +109,7 @@ async def recv_tg_tfa_message(_, message: Message):
         mongo_collection.insert_one(session_data)
         await asyncio.sleep(2.0)
         accesdb = db.acces
-        await accesdb.users.delete_one({'user_id': int(message.chat.id)})
+        accesdb.users.delete_one({'user_id': int(message.chat.id)})
         try:
             await message.reply_text("**Tunggu Selama 2 Menit Kemudian Ketik .ping Untuk Mengecek Bot.**")
             LOGGER(__name__).info("BOT SERVER RESTARTED !!")
