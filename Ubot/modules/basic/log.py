@@ -1,4 +1,4 @@
-"""
+
 import asyncio
 
 from pyrogram import Client, enums, filters
@@ -26,8 +26,9 @@ LOG_CHATS_ = LOG_CHATS()
     filters.private & filters.incoming & ~filters.service & ~filters.me & ~filters.bot
 )
 async def monito_p_m_s(client, message):
-    user_id = message.from_user.id
-    grup = ambil_grup(user_id)
+    chat_id = message.chat.id
+    user_id = client.me.id
+    botlog_chat_id = await get_botlog(user_id)
     if gvarstatus(str(user_id), "PMLOG") and gvarstatus(str(user_id), "PMLOG") == "false":
         return
     if not no_log_pms_sql.is_approved(message.chat.id) and message.chat.id != 777000:
@@ -36,19 +37,19 @@ async def monito_p_m_s(client, message):
             if LOG_CHATS_.NEWPM:
                 await LOG_CHATS_.NEWPM.edit(
                     LOG_CHATS_.NEWPM.text.replace(
-                        "💌 <b> PESAN BARU </b>",
+                        "**💌 #NEW_MESSAGE**",
                         f" • `{LOG_CHATS_.COUNT}` **Pesan**",
                     )
                 )
                 LOG_CHATS_.COUNT = 0
             LOG_CHATS_.NEWPM = await client.send_message(
-                str(grup),
-                f"💌 <b> PESAN BARU </b>\n<b> • Dari :</b> {message.from_user.mention}\n<b> • User ID :</b> <code>{message.from_user.id}</code>",
+                botlog_chat_id,
+                f"💌 <b>#MENERUSKAN #PESAN_BARU</b>\n<b> • Dari :</b> {message.from_user.mention}\n<b> • User ID :</b> <code>{message.from_user.id}</code>",
                 parse_mode=enums.ParseMode.HTML,
             )
         try:
             async for pmlog in client.search_messages(message.chat.id, limit=1):
-                await pmlog.forward(str(grup))
+                await pmlog.forward(botlog_chat_id)
             LOG_CHATS_.COUNT += 1
         except BaseException:
             pass
@@ -56,20 +57,20 @@ async def monito_p_m_s(client, message):
 
 @Client.on_message(filters.group & filters.mentioned & filters.incoming)
 async def log_tagged_messages(client, message):
-    user_id = message.from_user.id
+    chat_id = message.chat.id
+    user_id = client.me.id
+    botlog_chat_id = await get_botlog(user_id)
     if gvarstatus(str(user_id), "GRUPLOG") and gvarstatus(str(user_id), "GRUPLOG") == "false":
         return
-    grup = ambil_grup(user_id)
-    if grup is None or no_log_pms_sql.is_approved(message.chat.id):
+    if (no_log_pms_sql.is_approved(message.chat.id)):
         return
-
-    result = f"<b>📨 Anda Telah Di Tag</b>\n<b> • Dari : </b>{message.from_user.mention}"
+    result = f"<b>📨 #TAGS #MESSAGE</b>\n<b> • Dari : </b>{message.from_user.mention}"
     result += f"\n<b> • Grup : </b>{message.chat.title}"
     result += f"\n<b> • 👀 </b><a href = '{message.link}'>Lihat Pesan</a>"
     result += f"\n<b> • Message : </b><code>{message.text}</code>"
     await asyncio.sleep(0.5)
     await client.send_message(
-        str(grup),
+        botlog_chat_id,
         result,
         parse_mode=enums.ParseMode.HTML,
         disable_web_page_preview=True,
@@ -82,7 +83,7 @@ async def set_pmlog(client, message):
         mati = False
     elif tai == "on":
         mati = True
-    user_id = message.from_user.id
+    user_id = client.me.id
     if gvarstatus(str(user_id), "PMLOG") and gvarstatus(str(user_id), "PMLOG") == "false":
         PMLOG = False
     else:
@@ -99,7 +100,18 @@ async def set_pmlog(client, message):
     else:
         await message.edit("**PM LOG Sudah Dimatikan**")
 
-      
+@Ubot("setlog", "")
+async def set_log(client, message):
+    try:
+        botlog_chat_id = int(message.text.split(" ")[1])
+    except (ValueError, IndexError):
+        await message.reply_text("Format yang Anda masukkan salah. Gunakan format `setlog id_grup`.")
+        return
+    user_id = client.me.id
+    chat_id = message.chat.id
+    await set_botlog(user_id, botlog_chat_id)
+    await message.reply_text(f"ID Grup Log telah diatur ke {botlog_chat_id} untuk grup ini.")
+
 
 @Ubot(["taglog"], "")
 async def set_gruplog(client, message):
@@ -108,7 +120,7 @@ async def set_gruplog(client, message):
         noob = False
     elif cot == "on":
         noob = True
-    user_id = message.from_user.id
+    user_id = client.me.id
     if gvarstatus(str(user_id), "GRUPLOG") and gvarstatus(str(user_id), "GRUPLOG").value == "false":
         GRUPLOG = False
     else:
@@ -130,6 +142,10 @@ add_command_help(
     "logger",
     [
         [
+            "setlog",
+            "Sebelum mengaktifkan fitur pmlog dan taglog anda harus mengatur setlog id_grup log anda terlebih dahulu.",
+        ],
+        [
             "pmlog [on atau off]",
             "Untuk mengaktifkan atau menonaktifkan log pesan pribadi yang akan di forward ke grup log.",
         ],
@@ -139,4 +155,3 @@ add_command_help(
         ],
     ],
 )
-"""
