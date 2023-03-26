@@ -78,27 +78,29 @@ async def log_tagged_messages(client, message):
 
 @Ubot(["pmlog"], "")
 async def set_pmlog(client, message):
-    tai = get_arg(message)
-    if tai == "off":
-        mati = False
-    elif tai == "on":
-        mati = True
+    cot = get_arg(message)
+    if cot == "off":
+        noob = False
+    elif cot == "on":
+        noob = True
     user_id = client.me.id
-    if gvarstatus(str(user_id), "PMLOG") and gvarstatus(str(user_id), "PMLOG") == "false":
+    if gvarstatus(str(user_id), "PMLOG") and gvarstatus(str(user_id), "PMLOG").value == "false":
         PMLOG = False
     else:
         PMLOG = True
     if PMLOG:
-        if mati:
-            await message.edit("**PM LOG Sudah Diaktifkan**")
+        if noob:
+            await message.edit("**PM Log Sudah Diaktifkan**")
         else:
-            addgvar(str(user_id), "PMLOG", mati)
-            await message.edit("**PM LOG Berhasil Dimatikan**")
-    elif mati:
-        addgvar(str(user_id), "PMLOG", mati)
-        await message.edit("**PM LOG Berhasil Diaktifkan**")
+            addgvar(str(user_id), "PMLOG", noob)
+            await message.edit("**PM Log Berhasil Dimatikan**")
+    elif noob:
+        addgvar(str(user_id), "PMLOG", noob)
+        await message.edit("**PM Log Berhasil Diaktifkan**")
     else:
-        await message.edit("**PM LOG Sudah Dimatikan**")
+        await message.edit("**PM Log Sudah Dimatikan**")
+
+
 
 @Ubot("setlog", "")
 async def set_log(client, message):
