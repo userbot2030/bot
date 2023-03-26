@@ -73,3 +73,11 @@ __Pasangan baru hari ini dapat dipilih pada jam 12 pagi {tomorrow}__"""
     except Exception as e:
         print(e)
         await message.reply_text(e)
+        
+add_command_help(
+    "couple",
+    [
+        [f"couple",
+            "Melihat Pasangan Hari ini.[Gunakan Dalam Grup]"],
+    ],
+)
