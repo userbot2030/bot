@@ -52,7 +52,7 @@ notesdb = db.notes
 accesdb = db.acces
 usersdb = db.users
 logdb = db.gruplog
-blacklist_chatdb = db.blacklistchat
+blchatdb = db.blchat
 
 BOT_VER ="8.1.0"
 
@@ -437,21 +437,21 @@ async def get_tagalert_status(user_id: int):
         
 async def blacklisted_chats(user_id: int) -> list:
     chats_list = []
-    async for chat in blacklist_chatdb.find({"user_id": user_id, "chat_id": {"$lt": 0}}):
+    async for chat in blchatdb.users.find({"user_id": user_id, "chat_id": {"$lt": 0}}):
         chats_list.append({"user_id": chat["user_id"], "chat_id": chat["chat_id"]})
     return chats_list
 
 
 
 async def blacklist_chat(user_id: int, chat_id: int) -> bool:
-    if not await blacklist_chatdb.find_one({"user_id": user_id}, {"chat_id": chat_id}):
-        await blacklist_chatdb.insert_one({"user_id": user_id}, {"chat_id": chat_id})
+    if not await blchatdb.users.find_one({"user_id": user_id}, {"chat_id": chat_id}):
+        await blchatdb.users.insert_one({"user_id": user_id}, {"chat_id": chat_id})
         return True
     return False
 
 
 async def whitelist_chat(user_id: int, chat_id: int) -> bool:
-    if await blacklist_chatdb.find_one({"user_id": user_id}, {"chat_id": chat_id}):
-        await blacklist_chatdb.insert_one({"user_id": user_id}, {"chat_id": chat_id})
+    if await blchatdb.users.find_one({"user_id": user_id}, {"chat_id": chat_id}):
+        await blchatdb.users.insert_one({"user_id": user_id}, {"chat_id": chat_id})
         return True
     return False
