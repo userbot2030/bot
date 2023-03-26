@@ -124,7 +124,7 @@ SESSION_GENERATED_USING = get_config("SESSION_GENERATED_USING", (
 
 
 app = Client(
-    name="app",
+    name="ubot",
     api_id=API_ID,
     api_hash=API_HASH,
     bot_token=BOT_TOKEN,
