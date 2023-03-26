@@ -52,7 +52,7 @@ notesdb = db.notes
 accesdb = db.acces
 usersdb = db.users
 logdb = db.gruplog
-blacklist_chatdb = db.blacklistChat
+blacklist_chatdb = db.blacklistchat
 
 BOT_VER ="8.1.0"
 
