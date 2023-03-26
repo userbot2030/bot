@@ -1311,7 +1311,7 @@ bot101 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION101,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION101
     else None
@@ -1323,7 +1323,7 @@ bot102 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION102,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION102
     else None
@@ -1335,7 +1335,7 @@ bot103 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION103,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION103
     else None
@@ -1347,7 +1347,7 @@ bot104 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION104,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION104
     else None
@@ -1359,7 +1359,7 @@ bot105 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION105,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION105
     else None
@@ -1370,7 +1370,7 @@ bot106 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION106,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION106
     else None
@@ -1381,7 +1381,7 @@ bot107 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION107,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION107
     else None
@@ -1392,7 +1392,7 @@ bot108 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION108,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION108
     else None
@@ -1403,7 +1403,7 @@ bot109 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION109,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION109
     else None
@@ -1414,7 +1414,7 @@ bot110 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION110,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION110
     else None
@@ -1425,7 +1425,7 @@ bot111 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION111,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION111
     else None
@@ -1437,7 +1437,7 @@ bot112 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION112,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION112
     else None
@@ -1449,7 +1449,7 @@ bot113 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION113,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION113
     else None
@@ -1461,7 +1461,7 @@ bot114 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION114,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION114
     else None
@@ -1473,7 +1473,7 @@ bot115 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION115,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION115
     else None
@@ -1484,7 +1484,7 @@ bot116 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION116,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION116
     else None
@@ -1495,7 +1495,7 @@ bot117 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION117,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION117
     else None
@@ -1506,7 +1506,7 @@ bot118 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION118,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION118
     else None
@@ -1517,7 +1517,7 @@ bot119 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION119,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION119
     else None
@@ -1528,7 +1528,7 @@ bot120 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION120,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION120
     else None
@@ -1539,7 +1539,7 @@ bot121 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION121,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION121
     else None
@@ -1551,7 +1551,7 @@ bot122 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION122,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION122
     else None
@@ -1563,7 +1563,7 @@ bot123 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION123,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION123
     else None
@@ -1575,7 +1575,7 @@ bot124 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION124,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION124
     else None
@@ -1587,7 +1587,7 @@ bot125 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION125,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION125
     else None
@@ -1598,7 +1598,7 @@ bot126 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION126,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION126
     else None
@@ -1609,7 +1609,7 @@ bot127 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION127,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION127
     else None
@@ -1620,7 +1620,7 @@ bot128 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION128,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION128
     else None
@@ -1631,7 +1631,7 @@ bot129 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION129,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION129
     else None
@@ -1642,7 +1642,7 @@ bot130 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION130,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION130
     else None
@@ -1653,7 +1653,7 @@ bot131 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION131,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION131
     else None
@@ -1665,7 +1665,7 @@ bot132 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION132,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION132
     else None
@@ -1677,7 +1677,7 @@ bot133 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION133,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION133
     else None
@@ -1689,7 +1689,7 @@ bot134 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION134,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION134
     else None
@@ -1701,7 +1701,7 @@ bot135 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION135,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION135
     else None
@@ -1712,7 +1712,7 @@ bot136 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION136,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION136
     else None
@@ -1723,7 +1723,7 @@ bot137 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION137,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION137
     else None
@@ -1734,7 +1734,7 @@ bot138 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION138,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION138
     else None
@@ -1745,7 +1745,7 @@ bot139 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION139,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION139
     else None
@@ -1756,7 +1756,7 @@ bot140 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION140,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION140
     else None
@@ -1767,7 +1767,7 @@ bot141 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION141,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION141
     else None
@@ -1779,7 +1779,7 @@ bot142 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION142,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION142
     else None
@@ -1791,7 +1791,7 @@ bot143 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION143,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION143
     else None
@@ -1803,7 +1803,7 @@ bot144 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION144,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION144
     else None
@@ -1815,7 +1815,7 @@ bot145 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION145,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION145
     else None
@@ -1826,7 +1826,7 @@ bot146 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION146,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION146
     else None
@@ -1837,7 +1837,7 @@ bot147 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION147,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION147
     else None
@@ -1848,7 +1848,7 @@ bot148 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION148,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION148
     else None
@@ -1859,7 +1859,7 @@ bot149 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION149,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION149
     else None
@@ -1870,7 +1870,7 @@ bot150 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION150,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION150
     else None
@@ -1881,7 +1881,7 @@ bot151 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION151,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION151
     else None
@@ -1893,7 +1893,7 @@ bot152 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION152,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION152
     else None
@@ -1905,7 +1905,7 @@ bot153 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION153,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION153
     else None
@@ -1917,7 +1917,7 @@ bot154 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION154,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION154
     else None
@@ -1929,7 +1929,7 @@ bot155 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION155,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION155
     else None
@@ -1940,7 +1940,7 @@ bot156 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION156,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION156
     else None
@@ -1951,7 +1951,7 @@ bot157 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION157,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION157
     else None
@@ -1962,7 +1962,7 @@ bot158 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION158,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION158
     else None
@@ -1973,7 +1973,7 @@ bot159 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION159,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION159
     else None
@@ -1984,7 +1984,7 @@ bot160 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION160,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION160
     else None
@@ -1996,7 +1996,7 @@ bot161 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION161,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION161
     else None
@@ -2008,7 +2008,7 @@ bot162 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION162,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION162
     else None
@@ -2020,7 +2020,7 @@ bot163 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION163,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION163
     else None
@@ -2032,7 +2032,7 @@ bot164 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION164,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION164
     else None
@@ -2044,7 +2044,7 @@ bot165 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION165,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION165
     else None
@@ -2055,7 +2055,7 @@ bot166 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION166,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION166
     else None
@@ -2066,7 +2066,7 @@ bot167 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION167,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION167
     else None
@@ -2077,7 +2077,7 @@ bot168 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION168,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION168
     else None
@@ -2088,7 +2088,7 @@ bot169 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION169,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION169
     else None
@@ -2099,7 +2099,7 @@ bot170 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION170,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION170
     else None
@@ -2111,7 +2111,7 @@ bot171 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION171,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION171
     else None
@@ -2123,7 +2123,7 @@ bot172 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION172,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION172
     else None
@@ -2135,7 +2135,7 @@ bot173 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION173,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION173
     else None
@@ -2147,7 +2147,7 @@ bot174 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION174,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION174
     else None
@@ -2159,7 +2159,7 @@ bot175 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION175,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION175
     else None
@@ -2170,7 +2170,7 @@ bot176 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION176,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION176
     else None
@@ -2181,7 +2181,7 @@ bot177 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION177,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION177
     else None
@@ -2192,7 +2192,7 @@ bot178 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION178,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION178
     else None
@@ -2203,7 +2203,7 @@ bot179 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION179,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION179
     else None
@@ -2214,7 +2214,7 @@ bot180 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION180,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION180
     else None
@@ -2226,7 +2226,7 @@ bot181 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION181,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION181
     else None
@@ -2238,7 +2238,7 @@ bot182 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION182,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION182
     else None
@@ -2250,7 +2250,7 @@ bot183 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION183,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION183
     else None
@@ -2262,7 +2262,7 @@ bot184 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION184,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION184
     else None
@@ -2274,7 +2274,7 @@ bot185 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION185,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION185
     else None
@@ -2285,7 +2285,7 @@ bot186 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION186,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION186
     else None
@@ -2296,7 +2296,7 @@ bot187 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION187,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION187
     else None
@@ -2307,7 +2307,7 @@ bot188 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION188,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION188
     else None
@@ -2318,7 +2318,7 @@ bot189 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION189,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION189
     else None
@@ -2329,7 +2329,7 @@ bot190 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION190,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION190
     else None
@@ -2341,7 +2341,7 @@ bot191 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION191,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION191
     else None
@@ -2353,7 +2353,7 @@ bot192 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION192,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION192
     else None
@@ -2365,7 +2365,7 @@ bot193 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION193,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION193
     else None
@@ -2377,7 +2377,7 @@ bot194 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION194,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION194
     else None
@@ -2389,7 +2389,7 @@ bot195 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION195,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION195
     else None
@@ -2400,7 +2400,7 @@ bot196 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION196,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION196
     else None
@@ -2411,7 +2411,7 @@ bot197 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION197,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION197
     else None
@@ -2422,7 +2422,7 @@ bot198 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION198,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION198
     else None
@@ -2433,7 +2433,7 @@ bot199 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION199,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION199
     else None
@@ -2444,7 +2444,7 @@ bot200 = (
         api_id=API_ID,
         api_hash=API_HASH,
         session_string=SESSION200,
-        plugins=dict(root="Ubot/commands"),
+        plugins=dict(root="Ubot/modules"),
     )
     if SESSION200
     else None
