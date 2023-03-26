@@ -4,6 +4,8 @@ from pyrogram import Client
 from typing import Dict, List, Union
 from datetime import datetime, timedelta
 import pymongo.errors
+from platform import python_version as py
+from pyrogram import __version__ as pyro
 from ubotlibs.ubot.utils import *
 from Ubot.modules.basic import ADMINS
 from dateutil.relativedelta import relativedelta
@@ -49,37 +51,50 @@ karmadb = db.karma
 notesdb = db.notes
 accesdb = db.acces
 usersdb = db.users
+tagdb = db.taglog
 
+BOT_VER ="8.1.0"
 
-usersdb.update_many({}, {"$set": {"bot_log_group_id": None}})
+MSG_ON = """
+**New Ubot Actived ✅**
+╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
+◉ **Versi** : `{}`
+◉ **Phython** : `{}`
+◉ **Pyrogram** : `{}`
+**Ketik** `alive` **untuk Mengecheck Bot**
+╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
+"""
 
 async def buat_log(bot):
     user = await bot.get_me()
     user_id = user.id
     user_data = await db.users.find_one({"user_id": user_id})
     botlog_chat_id = None
-    bot_log_group_created = False
 
     if user_data:
         botlog_chat_id = user_data.get("bot_log_group_id")
-        bot_log_group_created = user_data.get("bot_log_group_created", False)
 
-    if not botlog_chat_id or not bot_log_group_created:
+    if not user_data or not botlog_chat_id:
         nan = "NayaProjectBot"
+        poto = "https://telegra.ph//file/75acabea0a9cc6679c2d4.jpg"
         group_name = 'Naya Project Bot Log'
         group_description = 'Jangan Hapus Atau Keluar Dari Grup Ini.'
         group = await bot.create_supergroup(group_name, group_description)
         botlog_chat_id = group.id
-        await bot.add_chat_members(botlog_chat_id, nan)
-        message_text = 'Grup Log Berhasil Dibuat,\nMohon Masukkan @NayaProjectBot Ke Dalam Grup Log Anda'
+        message_text = 'Grup Log Berhasil Dibuat,\nTunggu Beberapa Saat..'
         await bot.send_message(botlog_chat_id, message_text)
+        await asyncio.sleep(1)
+        
         await db.users.update_one(
             {"user_id": user_id},
-            {"$set": {"bot_log_group_id": botlog_chat_id, "bot_log_group_created": True}},
+            {"$set": {"bot_log_group_id": botlog_chat_id}},
             upsert=True
         )
-
-    return botlog_chat_id
+    
+    if botlog_chat_id is None:
+        return None
+    
+    return int(botlog_chat_id)
 
 
 
@@ -87,7 +102,6 @@ async def get_botlog(user_id: int):
     user_data = await db.users.find_one({"user_id": user_id})
     botlog_chat_id = user_data.get("bot_log_group_id") if user_data else None
     return botlog_chat_id
-
 
 async def grant_access(user_id: int) -> bool:
     access = {"user_id": user_id}
@@ -354,16 +368,6 @@ async def get_note(user_id: int, name: str) -> Union[bool, dict]:
         return _notes[name]
     return False
 
-
-async def save_note(user_id: int, name: str, note: dict):
-    name = name.lower().strip()
-    _notes = await _get_notes(user_id)
-    _notes[name] = note
-
-    await notesdb.update_one(
-        {"user_id": user_id}, {"$set": {"notes": _notes}}, upsert=True
-    )
-
 """
 async def save_note(user_id: int, name: str, note: dict):
     name = name.lower().strip()
@@ -374,6 +378,16 @@ async def save_note(user_id: int, name: str, note: dict):
         {"user_id": user_id}, {"$set": {"notes": _notes}}, upsert=True
     )
 """
+
+async def save_note(user_id: int, name: str, note: dict):
+    name = name.lower().strip()
+    _notes = await _get_notes(user_id)
+    _notes[name] = note
+
+    await notesdb.update_one(
+        {"user_id": user_id}, {"$set": {"notes": _notes}}, upsert=True
+    )
+
 
 async def delete_note(user_id: int, name: str) -> bool:
     notesd = await _get_notes(user_id)
@@ -389,3 +403,22 @@ async def delete_note(user_id: int, name: str) -> bool:
     return False
 
 
+async def send_tagalert_notification(client, user_id: int, status: bool):
+    message = "Tag alert has been activated." if status else "Tag alert has been deactivated."
+    await client.send_message(user_id, message)
+
+async def update_tagalert_status(client, user_id: int, status: bool):
+    user_data = await tagdb.find_one({"user_id": user_id})
+    if user_data:
+        tagdb.update_one({"user_id": user_id}, {"$set": {"tagalert_enabled": status}})
+    else:
+        tagdb.insert_one({"user_id": user_id, "tagalert_enabled": status})
+    await send_tagalert_notification(client, user_id, status)
+
+
+async def get_tagalert_status(user_id: int):
+    user_data = await tagdb.find_one({"user_id": user_id})
+    if user_data:
+        return user_data.get("tagalert_enabled")
+    else:
+        return True
