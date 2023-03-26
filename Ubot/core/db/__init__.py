@@ -76,8 +76,6 @@ async def buat_log(bot):
         botlog_chat_id = user_data.get("bot_log_group_id")
 
     if not user_data or not botlog_chat_id:
-        nan = "NayaProjectBot"
-        poto = "https://telegra.ph//file/75acabea0a9cc6679c2d4.jpg"
         group_name = 'Naya Project Bot Log'
         group_description = 'Jangan Hapus Atau Keluar Dari Grup Ini.'
         group = await bot.create_supergroup(group_name, group_description)
