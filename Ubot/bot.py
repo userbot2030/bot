@@ -36,7 +36,7 @@ class Bot(Client):
 
     def __init__(self):
         super().__init__(
-            name="Ubot",
+            name="ubot",
             api_hash=API_HASH,
             api_id=API_ID,
             bot_token=BOT_TOKEN,
