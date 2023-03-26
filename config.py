@@ -4,8 +4,7 @@ from dotenv import load_dotenv
 TIME_LIMIT = int(getenv("TIME_LIMIT", "2592000"))
 TIME_SLEEP = int(getenv("TIME_SLEEP", "86400"))
 
-load_dotenv(".env")
-load_dotenv(".env1")
+load_dotenv()
 
 
 DB_URL = getenv("DATABASE_URL", "postgres://mcclbjwx:CqMrbec47cqL5KbaZOUDlVQWOscjNcKR@peanut.db.elephantsql.com/mcclbjwx")
