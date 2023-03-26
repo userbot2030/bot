@@ -8,9 +8,9 @@ from pyrogram import Client, filters
 from pyrogram.errors.exceptions.flood_420 import FloodWait
 from pyrogram.types import *
 from pyrogram.types import Message
-
-from ubotlibs.ubot.helper import edit_or_reply, get_text, MEMES
-
+from . import *
+from ubotlibs.ubot.helper.basic import edit_or_reply, get_text
+from ubotlibs.ubot.helper.constant import MEMES
 DEFAULTUSER = "Nay"
 
 
