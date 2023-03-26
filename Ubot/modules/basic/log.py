@@ -1,4 +1,4 @@
-
+"""
 import asyncio
 
 from pyrogram import Client, enums, filters
@@ -139,3 +139,4 @@ add_command_help(
         ],
     ],
 )
+"""
