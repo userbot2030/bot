@@ -114,10 +114,10 @@ async def del_bl(client, message):
 
 @Ubot(["blchat"], "")
 async def all_chats(client, message):
-    nama_lu = await blacklisted_chats(user_id)
     text = "**Daftar Blacklist Gcast:**\n\n"
     j = 0
     user_id = client.me.id
+    nama_lu = await blacklisted_chats(user_id)
     for count, chat_id in enumerate(await blacklisted_chats(user_id), 1):
         try:
             title = (await client.me.id.get_chat(chat_id)).title
