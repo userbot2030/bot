@@ -38,7 +38,7 @@ async def pmguard(client, message):
     user_id = client.me.id
     arg = get_arg(message)
     if not arg:
-        await message.edit("**Berikan Angka Limit**\n**Contoh**: `setlimit` 5")
+        await message.edit("**Berikan Angka**\n**Contoh**: `setlimit 5` defaultnya adalah 5.")
         return
     await set.set_limit(user_id, int(arg))
     await message.edit(f"**Limit set to {arg}**")
@@ -50,14 +50,14 @@ async def setpmmsg(client, message):
     user_id = client.me.id
     arg = get_arg(message)
     if not arg:
-        await message.edit("**What message to set**")
+        await message.edit("**Berikan Saya Pesan**\n**Contoh**: `blockmsg Spammer detected was **BLOCKED**`\nAtau Gunakan `blockmsg default` Untuk Nengatur ke default.")
         return
     if arg == "default":
         await set.set_block_message(user_id, set.BLOCKED)
-        await message.edit("**Block message set to default**.")
+        await message.edit("**Pesan Blokir Diatur ke Default**.")
         return
     await set.set_block_message(user_id, f"`{arg}`")
-    await message.edit("**Custom block message set**")
+    await message.edit("**Pesan Blokir Berhasil Diatur Ke Kostom**")
 
 
 @Client.on_message(filters.command(["a", "ok"], "") & filters.me & filters.private)
@@ -97,7 +97,6 @@ async def reply_pm(client, message):
     pmpermit, pm_message, limit, block_message = await set.get_pm_settings(user_id)
     user = message.from_user.id
     user_warns = 0 if user not in USERS_AND_WARNS else USERS_AND_WARNS[user]
-    
     if user in DEVS:
         try:
             await client.send_message(
@@ -108,7 +107,6 @@ async def reply_pm(client, message):
         except:
             pass
         return
-    
     if user_warns <= limit - 2:
         user_warns += 1
         USERS_AND_WARNS.update({user: user_warns})
