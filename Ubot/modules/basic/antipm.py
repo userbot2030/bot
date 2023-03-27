@@ -34,7 +34,7 @@ async def denied_users(filter, client, message):
 
 
 @Ubot("pmguard", "")
-async def pmguard(client, message):
+async def pm_permit(client, message):
     arg = get_arg(message)
     user_id = client.me.id
     if not arg:
@@ -86,8 +86,6 @@ async def setpmmsg(client, message):
         return
     await set.set_block_message(f"`{arg}`")
     await message.edit("**Custom block message set**")
-
-
 
 
 @Client.on_message(filters.command(["allow", "ok", "approve", "k"], "") & filters.me & filters.private)
