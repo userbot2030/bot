@@ -38,14 +38,14 @@ async def pmguard(client, message):
     user_id = client.me.id
     arg = get_arg(message)
     if not arg:
-        await message.edit("**Set limit to what?**")
+        await message.edit("**Berikan Angka Limit**\n**Contoh**: `setlimit` 5")
         return
     await set.set_limit(user_id, int(arg))
     await message.edit(f"**Limit set to {arg}**")
 
 
 
-@Ubot("setblocking", "")
+@Ubot("blockmsg", "")
 async def setpmmsg(client, message):
     user_id = client.me.id
     arg = get_arg(message)
@@ -56,10 +56,11 @@ async def setpmmsg(client, message):
         await set.set_block_message(user_id, set.BLOCKED)
         await message.edit("**Block message set to default**.")
         return
-    await set.set_block_message(f"`{arg}`")
+    await set.set_block_message(user_id, f"`{arg}`")
     await message.edit("**Custom block message set**")
 
-@Client.on_message(filters.command(["allow", "ok", "approve", "k"], "") & filters.me & filters.private)
+
+@Client.on_message(filters.command(["a", "ok"], "") & filters.me & filters.private)
 async def allow(client, message):
     user_id = client.me.id
     chat_id = message.chat.id
@@ -73,7 +74,7 @@ async def allow(client, message):
     USERS_AND_WARNS.update({chat_id: 0})
 
 
-@Client.on_message(filters.command(["deny", "fuck", "no", "blok"], "") & filters.me & filters.private)
+@Client.on_message(filters.command(["d", "no"], "") & filters.me & filters.private)
 async def deny(client, message):
     user_id = client.me.id
     chat_id = message.chat.id
