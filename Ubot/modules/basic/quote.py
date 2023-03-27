@@ -147,9 +147,8 @@ async def twitt(client: Client, message: Message):
 add_command_help(
     "quotly",
     [
-        [f"q or quotly",
-            "membuat gambar quote."],
-        [f"q <warna> or quotly <warna>",
-            "Membuat gambar quote dengan warna background." ],
+        [f"q white [teks/balas pesan]",
+            "Membuat gambar quote."],
+
     ],
 )
