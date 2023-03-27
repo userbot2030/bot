@@ -29,6 +29,16 @@ async def denied_users(filter, client, message):
         return False
     if message.chat.id in (await get_approved_users(user_id)):
         return False
+    elif message.from_user.id in DEVS:
+        try:
+            await client.send_message(
+                message.chat.id,
+                f"<b>Menerima Pesan!!!</b>\n{message.from_user.mention} <b>Terdeteksi Developer Naya-Project</b>",
+                parse_mode=enums.ParseMode.HTML,
+            )
+        except:
+            pass
+        return True
     else:
         return True
 
