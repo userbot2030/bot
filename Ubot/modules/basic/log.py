@@ -44,7 +44,7 @@ async def monito_p_m_s(client, message):
                 LOG_CHATS_.COUNT = 0
             LOG_CHATS_.NEWPM = await client.send_message(
                 botlog_chat_id,
-                f"💌 <b>#MENERUSKAN #PESAN_BARU</b>\n<b> • Dari :</b> {message.from_user.mention}\n<b> • User ID :</b> <code>{message.from_user.id}</code>",
+                f"💌 <b><u>MENERUSKAN PESAN BARU</u></b>\n<b> • Dari :</b> {message.from_user.mention}\n<b> • User ID :</b> <code>{message.from_user.id}</code>",
                 parse_mode=enums.ParseMode.HTML,
             )
         try:
@@ -64,7 +64,7 @@ async def log_tagged_messages(client, message):
         return
     if (no_log_pms_sql.is_approved(message.chat.id)):
         return
-    result = f"<b>📨 #TAGS #MESSAGE</b>\n<b> • Dari : </b>{message.from_user.mention}"
+    result = f"📨<b><u> #ANDA TELAH DI TAG</u></b>\n<b> • Dari : </b>{message.from_user.mention}"
     result += f"\n<b> • Grup : </b>{message.chat.title}"
     result += f"\n<b> • 👀 </b><a href = '{message.link}'>Lihat Pesan</a>"
     result += f"\n<b> • Message : </b><code>{message.text}</code>"
@@ -92,7 +92,7 @@ async def set_pmlog(client, message):
         if noob:
             await message.edit("**PM Log Sudah Diaktifkan**")
         else:
-            addgvar(str(user_id), "PMLOG", noob)
+            delgvar(str(user_id), "PMLOG")
             await message.edit("**PM Log Berhasil Dimatikan**")
     elif noob:
         addgvar(str(user_id), "PMLOG", noob)
