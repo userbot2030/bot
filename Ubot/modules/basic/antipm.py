@@ -23,13 +23,14 @@ USERS_AND_WARNS = {}
 
 
 async def denied_users(filter, client, message):
-	  user_id = client.me.id
+    user_id = client.me.id
     if not await pm_guard(user_id):
         return False
     if message.chat.id in (await get_approved_users(user_id)):
         return False
     else:
         return True
+
 
 @Ubot("pmguard", cmds)
 async def pmguard(client, message):
