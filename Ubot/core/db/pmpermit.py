@@ -73,7 +73,7 @@ async def pm_guard(user_id: int):
     result = await pmdb.find_one({"user_id": user_id})
     if not result:
         return False
-    if not result["pmpermit"]:
+    if not result.get("pmpermit", False):
         return False
     else:
         return True
