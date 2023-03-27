@@ -114,16 +114,20 @@ async def del_bl(client, message):
 
 @Ubot(["blchat"], "")
 async def all_chats(client, message):
-    text = "**Obrolan yang Masuk Daftar Blacklist:**\n\n"
+    nama_lu = await blacklisted_chats(user_id)
+    text = "**Daftar Blacklist Gcast:**\n\n"
     j = 0
     user_id = client.me.id
+    for x 
     for count, chat_id in enumerate(await blacklisted_chats(user_id), 1):
         try:
             title = (await client.me.id.get_chat(chat_id)).title
         except Exception:
             title = "List Group\n"
+        if (await client.me.id.get_chat(x)).username:
+        user = (await client.me.id.get_chat(x)).username
         j = 1
-        text += f"**{count}**.**{message.chat.title}\n`{chat_id}`\n"
+        text += f"**{count}.{title}**\n`[{chat_id}]`\n"
     if j == 0:
         await message.reply("Tidak Ada Obrolan Daftar Hitam")
     else:
