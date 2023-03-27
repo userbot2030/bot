@@ -16,7 +16,7 @@ from . import *
 from Ubot.core.db  import *
 from Ubot.core.filter import *
 
-@Ubot("savefilter", "") #lu gay
+@Ubot("adfil", "") #lu gay
 async def save_filters(client, message):
     if len(message.command) < 2 or not message.reply_to_message:
         return await message.reply_text(
@@ -62,7 +62,7 @@ async def get_filterss(client, message):
         msg += f"**-** `{_filter}`\n"
     await message.reply_text(msg)
 
-@Ubot("stopfilter", "") #lu gay
+@Ubot("stfil", "") #lu gay
 async def del_filter(client, message):
     if len(message.command) < 2:
         return await message.reply_text(f"**Gunakan Format:**\n`stopfilter` [nama filter]")
@@ -126,8 +126,8 @@ async def filters_re(client, message):
 add_command_help(
     "filter",
     [
-        [f"savefilter <balas ke pesan atau sticker> <triger/nama filer>", "Save filters."],
-        [f"stopfilte <triger/nama filter>", "Menghapus filter."],
+        [f"adfil <balas ke pesan atau sticker> <triger/nama filer>", "Save filters."],
+        [f"stfil <triger/nama filter>", "Menghapus filter."],
         [f"filters", "Melihat list filter."],
     ],
 )
