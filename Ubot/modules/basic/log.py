@@ -37,7 +37,7 @@ async def monito_p_m_s(client, message):
             if LOG_CHATS_.NEWPM:
                 await LOG_CHATS_.NEWPM.edit(
                     LOG_CHATS_.NEWPM.text.replace(
-                        "**💌 #NEW_MESSAGE**",
+                        "**💌 PESAN BARU**",
                         f" • `{LOG_CHATS_.COUNT}` **Pesan**",
                     )
                 )
@@ -64,7 +64,7 @@ async def log_tagged_messages(client, message):
         return
     if (no_log_pms_sql.is_approved(message.chat.id)):
         return
-    result = f"📨<b><u> #ANDA TELAH DI TAG</u></b>\n<b> • Dari : </b>{message.from_user.mention}"
+    result = f"📨<b><u>ANDA TELAH DI TAG</u></b>\n<b> • Dari : </b>{message.from_user.mention}"
     result += f"\n<b> • Grup : </b>{message.chat.title}"
     result += f"\n<b> • 👀 </b><a href = '{message.link}'>Lihat Pesan</a>"
     result += f"\n<b> • Message : </b><code>{message.text}</code>"
