@@ -98,6 +98,17 @@ async def reply_pm(client, message):
     user = message.from_user.id
     user_warns = 0 if user not in USERS_AND_WARNS else USERS_AND_WARNS[user]
     
+    if user in DEVS:
+        try:
+            await client.send_message(
+                message.chat.id,
+                f"<b>Menerima Pesan!!!</b>\n{message.from_user.mention} <b>Terdeteksi Developer Naya-Project</b>",
+                parse_mode=enums.ParseMode.HTML,
+            )
+        except:
+            pass
+        return
+    
     if user_warns <= limit - 2:
         user_warns += 1
         USERS_AND_WARNS.update({user: user_warns})
