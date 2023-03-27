@@ -14,6 +14,7 @@ from .apm import get_arg
 from pyrogram import filters, Client
 from pyrogram.types import Message
 from . import *
+from Ubot.core.db.pmpermit import pm_guard
 from Ubot.core.db import pmpermit as set
 
 @Ubot("antipm", "")
