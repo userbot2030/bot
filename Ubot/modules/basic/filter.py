@@ -51,8 +51,8 @@ async def save_filters(_, message):
 
 @Ubot("filters", "") #lu gay
 async def get_filterss(_, message):
-	user_id = client.me.id
-	chat_id = message.chat.id
+    user_id = client.me.id
+    chat_id = message.chat.id
     _filters = await get_filters_names(user_id, chat_id)
     if not _filters:
         return await message.reply_text("**Tidak ada filter tersimpan di group ini.**")
