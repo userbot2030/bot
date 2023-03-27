@@ -17,7 +17,7 @@ from Ubot.core.db  import *
 from Ubot.core.filter import *
 
 @Ubot("savefilter", "") #lu gay
-async def save_filters(_, message):
+async def save_filters(client, message):
     if len(message.command) < 2 or not message.reply_to_message:
         return await message.reply_text(
             f"**Gunakan Format:**\nbalas kepesan atau sticker `savefilter` [nama filter] untuk save filter."
@@ -50,7 +50,7 @@ async def save_filters(_, message):
     await message.reply_text(f"**Filter {name} disimpan!.**")
 
 @Ubot("filters", "") #lu gay
-async def get_filterss(_, message):
+async def get_filterss(client, message):
     user_id = client.me.id
     chat_id = message.chat.id
     _filters = await get_filters_names(user_id, chat_id)
@@ -63,7 +63,7 @@ async def get_filterss(_, message):
     await message.reply_text(msg)
 
 @Ubot("stopfilter", "") #lu gay
-async def del_filter(_, message):
+async def del_filter(client, message):
     if len(message.command) < 2:
         return await message.reply_text(f"**Gunakan Format:**\n`stopfilter` [nama filter]")
     user_id = client.me.id
