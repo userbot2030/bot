@@ -80,7 +80,7 @@ async def allow(client, message):
     chat_id = message.chat.id
     pmpermit, pm_message, limit, block_message = await get_pm_settings(user_id)
     await set.allow_user(user_id, chat_id)
-    await message.edit(f"**Menerima pesan dari [{biji}](tg://user?id={chat_id})**")
+    await message.edit(f"**Menerima pesan dari [Anda](tg://user?id={chat_id})**")
     async for message in client.search_messages(
         chat_id=message.chat.id, query=pm_message, limit=1, from_user="me"
     ):
@@ -94,7 +94,7 @@ async def deny(client, message):
     biji = message.from_user.first_name
     chat_id = message.chat.id
     await set.deny_user(user_id, chat_id)
-    await message.edit(f"**Saya belum menyetujui [{biji}](tg://user?id={chat_id}) untuk mengirim pesan.**")
+    await message.edit(f"**Saya belum menyetujui [Anda](tg://user?id={chat_id}) untuk mengirim pesan.**")
 
 
 @Client.on_message(
