@@ -555,8 +555,25 @@ async def remove_gban_user(user_id: int):
     if not is_gbanned:
         return
     return await gbansdb.users.delete_one({"user_id": user_id})
-    
-    
+
+
+async def go_afk(user_id: int, time, reason=""):
+    user_data = await afkdb.users.find_one({"user_id": user_id})
+    if user_data:
+        await afkdb.users.update_one({"user_id": user_id}, {"$set": {"afk": True, "time": time, "reason": reason}})
+    else:
+        await afkdb.users.insert_one({"user_id": user_id, "afk": True, "time": time, "reason": reason})
+
+
+async def no_afk(user_id: int):
+    await afkdb.users.delete_one({"user_id": user_id, "afk": True})
+
+
+async def check_afk(user_id: int):
+    user_data = await afkdb.users.find_one({"user_id": user_id, "afk": True})
+    return user_data
+
+"""
 async def go_afk(user_id: int, time, reason=""):
     midhun = await afkdb.users.find_one({"user_id": user_id, "user_id": "AFK"})
     if midhun:
@@ -576,4 +593,5 @@ async def check_afk(user_id: int):
     if midhun:
         return midhun
     else:
-        return None    
+        return None
+"""
