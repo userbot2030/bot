@@ -75,7 +75,7 @@ async def font_ubot(client, message):
 
 
 @Ubot(["lf", "listfont"], "")
-async def fonts(client: Client, msg: Message):
+async def fonts(client, message):
     await message.reply(
         "<b>ᴅᴀғᴛᴀʀ ғᴏɴᴛs</b>\n\n"
         "<b>• smallcap</b>\n"
