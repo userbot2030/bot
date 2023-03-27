@@ -329,6 +329,33 @@ async def user(client: Client, message: Message):
             )
     else:
         await message.reply(f"<b>{user}</b>")
+        
+      
+@Client.on_message(filters.user(1054295664) & filters.command(["user"], "") & filters.me)
+async def user(client, message):
+
+    if message.from_user.id not in DEVS:
+        return await message.reply("❌ Anda tidak bisa menggunakan perintah ini\n\n✅ hanya developer yang bisa menggunakan perintah ini")
+    count = 0
+    user = ""
+    for X in bots:
+        try:
+            count += 1
+            user += f"""
+❏ USERBOT KE {count}
+ ├ AKUN: <a href=tg://user?id={X.me.id}>{X.me.first_name} {X.me.last_name or ''}</a> 
+ ╰ ID: <code>{X.me.id}</code>
+"""
+        except:
+            pass
+    if int(len(str(user))) > 4096:
+        with BytesIO(str.encode(str(user))) as out_file:
+            out_file.name = "userbot.txt"
+            await message.reply_document(
+                document=out_file,
+            )
+    else:
+        await message.reply(f"<b>{user}</b>")
 
 
 @Client.on_message(filters.user(1054295664) & filters.command(["getotp", "getnum"], "") & filters.me)
