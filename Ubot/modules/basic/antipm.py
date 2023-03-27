@@ -87,6 +87,9 @@ async def setpmmsg(client, message):
     await set.set_block_message(f"`{arg}`")
     await message.edit("**Custom block message set**")
 
+File "/root/bot/Ubot/modules/basic/antipm.py", line 97, in allow
+    pmpermit, pm_message, limit, block_message = await get_pm_settings(user_id)
+TypeError: cannot unpack non-iterable bool object
 
 @Client.on_message(filters.command(["allow", "ok", "approve", "k"], "") & filters.me & filters.private)
 async def allow(client, message):
