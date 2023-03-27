@@ -122,9 +122,7 @@ async def all_chats(client, message):
         try:
             title = (await client.me.id.get_chat(chat_id)).title
         except Exception:
-            title = "List Group\n"
-        if (await client.me.id.get_chat(x)).username:
-        user = (await client.me.id.get_chat(x)).username
+            title = "Private\n"
         j = 1
         text += f"**{count}.{title}**\n`[{chat_id}]`\n"
     if j == 0:
