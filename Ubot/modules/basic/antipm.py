@@ -58,7 +58,7 @@ add_command_help(
     [
         [f"antipm [on or off]", " -> mengaktifkan dan menonaktifkan anti-pm."],
         [f"setmsg [message or default]", " -> Sets a custom anti-pm message."],
-        [f"setblockmsg [message or default]", "-> Sets custom block message."],
+        [f"blockmsg [message or default]", "-> Sets custom block message."],
         [f"setlimit [value]", " -> This one sets a max. message limit for unwanted PMs and when they go beyond it, bamm!."],
         [f"ok", " -> Allows a user to PM you."],
         [f"no", " -> Denies a user to PM you."],
