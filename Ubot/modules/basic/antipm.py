@@ -62,7 +62,7 @@ async def setpmmsg(client, message):
 
 @Ubot("setlimit", cmds)
 async def pmguard(client, message):
-	user_id = client.me.id
+    user_id = client.me.id
     arg = get_arg(message)
     if not arg:
         await message.edit("**Set limit to what?**")
@@ -74,7 +74,7 @@ async def pmguard(client, message):
 
 @Ubot("setblocking", cmds)
 async def setpmmsg(client, message):
-	user_id = client.me.id
+    user_id = client.me.id
     arg = get_arg(message)
     if not arg:
         await message.edit("**What message to set**")
@@ -89,7 +89,7 @@ async def setpmmsg(client, message):
 
 @Client.on_message(filters.command(["allow", "ok", "approve", "k"], cmds) & filters.me & filters.private)
 async def allow(client, message):
-	user_id = client.me.id
+    user_id = client.me.id
     chat_id = message.chat.id
     pmpermit, pm_message, limit, block_message = await get_pm_settings(user_id)
     await allow_user(user_id, chat_id)
@@ -103,10 +103,10 @@ async def allow(client, message):
 
 @Client.on_message(filters.command(["deny", "fuck", "no", "blok"], cmds) & filters.me & filters.private)
 async def deny(client, message):
-	
+    user_id = client.me.id
     chat_id = message.chat.id
-    await TOD.deny_user(chat_id)
-    await message.edit(f"**I have denied [you](tg://user?id={chat_id}) to PM me.**")
+    await deny_user(user_id, chat_id)
+    await message.edit(f"**Saya belum menyetujui [Anda](tg://user?id={chat_id}) untuk mengirim pesan.**")
 
 
 @Client.on_message(
@@ -119,7 +119,7 @@ async def deny(client, message):
     & ~filters.via_bot
 )
 async def reply_pm(client, message):
-	user_id = client.me.id
+    user_id = client.me.id
     global FLOOD_CTRL
     pmpermit, pm_message, limit, block_message = await get_pm_settings(user_id)
     user = message.from_user.id
