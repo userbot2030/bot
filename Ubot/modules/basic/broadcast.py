@@ -118,7 +118,6 @@ async def all_chats(client, message):
     text = "**Daftar Blacklist Gcast:**\n\n"
     j = 0
     user_id = client.me.id
-    for x 
     for count, chat_id in enumerate(await blacklisted_chats(user_id), 1):
         try:
             title = (await client.me.id.get_chat(chat_id)).title
