@@ -49,7 +49,7 @@ async def setpmmsg(client, message):
         await set.set_permit_message(user_id, set.PMPERMIT_MESSAGE)
         await message.edit("**Pesan AntiPM Diatur ke Default**.")
         return
-    await set.set_permit_message(f"`{arg}`")
+    await set.set_permit_message(user_id, f"`{arg}`")
     await message.edit("**Berhasil mengatur pesan AntiPM**")
 
 
