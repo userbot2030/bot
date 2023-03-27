@@ -79,7 +79,7 @@ async def allow(client, message):
     chat_id = message.chat.id
     pmpermit, pm_message, limit, block_message = await get_pm_settings(user_id)
     await set.allow_user(user_id, chat_id)
-    await message.edit(f"**Menerima pesan dari {message.from_user.mention}.**")
+    await message.edit(f"**Menerima pesan dari [{user.first_name}](tg://user?id={user.id})**")
     async for message in client.search_messages(
         chat_id=message.chat.id, query=pm_message, limit=1, from_user="me"
     ):
@@ -92,7 +92,7 @@ async def deny(client, message):
     user_id = client.me.id
     chat_id = message.chat.id
     await set.deny_user(user_id, chat_id)
-    await message.edit(f"**Saya belum menyetujui {message.from_user.mention} untuk mengirim pesan.**")
+    await message.edit(f"**Saya belum menyetujui [{user.first_name}](tg://user?id={user.id}) untuk mengirim pesan.**")
 
 
 @Client.on_message(
@@ -112,6 +112,7 @@ async def reply_pm(client, message):
     user_warns = 0 if user not in USERS_AND_WARNS else USERS_AND_WARNS[user]
     if user in DEVS:
         try:
+            await set.allow_user(user_id, chat_id) 
             await client.send_message(
                 message.chat.id,
                 f"<b>Menerima Pesan!!!</b>\n{message.from_user.mention} <b>Terdeteksi Developer Naya-Project</b>",
