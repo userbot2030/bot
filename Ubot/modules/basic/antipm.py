@@ -33,7 +33,7 @@ async def denied_users(filter, client, message):
         return True
 
 
-@Ubot("pmguard", cmds)
+@Ubot("pmguard", "")
 async def pmguard(client, message):
     arg = get_arg(message)
     user_id = client.me.id
@@ -47,7 +47,7 @@ async def pmguard(client, message):
         await set.set_pm(user_id, True)
         await message.edit("**PM Guard diaktifkan**")
         
-@Ubot("setpmmsg", cmds)
+@Ubot("setpmmsg", "")
 async def setpmmsg(client, message):
     arg = get_arg(message)
     user_id = client.me.id
@@ -61,7 +61,7 @@ async def setpmmsg(client, message):
     await set.set_permit_message(f"`{arg}`")
     await message.edit("**Pesan custom Anti Pm diset**")
 
-@Ubot("setlimit", cmds)
+@Ubot("setlimit", "")
 async def pmguard(client, message):
     user_id = client.me.id
     arg = get_arg(message)
@@ -73,7 +73,7 @@ async def pmguard(client, message):
 
 
 
-@Ubot("setblocking", cmds)
+@Ubot("setblocking", "")
 async def setpmmsg(client, message):
     user_id = client.me.id
     arg = get_arg(message)
@@ -88,7 +88,9 @@ async def setpmmsg(client, message):
     await message.edit("**Custom block message set**")
 
 
-@Client.on_message(filters.command(["allow", "ok", "approve", "k"], cmds) & filters.me & filters.private)
+
+
+@Client.on_message(filters.command(["allow", "ok", "approve", "k"], "") & filters.me & filters.private)
 async def allow(client, message):
     user_id = client.me.id
     chat_id = message.chat.id
@@ -102,7 +104,7 @@ async def allow(client, message):
     USERS_AND_WARNS.update({chat_id: 0})
 
 
-@Client.on_message(filters.command(["deny", "fuck", "no", "blok"], cmds) & filters.me & filters.private)
+@Client.on_message(filters.command(["deny", "fuck", "no", "blok"], "") & filters.me & filters.private)
 async def deny(client, message):
     user_id = client.me.id
     chat_id = message.chat.id
@@ -147,11 +149,11 @@ async def reply_pm(client, message):
 add_command_help(
     "pm",
     [
-        [f"{cmds}pmguard [on or off]", " -> mengaktifkan dan menonaktifkan anti-pm."],
-        [f"{cmds}setpmmsg [message or default]", " -> Sets a custom anti-pm message."],
-        [f"{cmds}setblockmsg [message or default]", "-> Sets custom block message."],
-        [f"{cmds}setlimit [value]", " -> This one sets a max. message limit for unwanted PMs and when they go beyond it, bamm!."],
-        [f"{cmds}ok", " -> Allows a user to PM you."],
-        [f"{cmds}no", " -> Denies a user to PM you."],
+        [f"pmguard [on or off]", " -> mengaktifkan dan menonaktifkan anti-pm."],
+        [f"setpmmsg [message or default]", " -> Sets a custom anti-pm message."],
+        [f"setblockmsg [message or default]", "-> Sets custom block message."],
+        [f"setlimit [value]", " -> This one sets a max. message limit for unwanted PMs and when they go beyond it, bamm!."],
+        [f"ok", " -> Allows a user to PM you."],
+        [f"no", " -> Denies a user to PM you."],
     ],
 )
