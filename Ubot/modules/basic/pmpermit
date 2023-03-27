@@ -218,7 +218,10 @@ async def setpm_limit(client, message):
 @Ubot(["antipm"], "")
 async def onoff_pmpermit(client, message):
     blok = get_arg(message)
-    if blok == "off":
+    if not blok:
+        await message.reply("**Gunakan format**:\n `antipm` on atau off")
+        return
+    elif blok == "off":
         tai = False
     elif blok == "on":
         tai = True
