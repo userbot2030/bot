@@ -1,6 +1,4 @@
-from . import db
-
-pmdb = db.pmpermit
+from . import pmdb
 
 
 PMPERMIT_MESSAGE = (
