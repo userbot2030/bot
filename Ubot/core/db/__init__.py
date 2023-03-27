@@ -58,6 +58,8 @@ logdb = db.gruplog
 blchatdb = db.blchat
 pmdb = db.pmpermit
 gbansdb = db.gban
+afkdb = db.afk
+
 BOT_VER ="8.1.0"
 
 MSG_ON = """
@@ -553,3 +555,25 @@ async def remove_gban_user(user_id: int):
     if not is_gbanned:
         return
     return await gbansdb.users.delete_one({"user_id": user_id})
+    
+    
+async def go_afk(user_id: int, time, reason=""):
+    midhun = await afkdb.users.find_one({"user_id": user_id, "user_id": "AFK"})
+    if midhun:
+        await afkdb.users.update_one({"user_id": user_id, "user_id": "AFK"}, {"$set": {"time": time, "reason": reason}})
+    else:
+        await afkdb.users.insert_one({"user_id": user_id, "user_id": "AFK", "time": time, "reason": reason})
+
+
+async def no_afk(user_id: int):
+    midhun = await afkdb.users.find_one({"user_id": user_id, "user_id": "AFK"})
+    if midhun:
+        await afkdb.users.delete_one({"user_id": user_id, "user_id": "AFK"})
+
+
+async def check_afk(user_id: int):
+    midhun = await afkdb.users.find_one({"user_id": user_id, "user_id": "AFK"})
+    if midhun:
+        return midhun
+    else:
+        return None    
