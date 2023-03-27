@@ -57,7 +57,7 @@ usersdb = db.users
 logdb = db.gruplog
 blchatdb = db.blchat
 pmdb = db.pmpermit
-
+gbansdb = db.gban
 BOT_VER ="8.1.0"
 
 MSG_ON = """
@@ -69,6 +69,7 @@ MSG_ON = """
 **Ketik** `alive` **untuk Mengecheck Bot**
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 """
+        
         
         
 async def buat_log(bot):
@@ -523,3 +524,32 @@ async def whitelist_chat(user_id: int, chat_id: int) -> bool:
         await blchatdb.users.delete_one({"user_id": user_id, "chat_id": chat_id})
         return True
     return False
+    
+    
+async def get_gbanned(user_id: int) -> list:
+    results = []
+    async for user in gbansdb.users.find({"user_id": user_id, "user_id": {"$gt": 0}}):
+        user_id = user["user_id"]
+        results.append(user_id)
+    return results
+
+
+async def is_gbanned_user(user_id: int) -> bool:
+    user = await gbansdb.users.find_one({"user_id": user_id})
+    if not user:
+        return False
+    return True
+
+
+async def add_gban_user(user_id: int):
+    is_gbanned = await is_gbanned_user(user_id)
+    if is_gbanned:
+        return
+    return await gbansdb.users.insert_one({"user_id": user_id})
+
+
+async def remove_gban_user(user_id: int):
+    is_gbanned = await is_gbanned_user(user_id)
+    if not is_gbanned:
+        return
+    return await gbansdb.users.delete_one({"user_id": user_id})
