@@ -78,8 +78,8 @@ async def del_filter(_, message):
     else:
         await message.reply_text("**Filter tidak ditemukan.**")
 
-@Client.on_message(filters.text & ~filters.private & ~filters.via_bot & ~filters.forwarded,group=chat_filters_group,)
-async def filters_re(_, client, message):
+@Client.on_message(filters.text & ~filters.private & ~filters.via_bot & ~filters.forwarded,group=chat_filters_group)
+async def filters_re(client, message):
     text = message.text.lower().strip()
     if not text:
         return
