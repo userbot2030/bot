@@ -57,7 +57,7 @@ async def set_afk(client, message):
 @Client.on_message(
     is_afk
     & (filters.mentioned | filters.private)
-    & filters.me
+    & ~filters.me
     & ~filters.bot
     & filters.incoming
 )
@@ -69,7 +69,7 @@ async def afk_er(client, message):
     if message.from_user.id == client.me.id:
         return
     user_id = client.me.id
-    use_r = int(message.from_user.id)
+    use_r = int(user_id)
     if use_r not in afk_sanity_check.keys():
         afk_sanity_check[use_r] = 1
     else:
@@ -91,7 +91,7 @@ async def afk_er(client, message):
     afk_end = back_alivee.replace(microsecond=0)
     total_afk_time = str((afk_end - afk_start))
     message_to_reply = (
-        f"**❏ Sedang AFK**\n** ├ Waktu** :`{total_afk_time}`\n**  ╰ Alasan** : `{reason}`"
+        f"**❏ Sedang AFK**\n** ├ Waktu** :`{total_afk_time}`\n** ╰ Alasan** : `{reason}`"
         if reason
         else f"**❏ Sedang AFK**\n** ╰ Waktu** :`{total_afk_time}`"
     )
