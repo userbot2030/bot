@@ -505,12 +505,12 @@ async def _get_filters(user_id: int) -> Dict[str, int]:
 
 async def get_filter_names(user_id: int) -> List[str]:
     _filters = []
-    for filterd in await _get_filters(user_id):
-        _filters.append(filterd)
+    for _filter in await _get_filters(user_id):
+        _filters.append(_filter)
     return _filters
 
 
-async def get_filterd(user_id: int, name: str) -> Union[bool, dict]:
+async def get_filter(user_id: int, name: str) -> Union[bool, dict]:
     name = name.lower().strip()
     _filters = await _get_filters(user_id)
     if name in _filters:
@@ -518,17 +518,17 @@ async def get_filterd(user_id: int, name: str) -> Union[bool, dict]:
     return False
 
 
-async def save_filterd(user_id: int, name: str, filterd: dict):
+async def save_filter(user_id: int, name: str, _filter: dict):
     name = name.lower().strip()
     _filters = await _get_filters(user_id)
-    _filters[name] = filterd
+    _filters[name] = _filter
 
     await filtersdb.update_one(
         {"user_id": user_id}, {"$set": {"filters": _filters}}, upsert=True
     )
 
 
-async def delete_filterd(user_id: int, name: str) -> bool:
+async def delete_filter(user_id: int, name: str) -> bool:
     filtersd = await _get_filters(user_id)
     name = name.lower().strip()
     if name in filtersd:
