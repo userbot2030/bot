@@ -130,7 +130,7 @@ async def approvepm(client, message):
         reply = message.reply_to_message
         replied_user = reply.from_user
         if replied_user.is_self:
-            await message.edit("Anda tidak dapat menyetujui diri sendiri.")
+            await message.reply("Anda tidak dapat menyetujui diri sendiri.")
             return
         aname = replied_user.id
         name0 = str(replied_user.first_name)
@@ -138,7 +138,7 @@ async def approvepm(client, message):
     else:
         aname = message.chat
         if not aname.type == enums.ChatType.PRIVATE:
-            await message.edit(
+            await message.reply(
                 "Saat ini Anda tidak sedang dalam PM dan Anda belum membalas pesan seseorang."
             )
             return
@@ -147,9 +147,9 @@ async def approvepm(client, message):
 
     try:
         approve(uid)
-        await message.edit(f"**Menerima Pesan Dari** [{name0}](tg://user?id={uid})!")
+        await message.reply(f"**Menerima Pesan Dari** [{name0}](tg://user?id={uid})!")
     except IntegrityError:
-        await message.edit(
+        await message.reply(
             f"[{name0}](tg://user?id={uid}) mungkin sudah disetujui untuk PM."
         )
         return
@@ -167,7 +167,7 @@ async def disapprovepm(client, message):
         reply = message.reply_to_message
         replied_user = reply.from_user
         if replied_user.is_self:
-            await message.edit("Anda tidak bisa menolak diri sendiri.")
+            await message.reply("Anda tidak bisa menolak diri sendiri.")
             return
         aname = replied_user.id
         name0 = str(replied_user.first_name)
@@ -175,7 +175,7 @@ async def disapprovepm(client, message):
     else:
         aname = message.chat
         if not aname.type == enums.ChatType.PRIVATE:
-            await message.edit(
+            await message.reply(
                 "Saat ini Anda tidak sedang dalam PM dan Anda belum membalas pesan seseorang."
             )
             return
@@ -184,7 +184,7 @@ async def disapprovepm(client, message):
 
     dissprove(uid)
 
-    await message.edit(
+    await message.reply(
         f"**Pesan** [{name0}](tg://user?id={uid}) **Telah Ditolak, Mohon Jangan Melakukan Spam Chat!**"
     )
 
@@ -206,7 +206,7 @@ async def setpm_limit(client, message):
         else None
     )
     if not input_str:
-        return await message.edit("**Harap masukan angka untuk PM_LIMIT.**")
+        return await message.reply("**Harap masukan angka untuk PM_LIMIT.**")
     kuy = await message.reply("`Processing...`")
     if input_str and not input_str.isnumeric():
         return await kuy.edit("**Harap masukan angka untuk PM_LIMIT.**")
@@ -215,7 +215,7 @@ async def setpm_limit(client, message):
     await kuy.edit(f"**Set PM limit to** `{input_str}`")
 
 
-@Ubot(["antipm"], "")
+@Ubot(["pmpermit"], "")
 async def onoff_pmpermit(client, message):
     blok = get_arg(message)
     if not blok:
@@ -232,15 +232,15 @@ async def onoff_pmpermit(client, message):
         PMPERMIT = True
     if PMPERMIT:
         if tai:
-            await message.reply("**Antipm Sudah Diaktifkan**")
+            await message.reply("**PMPERMIT Sudah Diaktifkan**")
         else:
             addgvar(str(user_id), "PMPERMIT", tai)
-            await message.edit("**Antipm Berhasil Dimatikan**")
+            await message.edit("**PMPERMIT Berhasil Dimatikan**")
     elif tai:
         addgvar(str(user_id), "PMPERMIT", tai)
-        await message.edit("**Antipm Berhasil Diaktifkan**")
+        await message.edit("**PMPERMIT Berhasil Diaktifkan**")
     else:
-        await message.edit("**Antipm Sudah Dimatikan**")
+        await message.edit("**PMPERMIT Sudah Dimatikan**")
 
 
 @Ubot(["setpm"], "")
@@ -252,14 +252,14 @@ async def setpmpermit(client, message):
         await message.edit("**Running on Non-SQL mode!**")
         return
     sempak = await message.reply("`Processing...`")
-    nob = sql.gvarstatus(str(user_id), "unapproved_msg")
+    nob = gvarstatus(str(user_id), "UNAPPROVED_MSG")
     message = message.reply_to_message
     if nob is not None:
-        sql.delgvar(str(user_id), "unapproved_msg")
+        delgvar(str(user_id), "UNAPPROVED_MSG")
     if not message:
-        return await sempak.edit("**Mohon Reply Ke Pesan**")
+        return await sempak.edit("**Mohon Balas Ke Pesan**")
     msg = message.text
-    sql.addgvar(str(user_id), "unapproved_msg", msg)
+    addgvar(str(user_id), "UNAPPROVED_MSG", msg)
     
     await asyncio.sleep(0.1)
     await sempak.edit("**Pesan Berhasil Disimpan**")
@@ -274,7 +274,7 @@ async def get_pmermit(client, message):
         await message.edit("**Running on Non-SQL mode!**")
         return
     wow = await message.reply("`Processing...`")
-    nob = sql.gvarstatus(str(user_id), "unapproved_msg")
+    nob = sql.gvarstatus(str(user_id), "UNAPPROVED_MSG")
     if nob is not None:
         await wow.edit("**Pesan PMPERMIT Yang Sekarang:**" f"\n\n{nob}")
     else:
@@ -294,12 +294,12 @@ async def reset_pmpermit(client, message):
         await message.edit("**Running on Non-SQL mode!**")
         return
     wah = await message.reply("`Processing...`")
-    nob = sql.gvarstatus(str(_user_id), "unapproved_msg")
+    nob = sql.gvarstatus(str(_user_id), "UNAPPROVED_MSG")
 
     if nob is None:
         await wah.edit("**Pesan Antipm Anda Sudah Default**")
     else:
-        sql.delgvar(str(user_id), "unapproved_msg")
+        sql.delgvar(str(user_id), "UNAPPROVED_MSG")
         await wah.edit("**Berhasil Mengubah Pesan Custom Antipm menjadi Default**")
 
 
@@ -331,7 +331,7 @@ add_command_help(
             "Untuk Mereset Pesan PMPERMIT menjadi DEFAULT",
         ],
         [
-            "antipm [on/off]",
+            "pmpermit [on/off]",
             "Untuk mengaktifkan atau menonaktifkan PMPERMIT",
         ],
     ],
