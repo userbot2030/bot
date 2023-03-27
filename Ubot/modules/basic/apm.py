@@ -89,7 +89,7 @@ async def allow(client, message):
 
 @Client.on_message(filters.command(["d", "no"], "") & filters.me & filters.private)
 async def deny(client, message):
-    user_id = client.me.
+    user_id = client.me.id
     biji = message.from.user.first_name
     chat_id = message.chat.id
     await set.deny_user(user_id, chat_id)
