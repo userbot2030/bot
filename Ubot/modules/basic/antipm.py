@@ -14,7 +14,7 @@ from ubotlibs.ubot.utils.tools import get_arg
 from pyrogram import filters, Client
 from pyrogram.types import Message
 from . import *
-from Ubot.core.db import *
+from Ubot.core.db.pmpermit import *
 from Ubot.core.db import pmpermit as set
 
 PM_LOGGER = 1
