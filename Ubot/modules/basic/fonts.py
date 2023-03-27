@@ -3,7 +3,7 @@
 from pyrogram import Client
 from pyrogram.types import Message
 from . import *
-
+from ubotlibs.ubot.helper import get_arg
 
 arguments = [
     "smallcap",
@@ -46,19 +46,10 @@ def gen_font(text, new_font):
             text = text.replace(q, new)
     return text
 
-def get_cmd(message):
-    msg = message.text
-    msg = msg.replace(" ", "", 1) if msg[1] == " " else msg
-    split = msg[1:].replace("\n", " \n").split(" ")
-    if " ".join(split[1:]).strip() == "":
-        return ""
-    return " ".join(split[1:])
-
-
 @Ubot(["font"], "")
 async def font_ubot(client, message):
-    if message.reply_to_message or get_cmd(message):
-        font = get_cmd(message)
+    if message.reply_to_message or get_arg(message):
+        font = get_arg(message)
         text = message.reply_to_message.text
         if not font:
             return await message.reply(f"<code>{font} Tidak Ada Dalam Daftar Font...</code>")
@@ -85,8 +76,7 @@ async def font_ubot(client, message):
 
 @Ubot(["lf", "listfont"], "")
 async def fonts(client: Client, msg: Message):
-    await eor(
-        msg,
+    await message.reply(
         "<b>ᴅᴀғᴛᴀʀ ғᴏɴᴛs</b>\n\n"
         "<b>• smallcap</b>\n"
         "<b>• monospace</b>\n"
