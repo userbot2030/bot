@@ -532,16 +532,17 @@ async def get_filter(user_id: int, chat_id: int, name: str) -> Union[bool, dict]
     return False
 
 
+
 async def save_filter(user_id: int, chat_id: int, name: str, _filter: dict):
     name = name.lower().strip()
     _filters = await _get_filters(user_id, chat_id)
     _filters[name] = _filter
     await filtersdb.update_one(
-        {"user_id": user_id},
-        {"chat_id": chat_id},
-        {"$set": {"filters": _filters}},
-        upsert=True,
-    )
+    {"user_id": user_id, "chat_id": chat_id},
+    {"$set": {"filters": _filters}},
+    upsert=True
+)
+
 
 
 async def delete_filter(user_id: int, chat_id: int, name: str) -> bool:
@@ -550,8 +551,7 @@ async def delete_filter(user_id: int, chat_id: int, name: str) -> bool:
     if name in filtersd:
         del filtersd[name]
         await filtersdb.update_one(
-            {"user_id": user_id},
-            {"chat_id": chat_id},
+            {"user_id": user_id, "chat_id": chat_id},
             {"$set": {"filters": filtersd}},
             upsert=True,
         )
