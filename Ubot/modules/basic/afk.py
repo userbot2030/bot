@@ -24,7 +24,8 @@ onlinestr ="""
 #AFK De-activated\nAfk for {}
 """
 async def is_afk_(f, client, message):
-    af_k_c = await check_afk()
+    user_id = client.me.id
+    af_k_c = await check_afk(user_id)
     if af_k_c:
         return bool(True)
     else:
@@ -32,23 +33,25 @@ async def is_afk_(f, client, message):
     
 is_afk = filters.create(func=is_afk_, name="is_afk_")
 
-@geez("afk", cmds)
+@Ubot("afk", "")
 async def set_afk(client, message):
     if len(message.command) == 1:
-        return await message.reply(f"tolong berikan alasan,\ncontoh : {cmds}afk coly")
+        return await message.reply(f"**Gunakan format dengan berikan alasan**\n\n**Contoh** : `afk berak`")
+    user_id = client.me.id
+    botlog = await get_log_groups(user_id)
     pablo = await message.edit("Processing..")
     msge = None
     msge = get_text(message)
     start_1 = datetime.now()
     afk_start = start_1.replace(microsecond=0)
     if msge:
-        msg = f"I'am afk.\nReason: **{msge}**"
-        await client.send_message(BOTLOG_CHATID, afkstr.format(msge))
-        await go_afk(afk_start, msge)
+        msg = f"**❏ Sedang AFK**.\n** ╰ Alasan** : `{msge}`"
+        await client.send_message(botlog, afkstr.format(msge))
+        await go_afk(user_id, afk_start, msge)
     else:
-        msg = "**I Am Busy And I Am Going Afk**."
-        await client.send(BOTLOG_CHATID, afkstr.format(msge))
-        await go_afk(afk_start)
+        msg = "**❏ Sedang AFK**."
+        await client.send(botlog, afkstr.format(msge))
+        await go_afk(user_id, afk_start)
     await pablo.edit(msg)
 
 @Client.on_message(
@@ -65,6 +68,7 @@ async def afk_er(client, message):
         return
     if message.from_user.id == client.me.id:
         return
+    user_id = client.me.id
     use_r = int(message.from_user.id)
     if use_r not in afk_sanity_check.keys():
         afk_sanity_check[use_r] = 1
@@ -72,13 +76,13 @@ async def afk_er(client, message):
         afk_sanity_check[use_r] += 1
     if afk_sanity_check[use_r] == 5:
         await message.reply_text(
-            "`Bawel, saya tidak akan reply anda. ;(`"
+            "**❏ Sedang AFK**."
         )
         afk_sanity_check[use_r] += 1
         return
     if afk_sanity_check[use_r] > 5:
         return
-    lol = await check_afk()
+    lol = await check_afk(user_id)
     reason = lol["reason"]
     if reason == "":
         reason = None
@@ -87,28 +91,31 @@ async def afk_er(client, message):
     afk_end = back_alivee.replace(microsecond=0)
     total_afk_time = str((afk_end - afk_start))
     message_to_reply = (
-        f"I Am **AFK** Right Now. \n**Last Seen :** `{total_afk_time}`\n**Reason** : `{reason}`"
+        f"**❏ Sedang AFK**\n** ├ Waktu** :`{total_afk_time}`\n**  ╰ Alasan** : `{reason}`"
         if reason
-        else f"I Am **AFK** Right Now. \n**Last Seen :** `{total_afk_time}`"
+        else f"**❏ Sedang AFK**\n** ╰ Waktu** :`{total_afk_time}`"
     )
     await message.reply(message_to_reply)
+    
 
 @Client.on_message(filters.outgoing & filters.me & is_afk)
-async def no_afke(client, message: Message):
-    lol = await check_afk()
+async def no_afke(client, message):
+    user_id = client.me.id
+    botlog = await get_log_groups(user_id)
+    lol = await check_afk(user_id)
     back_alivee = datetime.now()
     afk_start = lol["time"]
     afk_end = back_alivee.replace(microsecond=0)
     total_afk_time = str((afk_end - afk_start))
-    kk = await message.reply(f"Iam Online, no longer AFK\nAFK selama{total_afk_time}")
+    kk = await message.reply(f"**❏ Saya Kembali.**\n** ╰ AFK Selama** : {total_afk_time}")
     await kk.delete()
-    await no_afk()
-    await client.send_message(BOTLOG_CHATID, onlinestr.format(total_afk_time))
+    await no_afk(user_id)
+    await client.send_message(botlog, onlinestr.format(total_afk_time))
 
 add_command_help(
     "afk",
     [
-        [f"{cmds}afk","Mengaktifkan mode afk.",
+        [f"afk","Mengaktifkan mode afk.",
         ],
     ],
 )
