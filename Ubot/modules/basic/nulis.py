@@ -1,6 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from . import *
+import requests
 
 @Ubot("nulis", "")
 async def handwrite(client, message):
