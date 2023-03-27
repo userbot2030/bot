@@ -27,7 +27,7 @@ async def adzan_shalat(client: Client, message: Message):
         await message.reply(f"<b>Maaf Tidak Menemukan Kota <code>{LOKASI}</code>")
     result = json.loads(request.text)
     geezram = f"""
-Jadwal Shalat Wilayah {LOKASI}
+<b>Jadwal Shalat Wilayah {LOKASI}</b>
 <b>Tanggal</b> <code>{result['items'][0]['date_for']}</code>
 <b>Kota</b> <code>{result['query']} | {result['country']}</code>
 
