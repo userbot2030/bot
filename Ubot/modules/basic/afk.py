@@ -50,7 +50,7 @@ async def set_afk(client, message):
         await go_afk(user_id, afk_start, msge)
     else:
         msg = "**❏ Sedang AFK**."
-        await client.send(botlog, afkstr.format(msge))
+        await client.send_message(botlog, afkstr.format(msge))
         await go_afk(user_id, afk_start)
     await pablo.edit(msg)
 
@@ -62,13 +62,13 @@ async def set_afk(client, message):
     & filters.incoming
 )
 async def afk_er(client, message):
+    user_id = client.me.id
     if not message:
         return
     if not message.from_user:
         return
-    if message.from_user.id == client.me.id:
+    if message.from_user.id == user_id:
         return
-    user_id = client.me.id
     use_r = int(user_id)
     if use_r not in afk_sanity_check.keys():
         afk_sanity_check[use_r] = 1
