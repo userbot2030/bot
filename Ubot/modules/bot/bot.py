@@ -94,7 +94,7 @@ async def close(_, query: CallbackQuery):
 @app.on_callback_query(filters.regex("forceclose"))
 async def forceclose(_, CallbackQuery):
     try:
-        await CallbackQuery.message.delete()
+        await app.message.delete()
     except:
         pass
 
