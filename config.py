@@ -4,10 +4,8 @@ from dotenv import load_dotenv
 TIME_LIMIT = int(getenv("TIME_LIMIT", "2592000"))
 TIME_SLEEP = int(getenv("TIME_SLEEP", "86400"))
 
-load_dotenv()
+load_dotenv(".env")
 
-
-DB_URL = getenv("DATABASE_URL", "postgres://mcclbjwx:CqMrbec47cqL5KbaZOUDlVQWOscjNcKR@peanut.db.elephantsql.com/mcclbjwx")
 SUDO_USERS = list(map(int, getenv("SUDO_USERS", "").split()))
 DEEP_AI = getenv("DEEP_AI", "d7394561-0528-4714-a1ee-edd7020b48e1")
 OWNER_ID = int(getenv("OWNER_ID") or 0)
