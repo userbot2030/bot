@@ -1,4 +1,4 @@
-
+"""
 import asyncio
 
 from pyrogram import Client, enums, filters
@@ -101,20 +101,6 @@ async def set_pmlog(client, message):
         await message.edit("**PM Log Sudah Dimatikan**")
 
 
-
-@Ubot("setlog", "")
-async def set_log(client, message):
-    try:
-        botlog_chat_id = int(message.text.split(" ")[1])
-    except (ValueError, IndexError):
-        await message.reply_text("Format yang Anda masukkan salah. Gunakan format `setlog id_grup`.")
-        return
-    user_id = client.me.id
-    chat_id = message.chat.id
-    await set_botlog(user_id, botlog_chat_id)
-    await message.reply_text(f"ID Grup Log telah diatur ke {botlog_chat_id} untuk grup ini.")
-
-
 @Ubot(["taglog"], "")
 async def set_gruplog(client, message):
     cot = get_arg(message)
@@ -157,3 +143,4 @@ add_command_help(
         ],
     ],
 )
+"""
