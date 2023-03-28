@@ -136,7 +136,7 @@ async def _(client, message):
 
 
 add_command_help(
-    "globals",
+    "Global",
     [
         [
             "gban <reply/username/userid>",
