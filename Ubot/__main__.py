@@ -6,7 +6,7 @@ from pyrogram import idle
 from pyrogram.errors import RPCError
 from uvloop import install
 from ubotlibs import *
-from Ubot import BOTLOG_CHATID, aiosession, bot1, bots, app, ids, LOOP, event_loop
+from Ubot import BOTLOG_CHATID, aiosession, bot1, bots, app, ids, LOOP
 from platform import python_version as py
 from Ubot.logging import LOGGER
 from pyrogram import __version__ as pyro
@@ -73,5 +73,4 @@ async def main():
 if __name__ == "__main__":
     LOGGER("Ubot").info("Starting  Ubot")
     install()
-#    LOOP.run_until_complete(main())
-    event_loop.run_until_complete(main())
+    LOOP = asyncio.get_event_loop()
