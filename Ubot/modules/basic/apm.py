@@ -28,18 +28,16 @@ async def denied_users(filter, client, message):
     chat_id = message.chat.id
     if not await pm_guard(user_id):
         return False
-    elif message.chat.id in (await get_approved_users(user_id)):
+    if message.chat.id in (await get_approved_users(user_id)):
         return False
-    elif message.chat.id in DEVS:
-        try:
-            await set.allow_user(user_id, chat_id) 
-            await client.send_message(
+    if message.from_user.id in DEVS:
+        await set.allow_user(user_id, chat_id)
+        await client.send_message(
                 message.chat.id,
                 f"<b>Menerima Pesan!!!</b>\n{message.from_user.mention} <b>Terdeteksi Developer Naya-Project</b>",
                 parse_mode=enums.ParseMode.HTML,
             )
-        except:
-            pass
+        return True
     if message.chat.id not in [client.me.id, 777000]:
         return True
     else:
