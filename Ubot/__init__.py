@@ -48,7 +48,7 @@ TEMP_SETTINGS["PM_LAST_MSG"] = {}
 LOOP = asyncio.get_event_loop()
 
 
-BOT_WORKERS = int(get_config("BOT_WORKERS", "4"))
+BOT_WORKERS = int("4")
 COMMM_AND_PRE_FIX = get_config("COMMM_AND_PRE_FIX", "/")
 START_COMMAND = get_config("START_COMMAND", "deploy")
 SESI_COMMAND = get_config("SESI_COMMAND", "tampil")
@@ -128,6 +128,7 @@ bot1 = (
         session_string=SESSION1,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION1
     else None
@@ -141,6 +142,7 @@ bot2 = (
         session_string=SESSION2,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION2
     else None
@@ -154,6 +156,7 @@ bot3 = (
         session_string=SESSION3,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION3
     else None
@@ -167,6 +170,7 @@ bot4 = (
         session_string=SESSION4,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION4
     else None
@@ -180,6 +184,7 @@ bot5 = (
         session_string=SESSION5,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION5
     else None
@@ -192,6 +197,7 @@ bot6 = (
         session_string=SESSION6,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION6
     else None
@@ -205,6 +211,7 @@ bot7 = (
         session_string=SESSION7,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION7
     else None
@@ -218,6 +225,7 @@ bot8 = (
         session_string=SESSION8,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION8
     else None
@@ -231,6 +239,7 @@ bot9 = (
         session_string=SESSION9,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION9
     else None
@@ -244,6 +253,7 @@ bot10 = (
         session_string=SESSION10,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION10
     else None
@@ -257,6 +267,7 @@ bot11 = (
         session_string=SESSION11,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION11
     else None
@@ -270,6 +281,7 @@ bot12 = (
         session_string=SESSION12,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION12
     else None
@@ -283,6 +295,7 @@ bot13 = (
         session_string=SESSION13,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION13
     else None
@@ -296,6 +309,7 @@ bot14 = (
         session_string=SESSION14,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION4
     else None
@@ -309,6 +323,7 @@ bot15 = (
         session_string=SESSION15,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION15
     else None
@@ -322,6 +337,7 @@ bot16 = (
         session_string=SESSION16,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION16
     else None
@@ -335,6 +351,7 @@ bot17 = (
         session_string=SESSION17,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION17
     else None
@@ -348,6 +365,7 @@ bot18 = (
         session_string=SESSION18,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION18
     else None
@@ -361,6 +379,7 @@ bot19 = (
         session_string=SESSION19,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION19
     else None
@@ -374,6 +393,7 @@ bot20 = (
         session_string=SESSION20,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION20
     else None
@@ -386,6 +406,7 @@ bot21 = (
         session_string=SESSION21,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION21
     else None
@@ -399,6 +420,7 @@ bot22 = (
         session_string=SESSION22,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION22
     else None
@@ -412,6 +434,7 @@ bot23 = (
         session_string=SESSION23,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION23
     else None
@@ -425,6 +448,7 @@ bot24 = (
         session_string=SESSION24,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION24
     else None
@@ -438,6 +462,7 @@ bot25 = (
         session_string=SESSION25,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION25
     else None
@@ -451,6 +476,7 @@ bot26 = (
         session_string=SESSION26,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION26
     else None
@@ -464,6 +490,7 @@ bot27 = (
         session_string=SESSION27,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION27
     else None
@@ -477,6 +504,7 @@ bot28 = (
         session_string=SESSION28,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION28
     else None
@@ -490,6 +518,7 @@ bot29 = (
         session_string=SESSION29,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION29
     else None
@@ -503,6 +532,7 @@ bot30 = (
         session_string=SESSION30,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
+        workers=BOT_WORKERS,
     )
     if SESSION30
     else None
