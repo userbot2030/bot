@@ -31,6 +31,8 @@ from Ubot import (
 
 BOT_WORKERS = "4"
 
+BOT_WORKERS = int("4")
+
 class Bot(Client):
     """ modded client for SessionMakerBot """
 
