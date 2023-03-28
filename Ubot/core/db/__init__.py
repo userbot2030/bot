@@ -7,7 +7,7 @@ import pymongo.errors
 from platform import python_version as py
 from pyrogram import __version__ as pyro
 from ubotlibs.ubot.utils import *
-from Ubot.modules.basic import ADMINS
+from Azazel.modules.basic import ADMINS
 from dateutil.relativedelta import relativedelta
 from ubotlibs.ubot.database import cli
 import asyncio
@@ -21,7 +21,7 @@ import requests
 import urllib3
 import schedule
 import asyncio
-from Ubot import *
+from Azazel import *
 
 from motor.motor_asyncio import AsyncIOMotorClient as MongoCli
 from config import *
