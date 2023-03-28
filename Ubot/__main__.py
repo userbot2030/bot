@@ -55,7 +55,7 @@ async def main():
             LOGGER("Ubot").info("Startup Completed")
             LOGGER("√").info(f"Started as {ex.first_name} | {ex.id} ")
             await join(bot)
-            await bot.send_message(botlog_chat_id, MSG_ON.format(BOT_VER, py(), pyro))
+#            await bot.send_message(botlog_chat_id, MSG_ON.format(BOT_VER, py(), pyro))
             ids.append(ex.id)
             user = len(ids)
         except Exception as e:
