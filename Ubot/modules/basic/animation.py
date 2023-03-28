@@ -10,7 +10,7 @@ from pyrogram.types import *
 from pyrogram.types import Message
 from . import *
 from ubotlibs.ubot.helper.basic import edit_or_reply, get_text
-from ubotlibs.ubot.helper.constants import MEMES
+from Ubot.core.constants import MEMES
 DEFAULTUSER = "Nay"
 
 
