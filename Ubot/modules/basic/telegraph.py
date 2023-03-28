@@ -17,7 +17,7 @@ from ubotlibs.ubot.utils.tools import *
 from ubotlibs.ubot.database.accesdb import *
 
 telegraph = Telegraph()
-r = telegraph.create_account(short_name="telegram")
+r = telegraph.create_account(short_name="Naya-Project")
 auth_url = r["auth_url"]
 
 
