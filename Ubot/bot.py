@@ -27,9 +27,9 @@ from Ubot import (
     API_HASH,
     API_ID,
     BOT_TOKEN,
-    BOT_WORKERS
 )
 
+BOT_WORKERS = "4"
 
 class Bot(Client):
     """ modded client for SessionMakerBot """
