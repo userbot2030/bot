@@ -1,4 +1,4 @@
-"""
+
 import asyncio
 
 from pyrogram import Client, enums, filters
@@ -10,7 +10,7 @@ from Ubot.core.SQL import no_log_pms_sql
 from Ubot.core.SQL.globals import addgvar, gvarstatus, ambil_grup, delgvar
 from ubotlibs.ubot.utils.tools import get_arg
 
-
+Bantu saya untuk membuatkan database pymongo serta 10 multi pengguna untuk kode dibawah
 
 class LOG_CHATS:
     def __init__(self):
@@ -18,9 +18,7 @@ class LOG_CHATS:
         self.NEWPM = None
         self.COUNT = 0
 
-
 LOG_CHATS_ = LOG_CHATS()
-
 
 @Client.on_message(
     filters.private & filters.incoming & ~filters.service & ~filters.me & ~filters.bot
@@ -143,4 +141,3 @@ add_command_help(
         ],
     ],
 )
-"""
