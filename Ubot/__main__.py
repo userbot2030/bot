@@ -57,9 +57,10 @@ async def main():
             await join(bot)
             await bot.send_message(botlog_chat_id, MSG_ON.format(BOT_VER, py(), pyro))
             ids.append(ex.id)
+            user = len(ids)
         except Exception as e:
             LOGGER("X").info(f"{e}")
-    user = len(ids)
+
     await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
     await idle()
     await aiosession.close()
