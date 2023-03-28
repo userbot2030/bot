@@ -73,4 +73,4 @@ async def main():
 if __name__ == "__main__":
     LOGGER("Ubot").info("Starting  Ubot")
     install()
-    LOOP = asyncio.get_event_loop()
+    LOOP.run_until_complete(main())
