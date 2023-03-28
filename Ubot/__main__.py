@@ -22,20 +22,20 @@ BOT_VER ="8.1.0"
 
 MSG_BOT = """
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
-**New Ubot Actived ✅**
-**Phython**: `{}`
-**Pyrogram**: `{}`
-**User**: `{}`
+<b>New Ubot Actived ✅</b>
+<b>Phython</b>: `{}`
+<b>Pyrogram</b>: `{}`
+<b>User</b>: `{}`
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 """
 
 MSG_ON = """
-**New Ubot Actived ✅**
+<b>New Ubot Actived ✅<b>
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
-◉ **Versi** : `{}`
-◉ **Phython** : `{}`
-◉ **Pyrogram** : `{}`
-**Ketik** `alive` **untuk Mengecheck Bot**
+◉ <b>Versi</b> : `{}`
+◉ <b>Phython</b> : `{}`
+◉ <b>Pyrogram</b> : `{}`
+<b>Ketik</b> `alive` <b>untuk Mengecheck Bot</b>
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 """
 
@@ -55,7 +55,7 @@ async def main():
             LOGGER("Ubot").info("Startup Completed")
             LOGGER("√").info(f"Started as {ex.first_name} | {ex.id} ")
             await join(bot)
-#            await bot.send_message(botlog_chat_id, MSG_ON.format(BOT_VER, py(), pyro))
+            await app.send_message(botlog_chat_id, MSG_ON.format(BOT_VER, py(), pyro))
             ids.append(ex.id)
             user = len(ids)
         except Exception as e:
