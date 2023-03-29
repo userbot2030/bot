@@ -31,18 +31,18 @@ async def denied_users(filter, client, message):
         return False
     if message.chat.id in (await get_approved_users(user_id)):
         return False
-    if message.from_user.id in DEVS:
-        await set.allow_user(user_id, chat_id)
-        await client.send_message(
-                message.chat.id,
-                f"<b>Menerima Pesan!!!</b>\n [Anda](tg://user?id={chat_id}) <b>Terdeteksi Developer Naya-Project</b>",
-                parse_mode=enums.ParseMode.HTML,
+#    if message.from_user.id in DEVS:
+#        await set.allow_user(user_id, chat_id)
+#        await client.send_message(
+#                message.chat.id,
+#                f"<b>Menerima Pesan!!!</b>\n [Anda](tg://user?id1={chat_id}) <b>Terdeteksi Developer Naya-Project</b>",
+#                parse_mode=enums.ParseMode.HTML,
             )
-        return True
-    if message.chat.id not in [client.me.id, 777000]:
-        return True
-    else:
-        return True
+#        return True
+ #   if message.chat.id not in [client.me.id, 777000]:
+#        return True
+     else:
+         return True
 
 
 @Ubot("setlimit", "")
