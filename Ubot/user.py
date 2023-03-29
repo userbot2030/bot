@@ -53,6 +53,7 @@ class User(Client):
         self.LOGGER(__name__).info("Bot stopped. Bye.")
 
 
+
 class Userbot(Client):
     def __init__(self):
         self.bot1 = Client(
@@ -239,3 +240,27 @@ class Userbot(Client):
         for bot in self.bots:
             if not hasattr(bot, "group_call"):
                 setattr(bot, "group_call", GroupCallFactory(bot).get_group_call())
+                
+async def start(self):
+        await asyncio.gather(
+            self.bot1.start(),
+            self.bot2.start(),
+            self.bot3.start(),
+            self.bot4.start(),
+            self.bot5.start(),
+            self.bot6.start(),
+            self.bot7.start(),
+            self.bot8.start(),
+            self.bot9.start(),
+            self.bot10.start(),
+            self.bot11.start(),
+            self.bot12.start(),
+            self.bot13.start(),
+            self.bot14.start(),
+            self.bot15.start(),
+            self.bot16.start(),
+            self.bot17.start(),
+            self.bot18.start(),
+            self.bot19.start(),
+            self.bot20.start(),
+        )
