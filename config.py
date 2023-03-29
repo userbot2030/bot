@@ -27,6 +27,7 @@ ADMIN7_ID.append(1694909518)
 
 MONGO_URL = getenv("MONGO_URL", "")
 BOT_TOKEN = getenv("BOT_TOKEN", "")
+BOT_WORKERS = int(getenv("BOT_WORKERS", "4"))
 TOKEN = getenv("TOKEN", "")
 ALIVE_PIC = getenv("ALIVE_PIC")
 ALIVE_TEXT = getenv("ALIVE_TEXT")
