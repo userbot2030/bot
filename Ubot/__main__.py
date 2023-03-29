@@ -45,7 +45,7 @@ async def main():
     LOGGER("Ubot").info("Memulai Ubot Pyro..")
     for all_module in ALL_MODULES:
         importlib.import_module("Ubot.modules" + all_module)
-    for bot in bots:
+    for bot in self.bots:
         try:
             await bot.start()
             ex = await bot.get_me()
