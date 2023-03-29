@@ -210,7 +210,7 @@ class Userbot(Client):
         self.bot20 = Client(
             api_id=API_ID,
             api_hash=API_HASH,
-            session_name=SESSION20
+            session_name=SESSION20,
             in_memory=True,
             cache_duration=100,
             plugins=dict(root="Ubot/modules"),
