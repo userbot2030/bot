@@ -7,6 +7,7 @@ from pyrogram.errors import RPCError
 from uvloop import install
 from ubotlibs import *
 from Ubot import BOTLOG_CHATID, aiosession, app, ids, LOOP, bots
+from Ubot.user import Userbot
 from platform import python_version as py
 from Ubot.logging import LOGGER
 from pyrogram import __version__ as pyro
@@ -38,14 +39,10 @@ MSG_ON = """
 <b>Ketik</b> `alive` <b>untuk Mengecheck Bot</b>
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 """
-
-class Ubot:
-    def __init__(self):
-        self.bots = []
         
         
 async def main():
-    bot_instance = Ubot()
+    bot_instance = Userbot()
     await app.start()
     LOGGER("Ubot").info("Memulai Ubot Pyro..")
     for all_module in ALL_MODULES:
