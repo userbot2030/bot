@@ -215,9 +215,7 @@ class Userbot(Client):
             cache_duration=100,
             plugins=dict(root="Ubot/modules"),
         )
-
-bots = [bot for bot in [self.bot1, self.bot2, self.bot3, self.bot4, self.bot5, self.bot6, self.bot7, self.bot8, self.bot9, self.bot10, self.bot11, self.bot12, self.bot17, self.bot18, self.bot19, self.bot20] if bot]
-        
-for bot in bots:
-    if not hasattr(bot, "group_call"):
-        setattr(bot, "group_call", GroupCallFactory(bot).get_group_call())
+        self.bots = [bot for bot in [self.bot1, self.bot2, self.bot3, self.bot4, self.bot5, self.bot6, self.bot7, self.bot8, self.bot9, self.bot10, self.bot11, self.bot12, self.bot17, self.bot18, self.bot19, self.bot20] if bot]
+        for bot in self.bots:
+            if not hasattr(bot, "group_call"):
+                setattr(bot, "group_call", GroupCallFactory(bot).get_group_call())
