@@ -6,7 +6,8 @@ from pyrogram import idle
 from pyrogram.errors import RPCError
 from uvloop import install
 from ubotlibs import *
-from Ubot import BOTLOG_CHATID, aiosession, bot1, bots, app, ids, LOOP
+from Ubot import BOTLOG_CHATID, aiosession, app, ids, LOOP
+from Ubot.user import bots
 from platform import python_version as py
 from Ubot.logging import LOGGER
 from pyrogram import __version__ as pyro
