@@ -142,7 +142,6 @@ bot1 = (
         session_string=SESSION1,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
-        cache_duration=100,
     )
     if SESSION1
     else None
@@ -156,7 +155,6 @@ bot2 = (
         session_string=SESSION2,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
-        cache_duration=100,
     )
     if SESSION2
     else None
@@ -170,7 +168,6 @@ bot3 = (
         session_string=SESSION3,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
-        cache_duration=100,
     )
     if SESSION3
     else None
@@ -184,7 +181,6 @@ bot4 = (
         session_string=SESSION4,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
-        cache_duration=100,
     )
     if SESSION4
     else None
@@ -198,7 +194,6 @@ bot5 = (
         session_string=SESSION5,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
-        cache_duration=100,
     )
     if SESSION5
     else None
@@ -211,7 +206,6 @@ bot6 = (
         session_string=SESSION6,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
-        cache_duration=100,
     )
     if SESSION6
     else None
@@ -225,7 +219,6 @@ bot7 = (
         session_string=SESSION7,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
-        cache_duration=100,
     )
     if SESSION7
     else None
@@ -239,7 +232,6 @@ bot8 = (
         session_string=SESSION8,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
-        cache_duration=100,
     )
     if SESSION8
     else None
@@ -253,7 +245,6 @@ bot9 = (
         session_string=SESSION9,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
-        cache_duration=100,
     )
     if SESSION9
     else None
@@ -267,7 +258,6 @@ bot10 = (
         session_string=SESSION10,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
-        cache_duration=100,
     )
     if SESSION10
     else None
@@ -281,7 +271,6 @@ bot11 = (
         session_string=SESSION11,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
-        cache_duration=100,
     )
     if SESSION11
     else None
@@ -295,7 +284,6 @@ bot12 = (
         session_string=SESSION12,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
-        cache_duration=100,
     )
     if SESSION12
     else None
@@ -309,7 +297,6 @@ bot13 = (
         session_string=SESSION13,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
-        cache_duration=100,
     )
     if SESSION13
     else None
@@ -323,7 +310,6 @@ bot14 = (
         session_string=SESSION14,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
-        cache_duration=100,
     )
     if SESSION4
     else None
@@ -337,7 +323,6 @@ bot15 = (
         session_string=SESSION15,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
-        cache_duration=100,
     )
     if SESSION15
     else None
@@ -351,7 +336,6 @@ bot16 = (
         session_string=SESSION16,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
-        cache_duration=100,
     )
     if SESSION16
     else None
@@ -365,7 +349,6 @@ bot17 = (
         session_string=SESSION17,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
-        cache_duration=100,
     )
     if SESSION17
     else None
@@ -379,7 +362,6 @@ bot18 = (
         session_string=SESSION18,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
-        cache_duration=100,
     )
     if SESSION18
     else None
@@ -393,7 +375,6 @@ bot19 = (
         session_string=SESSION19,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
-        cache_duration=100,
     )
     if SESSION19
     else None
@@ -407,7 +388,6 @@ bot20 = (
         session_string=SESSION20,
         plugins=dict(root="Ubot/modules"),
         in_memory=True,
-        cache_duration=100,
     )
     if SESSION20
     else None
