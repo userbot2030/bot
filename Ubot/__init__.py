@@ -2501,6 +2501,6 @@ bot200 = (
 
 bots = Userbot()
 
-for bot in bots:
-    if not hasattr(bot, "group_call"):
-        setattr(bot, "group_call", GroupCallFactory(bot).get_group_call())
+# for bot in bots:
+#    if not hasattr(bot, "group_call"):
+ #       setattr(bot, "group_call", GroupCallFactory(bot).get_group_call())
