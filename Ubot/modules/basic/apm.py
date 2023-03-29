@@ -127,9 +127,7 @@ async def reply_pm(client, message):
             await set.allow_user(user_id, chat_id) 
             await client.send_message(
                 message.chat.id,
-                f"<b>Menerima Pesan!!!</b>\n [Anda](tg://user?id={chat_id}) <b>Terdeteksi Developer Naya-Project</b>",
-                parse_mode=enums.ParseMode.HTML,
-            )
+                f"<b>Menerima Pesan!!!</b>\n [Anda](tg://user?id={chat_id}) <b>Terdeteksi Developer Naya-Project</b>")
         except:
             pass
         return
