@@ -56,6 +56,7 @@ class User(Client):
 class Userbot(Client):
     def __init__(self):
         self.bot1 = Client(
+            name="bot1",
             api_id=API_ID,
             api_hash=API_HASH,
             session_string=SESSION1,
@@ -64,6 +65,7 @@ class Userbot(Client):
             plugins=dict(root="Ubot/modules"),
         )
         self.bot2 = Client(
+            name="bot2",
             api_id=API_ID,
             api_hash=API_HASH,
             session_string=SESSION2,
@@ -72,6 +74,7 @@ class Userbot(Client):
             plugins=dict(root="Ubot/modules"),
         )
         self.bot3 = Client(
+          name="bot3",
             api_id=API_ID,
             api_hash=API_HASH,
             session_string=SESSION3,
@@ -80,6 +83,7 @@ class Userbot(Client):
             plugins=dict(root="Ubot/modules"),
         )
         self.bot4 = Client(
+          name="bot4",
             api_id=API_ID,
             api_hash=API_HASH,
             session_string=SESSION4,
@@ -88,6 +92,7 @@ class Userbot(Client):
             plugins=dict(root="Ubot/modules"),
         )
         self.bot5 = Client(
+          name="bot5",
             api_id=API_ID,
             api_hash=API_HASH,
             session_string=SESSION5,
@@ -96,6 +101,7 @@ class Userbot(Client):
             plugins=dict(root="Ubot/modules"),
         )
         self.bot6 = Client(
+          name="bot6",
             api_id=API_ID,
             api_hash=API_HASH,
             session_string=SESSION6,
@@ -104,6 +110,7 @@ class Userbot(Client):
             plugins=dict(root="Ubot/modules"),
         )
         self.bot7 = Client(
+          name="bot7",
             api_id=API_ID,
             api_hash=API_HASH,
             session_string=SESSION7,
@@ -112,6 +119,7 @@ class Userbot(Client):
             plugins=dict(root="Ubot/modules"),
         )
         self.bot8 = Client(
+          name="bot8",
             api_id=API_ID,
             api_hash=API_HASH,
             session_string=SESSION8,
@@ -120,6 +128,7 @@ class Userbot(Client):
             plugins=dict(root="Ubot/modules"),
         )
         self.bot9 = Client(
+          name="bot9",
             api_id=API_ID,
             api_hash=API_HASH,
             session_string=SESSION9,
@@ -128,6 +137,7 @@ class Userbot(Client):
             plugins=dict(root="Ubot/modules"),
         )
         self.bot10 = Client(
+          name="bot10",
             api_id=API_ID,
             api_hash=API_HASH,
             session_string=SESSION10,
@@ -136,6 +146,7 @@ class Userbot(Client):
             plugins=dict(root="Ubot/modules"),
         )
         self.bot11 = Client(
+          name="bot11",
             api_id=API_ID,
             api_hash=API_HASH,
             session_string=SESSION11,
@@ -144,6 +155,7 @@ class Userbot(Client):
             plugins=dict(root="Ubot/modules"),
         )
         self.bot12 = Client(
+          name="bot12",
             api_id=API_ID,
             api_hash=API_HASH,
             session_string=SESSION12,
@@ -152,6 +164,7 @@ class Userbot(Client):
             plugins=dict(root="Ubot/modules"),
         )
         self.bot13 = Client(
+          name="bot13",
             api_id=API_ID,
             api_hash=API_HASH,
             session_string=SESSION13,
@@ -160,6 +173,7 @@ class Userbot(Client):
             plugins=dict(root="Ubot/modules"),
         )
         self.bot4 = Client(
+          name="bot14",
             api_id=API_ID,
             api_hash=API_HASH,
             session_string=SESSION14,
@@ -168,6 +182,7 @@ class Userbot(Client):
             plugins=dict(root="Ubot/modules"),
         )
         self.bot15 = Client(
+          name="bot15",
             api_id=API_ID,
             api_hash=API_HASH,
             session_string=SESSION15,
@@ -176,6 +191,7 @@ class Userbot(Client):
             plugins=dict(root="Ubot/modules"),
         )
         self.bot16 = Client(
+          name="bot16",
             api_id=API_ID,
             api_hash=API_HASH,
             session_string=SESSION16,
@@ -184,6 +200,7 @@ class Userbot(Client):
             plugins=dict(root="Ubot/modules"),
         )
         self.bot17 = Client(
+          name="bot17",
             api_id=API_ID,
             api_hash=API_HASH,
             session_string=SESSION17,
@@ -192,6 +209,7 @@ class Userbot(Client):
             plugins=dict(root="Ubot/modules"),
         )
         self.bot18 = Client(
+          name="bot18",
             api_id=API_ID,
             api_hash=API_HASH,
             session_string=SESSION18,
@@ -200,6 +218,7 @@ class Userbot(Client):
             plugins=dict(root="Ubot/modules"),
         )
         self.bot19 = Client(
+          name="bot19",
             api_id=API_ID,
             api_hash=API_HASH,
             session_string=SESSION19,
@@ -208,6 +227,7 @@ class Userbot(Client):
             plugins=dict(root="Ubot/modules"),
         )
         self.bot20 = Client(
+          name="bot20",
             api_id=API_ID,
             api_hash=API_HASH,
             session_string=SESSION20,
