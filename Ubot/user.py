@@ -58,7 +58,7 @@ class Userbot(Client):
         self.bot1 = Client(
             api_id=API_ID,
             api_hash=API_HASH,
-            session_name=SESSION1,
+            session_string=SESSION1,
             in_memory=True,
             cache_duration=100,
             plugins=dict(root="Ubot/modules"),
@@ -66,7 +66,7 @@ class Userbot(Client):
         self.bot2 = Client(
             api_id=API_ID,
             api_hash=API_HASH,
-            session_name=SESSION2,
+            session_string=SESSION2,
             in_memory=True,
             cache_duration=100,
             plugins=dict(root="Ubot/modules"),
@@ -74,7 +74,7 @@ class Userbot(Client):
         self.bot3 = Client(
             api_id=API_ID,
             api_hash=API_HASH,
-            session_name=SESSION3,
+            session_string=SESSION3,
             in_memory=True,
             cache_duration=100,
             plugins=dict(root="Ubot/modules"),
@@ -82,7 +82,7 @@ class Userbot(Client):
         self.bot4 = Client(
             api_id=API_ID,
             api_hash=API_HASH,
-            session_name=SESSION4,
+            session_string=SESSION4,
             in_memory=True,
             cache_duration=100,
             plugins=dict(root="Ubot/modules"),
@@ -90,7 +90,7 @@ class Userbot(Client):
         self.bot5 = Client(
             api_id=API_ID,
             api_hash=API_HASH,
-            session_name=SESSION5,
+            session_string=SESSION5,
             in_memory=True,
             cache_duration=100,
             plugins=dict(root="Ubot/modules"),
@@ -98,7 +98,7 @@ class Userbot(Client):
         self.bot6 = Client(
             api_id=API_ID,
             api_hash=API_HASH,
-            session_name=SESSION6,
+            session_string=SESSION6,
             in_memory=True,
             cache_duration=100,
             plugins=dict(root="Ubot/modules"),
@@ -106,7 +106,7 @@ class Userbot(Client):
         self.bot7 = Client(
             api_id=API_ID,
             api_hash=API_HASH,
-            session_name=SESSION7,
+            session_string=SESSION7,
             in_memory=True,
             cache_duration=100,
             plugins=dict(root="Ubot/modules"),
@@ -114,7 +114,7 @@ class Userbot(Client):
         self.bot8 = Client(
             api_id=API_ID,
             api_hash=API_HASH,
-            session_name=SESSION8,
+            session_string=SESSION8,
             in_memory=True,
             cache_duration=100,
             plugins=dict(root="Ubot/modules"),
@@ -122,7 +122,7 @@ class Userbot(Client):
         self.bot9 = Client(
             api_id=API_ID,
             api_hash=API_HASH,
-            session_name=SESSION9,
+            session_string=SESSION9,
             in_memory=True,
             cache_duration=100,
             plugins=dict(root="Ubot/modules"),
@@ -130,7 +130,7 @@ class Userbot(Client):
         self.bot10 = Client(
             api_id=API_ID,
             api_hash=API_HASH,
-            session_name=SESSION10,
+            session_string=SESSION10,
             in_memory=True,
             cache_duration=100,
             plugins=dict(root="Ubot/modules"),
@@ -138,7 +138,7 @@ class Userbot(Client):
         self.bot11 = Client(
             api_id=API_ID,
             api_hash=API_HASH,
-            session_name=SESSION11,
+            session_string=SESSION11,
             in_memory=True,
             cache_duration=100,
             plugins=dict(root="Ubot/modules"),
@@ -146,7 +146,7 @@ class Userbot(Client):
         self.bot12 = Client(
             api_id=API_ID,
             api_hash=API_HASH,
-            session_name=SESSION12,
+            session_string=SESSION12,
             in_memory=True,
             cache_duration=100,
             plugins=dict(root="Ubot/modules"),
@@ -154,7 +154,7 @@ class Userbot(Client):
         self.bot13 = Client(
             api_id=API_ID,
             api_hash=API_HASH,
-            session_name=SESSION13,
+            session_string=SESSION13,
             in_memory=True,
             cache_duration=100,
             plugins=dict(root="Ubot/modules"),
@@ -162,7 +162,7 @@ class Userbot(Client):
         self.bot4 = Client(
             api_id=API_ID,
             api_hash=API_HASH,
-            session_name=SESSION14,
+            session_string=SESSION14,
             in_memory=True,
             cache_duration=100,
             plugins=dict(root="Ubot/modules"),
@@ -170,7 +170,7 @@ class Userbot(Client):
         self.bot15 = Client(
             api_id=API_ID,
             api_hash=API_HASH,
-            session_name=SESSION15,
+            session_string=SESSION15,
             in_memory=True,
             cache_duration=100,
             plugins=dict(root="Ubot/modules"),
@@ -178,7 +178,7 @@ class Userbot(Client):
         self.bot16 = Client(
             api_id=API_ID,
             api_hash=API_HASH,
-            session_name=SESSION16,
+            session_string=SESSION16,
             in_memory=True,
             cache_duration=100,
             plugins=dict(root="Ubot/modules"),
@@ -186,7 +186,7 @@ class Userbot(Client):
         self.bot17 = Client(
             api_id=API_ID,
             api_hash=API_HASH,
-            session_name=SESSION17,
+            session_string=SESSION17,
             in_memory=True,
             cache_duration=100,
             plugins=dict(root="Ubot/modules"),
@@ -194,7 +194,7 @@ class Userbot(Client):
         self.bot18 = Client(
             api_id=API_ID,
             api_hash=API_HASH,
-            session_name=SESSION18,
+            session_string=SESSION18,
             in_memory=True,
             cache_duration=100,
             plugins=dict(root="Ubot/modules"),
@@ -202,7 +202,7 @@ class Userbot(Client):
         self.bot19 = Client(
             api_id=API_ID,
             api_hash=API_HASH,
-            session_name=SESSION19,
+            session_string=SESSION19,
             in_memory=True,
             cache_duration=100,
             plugins=dict(root="Ubot/modules"),
@@ -210,7 +210,7 @@ class Userbot(Client):
         self.bot20 = Client(
             api_id=API_ID,
             api_hash=API_HASH,
-            session_name=SESSION20,
+            session_string=SESSION20,
             in_memory=True,
             cache_duration=100,
             plugins=dict(root="Ubot/modules"),
