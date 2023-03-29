@@ -41,7 +41,7 @@ async def denied_users(filter, client, message):
 #        return True
  #   if message.chat.id not in [client.me.id, 777000]:
 #        return True
-     else:
+    else:
          return True
 
 
