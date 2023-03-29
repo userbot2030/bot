@@ -25,7 +25,7 @@ async def gcast_cmd(client, message):
     if message.reply_to_message or get_arg(message):
         nay = await message.reply("`Memulai Gcast...`")
     else:
-        return await nay.edit("**Balas ke pesan/berikan sebuah pesan**")
+        return await message.edit("**Balas ke pesan/berikan sebuah pesan**")
     done = 0
     error = 0
     user_id = client.me.id
