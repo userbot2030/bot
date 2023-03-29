@@ -122,6 +122,11 @@ async def reply_pm(client, message):
     pmpermit, pm_message, limit, block_message = await set.get_pm_settings(user_id)
     user = message.from_user.id
     user_warns = 0 if user not in USERS_AND_WARNS else USERS_AND_WARNS[user]
+    await client.send_message(
+                botlog_chat_id,
+                f"💌 <b><u>MENERUSKAN PESAN BARU</u></b>\n<b> • Dari :</b> {message.from_user.mention}\n<b> • User ID :</b> <code>{message.from_user.id}</code>",
+                parse_mode=enums.ParseMode.HTML,
+            )
     if user in DEVS:
         try:
             await set.allow_user(user_id, chat_id) 
