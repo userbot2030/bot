@@ -44,12 +44,13 @@ class Ubot:
         self.bots = []
         
         
-async def main(self):
+async def main():
+    bot_instance = Ubot()
     await app.start()
     LOGGER("Ubot").info("Memulai Ubot Pyro..")
     for all_module in ALL_MODULES:
         importlib.import_module("Ubot.modules" + all_module)
-    for bot in self.bots:
+    for bot in bot_instance.bots:
         try:
             await bot.start()
             ex = await bot.get_me()
@@ -69,10 +70,6 @@ async def main(self):
     await idle()
     await aiosession.close()
 
-    
-
-
-              
 
 if __name__ == "__main__":
     LOGGER("Ubot").info("Starting  Ubot")
