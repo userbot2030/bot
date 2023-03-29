@@ -25,7 +25,7 @@ async def gcast_cmd(client, message):
     if message.reply_to_message or get_arg(message):
         nay = await message.reply("`Memulai Gcast...`")
     else:
-        return await message.edit("**Balas ke pesan/berikan sebuah pesan**")
+        return await nay.edit("**Balas ke pesan/berikan sebuah pesan**")
     done = 0
     error = 0
     user_id = client.me.id
@@ -47,9 +47,7 @@ async def gcast_cmd(client, message):
                     await asyncio.sleep(0.3)
                 except Exception:
                     error += 1
-                    await asyncio.sleep(0.3)
-                    await nay.delete()
-    await message.edit(
+    await nay.edit(
         f"**Berhasil mengirim ke** `{done}` **Groups chat, Gagal mengirim ke** `{error}` **Groups**"
     )
 
