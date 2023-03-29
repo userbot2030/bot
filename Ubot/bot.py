@@ -27,9 +27,9 @@ from Ubot import (
     API_HASH,
     API_ID,
     BOT_TOKEN,
-    BOT_WORKERS
 )
 
+BOT_WORKERS = int("4")
 
 class Bot(Client):
     """ modded client for SessionMakerBot """
@@ -44,7 +44,6 @@ class Bot(Client):
                 "root": "Ubot/modules/bot"
             },
             workers=BOT_WORKERS,
-            parse_mode=enums.ParseMode.HTML
         )
         self.LOGGER = LOGGER
 
@@ -53,7 +52,6 @@ class Bot(Client):
         usr_bot_me = self.me
         self.LOGGER(__name__).info(
             f"@{usr_bot_me.username} based on Pyrogram v{__version__} "
-            "Try /start."
         )
 
     async def stop(self, *args):
