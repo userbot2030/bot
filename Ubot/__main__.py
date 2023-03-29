@@ -39,8 +39,12 @@ MSG_ON = """
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 """
 
-
-async def main():
+class Ubot:
+    def __init__(self):
+        self.bots = []
+        
+        
+async def main(self):
     await app.start()
     LOGGER("Ubot").info("Memulai Ubot Pyro..")
     for all_module in ALL_MODULES:
@@ -73,4 +77,4 @@ async def main():
 if __name__ == "__main__":
     LOGGER("Ubot").info("Starting  Ubot")
     install()
-    LOOP.run_until_complete(main())
+    LOOP.run_until_complete(main(self))
