@@ -77,4 +77,4 @@ async def main(self):
 if __name__ == "__main__":
     LOGGER("Ubot").info("Starting  Ubot")
     install()
-    LOOP.run_until_complete(main(self))
+    LOOP.run_until_complete(main())
