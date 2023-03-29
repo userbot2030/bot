@@ -45,7 +45,6 @@ class Bot(Client):
                 "root": "Ubot/modules/bot"
             },
             workers=BOT_WORKERS,
-            parse_mode=enums.ParseMode.HTML
         )
         self.LOGGER = LOGGER
 
