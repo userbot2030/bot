@@ -6,8 +6,7 @@ from pyrogram import idle
 from pyrogram.errors import RPCError
 from uvloop import install
 from ubotlibs import *
-from Ubot import BOTLOG_CHATID, aiosession, app, ids, LOOP, bots
-from Ubot.user import Userbot
+from Ubot import BOTLOG_CHATID, aiosession, bot1, bots, app, ids, LOOP, event_loop
 from platform import python_version as py
 from Ubot.logging import LOGGER
 from pyrogram import __version__ as pyro
@@ -23,31 +22,30 @@ BOT_VER ="8.1.0"
 
 MSG_BOT = """
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
-<b>New Ubot Actived ✅</b>
-<b>Phython</b>: `{}`
-<b>Pyrogram</b>: `{}`
-<b>User</b>: `{}`
+**New Ubot Actived ✅**
+**Phython**: `{}`
+**Pyrogram**: `{}`
+**User**: `{}`
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 """
 
 MSG_ON = """
-<b>New Ubot Actived ✅<b>
+**New Ubot Actived ✅**
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
-◉ <b>Versi</b> : `{}`
-◉ <b>Phython</b> : `{}`
-◉ <b>Pyrogram</b> : `{}`
-<b>Ketik</b> `alive` <b>untuk Mengecheck Bot</b>
+◉ **Versi** : `{}`
+◉ **Phython** : `{}`
+◉ **Pyrogram** : `{}`
+**Ketik** `alive` **untuk Mengecheck Bot**
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 """
-        
-        
+
+
 async def main():
-    bot_instance = Userbot()
     await app.start()
     LOGGER("Ubot").info("Memulai Ubot Pyro..")
     for all_module in ALL_MODULES:
         importlib.import_module("Ubot.modules" + all_module)
-    for bot in bot_instance.bots:
+    for bot in bots:
         try:
             await bot.start()
             ex = await bot.get_me()
@@ -57,18 +55,22 @@ async def main():
             LOGGER("Ubot").info("Startup Completed")
             LOGGER("√").info(f"Started as {ex.first_name} | {ex.id} ")
             await join(bot)
-#            await app.send_message(botlog_chat_id, MSG_ON.format(BOT_VER, py(), pyro))
+            await bot.send_message(botlog_chat_id, MSG_ON.format(BOT_VER, py(), pyro))
             ids.append(ex.id)
-            user = len(ids)
         except Exception as e:
             LOGGER("X").info(f"{e}")
-
+    user = len(ids)
     await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
     await idle()
     await aiosession.close()
 
+    
+
+
+              
 
 if __name__ == "__main__":
     LOGGER("Ubot").info("Starting  Ubot")
     install()
-    LOOP.run_until_complete(main())
+#    LOOP.run_until_complete(main())
+    event_loop.run_until_complete(main())
