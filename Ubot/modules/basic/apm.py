@@ -37,7 +37,7 @@ async def denied_users(filter, client, message):
 #                message.chat.id,
 #                f"<b>Menerima Pesan!!!</b>\n [Anda](tg://user?id1={chat_id}) <b>Terdeteksi Developer Naya-Project</b>",
 #                parse_mode=enums.ParseMode.HTML,
-            )
+#            )
 #        return True
  #   if message.chat.id not in [client.me.id, 777000]:
 #        return True
