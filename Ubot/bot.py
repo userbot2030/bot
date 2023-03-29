@@ -23,13 +23,13 @@ from pyrogram import (
 )
 from Ubot.logging import LOGGER
 
-from Ubot import (
+from config import (
     API_HASH,
     API_ID,
     BOT_TOKEN,
+    BOT_WORKERS,
 )
 
-BOT_WORKERS = int("4")
 
 class Bot(Client):
     """ modded client for SessionMakerBot """
