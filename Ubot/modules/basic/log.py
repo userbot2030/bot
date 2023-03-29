@@ -1,4 +1,4 @@
-"""
+
 import asyncio
 
 from pyrogram import Client, enums, filters
@@ -28,9 +28,7 @@ async def monito_p_m_s(client, message):
     chat_id = message.chat.id
     user_id = client.me.id
     botlog_chat_id = await get_botlog(user_id)
-    if gvarstatus(str(user_id), "PMLOG") and gvarstatus(str(user_id), "PMLOG") == "false":
-        return
-    if not no_log_pms_sql.is_approved(message.chat.id) and message.chat.id != 777000:
+    if not message.chat.id != 777000:
         if LOG_CHATS_.RECENT_USER != message.chat.id:
             LOG_CHATS_.RECENT_USER = message.chat.id
             if LOG_CHATS_.NEWPM:
@@ -59,22 +57,19 @@ async def log_tagged_messages(client, message):
     chat_id = message.chat.id
     user_id = client.me.id
     botlog_chat_id = await get_botlog(user_id)
-    if gvarstatus(str(user_id), "GRUPLOG") and gvarstatus(str(user_id), "GRUPLOG") == "false":
-        return
-    if (no_log_pms_sql.is_approved(message.chat.id)):
-        return
-    result = f"📨<b><u>ANDA TELAH DI TAG</u></b>\n<b> • Dari : </b>{message.from_user.mention}"
-    result += f"\n<b> • Grup : </b>{message.chat.title}"
-    result += f"\n<b> • 👀 </b><a href = '{message.link}'>Lihat Pesan</a>"
-    result += f"\n<b> • Message : </b><code>{message.text}</code>"
+    knl = f"📨<b><u>ANDA TELAH DI TAG</u></b>\n<b> • Dari : </b>{message.from_user.mention}"
+    knl += f"\n<b> • Grup : </b>{message.chat.title}"
+    knl += f"\n<b> • 👀 </b><a href = '{message.link}'>Lihat Pesan</a>"
+    knl += f"\n<b> • Message : </b><code>{message.text}</code>"
     await asyncio.sleep(0.5)
     await client.send_message(
         botlog_chat_id,
-        result,
+        knl,
         parse_mode=enums.ParseMode.HTML,
         disable_web_page_preview=True,
     )
 
+"""
 @Ubot(["pmlog"], "")
 async def set_pmlog(client, message):
     cot = get_arg(message)
@@ -137,7 +132,7 @@ async def set_gruplog(client, message):
         await message.edit("**Group Log Berhasil Diaktifkan**")
     else:
         await message.edit("**Group Log Sudah Dimatikan**")
-
+"""
 
 add_command_help(
     "logger",
@@ -146,14 +141,13 @@ add_command_help(
             "setlog",
             "Sebelum mengaktifkan fitur pmlog dan taglog anda harus mengatur setlog id_grup log anda terlebih dahulu.",
         ],
-        [
-            "pmlog [on atau off]",
-            "Untuk mengaktifkan atau menonaktifkan log pesan pribadi yang akan di forward ke grup log.",
-        ],
-        [
-            "taglog [on atau off]",
-            "Untuk mengaktifkan atau menonaktifkan tag grup, yang akan masuk ke grup log.",
-        ],
+ #       [
+ #           "pmlog [on atau off]",
+#            "Untuk mengaktifkan atau menonaktifkan log pesan pribadi yang akan di forward ke grup log.",
+#        ],
+#       [
+#            "taglog [on atau off]",
+#            "Untuk mengaktifkan atau menonaktifkan tag grup, yang akan masuk ke grup log.",
+#        ],
     ],
 )
-"""
