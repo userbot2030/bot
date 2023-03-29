@@ -19,6 +19,7 @@ from pytgcalls import GroupCallFactory
 from Ubot.get_config import get_config
 from config import *
 from Ubot.bot import Bot
+from Ubot.user import Userbot
 cmds = None
 CMD_HELP = {}
 clients = []
@@ -2498,7 +2499,7 @@ bot200 = (
 
 
 
-bots = [bot for bot in [bot1, bot2, bot3, bot4, bot5, bot6, bot7, bot8, bot9, bot10, bot11, bot12, bot13, bot14, bot15, bot16, bot17, bot18, bot19, bot20, bot21, bot22, bot23, bot24, bot25, bot26, bot27, bot28, bot29, bot30, bot31, bot32, bot33, bot34, bot35, bot36, bot37, bot38, bot39, bot40, bot41, bot42, bot43, bot44, bot45, bot46, bot47, bot48, bot49, bot50, bot51, bot52, bot53, bot54, bot55, bot56, bot57, bot58, bot59, bot60, bot61, bot62, bot63, bot64, bot65, bot66, bot67, bot68, bot69, bot70, bot71, bot72, bot73, bot74, bot75, bot76, bot77, bot78, bot79, bot80, bot81, bot82, bot83, bot84, bot85, bot86, bot87, bot88, bot89, bot90, bot91, bot92, bot93, bot94, bot95, bot96, bot97, bot98, bot99, bot100, bot101, bot102, bot103, bot104, bot105, bot106, bot107, bot108, bot109, bot110, bot111, bot112, bot113, bot114, bot115, bot116, bot117, bot118, bot119, bot120, bot121, bot122, bot123, bot124, bot125, bot126, bot127, bot128, bot129, bot130, bot131, bot132, bot133, bot134, bot135, bot136, bot137, bot138, bot139, bot140, bot141, bot142, bot143, bot144, bot145, bot146, bot147, bot148, bot149, bot150, bot151, bot152, bot153, bot154, bot155, bot156, bot157, bot158, bot159, bot160, bot161, bot162, bot163, bot164, bot165, bot166, bot167, bot168, bot169, bot170, bot171, bot172, bot173, bot174, bot175, bot176, bot177, bot178, bot179, bot180, bot181, bot182, bot183, bot184, bot185, bot186, bot187, bot188, bot89, bot190, bot191, bot192, bot193, bot194, bot195, bot196, bot197, bot198, bot199, bot200] if bot]
+bots = Userbot()
 
 for bot in bots:
     if not hasattr(bot, "group_call"):
