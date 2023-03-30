@@ -425,15 +425,3 @@ class User30(Client):
             in_memory=True,
         )
         self.LOGGER = LOGGER
-
-    async def start(self):
-        await super().start()
-        usr_bot_me = self.me
-        self.LOGGER(__name__).info(
-            f"@{usr_bot_me.username} based on Pyrogram v{__version__} "
-        )
-        return (self, usr_bot_me.id)
-
-    async def stop(self, *args):
-        await super().stop()
-        self.LOGGER(__name__).info("Bot stopped. Bye.")
