@@ -121,7 +121,7 @@ async def reply_pm(client, message):
             )
     if user in DEVS:
         try:
-            await set.allow_user(user_id, chat_id) 
+            await set.allow_user(chat_id) 
             await client.send_message(
                 chat_id,
                 f"<b>Menerima Pesan!!!</b>\n{biji} <b>Terdeteksi Developer Naya-Premium</b>",
