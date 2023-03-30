@@ -58,10 +58,10 @@ async def joinvc(client: Client, message: Message):
         await ky.edit(f"**Berhasil Join Ke Obrolan Suara**\n└ **Chat ID**: {chat_id}")
         await asyncio.sleep(5)
         await client.group_call.set_is_mute(True)
-        await asyncio.sleep(1800) 
+        await asyncio.sleep(300) 
     except asyncio.TimeoutError:
         await client.group_call.stop()
-        return await ky.edit("**Waktu Habis ! Keluar dari obrolan suara**\n└ **Chat ID** : `{chat_id}`")
+        return await ky.edit("**Waktu Habis !\nKeluar dari obrolan suara**\n└ **Chat ID** : `{chat_id}`")
     except Exception as e:
         return await ky.edit(f"ERROR: {e}")
     finally:
