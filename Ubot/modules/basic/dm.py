@@ -17,26 +17,26 @@ from ubotlibs.ubot.database.accesdb import *
 
 
 @Ubot(["dm"], "")
-async def dm(coli: Client, memek: Message):
-    Ubot = await memek.reply("` Proccessing.....`")
+async def dm(client, message):
+    await message.edit("` Proccessing.....`")
     quantity = 1
-    inp = memek.text.split(None, 2)[1]
-    user = await coli.get_chat(inp)
-    spam_text = ' '.join(memek.command[2:])
+    inp = message.text.split(None, 2)[1]
+    user = await client.get_chat(inp)
+    spam_text = ' '.join(message.command[2:])
     quantity = int(quantity)
 
-    if memek.reply_to_message:
-        reply_to_id = memek.reply_to_message.message_id
+    if message.reply_to_message:
+        reply_to_id = message.reply_to_message.message_id
         for _ in range(quantity):
-            await Ubot.edit("Message Sended Successfully !")
-            await coli.send_message(user.id, spam_text,
+            await message.edit("Message Sended Successfully !")
+            await client.send_message(user.id, spam_text,
                                       reply_to_messsge_id=reply_to_id)
             await asyncio.sleep(0.15)
         return
 
     for _ in range(quantity):
-        await coli.send_message(user.id, spam_text)
-        await Ubot.edit("Message Sended Successfully !")
+        await client.send_message(user.id, spam_text)
+        await message.edit("Message Sended Successfully !")
         await asyncio.sleep(0.15)
 
 
