@@ -1,8 +1,6 @@
 import os
 from os import getenv
 from dotenv import load_dotenv
-TIME_LIMIT = int(getenv("TIME_LIMIT", "2592000"))
-TIME_SLEEP = int(getenv("TIME_SLEEP", "86400"))
 
 load_dotenv(".env")
 
@@ -25,15 +23,10 @@ ADMIN5_ID.append(1897354060)
 ADMIN6_ID.append(2067434944)
 ADMIN7_ID.append(1694909518)
 
-MONGO_URL = getenv("MONGO_URL", "")
-BOT_TOKEN = getenv("BOT_TOKEN", "")
+MONGO_URL = getenv("MONGO_URL", "mongodb+srv://ubot0:ubot0@ubot.zhj1x91.mongodb.net/?retryWrites=true&w=majority")
+BOT_TOKEN = getenv("BOT_TOKEN", "5929538137:AAGqpKlZfPn4vF1geHtBil_Z7PjHbDJ4R90")
 BOT_WORKERS = int(getenv("BOT_WORKERS", "4"))
-TOKEN = getenv("TOKEN", "")
-ALIVE_PIC = getenv("ALIVE_PIC")
-ALIVE_TEXT = getenv("ALIVE_TEXT")
-PM_LOGGER = getenv("PM_LOGGER", True)
-PM_AUTO_BAN = getenv("PM_AUTO_BAN", True)
-OPENAI_API = getenv("OPENAI_API")
+OPENAI_API = getenv("OPENAI_API", "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")
 SUPPORT_GROUP = "https://t.me/kynansupport"
 BOTLOG_CHATID = int(getenv("BOTLOG_CHATID") or 0)
 BLACKLIST_GCAST = {int(x) for x in getenv("BLACKLIST_GCAST", "").split()}
