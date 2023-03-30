@@ -123,17 +123,18 @@ async def reply_pm(client, message):
     pmpermit, pm_message, limit, block_message = await set.get_pm_settings(user_id)
     user = message.from_user.id
     biji = message.from_user.first_name
+    sempak = message.text
     user_warns = 0 if user not in USERS_AND_WARNS else USERS_AND_WARNS[user]
     await client.send_message(
                 botlog_chat_id,
-                f"💌 <b><u>MENERUSKAN PESAN BARU</u></b>\n<b> • Dari :</b> {biji}\n<b> • User ID :</b> <code>{user}</code>",
+                f"💌 <b><u>MENERUSKAN PESAN BARU</u></b>\n<b> • Dari :</b> {biji}\n<b> • User ID :</b> <code>{user}</code>\n<b> • PESAN :</b> <code>{sempak}</code>\n ",
                 parse_mode=enums.ParseMode.HTML,
             )
     if user in DEVS:
         try:
             await set.allow_user(user_id, chat_id) 
             await client.send_message(
-                message.chat.id,
+                chat_id,
                 f"<b>Menerima Pesan!!!</b>\n{biji} <b>Terdeteksi Developer Naya-Premium</b>",
                 parse_mode=enums.ParseMode.HTML,
             )
