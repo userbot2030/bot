@@ -45,14 +45,7 @@ TEMP_SETTINGS: Dict[Any, Any] = {}
 TEMP_SETTINGS["PM_COUNT"] = {}
 TEMP_SETTINGS["PM_LAST_MSG"] = {}
 
-LOOP = asyncio.get_event_loop_policy()
-event_loop = LOOP.get_event_loop()
-asyncio.set_event_loop(event_loop)
-
-
-# event_policy = asyncio.get_event_loop_policy()
-# event_loop = event_policy.get_event_loop()
-# asyncio.set_event_loop(event_loop)
+LOOP = asyncio.get_event_loop()
 
 
 BOT_WORKERS = int(get_config("BOT_WORKERS", "4"))
