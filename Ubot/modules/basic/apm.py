@@ -55,17 +55,6 @@ async def pmguard(client, message):
     await set.set_limit(user_id, int(arg))
     await message.edit(f"<b>Limit set to {arg}</b>")
 
-@Ubot("setlog", "")
-async def set_log(client, message):
-    try:
-        botlog_chat_id = int(message.text.split(" ")[1])
-    except (ValueError, IndexError):
-        await message.reply_text("**Format yang Anda masukkan salah. Gunakan format** `setlog id_grup`.")
-        return
-    user_id = client.me.id
-    chat_id = message.chat.id
-    await set_botlog(user_id, botlog_chat_id)
-    await message.reply_text(f"**ID Grup Log telah diatur ke {botlog_chat_id} untuk grup ini.**")
 
 @Ubot("blockmsg", "")
 async def setpmmsg(client, message):
