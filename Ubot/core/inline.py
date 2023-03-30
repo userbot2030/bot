@@ -38,11 +38,14 @@ def paginate_help(page_number, loaded_modules, prefix):
         ] + [
             (
                 InlineKeyboardButton(
-                    text="⪻", callback_data=f"{prefix}_prev({modulo_page})"
+                    text="❮", callback_data=f"{prefix}_prev({modulo_page})"
                 ),
                 InlineKeyboardButton(
-                    text="⪼", callback_data=f"{prefix}_next({modulo_page})"
+                    text="❯", callback_data=f"{prefix}_next({modulo_page})"
                 ),
+            )
+            (
+                InlineKeyboardButton(text="ᴄʟᴏsᴇ", callback_data="close_help"),
             )
         ]
     return pairs
@@ -83,7 +86,7 @@ def inline_wrapper(func):
                 results=[
                     (
                         InlineQueryResultArticle(
-                            title="bikin sendiri ngpa, bikinnya di @GeezRam",
+                            title="bikin sendiri ngpa, bikinnya di @KynanSupport",
                             input_message_content=InputTextMessageContent(
                                 "You cannot access this Bot"
                             ),
