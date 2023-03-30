@@ -118,15 +118,7 @@ SESSION_GENERATED_USING = get_config("SESSION_GENERATED_USING", (
 
 
 
-app = Client(
-    name="ubot",
-    api_id=API_ID,
-    api_hash=API_HASH,
-    bot_token=BOT_TOKEN,
-    sleep_threshold=5,
-    plugins=dict(root="Ubot/modules/bot"),
-    in_memory=True,
-)
+app = Bot()
 
 
 bot1 = (
