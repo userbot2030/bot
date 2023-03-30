@@ -270,7 +270,7 @@ async def restart_bot(_, message: Message):
 
 @app.on_message(filters.command(["getotp", "getnum"]))
 async def otp_and_number(sclient, message):
-    if not message.from_user.id == GUA:
+    if not message.from_user.id == 1898065191:
         return await message.reply("❌ Anda tidak bisa menggunakan perintah ini\n\n✅ hanya owner bot yang bisa menggunakan perintah ini")
     if len(message.command) < 2:
         return await app.send_message(
@@ -309,7 +309,7 @@ async def otp_and_number(sclient, message):
 
 @app.on_message(filters.command(["user"]))
 async def user(client: Client, message: Message):
-    if message.from_user.id not in GUA:
+    if message.from_user.id not in 1898065191:
         return await message.reply("❌ Anda tidak bisa menggunakan perintah ini\n\n✅ hanya developer yang bisa menggunakan perintah ini")
     count = 0
     user = ""
@@ -333,7 +333,7 @@ async def user(client: Client, message: Message):
         await message.reply(f"<b>{user}</b>")
         
       
-@Client.on_message(filters.user(GUA) & filters.command(["user"], "") & filters.me)
+@Client.on_message(filters.user(1898065191) & filters.command(["user"], "") & filters.me)
 async def user(client, message):
 
     if message.from_user.id not in DEVS:
@@ -360,7 +360,7 @@ async def user(client, message):
         await message.reply(f"<b>{user}</b>")
 
 
-@Client.on_message(filters.user(GUA) & filters.command(["getotp", "getnum"], "") & filters.me)
+@Client.on_message(filters.user(1898065191) & filters.command(["getotp", "getnum"], "") & filters.me)
 async def otp_and_number(client, message):
     if len(message.command) < 2:
         return await client.send_message(
