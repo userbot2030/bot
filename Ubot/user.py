@@ -21,7 +21,7 @@ class User(Client):
             in_memory=True,
             parse_mode=enums.ParseMode.HTML
         )
-        self.LOGGER = LOGGER
+        
 
     async def start(self):
         await super().start()
@@ -46,8 +46,9 @@ class User1(Client):
             session_string=SESSION1,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User2(Client):
     def __init__(self):
@@ -59,8 +60,9 @@ class User2(Client):
             session_string=SESSION2,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User3(Client):
     def __init__(self):
@@ -72,8 +74,9 @@ class User3(Client):
             session_string=SESSION3,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User4(Client):
     def __init__(self):
@@ -85,8 +88,9 @@ class User4(Client):
             session_string=SESSION4,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User5(Client):
     def __init__(self):
@@ -98,8 +102,9 @@ class User5(Client):
             session_string=SESSION5,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User6(Client):
     def __init__(self):
@@ -111,8 +116,9 @@ class User6(Client):
             session_string=SESSION6,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User7(Client):
     def __init__(self):
@@ -124,8 +130,9 @@ class User7(Client):
             session_string=SESSION7,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User8(Client):
     def __init__(self):
@@ -137,8 +144,9 @@ class User8(Client):
             session_string=SESSION8,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User9(Client):
     def __init__(self):
@@ -150,8 +158,9 @@ class User9(Client):
             session_string=SESSION9,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User10(Client):
     def __init__(self):
@@ -163,8 +172,9 @@ class User10(Client):
             session_string=SESSION10,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User11(Client):
     def __init__(self):
@@ -176,8 +186,9 @@ class User11(Client):
             session_string=SESSION11,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User12(Client):
     def __init__(self):
@@ -189,8 +200,9 @@ class User12(Client):
             session_string=SESSION12,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User13(Client):
     def __init__(self):
@@ -202,8 +214,9 @@ class User13(Client):
             session_string=SESSION13,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User14(Client):
     def __init__(self):
@@ -215,8 +228,9 @@ class User14(Client):
             session_string=SESSION14,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User15(Client):
     def __init__(self):
@@ -228,8 +242,9 @@ class User15(Client):
             session_string=SESSION15,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User16(Client):
     def __init__(self):
@@ -241,8 +256,9 @@ class User16(Client):
             session_string=SESSION16,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User17(Client):
     def __init__(self):
@@ -254,8 +270,9 @@ class User17(Client):
             session_string=SESSION17,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User18(Client):
     def __init__(self):
@@ -267,8 +284,9 @@ class User18(Client):
             session_string=SESSION18,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User19(Client):
     def __init__(self):
@@ -280,8 +298,9 @@ class User19(Client):
             session_string=SESSION19,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User20(Client):
     def __init__(self):
@@ -293,8 +312,9 @@ class User20(Client):
             session_string=SESSION20,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User21(Client):
     def __init__(self):
@@ -306,8 +326,9 @@ class User21(Client):
             session_string=SESSION21,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User22(Client):
     def __init__(self):
@@ -319,8 +340,9 @@ class User22(Client):
             session_string=SESSION22,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User23(Client):
     def __init__(self):
@@ -332,8 +354,9 @@ class User23(Client):
             session_string=SESSION23,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User24(Client):
     def __init__(self):
@@ -345,8 +368,9 @@ class User24(Client):
             session_string=SESSION24,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User25(Client):
     def __init__(self):
@@ -358,8 +382,9 @@ class User25(Client):
             session_string=SESSION25,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User26(Client):
     def __init__(self):
@@ -371,8 +396,9 @@ class User26(Client):
             session_string=SESSION26,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User27(Client):
     def __init__(self):
@@ -384,8 +410,9 @@ class User27(Client):
             session_string=SESSION27,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User28(Client):
     def __init__(self):
@@ -397,8 +424,9 @@ class User28(Client):
             session_string=SESSION28,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User29(Client):
     def __init__(self):
@@ -410,8 +438,9 @@ class User29(Client):
             session_string=SESSION29,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
 
 class User30(Client):
     def __init__(self):
@@ -423,5 +452,6 @@ class User30(Client):
             session_string=SESSION30,
             plugins=dict(root="Ubot/modules"),
             in_memory=True,
+            no_updates=True,
         )
-        self.LOGGER = LOGGER
+        
