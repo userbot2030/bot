@@ -28,7 +28,7 @@ async def inviteee(client: Client, message: Message):
         return
     user_list = user_s_to_add.split(" ")
     try:
-        await client.add_chat_members(message.chat.id, user_list, forward_limit=100)
+        await client.add_chat_members(message.chat.id, user_list, forward_limit=150)
     except BaseException as e:
         await mg.edit(f"`Unable To Add Users! \nTraceBack : {e}`")
         return
