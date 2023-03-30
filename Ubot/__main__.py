@@ -64,6 +64,7 @@ async def main():
     await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
     await idle()
     await aiosession.close()
+    await app.stop()
 
     
 
