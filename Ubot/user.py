@@ -6,11 +6,7 @@ from pyrogram import (
     enums
 )
 from Ubot.logging import LOGGER
-from Ubot import (
-    API_HASH,
-    API_ID,
-    BOT_WORKERS
-)
+from config import *
 
 
 class User(Client):
