@@ -14,7 +14,7 @@ from ubotlibs.ubot.utils.tools import get_arg
 from pyrogram import filters, Client, enums
 from pyrogram.types import Message
 from . import *
-from Ubot.core.db import set_botlog
+from Ubot.core.db import set_botlog, get_botlog
 from Ubot.core.db.pmpermit import *
 from Ubot.core.db import pmpermit as set
 
@@ -53,33 +53,33 @@ async def pmguard(client, message):
         await message.edit("<b>Berikan Angka</b>\n<b>Contoh</b>: `setlimit 5` defaultnya adalah 5.")
         return
     await set.set_limit(user_id, int(arg))
-    await message.edit(f"<b>Limit set to {arg}**")
+    await message.edit(f"<b>Limit set to {arg}</b>")
 
 @Ubot("setlog", "")
 async def set_log(client, message):
     try:
         botlog_chat_id = int(message.text.split(" ")[1])
     except (ValueError, IndexError):
-        await message.reply_text("Format yang Anda masukkan salah. Gunakan format `setlog id_grup`.")
+        await message.reply_text("**Format yang Anda masukkan salah. Gunakan format** `setlog id_grup`.")
         return
     user_id = client.me.id
     chat_id = message.chat.id
     await set_botlog(user_id, botlog_chat_id)
-    await message.reply_text(f"ID Grup Log telah diatur ke {botlog_chat_id} untuk grup ini.")
+    await message.reply_text(f"**ID Grup Log telah diatur ke {botlog_chat_id} untuk grup ini.**")
 
 @Ubot("blockmsg", "")
 async def setpmmsg(client, message):
     user_id = client.me.id
     arg = get_arg(message)
     if not arg:
-        await message.edit("<b>Berikan Saya Pesan**\n**Contoh**: `blockmsg Spammer detected was **BLOCKED**`\nAtau Gunakan `blockmsg default` Untuk Nengatur ke default.")
+        await message.edit("**Berikan Saya Pesan**\n**Contoh**: `blockmsg Spammer detected was **BLOCKED**`\nAtau Gunakan `blockmsg default` Untuk Nengatur ke default.")
         return
     if arg == "default":
         await set.set_block_message(user_id, set.BLOCKED)
-        await message.edit("<b>Pesan Blokir Diatur ke Default**.")
+        await message.edit("**Pesan Blokir Diatur ke Default**.")
         return
     await set.set_block_message(user_id, f"`{arg}`")
-    await message.edit("<b>Pesan Blokir Berhasil Diatur Ke Kostom**")
+    await message.edit("**Pesan Blokir Berhasil Diatur Ke Kostom**")
 
 
 @Client.on_message(filters.command(["a", "ok"], "") & filters.me & filters.private)
@@ -89,7 +89,7 @@ async def allow(client, message):
     chat_id = message.chat.id
     pmpermit, pm_message, limit, block_message = await get_pm_settings(user_id)
     await set.allow_user(user_id, chat_id)
-    await message.edit(f"<b>Menerima pesan dari [Anda](tg://user?id={chat_id})**")
+    await message.edit(f"**Menerima pesan dari [Anda](tg://user?id={chat_id})**")
     async for message in client.search_messages(
         chat_id=message.chat.id, query=pm_message, limit=1, from_user="me"
     ):
@@ -103,7 +103,7 @@ async def deny(client, message):
     biji = message.from_user.first_name
     chat_id = message.chat.id
     await set.deny_user(user_id, chat_id)
-    await message.edit(f"<b>Saya belum menyetujui [Anda](tg://user?id={chat_id}) untuk mengirim pesan.**")
+    await message.edit(f"**Saya belum menyetujui [Anda](tg://user?id={chat_id}) untuk mengirim pesan.**")
 
 
 @Client.on_message(
@@ -118,6 +118,7 @@ async def deny(client, message):
 async def reply_pm(client, message):
     user_id = client.me.id
     chat_id = message.chat.id
+    botlog_chat_id = get_botlog(user_id)
     global FLOOD_CTRL
     pmpermit, pm_message, limit, block_message = await set.get_pm_settings(user_id)
     user = message.from_user.id
