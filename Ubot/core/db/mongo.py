@@ -76,5 +76,7 @@ db.remove(user_id, module, variable)
 collection = db.get_collection(user_id, module)
 
 
+prefix = db.get("core.main", "prefix", ".")
+
 db.close()
 
