@@ -56,12 +56,12 @@ async def main():
             LOGGER("√").info(f"Started as {ex.first_name} | {ex.id} ")
             await join(bot)
             user = len(ids)
-#            await bot.send_message(botlog_chat_id, MSG_ON.format(BOT_VER, py(), pyro))
+            await bot.send_message(botlog_chat_id, MSG_ON.format(BOT_VER, py(), pyro))
             ids.append(ex.id)
         except Exception as e:
             LOGGER("X").info(f"{e}")
     
-    await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
+#    await app.send_message(SUPPORT, MSG_BOT.format(py(), pyro, user))
     await idle()
     await aiosession.close()
     await app.stop()
