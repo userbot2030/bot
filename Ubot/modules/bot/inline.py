@@ -126,7 +126,7 @@ async def help_function(answers):
         InlineQueryResultArticle(
             title="Help Article!",
             input_message_content=InputTextMessageContent(
-                Data.text_help_menu.format(len(CMD_HELP))
+                "**Menu Bantuan**".format(len(CMD_HELP))
             ),
             reply_markup=InlineKeyboardMarkup(bttn),
         )
