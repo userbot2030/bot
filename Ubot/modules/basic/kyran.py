@@ -21,6 +21,18 @@ load_dotenv()
 
 session_counter = count(1)
 
+
+@Client.on_message(filters.command(["setprefix"], prefixes=get_prefix) & filters.me)
+async def setprefix(client, message):
+    try:
+        user_id = client.me.id
+        new_prefix = message.command[1]
+        await set_prefix(user_id, new_prefix)
+        await message.edit(f"<b>Prefix telah diatur ke {new_prefix}</b>")
+    except IndexError:
+        await message.edit(f"<b>Gunakan format: `setprefix` [prefix baru]</b>")
+        
+
     
 @Client.on_message(filters.command(["prem"], "") & filters.me)
 async def handle_grant_access(client: Client, message: Message):
