@@ -12,9 +12,8 @@ from itertools import count
 from pyrogram import Client, enums, filters
 from pyrogram.types import *
 from Ubot import CMD_HELP, StartTime, app, ids
+from Ubot.core.db.mongo import *
 from Ubot.core.db import *
-from pyrogram.raw.functions import Ping
-from Ubot.modules.bot.inline import get_readable_time
 from . import *
 
 load_dotenv()
@@ -22,19 +21,17 @@ load_dotenv()
 session_counter = count(1)
 
 
-@Client.on_message(
-    filters.command(["sp", "setprefix"], prefix)
-    & filters.me
-)
+
+@Client.on_message(filters.command(["sp", "setprefix"], prefix) & filters.me)
 async def setprefix(_, message: Message):
+    user_id = client.me.id
     if len(message.command) > 1:
         pref = message.command[1]
-        db.set("core.main", "prefix", pref)
-        await message.edit(f"<b>Prefix [ <code>{pref}</code> ] is set!</b>")
+        db.set(str(user_id), "core.main", "prefix", pref)
+        await message.edit(f"**Prefix [ `{pref}` ] is set!**")
         restart()
     else:
-        await message.edit("<b>The prefix must not be empty!</b>")
-
+        await message.edit("**The prefix must not be empty!**")
     
 @Client.on_message(filters.command(["prem"], prefix) & filters.me)
 async def handle_grant_access(client: Client, message: Message):
