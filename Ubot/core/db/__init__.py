@@ -61,7 +61,7 @@ gbansdb = db.gban
 afkdb = db.afk
 prefdb = db.prefix
 
-prefix = prefdb.get_collection("core").find_one({"user_id": "main"}).get("prefix", ".")
+prefix = prefdb.find_one({"user_id": "main"}).get("prefix", ".")
 
 
 BOT_VER ="8.1.0"
