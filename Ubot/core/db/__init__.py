@@ -73,9 +73,13 @@ MSG_ON = """
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 """
 
+async def get_prefix():
+    tai = await prefdb.users.find_one({"user_id": "core.main"})
+    prefix = tai.get("prefix", ".")
+    return prefix
 
-core_main_doc = await db.collection.find_one({"_id": "core.main"})
-prefix = core_main_doc.get("prefix", ".")
+prefix = await get_prefix()
+
 
 
 
