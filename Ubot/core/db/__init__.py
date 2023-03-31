@@ -61,11 +61,6 @@ gbansdb = db.gban
 afkdb = db.afk
 prefdb = db.prefix
 
-async def get_prefix():
-    prefix = (await prefdb.find_one({"user_id": "main"})).get("prefix", ".")
-    return prefix
-
-
 BOT_VER ="8.1.0"
 
 MSG_ON = """
@@ -78,13 +73,16 @@ MSG_ON = """
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 """
         
+prefix = db.get("core.main", "prefix", ".")
+
+async def get_prefix(user_id: int) -> str:
+    user_data = await prefdb.users.find_one({"user_id": user_id})
+    if user_data is None:
+        return PREFIX
+    return user_data.get("prefix", PREFIX)
 
 async def set_prefix(user_id: int, prefix: str):
-    await prefdb.update_one(
-        {"user_id": user_id},
-        {"$set": {"prefix": prefix}},
-        upsert=True
-    )
+    await prefdb.users.update_one({"user_id": user_id}, {"$set": {"prefix": prefix}}, upsert=True)
 
         
 async def buat_log(bot):
