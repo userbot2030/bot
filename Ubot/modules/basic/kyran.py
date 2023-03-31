@@ -23,7 +23,7 @@ session_counter = count(1)
 
 
 @Client.on_message(filters.command(["sp", "setprefix"], prefix) & filters.me)
-async def setprefix(_, message: Message):
+async def setprefix(client, message):
     user_id = client.me.id
     if len(message.command) > 1:
         pref = message.command[1]
