@@ -122,11 +122,12 @@ async def alive_function(message, answers):
 
 async def help_function(answers):
     bttn = paginate_help(0, CMD_HELP, "helpme")
+    text = "**Menu Bantuan**"
     answers.append(
         InlineQueryResultArticle(
             title="Help Article!",
             input_message_content=InputTextMessageContent(
-                "**Menu Bantuan**".format(len(CMD_HELP))
+                text=text.format(len(CMD_HELP))
             ),
             reply_markup=InlineKeyboardMarkup(bttn),
         )
@@ -146,10 +147,10 @@ async def inline_query_handler(client: Client, query):
         elif text.split()[0] == "alive":
             m = [obj for obj in get_objects() if id(obj) == int(query.query.split(None, 1)[1])][0]
             answerss = await alive_function(m, answers)
-            await client.answer_inline_query(query.id, results=answerss, cache_time=0)
+            await client.answer_inline_query(query.id, results=answerss, cache_time=0.5)
         elif string_given.startswith("helper"):
             answers = await help_function(answers)
-            await client.answer_inline_query(query.id, results=answers, cache_time=0)
+            await client.answer_inline_query(query.id, results=answers, cache_time=0.5)
     except Exception as e:
         e = traceback.format_exc()
         print(e, "InLine")
