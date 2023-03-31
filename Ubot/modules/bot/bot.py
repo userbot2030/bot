@@ -21,7 +21,7 @@ async def _callbacks(_, callback_query: CallbackQuery):
         buttons = paginate_help(0, CMD_HELP, "helpme")
         await app.edit_inline_text(
             callback_query.inline_message_id,
-            "Menu Bantuan",
+            text=text,
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     elif query == "close":
@@ -36,11 +36,7 @@ async def _callbacks(_, callback_query: CallbackQuery):
         return
     elif query == "closed":
         try:
-            await callback_query.message.delete()
-        except BaseException:
-            pass
-        try:
-            await callback_query.message.reply_to_message.delete()
+            await app.delete_messages(callback_query.message.chat.id, callback_query.message.message_id)
         except BaseException:
             pass
     elif query == "make_basic_button":
@@ -48,7 +44,7 @@ async def _callbacks(_, callback_query: CallbackQuery):
             bttn = paginate_help(0, CMD_HELP, "helpme")
             await app.edit_inline_text(
                 callback_query.inline_message_id,
-                "**Menu Bantuan**",
+                text=text,
                 reply_markup=InlineKeyboardMarkup(bttn),
             )
         except Exception as e:
@@ -59,7 +55,7 @@ async def _callbacks(_, callback_query: CallbackQuery):
         buttons = paginate_help(current_page_number - 1, CMD_HELP, "helpme")
         await app.edit_inline_text(
             callback_query.inline_message_id,
-            "**Menu Bantuan**",
+            text=text,
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     elif query.startswith("helpme_next"):
@@ -67,14 +63,14 @@ async def _callbacks(_, callback_query: CallbackQuery):
         buttons = paginate_help(current_page_number + 1, CMD_HELP, "helpme")
         await app.edit_inline_text(
             callback_query.inline_message_id,
-            "**Menu Bantuan**",
+            text=text,
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     elif query.startswith("reopen"):
         buttons = paginate_help(0, CMD_HELP, "helpme")
         await app.edit_inline_text(
             callback_query.inline_message_id,
-            "**Menu Bantuan**",
+            text=text,
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     elif query.startswith("ub_modul_"):
