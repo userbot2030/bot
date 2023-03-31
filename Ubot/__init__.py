@@ -17,7 +17,7 @@ from gpytranslate import Translator
 from pyrogram import Client, filters
 from pytgcalls import GroupCallFactory
 from Ubot.get_config import get_config
-from Ubot.core.db.mongo import db
+
 from pyrogram import (
     Client,
     __version__,
@@ -33,8 +33,6 @@ ids = []
 SUDOERS = filters.user()
 SUDO_USER = SUDOERS
 
-
-prefix = db.get("core.main", "prefix", ".")
 
 if BOTLOG_CHATID:
    BOTLOG_CHATID = BOTLOG_CHATID
