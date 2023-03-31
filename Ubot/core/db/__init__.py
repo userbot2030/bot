@@ -72,17 +72,12 @@ MSG_ON = """
 **Ketik** `alive` **untuk Mengecheck Bot**
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 """
-        
-prefix = db.get("core.main", "prefix", ".")
 
-async def get_prefix(user_id: int) -> str:
-    user_data = await prefdb.users.find_one({"user_id": user_id})
-    if user_data is None:
-        return PREFIX
-    return user_data.get("prefix", PREFIX)
 
-async def set_prefix(user_id: int, prefix: str):
-    await prefdb.users.update_one({"user_id": user_id}, {"$set": {"prefix": prefix}}, upsert=True)
+
+sempak = await db.users.find_one({"_id": "core.main"})
+prefix = sempak.get("prefix", ".")
+
 
         
 async def buat_log(bot):
