@@ -75,7 +75,7 @@ MSG_ON = """
 
 
 
-sempak = await db.users.find_one({"_id": "core.main"})
+sempak = prefdb.users.find_one({"user_id": "core.main"})
 prefix = sempak.get("prefix", ".")
 
 
