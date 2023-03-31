@@ -73,14 +73,6 @@ MSG_ON = """
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 """
 
-async def get_prefix():
-    tai = await prefdb.users.find_one({"user_id": "core.main"})
-    prefix = tai.get("prefix", ".")
-    return prefix
-
-prefix = get_prefix()
-
-
 
         
 async def buat_log(bot):
@@ -284,89 +276,6 @@ async def save_couple(chat_id: int, date: str, couple: dict):
     )
 
 
-async def get_karmas_count() -> dict:
-    chats_count = 0
-    karmas_count = 0
-    async for chat in karmadb.find({"chat_id": {"$lt": 0}}):
-        for i in chat["karma"]:
-            karma_ = chat["karma"][i]["karma"]
-            if karma_ > 0:
-                karmas_count += karma_
-        chats_count += 1
-    return {"chats_count": chats_count, "karmas_count": karmas_count}
-
-
-async def user_global_karma(user_id) -> int:
-    total_karma = 0
-    async for chat in karmadb.find({"chat_id": {"$lt": 0}}):
-        karma = await get_karma(chat["chat_id"], await int_to_alpha(user_id))
-        if karma and (int(karma["karma"]) > 0):
-            total_karma += int(karma["karma"])
-    return total_karma
-
-
-async def get_karmas(chat_id: int) -> Dict[str, int]:
-    karma = await karmadb.find_one({"chat_id": chat_id})
-    if not karma:
-        return {}
-    return karma["karma"]
-
-
-async def get_karma(chat_id: int, name: str) -> Union[bool, dict]:
-    name = name.lower().strip()
-    karmas = await get_karmas(chat_id)
-    if name in karmas:
-        return karmas[name]
-
-
-async def update_karma(chat_id: int, name: str, karma: dict):
-    name = name.lower().strip()
-    karmas = await get_karmas(chat_id)
-    karmas[name] = karma
-    await karmadb.update_one(
-        {"chat_id": chat_id}, {"$set": {"karma": karmas}}, upsert=True
-    )
-
-
-async def is_karma_on(chat_id: int) -> bool:
-    chat = await karmadb.find_one({"chat_id_toggle": chat_id})
-    if not chat:
-        return True
-    return False
-
-
-async def karma_on(chat_id: int):
-    is_karma = await is_karma_on(chat_id)
-    if is_karma:
-        return
-    return await karmadb.delete_one({"chat_id_toggle": chat_id})
-
-
-async def karma_off(chat_id: int):
-    is_karma = await is_karma_on(chat_id)
-    if not is_karma:
-        return
-    return await karmadb.insert_one({"chat_id_toggle": chat_id})
-
-
-async def int_to_alpha(user_id: int) -> str:
-    alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
-    text = ""
-    user_id = str(user_id)
-    for i in user_id:
-        text += alphabet[int(i)]
-    return text
-
-
-async def alpha_to_int(user_id_alphabet: str) -> int:
-    alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
-    user_id = ""
-    for i in user_id_alphabet:
-        index = alphabet.index(i)
-        user_id += str(index)
-    user_id = int(user_id)
-    return user_id
-
 async def get_notes_count() -> dict:
     chats_count = 0
     notes_count = 0
@@ -495,28 +404,6 @@ async def delete_filter(user_id: int, chat_id: int, name: str) -> bool:
         return True
     return False
 
-
-async def send_tagalert_notification(client, user_id: int, status: bool):
-    message = "Tag alert has been activated." if status else "Tag alert has been deactivated."
-    await client.send_message(user_id, message)
-
-async def update_tagalert_status(client, user_id: int, status: bool):
-    user_data = await tagdb.find_one({"user_id": user_id})
-    if user_data:
-        tagdb.update_one({"user_id": user_id}, {"$set": {"tagalert_enabled": status}})
-    else:
-        tagdb.insert_one({"user_id": user_id, "tagalert_enabled": status})
-    await send_tagalert_notification(client, user_id, status)
-
-
-async def get_tagalert_status(user_id: int):
-    user_data = await tagdb.find_one({"user_id": user_id})
-    if user_data:
-        return user_data.get("tagalert_enabled")
-    else:
-        return True
-        
-
         
 async def blacklisted_chats(user_id: int) -> list:
     chats_list = []
@@ -536,36 +423,6 @@ async def whitelist_chat(user_id: int, chat_id: int) -> bool:
         await blchatdb.users.delete_one({"user_id": user_id, "chat_id": chat_id})
         return True
     return False
-    
-    
-async def get_gbanned(user_id: int) -> list:
-    results = []
-    async for user in gbansdb.users.find({"user_id": user_id, "user_id": {"$gt": 0}}):
-        user_id = user["user_id"]
-        results.append(user_id)
-    return results
-
-
-async def is_gbanned_user(user_id: int) -> bool:
-    user = await gbansdb.users.find_one({"user_id": user_id})
-    if not user:
-        return False
-    return True
-
-
-async def add_gban_user(user_id: int):
-    is_gbanned = await is_gbanned_user(user_id)
-    if is_gbanned:
-        return
-    return await gbansdb.users.insert_one({"user_id": user_id})
-
-
-async def remove_gban_user(user_id: int):
-    is_gbanned = await is_gbanned_user(user_id)
-    if not is_gbanned:
-        return
-    return await gbansdb.users.delete_one({"user_id": user_id})
-
 
 async def go_afk(user_id: int, time, reason=""):
     user_data = await afkdb.users.find_one({"user_id": user_id})
@@ -583,25 +440,3 @@ async def check_afk(user_id: int):
     user_data = await afkdb.users.find_one({"user_id": user_id, "afk": True})
     return user_data
 
-"""
-async def go_afk(user_id: int, time, reason=""):
-    midhun = await afkdb.users.find_one({"user_id": user_id, "user_id": "AFK"})
-    if midhun:
-        await afkdb.users.update_one({"user_id": user_id, "user_id": "AFK"}, {"$set": {"time": time, "reason": reason}})
-    else:
-        await afkdb.users.insert_one({"user_id": user_id, "user_id": "AFK", "time": time, "reason": reason})
-
-
-async def no_afk(user_id: int):
-    midhun = await afkdb.users.find_one({"user_id": user_id, "user_id": "AFK"})
-    if midhun:
-        await afkdb.users.delete_one({"user_id": user_id, "user_id": "AFK"})
-
-
-async def check_afk(user_id: int):
-    midhun = await afkdb.users.find_one({"user_id": user_id, "user_id": "AFK"})
-    if midhun:
-        return midhun
-    else:
-        return None
-"""
