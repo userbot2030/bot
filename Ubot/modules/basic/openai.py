@@ -25,7 +25,7 @@ RMBG_API_KEY = "3RCCWg8tMBfDWdAs44YMfJmC"
 async def openai(c, m):
     
     if len(m.command) == 1:
-        return await m.reply(f"Ketik <code>{prefix}{m.command[0]} [question]</code> Pertanyaan untuk menggunakan OpenAI")
+        return await m.reply(f"Ketik <code>{m.command[0]} [question]</code> Pertanyaan untuk menggunakan OpenAI")
     question = m.text.split(" ", maxsplit=1)[1]
     headers = {
         "Content-Type": "application/json",
