@@ -78,8 +78,7 @@ async def get_prefix():
     prefix = tai.get("prefix", ".")
     return prefix
 
-prefix = await get_prefix()
-
+prefix = get_prefix()
 
 
 
