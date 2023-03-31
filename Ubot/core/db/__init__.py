@@ -59,6 +59,7 @@ blchatdb = db.blchat
 pmdb = db.pmpermit
 gbansdb = db.gban
 afkdb = db.afk
+prefdb = db.prefix
 
 BOT_VER ="8.1.0"
 
@@ -72,7 +73,16 @@ MSG_ON = """
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 """
         
-        
+
+async def get_prefix(user_id: int) -> str:
+    user_data = await prefdb.users.find_one({"user_id": user_id})
+    if user_data is None:
+        return PREFIX
+    return user_data.get("prefix", PREFIX)
+
+async def set_prefix(user_id: int, prefix: str):
+    await prefdb.users.update_one({"user_id": user_id}, {"$set": {"prefix": prefix}}, upsert=True)
+
         
 async def buat_log(bot):
     user = await bot.get_me()
