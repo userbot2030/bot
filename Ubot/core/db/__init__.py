@@ -61,8 +61,9 @@ gbansdb = db.gban
 afkdb = db.afk
 prefdb = db.prefix
 
-prefix = (await prefdb.find_one({"user_id": "main"})).get("prefix", ".")
-
+async def get_prefix():
+    prefix = (await prefdb.find_one({"user_id": "main"})).get("prefix", ".")
+    return prefix
 
 
 BOT_VER ="8.1.0"
@@ -79,7 +80,7 @@ MSG_ON = """
         
 
 async def set_prefix(user_id: int, prefix: str):
-    await prefdb.get_collection("core").update_one(
+    await prefdb.update_one(
         {"user_id": user_id},
         {"$set": {"prefix": prefix}},
         upsert=True
