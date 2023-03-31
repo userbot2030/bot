@@ -9,8 +9,7 @@ from ubotlibs.ubot.utils.tools import get_arg
 
 
 
-@Client.on_message(filters.group & filters.mentioned & filters.incoming & ~filters.bot
-)
+@Client.on_message(filters.group & filters.mentioned & filters.incoming & ~filters.bot & ~filters.via_bot)
 async def log_tagged_messages(client, message):
     chat_id = message.chat.id
     user_id = client.me.id
