@@ -69,6 +69,3 @@ class MongoDatabase(Database):
 
 db = MongoDatabase(db_url, db_name)
 
-
-prefix = db.get("core.main", "prefix", ".")
-
