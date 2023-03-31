@@ -16,11 +16,12 @@ from config import SUPPORT, CHANNEL, CMD_HNDLR, ADMIN1_ID, ADMIN2_ID, ADMIN3_ID,
 async def _callbacks(_, callback_query: CallbackQuery):
     query = callback_query.data.lower()
     bot_me = await app.get_me()
+    text = "**Menu Bantuan**"
     if query == "helper":
         buttons = paginate_help(0, CMD_HELP, "helpme")
         await app.edit_inline_text(
             callback_query.inline_message_id,
-            Data.text_help_menu,
+            "Menu Bantuan",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     elif query == "close":
@@ -47,7 +48,7 @@ async def _callbacks(_, callback_query: CallbackQuery):
             bttn = paginate_help(0, CMD_HELP, "helpme")
             await app.edit_inline_text(
                 callback_query.inline_message_id,
-                Data.text_help_menu,
+                "**Menu Bantuan**",
                 reply_markup=InlineKeyboardMarkup(bttn),
             )
         except Exception as e:
@@ -58,7 +59,7 @@ async def _callbacks(_, callback_query: CallbackQuery):
         buttons = paginate_help(current_page_number - 1, CMD_HELP, "helpme")
         await app.edit_inline_text(
             callback_query.inline_message_id,
-            Data.text_help_menu,
+            "**Menu Bantuan**",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     elif query.startswith("helpme_next"):
@@ -66,14 +67,14 @@ async def _callbacks(_, callback_query: CallbackQuery):
         buttons = paginate_help(current_page_number + 1, CMD_HELP, "helpme")
         await app.edit_inline_text(
             callback_query.inline_message_id,
-            Data.text_help_menu,
+            "**Menu Bantuan**",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     elif query.startswith("reopen"):
         buttons = paginate_help(0, CMD_HELP, "helpme")
         await app.edit_inline_text(
             callback_query.inline_message_id,
-            Data.text_help_menu,
+            "**Menu Bantuan**",
             reply_markup=InlineKeyboardMarkup(buttons),
         )
     elif query.startswith("ub_modul_"):
