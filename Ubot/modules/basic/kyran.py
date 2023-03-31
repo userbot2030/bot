@@ -13,7 +13,8 @@ from pyrogram import Client, enums, filters
 from pyrogram.types import *
 from Ubot import CMD_HELP, StartTime, app, ids
 from Ubot.core import prefix
-from Ubot.core.db import *
+from Ubot.core.mongo import db
+from Ubot.core.db import check_and_grant_user_access, delete_user_access
 from . import *
 
 load_dotenv()
