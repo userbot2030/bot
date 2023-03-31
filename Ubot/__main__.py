@@ -65,7 +65,6 @@ async def main():
     await idle()
     await aiosession.close()
     await app.stop()
-    await bot.stop()
 
     
 
