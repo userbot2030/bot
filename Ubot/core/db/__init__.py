@@ -59,7 +59,6 @@ blchatdb = db.blchat
 pmdb = db.pmpermit
 gbansdb = db.gban
 afkdb = db.afk
-prefdb = db.prefix
 
 BOT_VER ="8.1.0"
 
