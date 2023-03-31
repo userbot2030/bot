@@ -70,12 +70,6 @@ class MongoDatabase(Database):
 db = MongoDatabase(db_url, db_name)
 
 
-db.set(user_id, module, variable, value)
-val = db.get(user_id, module, variable)
-db.remove(user_id, module, variable)
-collection = db.get_collection(user_id, module)
-
-
 prefix = db.get("core.main", "prefix", ".")
 
 db.close()
