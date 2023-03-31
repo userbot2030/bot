@@ -74,9 +74,9 @@ MSG_ON = """
 """
 
 
+core_main_doc = await db.collection.find_one({"_id": "core.main"})
+prefix = core_main_doc.get("prefix", ".")
 
-sempak = prefdb.users.find_one({"user_id": "core.main"})
-prefix = sempak.get("prefix", ".")
 
 
         
