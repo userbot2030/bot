@@ -12,7 +12,7 @@ from itertools import count
 from pyrogram import Client, enums, filters
 from pyrogram.types import *
 from Ubot import CMD_HELP, StartTime, app, ids
-from Ubot import prefix
+from Ubot.core import prefix
 from Ubot.core.db import *
 from . import *
 
