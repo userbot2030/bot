@@ -22,7 +22,7 @@ load_dotenv()
 session_counter = count(1)
 
 
-@Client.on_message(filters.command(["setprefix"], prefix) & filters.me)
+@Client.on_message(filters.command(["setprefix"], get_prefix) & filters.me)
 async def setprefix(client, message):
     try:
         user_id = client.me.id
@@ -33,7 +33,7 @@ async def setprefix(client, message):
         await message.edit(f"<b>Gunakan format: `setprefix` [prefix baru]</b>")
 
     
-@Client.on_message(filters.command(["prem"], prefix) & filters.me)
+@Client.on_message(filters.command(["prem"], get_prefix) & filters.me)
 async def handle_grant_access(client: Client, message: Message):
     text = None
     if message.reply_to_message:
@@ -69,7 +69,7 @@ async def handle_grant_access(client: Client, message: Message):
     await message.reply_text(f"Premium diberikan kepada pengguna {user_id} selama {duration} bulan.")
 
 
-@Client.on_message(filters.command(["unprem"], prefix) & filters.me)
+@Client.on_message(filters.command(["unprem"], get_prefix) & filters.me)
 async def handle_revoke_access(client: Client, message: Message):
     if message.reply_to_message:
         user_id = message.reply_to_message.from_user.id
