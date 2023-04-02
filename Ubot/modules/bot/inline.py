@@ -121,12 +121,11 @@ async def alive_function(message, answers):
 
 async def help_function(answers):
     bttn = paginate_help(0, CMD_HELP, "helpme")
-    text = "**Menu Bantuan**"
     answers.append(
         InlineQueryResultArticle(
             title="Help Article!",
             input_message_content=InputTextMessageContent(
-                message_text=text.format(len(CMD_HELP))
+                Data.text_help_menu.format(len(CMD_HELP))
             ),
             reply_markup=InlineKeyboardMarkup(bttn),
         )
