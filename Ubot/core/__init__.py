@@ -6,4 +6,4 @@ from .inline import *
 from .lgs import *
 from .what import *
 from .filter import *
-from .constans import *
+from .constanst import *
