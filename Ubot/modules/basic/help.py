@@ -65,10 +65,11 @@ async def module_help(client: Client, message: Message):
     if help_arg:
         if help_arg in CMD_HELP:
             commands: dict = CMD_HELP[help_arg]
-            this_command = f"**Help For {str(help_arg).upper()}**\n\n"
+            this_command = f"**Bantuan Untuk {str(help_arg).upper()}**\n\n"
             for x in commands:
-                this_command += f"๏ **Function:** `{str(commands[x])}`\n\n"
-            this_command += ""
+                this_command += f"๏ **Perintah:** `{str(x)}`\n◉ **Keterangan:** `{str(commands[x])}`\n\n"
+            this_command += "@KynanSupport"
+            
             await edit_or_reply(
                 message, this_command, parse_mode=enums.ParseMode.MARKDOWN
             )
