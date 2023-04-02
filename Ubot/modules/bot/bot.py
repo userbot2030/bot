@@ -6,8 +6,7 @@ from pyrogram.errors import MessageDeleteForbidden
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
 from Ubot import CMD_HELP, app
-from Ubot.core.data import Data
-from Ubot.core.inline import cb_wrapper, paginate_help
+from Ubot.core import *
 from Ubot import ids as users
 from config import SUPPORT, CHANNEL, CMD_HNDLR, ADMIN1_ID, ADMIN2_ID, ADMIN3_ID, ADMIN4_ID, ADMIN5_ID, ADMIN6_ID, ADMIN7_ID
 
