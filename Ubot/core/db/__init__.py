@@ -49,7 +49,6 @@ mongo = MongoCli(MONGO_URL)
 db = mongo.ubot
 
 coupledb = db.couple
-karmadb = db.karma
 notesdb = db.notes
 filtersdb = db.filters
 accesdb = db.acces
@@ -57,7 +56,6 @@ usersdb = db.users
 logdb = db.gruplog
 blchatdb = db.blchat
 pmdb = db.pmpermit
-gbansdb = db.gban
 afkdb = db.afk
 
 BOT_VER ="8.1.0"
@@ -152,26 +150,6 @@ async def get_users_access() -> List[str]:
         return []
 
 
-async def revoke_access(user_id: int) -> bool:
-    try:
-        user = await accesdb.users.find_one({'user_id': user_id})
-        if user is not None and user.get('banned'):
-            return False
-        result = await accesdb.users.update_one(
-            {'user_id': user_id},
-            {'$set': {'banned': True}},
-            upsert=True
-        )
-        if result.upserted_id:
-            return False
-        elif result.matched_count > 0 or result.modified_count > 0:
-            return True
-        else:
-            return False
-    except pymongo.errors.PyMongoError:
-        return False
-
-
 async def check_user_access(user_id: int) -> bool:
     access = {"user_id": user_id}
     result = await accesdb.users.find_one(access)
@@ -231,15 +209,6 @@ async def set_expired_date(user_id, duration):
         days_in_month = 30 * duration
     expire_date = datetime.now() + timedelta(days=days_in_month)
     accesdb.users.update_one({"_id": user_id}, {"$set": {"expire_date": expire_date}}, upsert=True)
-    schedule.every().day.at("00:00").do(remove_expired)
-    asyncio.create_task(schedule_loop())
-
-
-
-async def schedule_loop():
-    while True:
-        await asyncio.sleep(1)
-        schedule.run_pending()
 
 async def check_and_grant_user_access(user_id: int, duration: int) -> None:
     if await check_user_access(user_id):
