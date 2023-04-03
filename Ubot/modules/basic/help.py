@@ -16,7 +16,6 @@ from pyrogram.types import Message
 from ubotlibs.ubot import Ubot, Devs
 from ubotlibs.ubot.helper.PyroHelpers import ReplyCheck
 from ubotlibs.ubot.helper.utility import split_list
-from ubotlibs.ubot.database.accesdb import *
 from Ubot import app, CMD_HELP, SUDO_USER, cmds
 
 async def edit_or_reply(message: Message, *args, **kwargs) -> Message:
@@ -48,7 +47,7 @@ async def module_help(client: Client, message: Message):
             print(f"{e}")
             ac = PrettyTable()
             ac.header = False
-            ac.title = "Ubot Plugins"
+            ac.title = "Modules"
             ac.align = "l"
             for x in split_list(sorted(CMD_HELP.keys()), 2):
                 ac.add_row([x[0], x[1] if len(x) >= 2 else None])
@@ -65,50 +64,10 @@ async def module_help(client: Client, message: Message):
     if help_arg:
         if help_arg in CMD_HELP:
             commands: dict = CMD_HELP[help_arg]
-            this_command = f"**Bantuan Untuk {str(help_arg).upper()}**\n\n"
+            this_command = f"**Bantuan {str(help_arg).upper()}**\n\n"
             for x in commands:
-                this_command += f"๏ **Perintah:** `{str(x)}`\n◉ **Keterangan:** `{str(commands[x])}`\n\n"
+                this_command += f"๏ **Keterangan:** `{str(commands[x])}`\n\n"
             this_command += "@KynanSupport"
-            
-            await edit_or_reply(
-                message, this_command, parse_mode=enums.ParseMode.MARKDOWN
-            )
-        else:
-            await edit_or_reply(
-                message,
-                f"`{help_arg}` **tidak ada dalam list modul.**",
-            )
-
-
-@Ubot(["plugin, modules"], "")
-async def module_helper(client: Client, message: Message):
-    cmd = message.command
-    help_arg = ""
-    if len(cmd) > 1:
-        help_arg = " ".join(cmd[1:])
-    elif message.reply_to_message and len(cmd) == 1:
-        help_arg = message.reply_to_message.text
-    elif not message.reply_to_message and len(cmd) == 1:
-        ac = PrettyTable()
-        ac.header = False
-        ac.title = "Ubot Plugins"
-        ac.align = "l"
-        for x in split_list(sorted(CMD_HELP.keys()), 2):
-            ac.add_row([x[0], x[1] if len(x) >= 2 else None])
-        await edit_or_reply(
-            message, f"```{str(ac)}```"
-        )
-        await message.reply(
-            f"**Usage**:`{cmds}help broadcast` **untuk melihat detail modul**"
-        )
-
-    if help_arg:
-        if help_arg in CMD_HELP:
-            commands: dict = CMD_HELP[help_arg]
-            this_command = f"**Help For {str(help_arg).upper()}**\n\n"
-            for x in commands:
-                this_command += f"  •  **Command:** `{str(x)}`\n  •  **Function:** `{str(commands[x])}`\n\n"
-            this_command += "© @TheUpdatesChannel"
             await edit_or_reply(
                 message, this_command, parse_mode=enums.ParseMode.MARKDOWN
             )
