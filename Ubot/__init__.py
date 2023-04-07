@@ -30,17 +30,7 @@ CMD_HELP = {}
 clients = []
 ids = []
 
-SUDOERS = filters.user()
-SUDO_USER = SUDOERS
 
-
-if BOTLOG_CHATID:
-   BOTLOG_CHATID = BOTLOG_CHATID
-else:
-   BOTLOG_CHATID = "me"
-
-
-SUDO_USER = SUDOERS
 trl = Translator()
 aiosession = ClientSession()
 CMD_HELP = {}
