@@ -26,10 +26,10 @@ from pyrogram import (
 from Ubot.logging import LOGGER
 from config import *
 cmds = None
-CMD_HELP = {}
+cmd_help = {}
 clients = []
 ids = []
-
+sudo_user=[]
 
 trl = Translator()
 aiosession = ClientSession()
